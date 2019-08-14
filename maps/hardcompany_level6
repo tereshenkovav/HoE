@@ -1,0 +1,344 @@
+Пираты Эквестрийского моря
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+#DefaultSandStone
+
+DESCRIPTION
+Селестия похищена пиратами - морскими разбойниками, уже много ==>
+лет нападающими на западные берега Эквестрии. Луна отправляется ==>
+на переговоры с капитаном, чтобы обсудить условия выкупа сестры и ==>
+соправительницы. Чем закончится эта дипломатия? Как могучая Селестия ==>
+вообще угодила в плен?
+
+MAP
+LLLWWAAAAAQWWWQAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+LLLWWAAAAAQQWWQAAAAAAAQQAAAAAAAAAAAAAAAAAAAA
+LLWWAAQQQQQQQQAAAAAAAQQQAAAAAAAAAAAAAAAAAAA
+WWWAAAQQWQQQAAAAAAAAAQQQAAAAAAAAAAAAAAAAAAAA
+WWAAAAQWWQQAAAAAAAAAQWWQAAAAAAAAAAAAAAAAAAA
+WWAAAAQWWWQAAAAAAAAAQWWWQQAAAAAAAAAAAAAAAAAA
+WQAAAAQQQQAAAAAAAAAAQWWWQAAAAAAAAAAAAAAAAAA
+WQQAAAAAAAAAAAAAAAAAAQQQQQAAAAAAAAAAAAAAAAAA
+WWQAAAAAAAAAAAAAAAAAQQQQQAAAAAAAAAAAAAAAAAA
+WWWQAAAQQQQQAAAAAAAAAQQWWQQAAAAAAAAAAAAAAAAA
+WWQAAAQWWWWQAAAAAAAAAQQWWWQAAAAAAAAAAAAAAAA
+WWQAAAQWQQQWQAAAAAAAAAQQWWQQQQQAAAAAAAAAAAAA
+WWQQAAQQQQWWQAAAAAAAAAQQWQQQWWQAAAAAAAAAAAA
+LWWQAAAAAQQWWQAAAAAAAAAQQQWWWLWQAAAAAAAAAAAA
+LWWQQAAAAAQQQAAAAAAAAAAQQWLLLLWQAAAAAAAAAAA
+LLWWQAAAAAAQQAAAAAAAAAAAQQWLLLWQQAAAAAAAAAAA
+LWWQAAAAAAQQQAAAAAAAAAAAQQWLLWWQQAAAAAAAAAA
+LLWQQAAAAAQWWQAAAAAAAAAAAQQWWWQQQQQAAAAAAAAA
+LWWQQAAAAQWWWQAAAAAAAAAAAAQQQQQWWWQQQQQAAAA
+LLWWQQAAAAQWQQQAAQQAAAAAAAAAQQQWWWQQWWWQQAAA
+LLWWQQAAAAQQAAAAQWQAAAAAAAAAAQQQWWQQWWWWQAA
+LLLWWQQQAAAAAAAAQWWQAAAAAAAAAAAQQQQQQWWQQQAA
+LLWWQQQQAAAAAAAQWWQAAAAAAAAAAAAAAQQQQQQQQAA
+LLLWWQQQQQAAAAQQQQQAAQQQAAAAAAAAAAAQQQQAAAAA
+LLWWWWWWQQQQQQQQAAAAQWWQAAAAAAAAAAAAAAAAAAA
+LLLWWWWWQQWWWWQQAAAAAQWWQAAAAAAAAAAAAAAAAAAA
+LLWWWWWQQQQWWWQQAAAAQWWQAAAAAAAAAAAAAAAAAAA
+LLWWWWWQQQQQWWWQAAAAAQQQAAAAAAAAAAAQQQQAAAAA
+LLWWWWQQQQQQWWQAAAAAAAAAAAAQQQAAQQQWWWQAAAA
+LLLWWWQQQQQQQWQAAAAAAAAAAAAQWWQQQQQWWWQAAAAA
+LLWWWQQQQQQQQQAAAAAAAAAAAAQWWWQQQQWQQWQAAAA
+LLWWWQQQQQQQQQQAAAAAAAAAAAQQQWQQQQWQQQQAAAAA
+LLWWWQQQQQQQWQQQAAAAAAAAAAAAQQAAAQQAAAAAAAQ
+LLWWWWQQQQQWWWWWQAAAAAAAAAAAAAAAAAAAAAAAQQQW
+LLLWWWQQQWWWWWWWQQAAAAAAAAAAAAAAAAAAAAAQWWW
+LLLWWWWWWWWWWWWWWWQQQQAAAAAAAAAAAAAAAAAQWWWW
+LLLWWWWWWWWWWWWWWWWWWQQQQQAQQQAAAAAAAQQQWQQ
+LLLLLWWWLLLLLLWWWWWWWWWWWWQQWWQQQAAAQQQQQQAA
+LLLLLLLLLLLLLLLWLLWWWWWWWWWWWWWWQQQQQQQAAAA
+LLLLLLLLLLLLLLLLLLLLLLLLLWWWWWWWWWWWQQQAAAAA
+#===MAPEND===
+
+CONSTANTS
+ShipX1:29
+ShipY1:5
+ShipX2:28
+ShipY2:9
+ShipX3:34
+ShipY3:11
+ShipX4:38
+ShipY4:16
+ShipX5:40
+ShipY5:10
+ShipX6:35
+ShipY6:5
+
+OBJECTS
+Pony:i=3,j=2,"name=Луна",code=luna
+Neutral:i=28,j=15,"name=Селестия в цепях",code=celestia_bounded
+Monster:i=26,j=14,"name=Пират",code=pirate,holdground=true
+Monster:i=29,j=16,"name=Пират",code=pirate,holdground=true
+Neutral:code=shipyard,"name=Старая верфь",i=6,j=33,EnemyTarget=true,Removable=true,tag=shipyard
+Neutral:Code=flag,"Name=Золотая жила",i=8,j=5
+Neutral:Code=flag,"Name=Золотая жила",i=1,j=9
+Neutral:Code=flag,"Name=Золотая жила",i=11,j=13
+Neutral:Code=flag,"Name=Золотая жила",i=16,j=22
+Neutral:Code=flag,"Name=Золотая жила",i=41,j=35
+Neutral:Code=flag,"Name=Золотая жила",i=34,j=30
+Neutral:Code=flag,"Name=Золотая жила",i=28,j=38
+Neutral:Code=flag,"Name=Золотая жила",i=20,j=37
+Neutral:Code=flag,"Name=Золотая жила",i=22,j=26
+Neutral:Code=flag,"Name=Золотая жила",i=3,j=19
+#Building:Code=FarmFoodNoTarget,"name=Ферма еды",i=1,j=1,Rank=-1000
+#Neutral:Code=palatka,"Name=Шатер",i=1,j=2
+#Neutral:Code=palatka,"Name=Шатер",i=2,j=1
+Neutral:Code=waterhouse,"Name=Дома корабелов",i=4,j=30
+Neutral:Code=waterhouse,"Name=Дома корабелов",i=4,j=32
+Neutral:Code=waterhouse,"Name=Дома корабелов",i=6,j=35
+Neutral:Code=waterhouse,"Name=Дома корабелов",i=9,j=35
+Neutral:Code=redship,"Name=Новые корабли",i=29,j=5
+Neutral:Code=redship,"Name=Новые корабли",i=28,j=9
+Neutral:Code=redship,"Name=Новые корабли",i=34,j=11
+Neutral:Code=redship,"Name=Новые корабли",i=38,j=16
+Neutral:Code=redship,"Name=Новые корабли",i=40,j=10
+Neutral:Code=redship,"Name=Новые корабли",i=35,j=5
+Monster:Code=pirateship,"Name=Пиратские корабли",i=33,j=8,holdground=true
+Monster:Code=pirateship,"Name=Пиратские корабли",i=25,j=2,holdground=true
+Monster:Code=pirateship,"Name=Пиратские корабли",i=38,j=13,holdground=true
+Monster:Code=pirateship,"Name=Пиратские корабли",i=34,j=15,holdground=true
+Monster:Code=pirateship,"Name=Пиратские корабли",i=33,j=1,holdground=true
+#===OBJECTSEND===
+
+INITIAL
+Stone:0
+Food:1000
+Task:Собрать 10 золотых слитков для выкупа
+AssignAction:pony=luna,action=BuildCrystalTowerDark
+Permits:action=allow,code=all
+Permits:action=deny,code=BuildCrystalTowerDark
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=2,j=2,immediate=true
+Action:Type=Message,icon=celestia_ico,"text=Луна, я так рада, что ты пришла."
+Action:Type=Message,icon=luna_ico,"text=Эти бандиты хорошо с тобой обращались? Упади хоть волосок с твоей гривы..."
+Action:Type=Message,icon=pirate_ico,"text=Полегче, детка. Мы не бандиты, мы благородные пираты."
+Action:Type=Message,icon=luna_ico,"text=Я выполню твои условия - но за <детку> ты ответишь, коняка драная!"
+Action:Type=Message,icon=celestia_ico,"text=Луна, откуда ты набралась таких выражений?"
+Action:Type=Message,icon=luna_ico,"text=В словаре идиом, дорогая сестра. А теперь давайте к делу."
+Action:Type=Message,icon=pirate_ico,"text=Уважаю такой подход. Наши условия просты - получаем 10 слитков золота, возвращаем вашу принцессу."
+Action:Type=Message,icon=luna_ico,"text=У нас нет и половины такого количества!"
+Action:Type=Message,icon=pirate_ico,"text=Это легко поправить - на островах вокруг полно золотоносных жил, мы пытались вести там добычу, но... местность вокруг небезопасна."
+Action:Type=Message,icon=luna_ico,"text=Держись, сестра. Я уже приступаю к сбору."
+Action:Type=Message,icon=pirate_ico,"text=И давайте без глупостей, принцессы. Селестию удерживают лучшие антимагические цепи - даже сильнейшие единороги не могли преодолеть защиту. Держись подальше от нас, пока не соберешь золото."
+Action:Type=Message,icon=ok_ico,"text=Луна может собрать по слитку из каждой отмеченной песчаной жилы, подлетев к ней вплотную."
+Action:Type=SetBattleTask,code=stayaway,"Task=Не приближаться к лагерю пиратов"
+Action:Type=ShowBattleTask
+Action:Type=SetExtInfoModel,"ModelMicroCode=mappirates;Осталось собрать золота: %d;10"
+
+SCRIPT      
+Event:Step=1
+Action:Type=SetFocus,i=6,j=33
+Action:Type=Message,icon=luna_ico,"text=Тут живет кто-то, кроме пиратов?"
+Action:Type=Message,icon=shipmaker_ico,"text=Да, Принцесса. И мы совсем не рады, что база морских разбойников так близко к нашему дому."
+Action:Type=Message,icon=luna_ico,"text=Мы работаем над этим. Но вот сейчас мне не помешала бы любая помощь - здешние воды просто кишат чудовищами."
+Action:Type=Message,icon=shipmaker_ico,"text=Мы умеем строить суда - правда, им далеко до пиратских кораблей, но есть и броня, и вооружение."
+Action:Type=Message,icon=luna_ico,"text=Возможно, я закажу у вас парочку. А потом мы покончим с этим гнездом."
+Action:Type=Message,icon=shipmaker_ico,"text=Главное, не дайте чудовищам разрушить нашу верфь - иначе ничего построить не удастся."
+Action:Type=Message,icon=ok_ico,"text=Подлетев Луной к верфи, вы можете получить боевое судно (одно за ход), отдав 50 единиц еды. Если верфь разрушат, заказ станет невозможен."
+
+# Верфь
+
+SCRIPT
+Event:ObjectPos=True,i=6,j=33,IncludeLinked=true,Object=luna,ForceOnceAtStep=true,ForceNoDel=true
+Event2:TagCount=1,TagName=shipyard,ForceOnceAtStep=True,ForceNoDel=true
+Event3:FoodReach=50
+Action:Type=NewObject,Object=Pony,Code=warship,"Name=Корабль",i=8,j=31,DeathAllow=true
+Action:Type=DecFood,Delta=50
+
+# Акулы
+
+SCRIPT      
+Event:StepModN=10
+Action:Type=NewObjectGroup,Object=Monster,Code=shark,"Name=Акула",i=20,j=20,count=1,radius=1
+
+
+# Скрипты слитков
+
+SCRIPT
+Event:ObjectPos=True,i=8,j=5,IncludeLinked=true,Object=luna
+Action:Type=RemoveObject,i=8,j=5
+Action:Type=NewObjectGroup,Object=Monster,Code=watersnake,"Name=Морской змей",i=8,j=5,count=3,radius=3
+Action:Type=SetVar,Name=gold,Delta=1
+
+SCRIPT
+Event:ObjectPos=True,i=1,j=9,IncludeLinked=true,Object=luna
+Action:Type=RemoveObject,i=1,j=9
+Action:Type=NewObjectGroup,Object=Monster,Code=crab,"Name=Гигатский краб",i=1,j=9,count=3,radius=3
+Action:Type=SetVar,Name=gold,Delta=1
+
+SCRIPT
+Event:ObjectPos=True,i=11,j=13,IncludeLinked=true,Object=luna
+Action:Type=RemoveObject,i=11,j=13
+Action:Type=NewObjectGroup,Object=Monster,Code=watersnake,Name=Морской змей,i=11,j=13,count=4,radius=3
+Action:Type=SetVar,Name=gold,Delta=1
+
+SCRIPT
+Event:ObjectPos=True,i=16,j=22,IncludeLinked=true,Object=luna
+Action:Type=RemoveObject,i=16,j=22
+Action:Type=NewObjectGroup,Object=Monster,Code=crab,Name=Гигатский краб,i=16,j=22,count=4,radius=3
+Action:Type=SetVar,Name=gold,Delta=1
+
+SCRIPT
+Event:ObjectPos=True,i=41,j=35,IncludeLinked=true,Object=luna
+Action:Type=RemoveObject,i=41,j=35
+Action:Type=NewObjectGroup,Object=Monster,Code=watersnake,Name=Морской змей,i=41,j=35,count=3,radius=3
+Action:Type=SetVar,Name=gold,Delta=1
+
+SCRIPT
+Event:ObjectPos=True,i=34,j=30,IncludeLinked=true,Object=luna
+Action:Type=RemoveObject,i=34,j=30
+Action:Type=NewObjectGroup,Object=Monster,Code=crab,Name=Гигатский краб,i=34,j=30,count=5,radius=3
+Action:Type=SetVar,Name=gold,Delta=1
+
+SCRIPT
+Event:ObjectPos=True,i=28,j=38,IncludeLinked=true,Object=luna
+Action:Type=RemoveObject,i=28,j=38
+Action:Type=NewObjectGroup,Object=Monster,Code=watersnake,Name=Морской змей,i=28,j=38,count=5,radius=3
+Action:Type=SetVar,Name=gold,Delta=1
+
+SCRIPT
+Event:ObjectPos=True,i=20,j=37,IncludeLinked=true,Object=luna
+Action:Type=RemoveObject,i=20,j=37
+Action:Type=NewObjectGroup,Object=Monster,Code=crab,Name=Гигатский краб,i=20,j=37,count=4,radius=3
+Action:Type=SetVar,Name=gold,Delta=1
+
+SCRIPT
+Event:ObjectPos=True,i=22,j=26,IncludeLinked=true,Object=luna
+Action:Type=RemoveObject,i=22,j=26
+Action:Type=NewObjectGroup,Object=Monster,Code=watersnake,Name=Морской змей,i=22,j=26,count=3,radius=3
+Action:Type=SetVar,Name=gold,Delta=1
+
+SCRIPT
+Event:ObjectPos=True,i=3,j=19,IncludeLinked=true,Object=luna
+Action:Type=RemoveObject,i=3,j=19
+Action:Type=NewObjectGroup,Object=Monster,Code=crab,Name=Гигатский краб,i=3,j=19,count=3,radius=3
+Action:Type=SetVar,Name=gold,Delta=1
+
+# Конец слитков
+
+SCRIPT
+Event:VarGreat=gold,Value=9
+#Event:Step=2
+Action:Type=Message,icon=luna_ico,"text=Твои требования выполнены. Десять слитков у меня в копытах."
+Action:Type=SetExtInfoModel,""
+Action:Type=Message,icon=pirate_ico,"text=А вы ловкая пони, вынужден признать. Оставьте слитки на островке между берегом и..."
+Action:Type=SetFocus,i=28,j=15,immediate=true
+Action:Type=Message,icon=celestia_ico,"text=Это подождет. Луна, золотые жилы указаны верно?"
+Action:Type=Message,icon=luna_ico,"text=Да, сестра. В точках, отмеченных пиратами, полно золотоносного песка и самородков."
+Action:Type=Message,icon=celestia_ico,"text=Отлично. Пираты Западного моря, как правитель Эквестрии, я первый и последний раз предлагаю вам сложить оружие, лечь в дрейф и мирно сдаться."
+Action:Type=Message,icon=pirate_ico,"text=У вас странное чувство юмора. Я склонен дать отрицательный ответ."
+Action:Type=Message,icon=celestia_ico,"text=Что ж, попытаться стоило. Луна, переходим ко второй части операции."
+Action:Type=ReplaceObject,OldCode=celestia_bounded,Object=Pony,Code=celestia,"Name=Принцесса Селестия"
+Action:Type=Message,icon=pirate_ico,"text=Невозможно! Цепи для единорогов!"
+Action:Type=Message,icon=celestia_ico,"text=Я-то не единорог, глупый ты разбойник. Луна, захватываем корабли на рейде и отводим в бухту. Нам нужны все шесть."
+Action:Type=Message,icon=luna_ico,"text=А что делать с остальными кораблями?"
+Action:Type=Message,icon=celestia_ico,"text=Отправляем на дно. На море должен остаться только флот Эквестрии."
+Action:Type=Message,icon=pirate_ico,"text=Братья! Все корабли на базу! Повторяю, красно-черный код! Все корабли на базу!"
+Action:Type=NewObject,Object=Neutral,Code=flag,"Name=Точка сбора флота",i=9,j=29,targeted=true
+Action:Type=CompBattleTask,code=stayaway
+Action:Type=CompBattleTask,code=initial
+Action:Type=SetBattleTask,code=grabflot,"Task=Подвести Селестию ко всем шести красным кораблям."
+Action:Type=SetBattleTask,code=moveflot,"Task=Отвести все шесть красных кораблей в бухту на юго-западе."
+#Action:Type=SetBattleTask,code=killflot,"Task=Потопить все черные корабли."
+Action:Type=ShowBattleTask
+Action:Type=FireTotalAttack
+Action:Type=SetVar,Name=crackenstep,Initial=CurrentStep,Delta=5
+Action:Type=SetFlag,FlagName=goldok
+
+# Захваты кораблей
+SCRIPT
+Event:ObjectPos=True,i=@ShipX1@,j=@ShipY1@,IncludeLinked=true,Object=celestia
+Action:Type=RemoveObject,i=@ShipX1@,j=@ShipY1@
+Action:Type=NewObject,Object=Pony,Code=redship,"Name=Захваченный корабль",i=@ShipX1@,j=@ShipY1@,tag=ship1
+Action:Type=SetFlag,FlagName=ship1grab
+
+SCRIPT
+Event:ObjectPos=True,i=@ShipX2@,j=@ShipY2@,IncludeLinked=true,Object=celestia
+Action:Type=RemoveObject,i=@ShipX2@,j=@ShipY2@
+Action:Type=NewObject,Object=Pony,Code=redship,"Name=Захваченный корабль",i=@ShipX2@,j=@ShipY2@,tag=ship2
+Action:Type=SetFlag,FlagName=ship1grab
+
+SCRIPT
+Event:ObjectPos=True,i=@ShipX3@,j=@ShipY3@,IncludeLinked=true,Object=celestia
+Action:Type=RemoveObject,i=@ShipX3@,j=@ShipY3@
+Action:Type=NewObject,Object=Pony,Code=redship,"Name=Захваченный корабль",i=@ShipX3@,j=@ShipY3@,tag=ship3
+Action:Type=SetFlag,FlagName=ship1grab
+
+SCRIPT
+Event:ObjectPos=True,i=@ShipX4@,j=@ShipY4@,IncludeLinked=true,Object=celestia
+Action:Type=RemoveObject,i=@ShipX4@,j=@ShipY4@
+Action:Type=NewObject,Object=Pony,Code=redship,"Name=Захваченный корабль",i=@ShipX4@,j=@ShipY4@,tag=ship4
+Action:Type=SetFlag,FlagName=ship1grab
+
+SCRIPT
+Event:ObjectPos=True,i=@ShipX5@,j=@ShipY5@,IncludeLinked=true,Object=celestia
+Action:Type=RemoveObject,i=@ShipX5@,j=@ShipY5@
+Action:Type=NewObject,Object=Pony,Code=redship,"Name=Захваченный корабль",i=@ShipX5@,j=@ShipY5@,tag=ship5
+Action:Type=SetFlag,FlagName=ship1grab
+
+SCRIPT
+Event:ObjectPos=True,i=@ShipX6@,j=@ShipY6@,IncludeLinked=true,Object=celestia
+Action:Type=RemoveObject,i=@ShipX6@,j=@ShipY6@
+Action:Type=NewObject,Object=Pony,Code=redship,"Name=Захваченный корабль",i=@ShipX6@,j=@ShipY6@,tag=ship6
+Action:Type=SetFlag,FlagName=ship1grab
+
+# Захват первого корабля
+SCRIPT
+Event:Flag=ship1grab
+Action:Type=Message,icon=pirate_ico,"text=Они реквизируют наши новые корабли! Возмутительно! Это пиратские методы."
+Action:Type=Message,icon=celestia_ico,"text=Луна, у нас проблемы. На свежих кораблях еще не стоит вооружение, и прочность обшивки ниже ожидаемой."
+Action:Type=Message,icon=luna_ico,"text=Будем сопровождать корабли вместе или по одному. Главное, увести их к берегу."
+
+# Кракен
+SCRIPT
+Event:StepVar=crackenstep
+Event2:Flag=goldok
+Action:Type=Message,icon=pirate_ico,"text=Я не позволю вам уводить мой флот! Ко мне, зверушки!"
+Action:Type=SetFocus,i=14,j=4,immediate=true
+Action:Type=NewObjectGroup,Object=Monster,Code=cracken,"Name=Кракен",i=14,j=4,count=1,radius=2
+Action:Type=SetFocus,i=37,j=25,immediate=true
+Action:Type=NewObjectGroup,Object=Monster,Code=cracken,"Name=Кракен",i=37,j=25,count=1,radius=2
+Action:Type=Message,icon=celestia_ico,"text=Не знала, что у нас водится такое."
+Action:Type=Message,icon=luna_ico,"text=Морские чудища на службе у пиратского капитана? Чего только не бывает."
+
+# Сборка кораблей
+SCRIPT
+Event:ObjectPos=True,i=9,j=29,Object=ship1,IncludeLinked=true
+Event2:ObjectPos=True,i=9,j=29,Object=ship2,IncludeLinked=true
+Event3:ObjectPos=True,i=9,j=29,Object=ship3,IncludeLinked=true
+Event4:ObjectPos=True,i=9,j=29,Object=ship4,IncludeLinked=true
+Event5:ObjectPos=True,i=9,j=29,Object=ship5,IncludeLinked=true
+Event6:ObjectPos=True,i=9,j=29,Object=ship6,IncludeLinked=true
+Action:Type=SetFlag,FlagName=flotcollected
+
+# Новые корабли пиратов
+SCRIPT      
+Event:StepModN=6
+Event2:Flag=goldok
+Action:Type=NewObjectGroup,Object=Monster,Code=pirateship,"Name=Пиратский корабль",i=35,j=4,count=2,radius=2
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=luna_ico,"text=Наш новый флот собран в бухте. Осталось спалить остатки пиратских кораблей. Сестра, ты позволишь мне?"
+Action:Type=Message,icon=celestia_ico,"text=Не могу отказать тебе в этом удовольствии."
+Action:Type=Message,icon=pirate_ico,"text=Да что это вообще такое было? Плен, выкуп, разгром флота..."
+Action:Type=Message,icon=celestia_ico,"text=Я всегда стараюсь совмещать несколько дел. Нам были нужны координаты золотых жил, мы хотели получить готовый флот и избавиться от пиратского отребья, набегающего на наши берега. Цели выполнены. Твоё последнее слово, пират?"
+Action:Type=Message,icon=pirate_ico,"text=Стойте-стойте! Предлагаю переговоры!"
+Action:Type=Message,icon=celestia_ico,"text=Конечно, за пять минут до поражения каждый становится дипломатом. Я слушаю тебя."
+Action:Type=Message,icon=pirate_ico,"text=Наш отряд был крупнейшим - но в открытом море есть и другие пиратские базы. Я впечатлен вашей силой, но вдали от берега победа не будет столь легкой."
+Action:Type=Message,icon=luna_ico,"text=Жизнь в обмен на службу? Не ты первый и не ты последний. Селестия, что скажешь?"
+Action:Type=Message,icon=celestia_ico,"text=Я вижу в этом смысл. Никто не сможет охранять берега от разбойников лучше, чем разбойник."
+Action:Type=Message,icon=luna_ico,"text=Ты нанят в качестве капитана береговой охраны. И не обольщайся насчет шансов - я за тобой наблюдаю!"
+
+VICTORY
+ByFlag:FlagName=flotcollected

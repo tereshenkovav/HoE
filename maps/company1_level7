@@ -1,0 +1,189 @@
+Во тьме
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+11111111111111111111111111111111
+1LC1111111111111CC1111111111CCC11
+LCCCC1111111111CCC11CCCC11CCCCC1
+1LC11C111111111111CCC111C1CCCCCC1
+11111CC11111111111111111CC1CCCC1
+1111111C111111111111111111111CC11
+1111111C11111111CCCCCC11111CCC11
+111CC111CCCC1111C11111C1111C11111
+11CC1111CCCCCCCC11CC11CCCCCC1111
+11C111111CCCCCCC111C11C11111C1111
+11CC1111CCCCCC1111CCCCC11111CC11
+1111C111CCCCC11111CCCCCC1111CCC11
+1111CCCCCCCCC11111CCCCC1111CCC11
+1111111111CCCCC11111CC11111CCCC11
+111111111111CC111111111111111111
+#===MAPEND===
+
+CONSTANTS
+Sphere_I:29
+Sphere_J:13
+FirstDialogX:12
+SecondDialogX:24
+StartX:1
+StartY:2
+TargetX:29
+TargetY:3
+
+#TargetX:4
+#TargetY:2
+
+OBJECTS
+Pony:i=@StartX@,j=@StartY@,"name=Твайлайт Спаркл",code=twily
+#Crystall:i=4,j=7,"name=Зеленый кристалл",code=crystall
+Crystall:i=6,j=12,"name=Зеленый кристалл",code=crystall
+#Crystall:i=12,j=9,"name=Зеленый кристалл",code=crystall
+Crystall:i=13,j=14,"name=Зеленый кристалл",code=crystall
+#Crystall:i=22,j=12,"name=Зеленый кристалл",code=crystall
+Crystall:i=29,j=11,"name=Зеленый кристалл",code=crystall
+Crystall:i=16,j=1,"name=Зеленый кристалл",code=crystall
+Crystall:i=18,j=8,"name=Зеленый кристалл",code=crystall
+#Crystall:i=29,j=6,"name=Зеленый кристалл",code=crystall
+Neutral:i=@Sphere_I@,j=@Sphere_J@,"name=Обсидиановая сфера",code=magicsphere
+
+Neutral:i=@TargetX@,j=@TargetY@,"name=Цель",code=stonewall,targeted=true
+
+Monster:Code=bat,"Name=Нетопырь",i=10,j=8,holdground=true
+Monster:Code=bat,"Name=Нетопырь",i=10,j=9,holdground=true
+Monster:Code=bat,"Name=Нетопырь",i=11,j=9,holdground=true
+Monster:Code=bat,"Name=Нетопырь",i=9,j=10,holdground=true
+Monster:Code=bat,"Name=Нетопырь",i=10,j=10,holdground=true
+Monster:Code=bat,"Name=Нетопырь",i=11,j=10,holdground=true
+
+Monster:Code=bat,"Name=Нетопырь",i=19,j=10,holdground=true
+Monster:Code=bat,"Name=Нетопырь",i=20,j=10,holdground=true
+Monster:Code=bat,"Name=Нетопырь",i=21,j=10,holdground=true
+Monster:Code=bat,"Name=Нетопырь",i=20,j=11,holdground=true
+Monster:Code=bat,"Name=Нетопырь",i=21,j=11,holdground=true
+Monster:Code=bat,"Name=Нетопырь",i=20,j=12,holdground=true
+
+INITIAL
+Stone:0
+Food:70
+Task:Дойти до самой глубокой части пещеры
+EmptyManager:20,20,20,20,20,20
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT
+Event:Step=0
+Action:Type=Message,icon=twily_ico,"text=Я очень надеюсь, что ошиблась. ==>
+Магия земли может не только создавать, но и разрушать, об этом упоминал в заметках Старсвирл. ==>
+Обелиск показывал разрушение... разрушение всего."
+Action:Type=Message,icon=twily_ico,"text=Нужно пройти глубже, ==>
+фиксируя изменения в магических потоках. Возможно, я найду, что является причиной появления Пустоты."
+Action:Type=ShowBattleTask
+
+SCRIPT
+Event:Step=2
+Action:Type=Message,icon=twily_ico,"text=Нужно как-то восстановить силы, вся еда осталась наверху... ==>
+Спайк! Природная магия драконов извлекает энергию из кристаллов! Сейчас, только..."
+Action:Type=Message,icon=help_ico,"text=Поглощение кристалла - способность поглощающая кристалл, ==>
+восстанавливая силу и здоровье применившему."
+Action:Type=SetPermits,action=allow,code=ConsumeCrystall
+
+SCRIPT
+Event:ObjectPos=True,Direction=GreatY,i=0,j=4,Object=twily
+Action:Type=Message,icon=twily_ico,"text=Мой рог... он так и ведет меня, словно намагниченный... ==>
+Неподалеку нечто излучает сильную магию, но она не несет разрушений. Наверно, стоит найти ее источник."
+Action:Type=SetBattleTask,code=sphere,isreq=false,"Task=Найти источник магии"
+Action:Type=Message,icon=ok_ico,"text=Дополнительное задание: ==>
+Найти источник магии."
+
+# === Диалоги с Тьмой
+
+SCRIPT
+Event:ObjectPos=True,Direction=GreatX,i=@FirstDialogX@,j=0,Object=twily
+Action:Type=Message,icon=darkness_ico,"text=Твайлайт Спаркл... ==>
+Что ты ищешь в чертогах тени?"
+Action:Type=Message,icon=twily_ico,"text=Кто это? Покажись!"
+Action:Type=Message,icon=darkness_ico,"text=Ты напрасно тратишь время, происходящее не остановить. ==>
+Уходи..."
+
+
+SCRIPT
+Event:ObjectPos=True,Direction=GreatX,i=@SecondDialogX@,j=0,Object=twily
+Action:Type=Message,icon=darkness_ico,"text=Изучила несколько фокусов и такая самонадеянность... ==>
+Ты слаба, твои знания ничтожны. ==>
+Покинь это место, пока можешь..."
+Action:Type=Message,icon=twily_ico,"text=Я не боюсь тебя!"
+Action:Type=Message,icon=darkness_ico,"text=Ты ищешь ответы? ==>
+Разве Селестия не учила тебя, что для правильного ответа нужен правильный вопрос?"
+
+# === Находка сферы
+
+SCRIPT
+Event:ObjectPos=True,i=@Sphere_I@,j=@Sphere_J@,IncludeLinked=true,Object=twily
+Action:Type=Message,icon=twily_ico,"text=Обсидиановая сфера? ==>
+Я вроде бы читала о подобных реликвиях, существовавших во времена нашествия вендиго... Возьму с собой."
+Action:Type=Message,icon=darkness_ico,"text=Маленькая волшебница нашла ==>
+блестящий шарик. Играй с ним, пока еще можешь."
+Action:Type=RemoveObject,i=@Sphere_I@,j=@Sphere_J@
+Action:Type=CompBattleTask,code=sphere
+
+# === Достигли дальнего угла пещеры
+
+SCRIPT
+Event:ObjectPos=True,i=@TargetX@,j=@TargetY@,IncludeLinked=true,Object=twily
+Action:Type=ClearTarget,i=@TargetX@,j=@TargetY@
+Action:Type=Message,icon=twily_ico,"text=Это самая глубокая часть пещеры и один из узлов магических потоков земли. ==>
+О чем ты мне расскажешь? Что происходит с Эквестрией..."
+Action:Type=Message,icon=twily_ico,"text=Нет! Я не верю в это! ==>
+Я не допущу этого!"
+Action:Type=Message,icon=darkness_ico,"text=Теперь ты знаешь правду. ==>
+Всё, что имеет начало, имеет и конец.\n...\nИ твой тебя настиг."
+Action:Type=SetFlag,FlagName=ReachFar
+Action:Type=SetFocus,i=27,j=0
+Action:Type=NewObject,Object=EmptyPlace,i=26,j=0
+Action:Type=NewObject,Object=EmptyPlace,i=26,j=1
+Action:Type=NewObject,Object=EmptyPlace,i=26,j=2
+Action:Type=NewObject,Object=EmptyPlace,i=26,j=3
+Action:Type=SetFocus,i=19,j=8
+Action:Type=NewObject,Object=EmptyPlace,i=19,j=6
+Action:Type=NewObject,Object=EmptyPlace,i=19,j=7
+Action:Type=NewObject,Object=EmptyPlace,i=19,j=8 
+Action:Type=NewObject,Object=EmptyPlace,i=19,j=9
+Action:Type=SetFocus,i=11,j=8
+Action:Type=NewObject,Object=EmptyPlace,i=11,j=7
+Action:Type=NewObject,Object=EmptyPlace,i=11,j=8
+Action:Type=NewObject,Object=EmptyPlace,i=11,j=9 
+Action:Type=NewObject,Object=EmptyPlace,i=11,j=10
+Action:Type=SetPermits,action=allow,code=CutEmptySector
+Action:Type=Message,icon=twily_ico,"text=Пустота... Хотя бы расчистить путь я сумею."
+Action:Type=CompBattleTask,code=initial
+Action:Type=SetBattleTask,code=return,"Task=Вернуться к выходу из пещеры"
+Action:Type=ShowBattleTask
+
+#SCRIPT
+#Event:Step=1
+#Action:Type=NewObject,Object=EmptyPlace,i=14,j=3
+
+# === Поглощение кристаллов 
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=twily_ico,"text=Я ухожу. Не знаю, кто или что ты такое, но ==>
+учти - мы с подругами прошли через многое и..."
+Action:Type=Message,icon=darkness_ico,"text=Просто уходи, ученица Селестии. ==>
+Мы еще встретимся на обломках этого мира."
+
+VICTORY
+ByObjectPos:Object=twily,i=@StartX@,j=@StartY@,IncludeLinked=true
+->ByFlag:FlagName=ReachFar,AddType=And

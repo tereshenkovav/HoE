@@ -1,0 +1,257 @@
+С новыми силами
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+222222222222222222222222222222222222
+2222222222222222222222222222222222222
+222222222222222222222222222222222222
+2222222222222222222222222222222222222
+222222222222222222222222222222222222
+2222222222222222222222222222222222222
+222222222222222222222222222222222222
+2222222222222222222222222222222222222
+222222222222222222222222222222222222
+2222222222222222222222222222222222222
+222222222222222222222222222222222222
+2222222222222222222222222222222222222
+222222222222222222222222222222222222
+2222222222222222222222222222222222222
+222222222222222222222222222222222222
+2222222222222222222222222222222222222
+222222222222222222222222222222222222
+2222222222222222222222222222222222222
+222222222222222222222222222222222222
+2222222222222222222222222222222222222
+222222222222222222222222222222222222
+2222222222222222222222222222222222222
+222222222222222222222222222222222222
+2222222222222222LLLLLLL22222222222222
+22222222222LLLLLLLLLLLLLLLLLLL222222
+22222LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLELLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLHLLLHLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLELLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+#===MAPEND===
+
+CONSTANTS
+Enemy1_I:20
+Enemy1_J:30
+Enemy2_I:24
+Enemy2_J:28
+Enemy3_I:3
+Enemy3_J:21
+Enemy4_I:10
+Enemy4_J:27
+EnemyA_I:15
+EnemyA_J:28
+EnemyB_I:2
+EnemyB_J:30
+EnemyC_I:34
+EnemyC_J:30
+Start_I:15
+Start_J:31
+StepLimit:60
+
+OBJECTS
+Pony:i=8,j=30,"name=Рарити",code=rarity
+Pony:i=7,j=30,"name=Эпплджек",code=applejack
+Pony:i=6,j=30,"name=Рейнбоу Дэш",code=rainbow
+Pony:i=7,j=31,"name=Твайлайт",code=twily
+Pony:i=6,j=31,"name=Пинки Пай",code=pinki
+Pony:i=5,j=31,"name=Флаттершай",code=flatter
+
+Neutral:Code=tower,"Name=Стены",i=11,j=33
+Neutral:Code=tower,"Name=Стены",i=11,j=32
+Neutral:Code=tower,"Name=Стены",i=12,j=31
+Neutral:Code=wall_3,"Name=Стены",i=13,j=31
+Neutral:Code=wall_3,"Name=Стены",i=14,j=31
+Neutral:Code=wall_3,"Name=Стены",i=16,j=31
+Neutral:Code=wall_3,"Name=Стены",i=17,j=31
+Neutral:Code=tower,"Name=Стены",i=18,j=31
+Neutral:Code=tower,"Name=Стены",i=18,j=32
+Neutral:Code=tower,"Name=Стены",i=19,j=33
+
+Food:i=12,j=32,size=medium
+Food:i=13,j=32,size=medium
+Food:i=12,j=33,size=max
+
+Stone:i=16,j=32,size=max
+Stone:i=17,j=32,size=medium
+Stone:i=18,j=33,size=medium
+
+INITIAL
+Stone:0
+Food:200
+EmptyManager:0,0,0,0,0,0
+Task:Очистить Пустоту
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Heal
+Permits:action=allow,code=Restore
+Permits:action=allow,code=CutEmptySector
+Permits:action=allow,code=BuildTreeShield
+Permits:action=allow,code=BuildFarmStone
+Permits:action=allow,code=BuildCrystalTowerBig
+Permits:action=allow,code=BuildCrystalTowerSmall
+Permits:action=allow,code=NightmareCall
+Permits:action=allow,code=BuildCrystalTowerDark
+Permits:action=allow,code=DarkTriden
+Permits:action=allow,code=CrystallRain
+Permits:action=allow,code=FrostAttack
+Permits:action=allow,code=SuperHealthAJ
+Permits:action=allow,code=SuperPowerPinki
+Permits:action=allow,code=BearSplash
+Permits:action=allow,code=SummoneBear
+Permits:action=allow,code=PrincessKiss
+Permits:action=allow,code=DeathKick
+Permits:action=allow,code=DeathRainbow
+Permits:action=allow,code=BuildForceTower
+Permits:action=allow,code=BuildHealTower
+Permits:action=allow,code=BuildMirage
+Permits:action=allow,code=IntRelax
+Permits:action=allow,code=SleepStar
+Permits:action=allow,code=BuildTornado
+Permits:action=allow,code=Wings
+Permits:action=allow,code=FlatterView
+Permits:action=allow,code=ForceShield
+Permits:action=allow,code=ForceShieldNR
+Permits:action=allow,code=SetupTeleport
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=6,j=31,immediate=true
+Action:Type=Message,icon=twily_ico,"text=Эта крепость имеет важное значение, хорошо, что она уцелела вместе с соседней деревней. Нам нужно отогнать Пустоту, набрать пищи, построить фермы. Отсюда мы пойдем на север и запад."
+Action:Type=Message,icon=applejack_ico,"text=Ты повторяешься, сахарок."
+Action:Type=Message,icon=twily_ico,"text=Извини, Эпплджек. Конечно, мы находимся почти в том же месте нашего пространственно-временного континуума - но второй раз. Удивительный парадокс."
+Action:Type=Message,icon=rainbow_ico,"text=Ну, сейчас у нас второй шанс - и мы круче, чем раньше."
+Action:Type=SetBattleTask,code=limit,"Task=Успеть до @StepLimit@-го хода"
+Action:Type=ShowBattleTask
+
+SCRIPT      
+Event:Step=1
+Action:Type=Message,icon=rarity_ico,"text=Твайлайт! Не хочу показаться занудной, но Пустота не двигается - как и тогда. Значит..."
+Action:Type=Message,icon=twily_ico,"text=Я уже исследовала этот вопрос. Распад материи - самоподдерживающийся процесс. Если распад останавливается - значит, нарушена положительная обратная связь за счет поглощения энергии. Кем-то или чем-то."
+Action:Type=Message,icon=applejack_ico,"text=Я конечно, не сильна в этих заумностях - но с памятью у меня всё хорошо. Снова придет то черное-ужасное?"
+Action:Type=Message,icon=twily_ico,"text=И их будет всё больше и больше. Девочки - время против нас."
+Action:Type=Message,icon=rarity_ico,"text=Значит, нужно просто делать всё ещё быстрее."
+
+#SCRIPT      
+#Event:Step=3
+#Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@EnemyС_I@,j=@EnemyС_J@,count=3,radius=2
+
+SCRIPT      
+Event:Step=6
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@EnemyB_I@,j=@EnemyB_J@,count=3,radius=2
+
+SCRIPT     
+Event:Step=9
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=@EnemyC_I@,j=@EnemyC_J@,count=2,radius=2
+
+SCRIPT      
+Event:Step=12
+Action:Type=NewObjectGroup,Object=Monster,Code=poison,"Name=Ядовитый шар",i=@EnemyB_I@,j=@EnemyB_J@,count=2,radius=2
+
+#SCRIPT      
+#Event:Step=16
+#Action:Type=NewObjectGroup,Object=MonsterTent,Code=tent,"Name=Зеленый ужас",i=@EnemyС_I@,j=@EnemyC_J@,count=1,radius=2
+
+#SCRIPT      
+#Event:Step=18
+#Action:Type=NewObjectGroup,Object=Monster,Code=gidra,"Name=Гидра",i=@EnemyС_I@,j=@EnemyC_J@,count=1,radius=2
+
+SCRIPT      
+Event:Step=21
+#Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@EnemyС_I@,j=@EnemyС_J@,count=3,radius=2
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@EnemyB_I@,j=@EnemyB_J@,count=3,radius=2
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=@EnemyC_I@,j=@EnemyC_J@,count=2,radius=2
+Action:Type=NewObjectGroup,Object=Monster,Code=poison,"Name=Ядовитый шар",i=@EnemyB_I@,j=@EnemyB_J@,count=2,radius=2
+#Action:Type=NewObjectGroup,Object=MonsterTent,Code=tent,"Name=Зеленый ужас",i=@EnemyС_I@,j=@EnemyC_J@,count=1,radius=2
+
+SCRIPT      
+#Event:SpaceCount=0
+Event:Step=10
+Action:Type=SetFocus,i=@EnemyA_I@,j=@EnemyA_J@
+Action:Type=NewObjectGroup,Object=Monster,Code=avatar,"Name=Облако пустоты",i=@EnemyA_I@,j=@EnemyA_J@,count=1,radius=2
+Action:Type=Message,icon=rainbow_ico,"text=Приехали..."
+Action:Type=Message,icon=twily_ico,"text=Мы к этому готовы. Рейнбоу, Эпплджек - вы знаете, что делать."
+
+SCRIPT
+Event:Step=15
+Action:Type=SetFocus,i=@EnemyB_I@,j=@EnemyB_J@
+Action:Type=NewObjectGroup,Object=Monster,Code=avatar,"Name=Облако пустоты",i=@EnemyB_I@,j=@EnemyB_J@,count=1,radius=2
+
+SCRIPT
+Event:Step=20
+Action:Type=SetFocus,i=@EnemyC_I@,j=@EnemyC_J@
+Action:Type=NewObjectGroup,Object=Monster,Code=avatar,"Name=Облако пустоты",i=@EnemyC_I@,j=@EnemyC_J@,count=1,radius=2
+
+SCRIPT
+Event:Step=25
+Action:Type=SetFocus,i=@EnemyB_I@,j=@EnemyB_J@
+Action:Type=NewObjectGroup,Object=Monster,Code=avatar,"Name=Облако пустоты",i=@EnemyB_I@,j=@EnemyB_J@,count=2,radius=3
+Action:Type=SetFocus,i=@EnemyC_I@,j=@EnemyC_J@
+Action:Type=NewObjectGroup,Object=Monster,Code=avatar,"Name=Облако пустоты",i=@EnemyC_I@,j=@EnemyC_J@,count=2,radius=3
+
+SCRIPT
+Event:Step=30
+Action:Type=SetFocus,i=@EnemyA_I@,j=@EnemyA_J@
+Action:Type=NewObjectGroup,Object=Monster,Code=avatar,"Name=Облако пустоты",i=@EnemyA_I@,j=@EnemyA_J@,count=2,radius=3
+Action:Type=SetFocus,i=@EnemyC_I@,j=@EnemyC_J@
+Action:Type=NewObjectGroup,Object=Monster,Code=avatar,"Name=Облако пустоты",i=@EnemyC_I@,j=@EnemyC_J@,count=2,radius=3
+
+SCRIPT
+Event:Step=35
+Action:Type=SetFocus,i=@EnemyA_I@,j=@EnemyA_J@
+Action:Type=NewObjectGroup,Object=Monster,Code=avatar,"Name=Облако пустоты",i=@EnemyA_I@,j=@EnemyA_J@,count=2,radius=3
+Action:Type=SetFocus,i=@EnemyB_I@,j=@EnemyB_J@
+Action:Type=NewObjectGroup,Object=Monster,Code=avatar,"Name=Облако пустоты",i=@EnemyB_I@,j=@EnemyB_J@,count=2,radius=3
+Action:Type=Message,icon=rarity_ico,"text=Мне думается, пора завершать дело и уходить отсюда. Нам не сдержать их."
+Action:Type=Message,icon=twily_ico,"text=Надо сдержать. Как только последний кусок Пустоты исчезнет - я тут же телепортирую нас домой."
+
+#SCRIPT
+#Event:Step=37
+#Action:Type=SetFocus,i=@EnemyB_I@,j=@EnemyA_J@
+#Action:Type=NewObjectGroup,Object=Monster,Code=avatar,"Name=Облако пустоты",i=@EnemyA_I@,j=@EnemyA_J@,count=3,radius=3
+#Action:Type=SetFocus,i=@EnemyB_I@,j=@EnemyB_J@
+#Action:Type=NewObjectGroup,Object=Monster,Code=avatar,"Name=Облако пустоты",i=@EnemyB_I@,j=@EnemyB_J@,count=3,radius=3
+#Action:Type=SetFocus,i=@EnemyC_I@,j=@EnemyC_J@
+#Action:Type=NewObjectGroup,Object=Monster,Code=avatar,"Name=Облако пустоты",i=@EnemyC_I@,j=@EnemyC_J@,count=3,radius=3
+
+#SCRIPT
+#Event:Step=50
+#Action:Type=SetEmptyManager,AnyDir=100
+#Action:Type=Message,icon=twily_ico,"text=Пустота сейчас будет распространяться с огромной скоростью! Вдруг так везде? Нам нужно быстро завершить дела здесь и вернуться домой!"
+#Action:Type=SetBattleTask,code=limit,"Task=Успеть до @StepLimit@-го хода"
+#Action:Type=ShowBattleTask
+
+# Поражение
+SCRIPT      
+Event:Step=@StepLimit@
+Action:Type=Message,icon=twily_ico,"text=Если мы столько времени тратим на одну область - как мы сможет спасти всю страну?"
+Action:Type=SetDefeat,"DefeatStr=Время вышло"
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=discord_ico,"text=Ух, какое славное дело. Люблю себя хвалить, но тут и вправду особый случай. Как думаешь?"
+Action:Type=Message,icon=celestia_ico,"text=Ты молодец, Дискорд. Возможно, при таких успехах - они вернут всё, как было."
+ 
+VICTORY
+ByNoSpaceLeft:null

@@ -1,0 +1,258 @@
+Великий портал
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+#DefaultSandStone
+
+MAP
+LLFLLLLLLQLLLLQQFLLLLLLQQLLLLLLLLLL
+LLLFFLLLLQLLLLLQQFLLLLLLQFLLLLLLFFLL
+LLLLFLLLQLLFFLLQFLLLFLLLQFFLLLLLLFL
+FFLLLLLFQLLLLFLLQFLLLFFLLQQFLLLLLLFL
+LFFLLLLFQLLLLFLLQFLLLLFLLQFLLLLLLLF
+LLFFLLLLFQLLLLFLLQQLLLLFLLQFLLFFLLLL
+LLLLLLLFFQLLLLLLLLQLLLLLLLQLLLLFLLL
+QLLLLLLLQQLLLLLLLLLQFLLLLLQLLLLLFFLL
+QLLFFLLQLLLLLLLWLLLQFLLLLLQLLLLLLLL
+LQLLLFFQLLLLLLLWWLLLQFFLLLQFLLLLLLLL
+FQLLLFQLLLLLLLWWWLLLQQFFLQLFFLLLFFL
+LFQQLLLQLLLLLLWWWWLLLLQQFQLLFLLLLFFL
+LFFQLLQLLLLLLWWWWWLLLLLQQLLLFFLLLLF
+LLFFQLQFLLLLLLWWWWLLLLLLQQLLLLFLLLLL
+LLFLQQFLLLLLLLWWWLLLLFLLQQLLLLLLLLL
+LLLLLQQFLLLLLLLWWLLLLLFFLQQLLLLLLLLL
+LLLLQQFFLLFLLLLWLLLLLLFFLQQFLLLLLLL
+LLLLLQQFFLLFLLLLLLLLLLLLFLQQFLLLLFLL
+LLFLLQQQLLLFLLLLLLLLLLLLLQQLFLLLLFL
+LLLFFLQQQLLLFLLLLLLLFLLLLQQLFFLLLFFL
+LLLFFLLQQLLLLLFFLLLLFFLLLQQLLLLLLFF
+LLLLLFLLQQLLLLLFFLLLLLFLLLQQLLLLLLFF
+LLLLFLLLQQLLLLLLFLLLLLFLLLQQLLLLLLL
+LLLLLFFLLQQLLLLLLLLLLLLLLLLQQLLLLLLL
+#===MAPEND===
+
+# Раздел константы должен идти в самом начале
+CONSTANTS
+Food1:200
+Food2:400
+Food3:800
+Food4:1600
+FoodFinal:500
+Wave1X:2
+Wave1Y:9
+Wave2X:31
+Wave2Y:14
+Wave3X:31
+Wave3Y:3
+Wave4X:20
+Wave4Y:21
+PointN1X:12
+PointN1Y:1
+PointN2X:24
+PointN2Y:21
+PointF1X:2
+PointF1Y:21
+PointF2X:27
+PointF2Y:4
+
+FinalWave:50
+FirefoxX:34
+FirefoxY:14
+
+OBJECTS
+#Pony:i=1,j=4,"name=Рарити",code=rarity
+Pony:i=12,j=10,"name=Эпплджек",code=applejack
+Pony:i=12,j=11,"name=Рейнбоу Дэш",code=rainbow
+Pony:i=11,j=12,"name=Твайлайт",code=twily
+Pony:i=12,j=13,"name=Пинки Пай",code=pinki
+Pony:i=12,j=14,"name=Флаттершай",code=flatter
+
+Neutral:Code=obelisk,"Name=Обелиск портала",i=15,j=8,EnemyTarget=true,MustSurvive=true
+Neutral:Code=obelisk,"Name=Обелиск портала",i=15,j=16,EnemyTarget=true,MustSurvive=true
+Neutral:Code=obelisk,"Name=Обелиск портала",i=13,j=12,EnemyTarget=true,MustSurvive=true
+Neutral:Code=obelisk,"Name=Обелиск портала",i=17,j=12,EnemyTarget=true,MustSurvive=true
+Neutral:Code=firefox,"Name=Огненная лиса",i=@FirefoxX@,j=@FirefoxY@
+
+Building:Code=HouseTravel,"Name=Походный шатер",i=16,j=10
+Building:Code=HouseTravel,"Name=Походный шатер",i=14,j=14
+
+Stone:i=8,j=18,size=min
+Stone:i=9,j=20,size=medium
+Stone:i=17,j=2,size=min
+Stone:i=19,j=6,size=medium
+Stone:i=2,j=3,size=max
+Stone:i=27,j=18,size=max
+
+#Building:Code=FarmFood,i=1,j=2
+#Building:Code=FarmFood,i=1,j=3
+#Building:Code=FarmFood,i=1,j=4
+#Building:Code=FarmFood,i=1,j=5
+
+INITIAL
+Stone:0
+Food:100
+Task:Защищать обелиски портала
+EmptyManager:20,20,20,20,20,20
+AttackedDefeatString:Обелиски портала разрушены!
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Heal
+Permits:action=allow,code=Restore
+Permits:action=allow,code=CutEmptySector
+Permits:action=allow,code=BuildTreeShield
+Permits:action=allow,code=BuildFarmStone
+Permits:action=allow,code=BuildCrystalTowerSmall
+Permits:action=allow,code=BuildCrystalTowerBig
+Permits:action=allow,code=FlatterView
+Permits:action=allow,code=ForceShield
+Permits:action=allow,code=ForceShieldNR
+Permits:action=allow,code=SetupTeleport
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT
+Event:Step=0
+Action:Type=SetFocus,i=11,j=12,immediate=true
+Action:Type=Message,icon=twily_ico,"text=Я готова к процедуре вызова. Энергия рассеивается, на каждый следующий раз мне нужно в два раза больше энергии. Эпплджек, нам нужны твои фермы."
+Action:Type=Message,icon=applejack_ico,"text=Построю, вот только с камнями здесь не особо хорошо. Пинки, подсобишь?"
+Action:Type=Message,icon=pinki_ico,"text=Конечно, подруга."
+Action:Type=Message,icon=twily_ico,"text=Тогда начинаем. И будьте готовы - магия порталов привлекает врагов, мы уже проходили это. Не позволяйте разрушить ни обелиски порталов, ни палатки земных пони - без их помощи, наши фермы не работают."
+Action:Type=SetBattleTask,code=food1,"Task=Собрать @Food1@ еды"
+Action:Type=ShowBattleTask
+
+SCRIPT      
+Event:Step=2
+Action:Type=SetFocus,i=@FirefoxX@,j=@FirefoxY@
+Action:Type=Message,icon=flatter_ico,"text=Смотрите, девочки - огненная лиса. Я всегда хотела посмотреть на этого редкого зверя."
+Action:Type=Message,icon=twily_ico,"text=Давай, только будь осторожна в пути - мы не в кантерлотском саду."
+Action:Type=SetBattleTask,code=firefox,isreq=false,"Task=Привести Флаттершай к огненной лисе"
+Action:Type=Message,icon=ok_ico,"text=Дополнительное задание - привести Флаттершай к огненной лисе."
+
+SCRIPT
+Event:ObjectPos=True,i=@FirefoxX@,j=@FirefoxY@,IncludeLinked=true,Object=flatter
+Action:Type=Message,icon=flatter_ico,"text=Замечательный зверь... такая огненная... горячая... аааааа, я обожгла копыто!"
+Action:Type=Message,icon=pinki_ico,"text=А я, когда достаю горячие пирожки, всегда использую накопытники."
+Action:Type=CompBattleTask,code=firefox
+
+SCRIPT      
+Event:StepModN=14
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=@PointN1X@,j=@PointN1Y@,count=1,radius=1
+
+SCRIPT      
+Event:StepModN=12
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@PointN2X@,j=@PointN2Y@,count=1,radius=1
+
+SCRIPT      
+Event:StepModN=10
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@PointF1X@,j=@PointF1Y@,count=1,radius=1
+
+SCRIPT      
+Event:StepModN=8
+Action:Type=NewObjectGroup,Object=Monster,Code=batred,"Name=Нетопырь",i=@PointF2X@,j=@PointF2Y@,count=1,radius=1
+
+SCRIPT      
+Event:Step=@FinalWave@
+Action:Type=NewObjectGroup,Object=MonsterTent,Code=tent,"Name=Зеленый ужас",i=@Wave1X@,j=@Wave1Y@,count=2,radius=1,autofocus=true
+Action:Type=NewObjectGroup,Object=MonsterTent,Code=tent,"Name=Зеленый ужас",i=@Wave2X@,j=@Wave2Y@,count=2,radius=1,autofocus=true
+Action:Type=NewObjectGroup,Object=MonsterTent,Code=tent,"Name=Зеленый ужас",i=@Wave3X@,j=@Wave3Y@,count=2,radius=1,autofocus=true
+Action:Type=NewObjectGroup,Object=MonsterTent,Code=tent,"Name=Зеленый ужас",i=@Wave4X@,j=@Wave4Y@,count=2,radius=1,autofocus=true
+Action:Type=Message,icon=applejack_ico,"text=Твай, а что теперь? Мы ничего не сможем сделать с таким количеством."
+Action:Type=Message,icon=twily_ico,"text=Нам просто нужно поскорее убраться отсюда. Поторопимся!"
+
+SCRIPT
+Event:FoodReach=@Food1@
+Action:Type=Message,icon=twily_ico,"text=Энергии достаточно. Портал открыт. Первый прибывает. Дискорд говорил, что они настроены дружелюбно, но..."
+Action:Type=Message,icon=demon1_ico,"text=И здравствуйте."
+Action:Type=Message,icon=twily_ico,"text=Невероятно! Мгновенная телепортация."
+Action:Type=Message,icon=demon1_ico,"text=Я бы с удовольствием обсудил это, но времени мало. Оранжевая с мощными копытами - открой свой разум."
+Action:Type=Message,icon=applejack_ico,"text=Чего?"
+Action:Type=Message,icon=demon1_ico,"text=Уже ничего. Теперь, если постараешься как следует - для любого противника достаточно будет одного удара, второй уже не нужен."
+Action:Type=Message,icon=applejack_ico,"text=Неплохо, сейчас опробуем."
+Action:Type=NewObjectGroup,Object=Monster,Code=gidra,"Name=Гидра",i=@Wave1X@,j=@Wave1Y@,count=2,radius=1,autofocus=true
+Action:Type=Message,icon=twily_ico,"text=Лучше бы это сработало."
+Action:Type=Message,icon=help_ico,"text=Абсолютный удар Эпплджек - гарантированное уничтожение любого противника ближним ударом."
+Action:Type=SetPermits,action=allow,code=DeathKick
+Action:Type=SetFlag,FlagName=demon1
+Action:Type=CompBattleTask,code=food1
+Action:Type=SetBattleTask,code=food2,"Task=Собрать @Food2@ еды"
+Action:Type=ShowBattleTask
+Action:Type=DecFood,Delta=@Food1@
+
+SCRIPT
+Event:FoodReach=@Food2@
+Action:Type=Message,icon=twily_ico,"text=Второе окрытие портала. Будьте готовы."
+Action:Type=Message,icon=demon2_ico,"text=А вы гораздо меньше и слабее, чем мне казалось в молодости."
+Action:Type=Message,icon=pinki_ico,"text=Мне в детстве тоже все казалось таким большим..."
+Action:Type=Message,icon=demon2_ico,"text=Не знаю насчет размера, но вот силу я прибавить смогу. Розовая пони - хочешь стать в два раза выносливей?"
+Action:Type=Message,icon=pinki_ico,"text=В два раза больше веселья!"
+Action:Type=Message,icon=demon2_ico,"text=Но помни: ты всё-таки пони. Не используй это слишком часто."
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=@Wave2X@,j=@Wave2Y@,count=2,radius=3,autofocus=true
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@Wave2X@,j=@Wave2Y@,count=4,radius=3,autofocus=true
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@Wave2X@,j=@Wave2Y@,count=8,radius=3,autofocus=true
+Action:Type=Message,icon=rainbow_ico,"text=А нам и раза хватит. Пинки, нам нужны три Радужных удара подряд!"
+Action:Type=Message,icon=help_ico,"text=Сверхсила Пинки - разовое увеличение запаса сил в два раза. Доступно один раз за карту."
+Action:Type=SetPermits,action=allow,code=SuperPowerPinki
+Action:Type=SetFlag,FlagName=demon2
+Action:Type=CompBattleTask,code=food2
+Action:Type=SetBattleTask,code=food3,"Task=Собрать @Food3@ еды"
+Action:Type=ShowBattleTask
+Action:Type=DecFood,Delta=@Food2@
+
+SCRIPT
+Event:FoodReach=@Food3@
+Action:Type=Message,icon=twily_ico,"text=Третий сейчас прибудет. Вроде бы всё идет хорошо."
+Action:Type=Message,icon=demon1_ico,"text=Я так не думаю. Такая примитивная магия... а ведь когда-то даже пегасы умели куда больше."
+Action:Type=Message,icon=rainbow_ico,"text=И что именно?"
+Action:Type=Message,icon=demon1_ico,"text=Радуги! Сильные прямые радуги, ужас всех врагов. Кстати, несложная техника. Запоминай."
+Action:Type=Message,icon=rainbow_ico,"text=Это очень круто, спасибо."
+Action:Type=Message,icon=demon1_ico,"text=Пожалуйста. Жаль, не остаться и посмотреть, как ты обработаешь вот этих."
+Action:Type=NewObjectGroup,Object=MonsterTwist,Code=twist,"Name=Смерч",i=@Wave3X@,j=@Wave3Y@,count=2,radius=3,autofocus=true
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@Wave3X@,j=@Wave3Y@,count=3,radius=3,autofocus=true
+Action:Type=Message,icon=rainbow_ico,"text=Девочки, нетопыри ваши - смерчи мои!"
+Action:Type=Message,icon=help_ico,"text=Абсолютный удар Рейнбоу - гарантированное уничтожение любого противника дальним ударом."
+Action:Type=SetPermits,action=allow,code=DeathRainbow
+Action:Type=SetFlag,FlagName=demon3
+Action:Type=CompBattleTask,code=food3
+Action:Type=SetBattleTask,code=food4,"Task=Собрать @Food4@ еды"
+Action:Type=ShowBattleTask
+Action:Type=DecFood,Delta=@Food3@
+
+SCRIPT
+Event:FoodReach=@Food4@
+Action:Type=Message,icon=twily_ico,"text=Дискорд обещал четырех. Это последний телепорт."
+Action:Type=Message,icon=demon2_ico,"text=Я предпочитаю говорить - 'крайний'. А вот у вас бой может быть и последним. Как такие слабые вообще продержались столько времени?"
+Action:Type=Message,icon=applejack_ico,"text=Нам не в первый раз, знаешь ли."
+Action:Type=Message,icon=demon2_ico,"text=Попробуем поработать над жизненной силой. Ты тут вроде самая здоровая из всех - удваивай свой запас по желанию."
+Action:Type=Message,icon=applejack_ico,"text=Что ж, запас никогда не мешает. Это теперь я уцелею после удара гидры?"
+Action:Type=Message,icon=demon2_ico,"text=Ну так проверь. Только часто не используй - это вредно для пони."
+Action:Type=NewObjectGroup,Object=Monster,Code=gidra,"Name=Гидра",i=@Wave4X@,j=@Wave4Y@,count=2,radius=1,autofocus=true
+Action:Type=NewObjectGroup,Object=Monster,Code=poison,"Name=Ядовитый шар",i=@Wave4X@,j=@Wave4Y@,count=2,radius=1,autofocus=true
+Action:Type=Message,icon=applejack_ico,"text=Подходите, многоголовые! Посмотрим, кто главный на деревне."
+Action:Type=Message,icon=help_ico,"text=Сверхздоровье Эпплджек - разовое удвоение здоровья пони. Доступно один раз за карту."
+Action:Type=SetPermits,action=allow,code=SuperHealthAJ
+Action:Type=SetFlag,FlagName=demon4
+Action:Type=Message,icon=twily_ico,"text=На этом всё. Пора уходить. Мне нужно собрать силы, чтобы открыть ближний портал для нас всех."
+Action:Type=CompBattleTask,code=food4
+Action:Type=SetBattleTask,code=foodfinal,"Task=Собрать @FoodFinal@ еды"
+Action:Type=ShowBattleTask
+Action:Type=DecFood,Delta=@Food4@
+
+# В дальнейшем, сделать портал, куда пони уходят по одной
+SCRIPT
+Event:FoodReach=@FoodFinal@
+Event1:Flag=demon4
+Action:Type=Message,icon=twily_ico,"text=Девочки, на счет три - телепортация. Три, два..."
+Action:Type=SetFlag,FlagName=vic
+
+VICTORY
+ByFlag:FlagName=vic

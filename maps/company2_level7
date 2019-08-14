@@ -1,0 +1,142 @@
+На Луну!
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+GGGGGGGGGGGGGGGSSSSSGGGGGGGGGGGGGGG
+GGGGGGGGGGGGGSSSSSSSSSGGGGGGGGGGGGGG
+GGGGGGGGGGGGSSSSSSSSSSSGGGGGGGGGGGG
+GGGGGGGGGGGSSSSSSSSSSSSSSGGGGGGGGGSS
+GGGGGGGGGGSSSSSSGSSSSSSSSGGGGGGSSSS
+GGGGGGGGGGSSSSSSGGSSSSSSSGGGGGGSSSSS
+GGGGGGGGGGSSSSSGGGSSSSSSGGGGGSSSSSS
+GGGGSSGGGGSSSSSSSSSSSSSGGGGGSSSSSSSS
+GGSSSSGGGGSSSSSSSSSSSSGGGGGSSSSSGGG
+GGSSSSSGGGGSSSSSSSSSSSGGGGGSSSSGGGGG
+GSSSSSGGGGGGSSSSSSSGGGGGGGSSSSGGGGG
+GSSSSSSGGGGGGSSSSGGGGGGGGGGSSSGGGGGG
+GGSSSGGGGGGGGGGGGGGGGGGGGGSSSGGGGGG
+GGGGGGGGGGGGGGGGGGGGGGGGGGSSSSGGGGGG
+#===MAPEND===
+
+# Раздел константы должен идти в самом начале
+CONSTANTS
+PortalX:3
+PortalY:3
+CastleX:32
+CastleY:13
+FireManX:29
+FireManY:3
+Enemy_I:16
+Enemy_J:8
+
+OBJECTS
+Pony:i=4,j=3,"name=Рарити",code=rarity
+Pony:i=3,j=4,"name=Твайлайт",code=twily
+Neutral:Code=teleport,"Name=Портал",i=@PortalX@,j=@PortalY@
+Neutral:Code=castle,"Name=Замок Найтмер",i=@CastleX@,j=@CastleY@,targeted=true
+
+INITIAL
+Stone:0
+Food:250
+Task:Привести Твайлайт к замку Найтмер
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=Mine
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Heal
+Permits:action=allow,code=Restore
+Permits:action=allow,code=CutEmptySector
+Permits:action=allow,code=BuildTreeShield
+#Permits:action=allow,code=BuildFarmStone
+Permits:action=allow,code=BuildCrystalTowerBig
+Permits:action=allow,code=BuildCrystalTowerSmall
+Permits:action=allow,code=SuperNova
+Permits:action=allow,code=AlicornSword
+Permits:action=allow,code=SunRage
+#Permits:action=allow,code=NightmareCall
+Permits:action=allow,code=BuildCrystalTowerDark
+Permits:action=allow,code=DarkTriden
+Permits:action=allow,code=CrystallRain
+Permits:action=allow,code=FrostAttack
+Permits:action=allow,code=FlatterView
+Permits:action=allow,code=ForceShield
+Permits:action=allow,code=ForceShieldNR
+Permits:action=allow,code=SetupTeleport
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT
+Event:Step=0
+Action:Type=Message,icon=rarity_ico,"text=Это Луна?"
+Action:Type=Message,icon=twily_ico,"text=Да, Рарити. Вижу нашу цель. Движемся быстро - Луна не самое безопасное место."
+Action:Type=SetFocus,i=@CastleX@,j=@CastleY@
+Action:Type=ShowBattleTask
+
+SCRIPT      
+Event:StepModN=4
+Action:Type=NewObjectGroup,Object=Monster,Code=shadow,"Name=Тень",i=@Enemy_I@,j=@Enemy_J@,count=2,radius=1
+
+SCRIPT
+Event:ObjectPos=True,i=@CastleX@,j=@CastleY@,IncludeLinked=true,Object=twily
+Action:Type=ClearTarget,i=@CastleX@,j=@CastleY@
+Action:Type=Message,icon=twily_ico,"text=Тук-тук."
+Action:Type=Message,icon=nightmare_ico,"text=Я знаю, зачем вы здесь. Вы серьезно рассчитываете, что я буду вам помогать?"
+Action:Type=Message,icon=twily_ico,"text=После того, как Пустота поглотит Эквестрию, она пойдет дальше. Распад Луны - твоего дома - только вопрос времени."
+Action:Type=Message,icon=nightmare_ico,"text=Мне нет дела ни до Пустоты, ни до Эквестрии, ни до вас. Убирайтесь."
+Action:Type=SetFocus,i=@FireManX@,j=@FireManY@
+Action:Type=NewObjectGroup,Object=Monster,Code=fireman_small,"Name=Огненный демон",i=@FireManX@,j=@FireManY@,count=3,radius=2,tag=demons
+Action:Type=NewObjectGroup,Object=Monster,Code=fireman,"Name=Огненный демон",i=@FireManX@,j=@FireManY@,count=2,radius=2,tag=demons
+Action:Type=NewObjectGroup,Object=Monster,Code=fireman_big,"Name=Огненный демон",i=@FireManX@,j=@FireManY@,count=1,radius=1,tag=demons
+Action:Type=Message,icon=fireman_ico,"text=Найтмер! Настало время для расплаты! Восемьсот лет мы потратили на этот путь, но теперь ты ответишь за всё!"
+Action:Type=Message,icon=twily_ico,"text=Восемьсот лет?"
+Action:Type=Message,icon=fireman_ico,"text=Не все цивилизации владеют гиперпрыжком, знаешь ли. А теперь отойдите и не вмешивайтесь."
+Action:Type=Message,icon=nightmare_ico,"text=Ээээ... Рарити? Тебя так зовут? Мне кажется, я только что пересмотрела свою позицию насчет помощи."
+Action:Type=Message,icon=rarity_ico,"text=Неужели?"
+Action:Type=Message,icon=nightmare_ico,"text=Да, ты-то мне и нужна. Могу передать тебе часть моих сил, применяй в любое время. Ты ведь помнишь, как оно?"
+Action:Type=Message,icon=twily_ico,"text=Слишком хорошо помним. Что дальше?"
+Action:Type=Message,icon=nightmare_ico,"text=А дальше вы отгоните этих... подальше от моего замка. Договорились?"
+Action:Type=Message,icon=rarity_ico,"text=НЕТ! Мне это совсем не нравится! Да я лучше..."
+Action:Type=Message,icon=twily_ico,"text=Рарити, только ты и принцесса Луна сможете управиться с этой силой. Она нужна нам."
+Action:Type=Message,icon=fireman_ico,"text=Похоже, вы не собираетесь оставаться в стороне? Уважаю ваш выбор. Воины! Уничтожьте рогатых лошадей!"
+Action:Type=CompBattleTask,code=initial
+Action:Type=SetBattleTask,code=battle,"Task=Используя силу Найтмер, уничтожить огненных демонов и вернуться к порталу."
+Action:Type=ShowBattleTask
+Action:Type=SetPermits,action=allow,code=NightmareCall
+Action:Type=SetFlag,FlagName=DemonsCome
+
+SCRIPT
+Event:ObjectPos=True,Direction=GreatX,i=-1,j=0,Object=nrarity
+Action:Type=Message,icon=twily_ico,"text=Рарити? Как ты себя чувствуешь?"
+Action:Type=Message,icon=nrarity_ico,"text=Я... чувствую себя! Прекрасно! О да! Да!"
+Action:Type=Message,icon=twily_ico,"text=С тобой точно всё хорошо!"
+Action:Type=Message,icon=nrarity_ico,"text=Ах, дорогая, если бы ты знала, сколько новых возможностей открывает эта сила..."
+Action:Type=Message,icon=twily_ico,"text=Наверно, сейчас самое время попробовать некоторые из них в деле?"
+Action:Type=Message,icon=help_ico,"text=Найтмер Рарити - усиленный маг поддержки и дальнего боя, владеет заклинаниями Ледяной Удар, Темный Трезубец и Кристальный Дождь, а также ставит мощную атакующую башню. Не восстанавливает свои силы и здоровье!"
+
+SCRIPT
+Event:TagCount=0,TagName=demons
+Event2:Flag=DemonsCome
+Action:Type=SetFlag,FlagName=DemonsKilled
+Action:Type=Message,icon=fireman_ico,"text=Мы еще вернёмся, глупые холодные создания! Не пройдет и двух тысяч лет!"
+Action:Type=Message,icon=twily_ico,"text=Я запишу это в ежедневник, спасибо за предупреждение. А теперь домой."
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=twily_ico,"text=Домой на счет три! Раз, два..."
+
+VICTORY
+ByFlag:FlagName=DemonsKilled
+->ByObjectPos:Object=nrarity,i=@PortalX@,j=@PortalY@,IncludeLinked=true,AddType=And
+->ByObjectPos:Object=twily,i=@PortalX@,j=@PortalY@,IncludeLinked=true,AddType=And

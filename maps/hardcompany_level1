@@ -1,0 +1,175 @@
+Нашествие нетопырей
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+DESCRIPTION
+Молодые Селестия и Луна отправляются на очередной урок под ==>
+руководством архимага Старсвирла. Возможно, в этот раз занятие ==> 
+не ограничится одной только скучной теорией...
+
+MAP
+FFFFFFFFFFFFFFFFFFFLLLLLLLWLLLALLLALLLALLL
+FFFFFFFFFFFFFFFFFFFLLLLLLLLWLLALLLALLLALLLL
+FFFFFFFFFFFFFFFFFFLLLLLLLLLWLALLLALLLALLLL
+FFFFFFFFFFFFFFFFFFLLLLLLLLLWWALLLALLLALLLLL
+FFFFFFFFFFFFFFFFFFLLLLLLLLWLWLLLALLLAHLHLL
+FFFFFFFFFFFFFFFFFFLLLLLLLLWLLWWWWLLLALLLLLL
+FFFFFFFFFFFFFFFFFFLLLLLLLWLLLLLLWLLALLELLL
+FFFFFFFFFFFFFFFFFFFLLLLLLLWLLLLLLWLAHLLTLLL
+FFFFFFFFFFFFFFFFFFLLLLLLLLWLLLLLLWALLLELLL
+FFFFFFFFFFFFFFFFFFLLLLLLLLWLLLLLLWLLLLLLLLL
+FFFFFFFFFFFFFFFFFLLLLLLLLWLLLLLLWLLLLELHLL
+FFFFFFFFFFFFFFFFLLLLLLLLLWLLLLLLWLLLLLWLALL
+FFFFFFFFFFFFFFFLLLLLLWWWWLLLLLLWLLLWWWLLAL
+FFFFFFFFFFFFFLLLLLLLLWLLLLLLLLLLWWWWLALLLAL
+FFFFFFFFFFFFLLLLLLLLWLLLLLLLLLLLWALLLALLLA
+FFFFFFFFFFFFLLLLLLLLWLLLLLLLLLWWWWALLLALLLA
+FFFFFFFFFFFFLLLLWWWWLLLLLLLLLLALLWALLLALLL
+FFFFFFFFFFFFFLLLWLLLLLLLLLLLLLLALLWALLLALLL
+FFFFFFFFFFFFFLLWLLLLLLLLLLLLLLLALLWALLLALL
+FFFFFFFFFFFFFLLWLLLLLLLLLLLLLLLLALLWALLLALL
+#===MAPEND===
+
+CONSTANTS
+WolfX:10
+WolfY:5
+count1:3
+count2:5
+count3:2
+count4:2
+
+OBJECTS
+Pony:i=20,j=4,"name=Селестия",code=celestia,SpriteTag=celestiayoung,IconTag=celestiayoung
+Pony:i=20,j=8,"name=Луна",code=luna,SpriteTag=lunayoung,IconTag=lunayoung
+Neutral:i=20,j=6,Code=starswirl,"name=Старсвирл Бородатый"
+Monster:i=@WolfX@,j=@WolfY@,Code=woodwolf,@Name=Древесный волк@,tag=wolf
+Building:Code=TreeApple,i=31,j=16,tag=tree
+Building:Code=TreeApple,i=33,j=17,tag=tree
+Building:Code=TreeApple,i=33,j=19,tag=tree
+Building:Code=TreeApple,i=34,j=14,tag=tree
+Building:Code=TreeApple,i=37,j=15,tag=tree
+Building:Code=TreeApple,i=36,j=17,tag=tree
+Building:Code=TreeApple,i=38,j=17,tag=tree
+Building:Code=TreeApple,i=38,j=13,tag=tree
+Building:Code=TreeApple,i=40,j=14,tag=tree
+Building:Code=TreeApple,i=39,j=16,tag=tree
+Building:Code=TreeApple,i=41,j=18,tag=tree
+Building:Code=TreeApple,i=33,j=1,tag=tree
+Building:Code=TreeApple,i=30,j=2,tag=tree
+Building:Code=TreeApple,i=31,j=4,tag=tree
+Building:Code=TreeApple,i=34,j=7,tag=tree
+Building:Code=TreeApple,i=33,j=5,tag=tree
+Building:Code=TreeApple,i=35,j=4,tag=tree
+Building:Code=TreeApple,i=34,j=2,tag=tree
+
+
+INITIAL
+Stone:0
+Food:500
+Task:Уничтожить древесного волка
+Permits:action=deny,code=all
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=Teleport
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=20,j=6,immediate=true
+Action:Type=Message,icon=starswirl_ico,"text=Мы отошли достаточно далеко, ==>
+чтобы наши, хм, упражнения не могли причинить никому вреда. Вы готовы к очередному уроку?"
+Action:Type=Message,icon=celestiayoung_ico,"text=Да, учитель. Это честь для нас, заниматься ==>
+магией под руководством самого известного единорога."
+Action:Type=Message,icon=starswirl_ico,"text=А для меня честь учить тебя, Селестия. Ты сама еще не осознаешь ==>
+всей своей силы."
+Action:Type=Message,icon=lunayoung_ico,"text=Начнем уже?"
+Action:Type=Message,icon=starswirl_ico,"text=Терпение, Луна. Магия не терпит спешки. Вы уже освоили телепортацию и можете заклинанием разбить мишень, но этого мало!"
+Action:Type=Message,icon=celestiayoung_ico,"text=Я готова к большему. Что делаем сейчас?"
+Action:Type=SetFocus,i=@WolfX@,j=@WolfY@
+Action:Type=Message,icon=starswirl_ico,"text=Для начала - избавьтесь от этого древесного волка. Мне они никогда не нравились."
+Action:Type=ShowBattleTask
+
+SCRIPT
+Event:TagCount=0,TagName=wolf
+Action:Type=CompBattleTask,code=initial
+Action:Type=Message,icon=celestiayoung_ico,"text=Это было несложно."
+Action:Type=Message,icon=starswirl_ico,"text=В этом лесу есть не только древесные волки, моя ученица."
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=10,j=6,count=@count1@,radius=2,autofocus=true,tag=bat1
+Action:Type=SetBattleTask,code=bat1,"Task=Уничтожить трех нетопырей"
+Action:Type=ShowBattleTask
+Action:Type=SetFlag,FlagName=bat1
+
+SCRIPT
+Event:TagCount=0,TagName=bat1
+Event2:Flag=bat1
+Action:Type=CompBattleTask,code=bat1
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=25,j=8,count=@count2@,radius=3,autofocus=true,tag=bat2
+Action:Type=Message,icon=celestiayoung_ico,"text=Учитель, пять нетопырей возле деревни - это часть урока?"
+Action:Type=Message,icon=starswirl_ico,"text=Вообще-то, нет, но... там же наши сады! Пони с таким трудом вырастили здесь яблони."
+Action:Type=Message,icon=lunayoung_ico,"text=Мы не должны допустить, чтобы эти создания испортили сад."
+Action:Type=SetBattleTask,code=bat2,"Task=Уничтожить пять нетопырей"
+Action:Type=SetBattleTask,code=trees,"Task=Сохранить как минимум 10 яблонь."
+Action:Type=ShowBattleTask
+Action:Type=SetFlag,FlagName=bat2
+
+SCRIPT
+Event:TagCount=0,TagName=bat2
+Event2:Flag=bat2
+Action:Type=CompBattleTask,code=bat2
+Action:Type=Message,icon=lunayoung_ico,"text=Мне кажется, вы собирались показать что-то новое?"
+Action:Type=Message,icon=starswirl_ico,"text=Хм, хм... да. Селестия, ты управляешь Солнцем. Почему бы тебе не использовать его возможности?"
+Action:Type=Message,icon=celestiayoung_ico,"text=Это... очень мощное оружие. Я думаю, что стоит его применять только в случае большой беды."
+Action:Type=NewObjectGroup,Object=Monster,Code=batpoison,"Name=Ядовитый нетопырь",i=12,j=5,count=@count3@,radius=5,autofocus=true,tag=bat3
+Action:Type=Message,icon=lunayoung_ico,"text=А это как называетcя, сестра? Мы не видели ядовитых нетопырей уже много лет."
+Action:Type=Message,icon=help_ico,"text=Заклинания Селестии - Огненный шар и Луч солнца, удар по площади и по линии."
+Action:Type=SetPermits,action=allow,code=FireBall
+Action:Type=SetPermits,action=allow,code=SunBeam
+Action:Type=SetBattleTask,code=bat3,"Task=Уничтожить ядовитых нетопырей"
+Action:Type=SetFlag,FlagName=bat3
+
+SCRIPT
+Event:TagCount=0,TagName=bat3
+Event2:Flag=bat3
+Action:Type=CompBattleTask,code=bat3
+Action:Type=Message,icon=lunayoung_ico,"text=Учитель, при всем уважении, мне тоже хотелось бы получить несколько уроков."
+Action:Type=Message,icon=starswirl_ico,"text=Луна, твоя стихия - спокойствие и умиротворение. Я думаю, что боевая магия - не то, чем ты должна заниматься."
+Action:Type=NewObjectGroup,Object=Monster,Code=batgreat,"Name=Огромный нетопырь",i=10,j=8,count=@count4@,radius=5,autofocus=true,tag=bat4
+Action:Type=Message,icon=starswirl_ico,"text=Я передумал. Луна, это заклинание сна. Используй его в бою при встрече с превосходяшими силами врагов."
+Action:Type=Message,icon=lunayoung_ico,"text=Спасибо, учитель. То есть, вы не рассердитесь, если узнаете, что я самостоятельно освоила секретные заклинания создания фантома?"
+Action:Type=Message,icon=help_ico,"text=Заклинания Луны - усыпление врагов и фантом-приманка для врагов."
+Action:Type=SetPermits,action=allow,code=SleepEnemy
+Action:Type=SetPermits,action=allow,code=BuildFantom
+Action:Type=SetBattleTask,code=bat4,"Task=Уничтожить гигантских нетопырей"
+Action:Type=SetFlag,FlagName=bat4
+
+SCRIPT
+Event:TagCount=0,TagName=bat4
+Event2:Flag=bat4
+Action:Type=CompBattleTask,code=bat4
+Action:Type=Message,icon=lunayoung_ico,"text=Это был последний?"
+Action:Type=Message,icon=starswirl_ico,"text=Увы, нет. Я не обладаю такой силой, как ты и твоя сестра, но мои чувства все еще остры. Нас ждет нашествие нетопырей...прямо сейчас."
+Action:Type=NewObjectGroup,Object=Monster,Code=batred,"Name=Нетопырь",i=5,j=8,count=8,radius=5,autofocus=true
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=5,j=8,count=6,radius=5,autofocus=true
+Action:Type=NewObjectGroup,Object=Monster,Code=batpoison,"Name=Ядовитый нетопырь",i=5,j=8,count=4,radius=5,autofocus=true
+Action:Type=NewObjectGroup,Object=Monster,Code=batgreat,"Name=Огромный нетопырь",i=5,j=8,count=2,radius=5,autofocus=true
+Action:Type=Message,icon=celestiayoung_ico,"text=Что ж, это наша земля и мы её защитим. В бой!"
+Action:Type=SetBattleTask,code=batfinal,"Task=Отразить нашествие нетопырей."
+Action:Type=SetFlag,FlagName=batfinal
+
+# Defeat
+SCRIPT
+Event:TagCount=9,TagName=tree,Compare=LessOrEqual
+Action:Type=Message,icon=starswirl_ico,"text=Конец нашим садам!" 
+Action:Type=SetDefeat,"DefeatStr=Деревья уничтожены"
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=celestiayoung_ico,"text=Мы справились, учитель. Спасибо за уроки."
+Action:Type=Message,icon=starswirl_ico,"text=Когда-нибудь, Селестия, у тебя будут и свои ученики." 
+
+VICTORY
+ByNoMonsterLeft:null
+->ByFlag:FlagName=batfinal,AddType=And

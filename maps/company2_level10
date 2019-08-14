@@ -1,0 +1,199 @@
+Затерянные в океане
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+#DefaultSandStone
+
+MAP
+AAAAAAAAAAAAAAAAAAAAAAAQQAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAQQAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAQWQAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAQWQAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAQWQAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAQQQAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAQWQAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAQWWQAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAQQQQQAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAQWQQAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAQQQWQAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAQWWWWQAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAQQQWWQAAAAAAAAAAA
+AAAAAAAAAAAAAQQQQQQQWWQAAAAAAAAAAAA
+AAAAAAAAAAAQQWWWWQQQWQAAAAAAAAAAAA
+AAAAAAAAAAAQWWLLWWQQQQAAAAAAAAAAAAA
+AAAAAAAAAAQWLLLWWWQQQAAAAAAAAAAAAA
+AAAAAAAAAQQQWWLWQQQQAAAAAAAAAAAAAAA
+AAAAAAAQQQQQWWWQQQQAAAAAAAAAAAAAAA
+AAAAQQQQWWQQQQWWQQQAAAAAAAAAAAAAAAA
+AAQQWQQWWWQQQQWWWQAAAAAAAAAAAAAAAA
+AAQWWQQQWQWQAAQQQQAAAAAAAAAAAAAAAAA
+QQQQQAAQQQQAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+#===MAPEND===
+
+CONSTANTS
+Enemy1_I:3
+Enemy1_J:3
+Enemy2_I:30
+Enemy2_J:26
+Enemy3_I:2
+Enemy3_J:27
+Enemy4_I:30
+Enemy4_J:2
+EnemyF_I:31
+EnemyF_J:18
+StepVictory:40
+
+OBJECTS
+Pony:i=15,j=15,"name=Рарити",code=rarity
+Pony:i=14,j=18,"name=Рейнбоу Дэш",code=rainbow
+Pony:i=12,j=16,"name=Твайлайт",code=twily
+Neutral:code=ship,name=Корабль,i=16,j=17,EnemyTarget=true,MustSurvive=true
+Neutral:code=ship,name=Корабль,i=16,j=19,EnemyTarget=true,MustSurvive=true
+
+Stone:i=25,j=3,size=max
+Stone:i=24,j=7,size=max
+Stone:i=21,j=11,size=medium
+Stone:i=20,j=13,size=medium
+Stone:i=4,j=21,size=max
+Stone:i=9,j=19,size=medium
+Stone:i=8,j=21,size=medium
+Stone:i=17,j=15,size=min
+Stone:i=13,j=14,size=min
+Stone:i=12,j=17,size=min
+Stone:i=14,j=20,size=min
+
+
+INITIAL
+Stone:0
+Food:500
+Task:Защитить корабли в течении 40 ходов
+AttackedDefeatString:Корабли разрушены!
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=MineForest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Heal
+Permits:action=allow,code=Restore
+Permits:action=allow,code=CutEmptySector
+Permits:action=allow,code=BuildTreeShield
+#Permits:action=allow,code=BuildFarmStone
+Permits:action=allow,code=BuildCrystalTowerBig
+Permits:action=allow,code=BuildCrystalTowerSmall
+Permits:action=allow,code=NightmareCall
+Permits:action=allow,code=BuildCrystalTowerDark
+Permits:action=allow,code=DarkTriden
+Permits:action=allow,code=CrystallRain
+Permits:action=allow,code=FrostAttack
+Permits:action=allow,code=Wings
+Permits:action=allow,code=DeathRainbow
+Permits:action=allow,code=FlatterView
+Permits:action=allow,code=ForceShield
+Permits:action=allow,code=ForceShieldNR
+Permits:action=allow,code=SetupTeleport
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=14,j=18,immediate=true
+Action:Type=Message,icon=twily_ico,"text=Похоже, не все книги одинаково полезны. Нигде не было информации про эти течения. Нигде!"
+Action:Type=Message,icon=rarity_ico,"text=Мы дешево отделались. Два корабля всё еще целы, их уже чинят."
+Action:Type=Message,icon=rainbow_ico,"text=Да уж, убраться бы побыстрее. Я только что слетала на разведку - и могу сказать, что океан вокруг не совсем пуст."
+Action:Type=ShowBattleTask
+
+SCRIPT      
+Event:Step=2
+Action:Type=SetFocus,i=@Enemy1_I@,j=@Enemy1_J@
+Action:Type=NewObjectGroup,Object=Monster,Code=watersnake,"Name=Морской змей",i=@Enemy1_I@,j=@Enemy1_J@,count=2,radius=2
+Action:Type=Message,icon=twily_ico,"text=Морские змеи. Не стоит волноваться, мы уже сталкивались с этим. Не отходим далеко от кораблей, все силы на оборону!"
+
+SCRIPT      
+Event:Step=3
+Action:Type=SetFocus,i=@Enemy2_I@,j=@Enemy2_J@
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@Enemy2_I@,j=@Enemy2_J@,count=3,radius=2
+Action:Type=Message,icon=twily_ico,"text=И нетопыри. Посреди океана. Странно, но в целом, не страшно."
+
+SCRIPT      
+Event:Step=4
+Action:Type=SetFocus,i=@Enemy3_I@,j=@Enemy3_J@
+Action:Type=NewObjectGroup,Object=Monster,Code=cracken,"Name=Кракен",i=@Enemy3_I@,j=@Enemy3_J@,count=1,radius=2
+Action:Type=Message,icon=rainbow_ico,"text=А теперь можно волноваться?"
+Action:Type=Message,icon=twily_ico,"text=Да, Рейнбоу. Это кракен, и он очень опасен в море."
+
+SCRIPT      
+Event:Step=6
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@Enemy4_I@,j=@Enemy4_J@,count=4,radius=2
+
+SCRIPT      
+Event:Step=9
+Action:Type=NewObjectGroup,Object=Monster,Code=watersnake,"Name=Морской змей",i=@Enemy1_I@,j=@Enemy1_J@,count=3,radius=2
+
+SCRIPT      
+Event:Step=15
+Action:Type=NewObjectGroup,Object=Monster,Code=cracken,"Name=Кракен",i=@Enemy2_I@,j=@Enemy2_J@,count=1,radius=2
+Action:Type=NewObjectGroup,Object=Monster,Code=cracken,"Name=Кракен",i=@Enemy4_I@,j=@Enemy4_J@,count=1,radius=2
+
+SCRIPT      
+Event:Step=18
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@Enemy1_I@,j=@Enemy1_J@,count=3,radius=2
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@Enemy3_I@,j=@Enemy3_J@,count=4,radius=2
+
+SCRIPT      
+Event:Step=23
+Action:Type=NewObjectGroup,Object=Monster,Code=watersnake,"Name=Морской змей",i=@Enemy2_I@,j=@Enemy2_J@,count=2,radius=2
+Action:Type=NewObjectGroup,Object=Monster,Code=watersnake,"Name=Морской змей",i=@Enemy4_I@,j=@Enemy4_J@,count=3,radius=2
+
+SCRIPT      
+Event:Step=27
+Action:Type=NewObjectGroup,Object=Monster,Code=cracken,"Name=Кракен",i=@Enemy1_I@,j=@Enemy1_J@,count=1,radius=2
+Action:Type=NewObjectGroup,Object=Monster,Code=cracken,"Name=Кракен",i=@Enemy2_I@,j=@Enemy2_J@,count=1,radius=2
+Action:Type=NewObjectGroup,Object=Monster,Code=cracken,"Name=Кракен",i=@Enemy3_I@,j=@Enemy3_J@,count=1,radius=2
+Action:Type=NewObjectGroup,Object=Monster,Code=cracken,"Name=Кракен",i=@Enemy4_I@,j=@Enemy4_J@,count=1,radius=2
+Action:Type=Message,icon=rainbow_ico,"text=Твайлайт, может, время для какой-нибудь особой магической штуки? Четыре кракена, нам не удержать остров."
+Action:Type=Message,icon=twily_ico,"text=Мы и поплыли к зебрам за особыми штуками, ты помнишь?"
+
+SCRIPT      
+Event:Step=30
+Action:Type=NewObject,Object=Neutral,Code=oceanpegas,"Name=Океанский пегас",i=30,j=15,autofocus=true
+Action:Type=Message,icon=oceanpegas_ico,"text=Невероятно! Пегас Эквестрии так далеко от берега? Как ты сюда добралась, на воздушном шаре?"
+Action:Type=Message,icon=rainbow_ico,"text=Никто не смеет так разговаривать с Рейнбоу Дэш! Я самый быстрый пегас в Эквестрии!"
+Action:Type=Message,icon=oceanpegas_ico,"text=В Эквестрии - возможно. Но вы сейчас посреди океана, а он не любит слабых и медленных."
+Action:Type=Message,icon=rarity_ico,"text=Я читала о вас в романе - пегасы, не признавшие власть Принцесс и живущие на облаках и островах в океане. Честно сказать - была уверена, что это сказки."
+Action:Type=Message,icon=oceanpegas_ico,"text=Мы более чем реальны, и гораздо сильнее тех неженок, которые живут на материке. Похоже, вам нужна помощь?"
+Action:Type=Message,icon=twily_ico,"text=С ремонтом мы почти закончили, но здесь слишком оживленное море..."
+Action:Type=Message,icon=oceanpegas_ico,"text=Понимаю. Защитные вихри, ко мне!"
+Action:Type=NewObject,Object=Building,Code=tornado,"Name=Защитный вихрь",i=11,j=11,autofocus=true
+Action:Type=NewObject,Object=Building,Code=tornado,"Name=Защитный вихрь",i=8,j=18,autofocus=true
+Action:Type=NewObject,Object=Building,Code=tornado,"Name=Защитный вихрь",i=12,j=24,autofocus=true
+Action:Type=NewObject,Object=Building,Code=tornado,"Name=Защитный вихрь",i=19,j=23,autofocus=true
+Action:Type=NewObject,Object=Building,Code=tornado,"Name=Защитный вихрь",i=21,j=17,autofocus=true
+Action:Type=NewObject,Object=Building,Code=tornado,"Name=Защитный вихрь",i=17,j=10,autofocus=true
+Action:Type=Message,icon=rainbow_ico,"text=Это было... потрясно!"
+Action:Type=Message,icon=oceanpegas_ico,"text=Удачи, Рейнбоу Дэш. Возможно, ты даже сможешь научиться этому."
+Action:Type=Message,icon=help_ico,"text=Защитные вихри - замедляют движение всех нелетающих в окрестности 3-х клеток."
+
+SCRIPT
+Event:Victory=True
+Action:Type=SetFocus,i=14,j=18
+Action:Type=Message,icon=twily_ico,"text=Корабли в порядке. Пора уходить. Рейнбоу, спасибо, ты отлично поработала."
+Action:Type=Message,icon=rainbow_ico,"text=Это было непросто, чего уж там. Зато теперь я умею кое-что полезное."
+Action:Type=Message,icon=help_ico,"text=Рейнбоу получила способность: Защитный вихрь"
+ 
+VICTORY
+ByStep:StepNeed=@StepVictory@

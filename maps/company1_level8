@@ -1,0 +1,195 @@
+Эвакуация
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+2222222222222222222222222222222
+22222222222222222222222222222222
+LL222LLL2LLF2F22222FFF222222222
+LLLLLLLLLLLFFFFF2FFFFFLLL2222222
+LLLLLLLLLLLFFFFFFFFFFFLLLLL2222
+LLLLLLLLLLLLFFFFFFFFFFLLLLLL2222
+LLLLLLLLLLLFFFFFFFFFFLLLLLLLLL2
+LLLLLLLLLLLLFFFFFFFFFLLLLLHLLLLL
+LLLLLLLLLLLLFFFFFFFFLLLLLLWLLLL
+LLLLLLLLLLMMMFFFFFFFFLLLLLWHLLLL
+LHLLLHLLLMMMMFFFFFFFWWWWWWLLLLL
+LLLLLLLLLMMMMMFFFFFFWFMMMWLLLLLL
+LLWWWWWWMMMMMMWWWWWWFFMMMWWWWWW
+LLLLLLLLWMMMMMWFFFFFFFFMMMMLLLLL
+LLLHLLLLWWWWWWFFFFFFFFMMLLLLLLL
+LLLLLLLLLLLLWLFFFFFFFFMLLLLLLLLL
+LLLLLLLLLLLWLLFFFFFFFLLLLLLLLLL
+LLLLLLLLLLLLWLLFFFFFLLLLLLLLLLLL
+LLLLLLLLLLLLWELLFFFLLLLLLLLLLLL
+LLLLLLLLLLLLWLLLLFFLLLLLLLLLLLLL
+LLLLLLLLLLLELLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+#===MAPEND===
+
+# Раздел константы должен идти в самом начале
+CONSTANTS
+StepEvac1:4
+StepEvac2:10
+StepEvac3:16
+
+StepWave1:2
+StepWave2:7
+StepWave3:13
+
+OBJECTS
+Pony:i=29,j=9,"name=Твайлайт Спаркл",code=twily
+Pony:i=28,j=10,"name=Рейнбоу Дэш",code=rainbow
+Pony:i=28,j=11,"name=Пинки Пай",code=pinki
+Pony:i=28,j=13,"name=Флаттершай",code=flatter
+Pony:i=28,j=14,"name=Рарити",code=rarity
+Pony:i=29,j=15,"name=Эпплджек",code=applejack
+Building:Code=FarmFood,i=2,j=9
+Stone:i=11,j=12,size=max
+Stone:i=10,j=12,size=max
+Stone:i=11,j=11,size=max
+
+Monster:Code=ameba,"Name=Амеба",i=26,j=20
+Monster:Code=bat,"Name=Нетопырь",i=27,j=21
+Monster:Code=bat,"Name=Нетопырь",i=28,j=20
+Monster:Code=bat,"Name=Нетопырь",i=29,j=21
+Monster:Code=ameba,"Name=Амеба",i=30,j=20
+               	
+Neutral:i=3,j=11,"name=Житель деревни",Code=pony_4,EnemyTarget=true,MustSurvive=true
+Neutral:i=4,j=11,"name=Житель деревни",Code=pony_5,EnemyTarget=true,MustSurvive=true
+Neutral:i=3,j=13,"name=Житель деревни",Code=pony_6,EnemyTarget=true,MustSurvive=true
+Neutral:i=4,j=13,"name=Житель деревни",Code=pony_7,EnemyTarget=true,MustSurvive=true
+
+Neutral:i=12,j=20,"name=Житель деревни",Code=pony_1,EnemyTarget=true,MustSurvive=true
+Neutral:i=11,j=19,"name=Житель деревни",Code=pony_2,EnemyTarget=true,MustSurvive=true
+Neutral:i=14,j=19,"name=Житель деревни",Code=pony_3,EnemyTarget=true,MustSurvive=true
+
+Neutral:i=27,j=7,"name=Житель деревни",Code=pony_8,EnemyTarget=true,MustSurvive=true
+Neutral:i=27,j=8,"name=Житель деревни",Code=pony_9,EnemyTarget=true,MustSurvive=true
+
+INITIAL
+Stone:0
+Food:160
+Task:Защищать пони от нападений и Пустоты
+AttackedDefeatString:Пони пострадали
+Permits:action=deny,code=all
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Heal
+Permits:action=allow,code=Restore
+Permits:action=allow,code=CutEmptySector
+Permits:action=allow,code=BuildTreeShield
+Permits:action=allow,code=BuildCrystalTowerBig
+Permits:action=allow,code=BuildCrystalTowerSmall
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=29,j=13,immediate=true
+Action:Type=Message,icon=twily_ico,"text=Мы на месте. Наша задача - ==>
+защитить всех пони до завершения эвакуации. Они выходят из трех поселков."
+Action:Type=SetFocus,i=3,j=10
+Action:Type=Message,icon=rarity_ico,"text=Мне не нравится это черное на горизонте."
+Action:Type=SetFocus,i=15,j=5
+Action:Type=Message,icon=twily_ico,"text=Да, Рарити, это Пустота. Мы не спасём эту провинцию, ==>
+но нужно успеть эвакуировать жителей."
+Action:Type=SetFocus,i=26,j=20
+Action:Type=Message,icon=rainbow_ico,"text=Нет, только не снова... ==>
+Твайлайт, разве ЭТИМ не должна заниматься королевская гвардия?"
+Action:Type=Message,icon=twily_ico,"text=Девочки, здесь и сейчас - мы и есть ==>
+королевская гвардия! Придется защищать поселки с севера и с юга.". 
+Action:Type=ShowBattleTask
+Action:Type=SetBattleTask,code=vil1,"Task=Дождаться эвакуации первой деревни"
+Action:Type=SetBattleTask,code=vil2,"Task=Дождаться эвакуации второй деревни"
+Action:Type=SetBattleTask,code=vil3,"Task=Дождаться эвакуации третьей деревни"
+
+SCRIPT
+Event:Step=1
+Action:Type=Message,icon=applejack_ico,"text=Всего одна ферма? Чем они тут питались, травой? Мы не протянем без запасов."
+Action:Type=SetFocus,i=10,j=10
+Action:Type=Message,icon=rainbow_ico,"text=На вершине горы есть немного камней, пригодных для построек. Могу слетать за ними."
+Action:Type=Message,icon=twily_ico,"text=Было бы лучше, если ты поможешь немного отогнать Пустоту. Твой Радужный Удар выделяет прилично энергии, это на время восстанавливает  связи материи."
+Action:Type=Message,icon=flatter_ico,"text=А может, я смогу? Я тоже умею летать... если вы не против, конечно"
+Action:Type=Message,icon=twily_ico,"text=Флаттершай, тут такое дело. Я вчера провела небольшое исследование... Элемент, который ты олицетворяешь, не позволяет Пустоте двигаться! Ты мобильная защита от распада материи!"
+Action:Type=Message,icon=flatter_ico,"text=Я даже не знаю, хорошо это или плохо..."
+Action:Type=Message,icon=help_ico,"text=Радужный Удар очищает область. Пустота не распространяется вокруг Флаттершай на расстоянии до трех клеток."
+
+# ==== Волна 1 ====
+
+SCRIPT      
+Event:Step=@StepWave1@
+Action:Type=SetFocus,i=22,j=21
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=22,j=21,count=3,radius=2
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=22,j=21,count=2,radius=2
+
+# ==== Волна 2 ====
+
+SCRIPT      
+Event:Step=@StepWave2@
+Action:Type=SetFocus,i=23,j=18
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=23,j=18,count=4,radius=2
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=23,j=18,count=2,radius=2
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=23,j=18,count=1,radius=2
+
+# ==== Волна 3 ====
+
+SCRIPT      
+Event:Step=@StepWave3@
+Action:Type=SetFocus,i=2,j=21
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=2,j=21,count=3,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=2,j=21,count=6,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=2,j=21,count=2,radius=3
+
+# ==== Первые уходят
+
+SCRIPT
+Event:Step=@StepEvac1@
+Action:Type=SetFocus,i=27,j=7
+Action:Type=RemoveObject,i=27,j=7
+Action:Type=RemoveObject,i=27,j=8
+Action:Type=Message,icon=twily_ico,"text=Ну, первая деревня пуста. Пошло дело!"
+Action:Type=CompBattleTask,code=vil1
+
+# ==== Вторые уходят
+
+SCRIPT
+Event:Step=@StepEvac2@
+Action:Type=SetFocus,i=12,j=20
+Action:Type=RemoveObject,i=12,j=20
+Action:Type=RemoveObject,i=11,j=19
+Action:Type=RemoveObject,i=14,j=19
+Action:Type=Message,icon=twily_ico,"text=Ух, пони из второй деревни ушли. Мы почти завершили дело."
+Action:Type=CompBattleTask,code=vil2
+
+# ==== Третьи уходят
+
+SCRIPT
+Event:Step=@StepEvac3@
+Action:Type=SetFocus,i=3,j=11
+Action:Type=RemoveObject,i=3,j=11
+Action:Type=RemoveObject,i=4,j=11
+Action:Type=RemoveObject,i=3,j=13
+Action:Type=RemoveObject,i=4,j=13
+Action:Type=SetFlag,FlagName=EvacOk
+Action:Type=CompBattleTask,code=vil3
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=twily_ico,"text=Это были последние пони. Время уходить и нам."
+
+VICTORY
+ByFlag:FlagName=EvacOk
+

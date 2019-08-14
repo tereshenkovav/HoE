@@ -1,0 +1,142 @@
+Орден Лунного дозора
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+#DefaultSandStone
+
+MAP
+MMAAMMMMMMMMMMMMMMFFFAALLLLLLLL
+MMMAAMMMMMMMFFMMMMFFFFAALLLLLLLL
+MMMAAMMMMMFFFFFMMFFFLAALLLLLLLL
+MMMAAAAFFFFFFFFFFFFFLLAALLLLLLLL
+MMMAAAAFFFFFFFFFFLLLLLAALLLLLLL
+MMMAAAAFFFFFFFFFFLLLLLAALLLLLLLL
+MMAAAAAFFFFFFLLLLLLLLAALLLLLLLL
+MMMAAAAFFFFFLLLLLLLLLAALLLLLLLLL
+MFFFAFFFFLLLLLLLLLLLAALLLLLLLLL
+FFFFFFFFFLLLLLLLLLLLLAALLLLLLLLL
+FFFFFFFLLLLLLLLLLLLLLAALLLLLLLL
+FFFFFFFLLLLLLLLLLLLLLLAALLLLLLLL
+FFFFLLLLLLLLLLLLLLLLLAALLLLLLLL
+FFFLLLLLLLLLLLLLLLLLLAWAALLLLLLL
+FFLLLLLLLLLLLLLLLLLLAWWWALLLLLL
+FFLLLLLLLLLLLLLLLLLLAWWWWAALLLLL
+FLLLLLLLLLLLLLLLLLLLAWWWWWALLLL
+LLLLLLLLLLLLLLLLLLLLAWWLWWALLLLL
+LLLLLLLLLLLLLLLLLLLAWWLLWALLLLL
+LLLLLLLLLLLLLLLLLLLLAWLLLLALLLLL
+LLLLLLLLLLLLLLLLLLLLALLLLLALLLL
+LLLLLLLLLLLLLLLLLLLLALLLLLALLLLL
+LLLLLLLLLLLLLLLLLLLALLLLLLALLLL
+LLLLLLLLLLLLLLLLLLLALLLLLLLALLLL
+#===MAPEND===
+
+# Раздел константы должен идти в самом начале
+CONSTANTS
+StepSpace1:5
+StepSpace2:10
+StepSpace3:14
+StepEnemy1:2
+StepEnemy2:6
+StepEnemy3:11
+StepEnemy4:17
+
+OBJECTS
+Pony:i=2,j=17,"name=Принцесса Луна",code=luna
+Pony:i=3,j=15,"name=Блэк Винд",code=blackwind
+
+Monster:Code=bat,"Name=Нетопырь",i=15,j=6
+Monster:Code=bat,"Name=Нетопырь",i=20,j=9
+Monster:Code=bat,"Name=Нетопырь",i=17,j=6
+Monster:Code=bat,"Name=Нетопырь",i=20,j=6
+
+INITIAL
+Stone:0
+Food:450
+Task:Найти и уничтожить все источники опасности
+AssignAction:pony=luna,action=CutEmptySectorLuna
+Permits:action=deny,code=all
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=BuildFantom
+Permits:action=allow,code=SleepEnemy
+Permits:action=allow,code=SetupTeleport
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=2,j=14,immediate=true
+Action:Type=Message,icon=luna_ico,"text=Прекрасная ночь, Блэк Винд."
+Action:Type=Message,icon=blackwind_ico,"text=Да, Ваше Высочество."
+Action:Type=Message,icon=luna_ico,"text=Я говорила называть меня просто - Луна? Ты заслужил это право за 30 лет службы в Ордене."
+Action:Type=Message,icon=blackwind_ico,"text=Как пожелаете, Ваше Высочество."
+Action:Type=Message,icon=luna_ico,"text=Ты просто невозможен... Что у нас на этот раз?"
+Action:Type=Message,icon=blackwind_ico,"text=Обычное дело - патруль номер три обнаружил прорыв. Пара десятков чудовищ, порождений мрака. И, возможно, распад материи."
+Action:Type=Message,icon=luna_ico,"text=С распадом я разберусь, а ты займись этими тварями. Орден выполнит свою работу."
+Action:Type=Message,icon=blackwind_ico,"text=Во славу Принцессы Луны!"
+Action:Type=Message,icon=luna_ico,"text=Именем её! Но мне по-прежнему не нравится это ваше приветствие."
+Action:Type=Message,icon=blackwind_ico,"text=Вы - наша принцесса и лидер. Вы основали этот орден и обучили нас всему."
+Action:Type=ShowBattleTask
+
+SCRIPT      
+Event:Step=@StepSpace1@
+Action:Type=SetFocus,i=26,j=11
+Action:Type=NewObjectGroup,Object=EmptyPlace,i=26,j=11,count=5,radius=2
+Action:Type=Message,icon=luna_ico,"text=Всё-таки это распад. Пятый раз за последнюю сотню лет!"
+Action:Type=Message,icon=blackwind_ico,"text=Все в порядке, Луна. Вы в состоянии справиться с этим, я верю в вас."
+Action:Type=SetPermits,action=allow,code=CutEmptySectorLuna
+Action:Type=Message,icon=help_ico,"text=Принцесса Луна владеет заклинанием обширной очистки Пустоты."
+
+SCRIPT      
+Event:Step=@StepSpace2@
+Action:Type=SetFocus,i=6,j=19
+Action:Type=NewObjectGroup,Object=EmptyPlace,i=6,j=19,count=4,radius=2
+
+SCRIPT      
+Event:Step=@StepSpace3@
+Action:Type=SetFocus,i=20,j=4
+Action:Type=NewObjectGroup,Object=EmptyPlace,i=20,j=4,count=7,radius=2
+
+SCRIPT      
+Event:Step=@StepEnemy1@
+Action:Type=SetFocus,i=16,j=5
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,Name=Амеба,i=16,j=5,count=3,radius=2
+Action:Type=Message,icon=blackwind_ico,"text=Принцесса, патрульные не ошиблись. Это прорыв, они возникают из ниоткуда."
+Action:Type=Message,icon=luna_ico,"text=Возможно, это не совсем так. Мне понадобится твоя помощь. Распаковывай комплект воина Ордена."
+Action:Type=SetPermits,action=allow,code=FireBomb1
+Action:Type=SetPermits,action=allow,code=FireBomb2
+Action:Type=SetPermits,action=allow,code=GuardPack1
+Action:Type=SetPermits,action=allow,code=GuardPack2
+Action:Type=Message,icon=help_ico,"text=Стражи Лунного дозора выходят на задание, имея при себе 2 зажигательные бутылки и 2 лечебно-восстановительных фиала"
+
+SCRIPT      
+Event:Step=@StepEnemy2@
+Action:Type=SetFocus,i=10,j=17
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,Name=Тролль,i=10,j=17,count=2,radius=2
+
+SCRIPT      
+Event:Step=@StepEnemy3@
+Action:Type=SetFocus,i=20,j=5
+Action:Type=NewObjectGroup,Object=MonsterTent,Code=tent,Name=Зеленый ужас,i=20,j=5,count=1,radius=1
+
+SCRIPT      
+Event:Step=@StepEnemy4@
+Action:Type=SetFocus,i=20,j=23
+Action:Type=NewObjectGroup,Object=MonsterPortal,Code=darkportal_small,Name=Портал,i=20,j=23,count=1,radius=1
+Action:Type=Message,icon=luna_ico,"text=Это тот способ, которым эти создания проникают в наш мир. Распад материи выделяет энергию, которая позволяет создать постоянные порталы. Нам нужно уничтожить его как можно скорее."
+Action:Type=SetFlag,FlagName=final
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=luna_ico,"text=Мы справились, но в этот раз, было очень опасно. Вот мой приказ - пусть воины Ордена запишут всё, чему я обучала вас. Однажды, это может понадобиться и в моё отсутствие."
+Action:Type=Message,icon=blackwind_ico,"text=Мы всё сделаем, как вы прикажете."
+
+VICTORY
+ByNoMonsterLeft:null
+->ByNoSpaceLeft:addType=And
+->ByFlag:FlagName=final,addType=And

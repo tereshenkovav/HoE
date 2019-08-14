@@ -1,0 +1,141 @@
+Поиски
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+2222222222222222222222222LLLLLL
+LLLLLL2222222222222222LLLLLLLLLL
+LLLLLLLL2LLL2L22222LLLLLLLLLLLL
+LLLLLLLLLL222LLLLLLLLLLLLLLLLLLL
+LLLLLLLLLL22222LLLLLLLLLLLLLLLL 
+LLLLLLLLLLLLL2222LLLLLLLLLLLLLLL
+LLLLLLLLLLLL222222LLLLLLLLLLLLL 
+LLLLLLLLLLL222LL222LLLLLLLLLLLLL
+LLLLLLLLL2222LLLL222LLLLLLLLLLL 
+LLLLLL22222LLLLLLLL22LLLLLLL2222
+2222222222LLLLLLLLL222222222222 
+222222LLLLLLLLLLLLL222222222222L
+222LLLLLLLLLLLLLLLL22222222LLLL 
+LLLLLLLLLLLLLLLLLLLLLLL222LLLLL2
+LLLLLLLLLLLLLLLLLLLLLL222LLLLL2 
+LLLLLLLLLLLLLLLLLLLL222LLLLLLL22
+LLLLLLLLLLLLLLLLLLLL222LLLLLL22 
+LLLLLLLLLLLL222222222LLLLLLLL222
+LLLLLLLLL2222222222222222222222 
+LLLLLL2222222222222222222222222L
+2222222222222222222222222222222
+22222222222222222222222222222222
+#===MAPEND===
+
+# Раздел константы должен идти в самом начале
+CONSTANTS
+SwitieX:27
+SwitieY:15
+ScootX:2
+ScootY:3
+AppleBloomX:28
+AppleBloomY:4 
+
+OBJECTS
+Pony:i=2,j=15,"name=Твайлайт Спаркл",code=twily
+#Pony:i=1,j=16,"name=Рейнбоу Дэш",code=rainbow
+Pony:i=2,j=17,"name=Пинки Пай",code=pinki
+#Pony:i=3,j=15,"name=Флаттершай",code=flatter
+Pony:i=3,j=16,"name=Рарити",code=rarity
+Pony:i=0,j=16,"name=Эпплджек",code=applejack
+
+#Monster:Code=ameba,"Name=Амеба",i=26,j=20
+#Monster:Code=bat,"Name=Нетопырь",i=27,j=21
+#Monster:Code=bat,"Name=Нетопырь",i=28,j=20
+#Monster:Code=bat,"Name=Нетопырь",i=29,j=21
+#Monster:Code=ameba,"Name=Амеба",i=30,j=20
+
+Neutral:i=@SwitieX@,j=@SwitieY@,"name=Свити Белль",Code=switie,MustSurvive=true,targeted=true
+Neutral:i=@ScootX@,j=@ScootY@,"name=Скуталу",Code=scoot,MustSurvive=true,targeted=true
+Neutral:i=@AppleBloomX@,j=@AppleBloomY@,"name=Эпплблум",Code=applebloom,MustSurvive=true,targeted=true
+
+INITIAL
+Stone:0
+Food:280
+Task:Спасти всех Меткоискателей
+AttackedDefeatString:Пони пострадали
+EmptyManager:10,10,10,10,10,10
+Permits:action=deny,code=all
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Heal
+Permits:action=allow,code=Restore
+Permits:action=allow,code=CutEmptySector
+Permits:action=allow,code=BuildTreeShield
+Permits:action=allow,code=BuildCrystalTowerBig
+Permits:action=allow,code=BuildCrystalTowerSmall
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=2,j=14,immediate=true
+Action:Type=Message,icon=twily_ico,"text=Пинки, что говорит твоё...\n...\nДевочки?!"
+Action:Type=SetFocus,i=@ScootX@,j=@ScootY@
+Action:Type=Message,icon=scoot_ico,"text=Это Твайлайт! Мы спасены!"
+Action:Type=Message,icon=rarity_ico,"text=Свити Белль! Что ты здесь делаешь?"
+Action:Type=SetFocus,i=@AppleBloomX@,j=@AppleBloomY@
+Action:Type=Message,icon=applebloom_ico,"text=Мы хотели получить метки Исследователей Пустоты."
+Action:Type=SetFocus,i=@SwitieX@,j=@SwitieY@
+Action:Type=Message,icon=switie_ico,"text=А теперь Пустота пытается получить нас. Почему мир так жесток?" 
+Action:Type=Message,icon=applejack_ico,"text=Девочки, держитесь! Мы вас вытащим."
+Action:Type=Message,icon=twily_ico,"text=Я телепортирую каждую по очереди - самое главное, успеть добраться до них раньше, чем Пустота."
+Action:Type=SetBattleTask,code=applebloom,"Task=Привести Твайлайт к Эпплблум"
+Action:Type=SetBattleTask,code=sweetiebelle,"Task=Привести Твайлайт к Свити Белль"
+Action:Type=SetBattleTask,code=scootaloo,"Task=Привести Твайлайт к Скуталу"
+Action:Type=ShowBattleTask
+
+# ==== Достижения ======
+
+# ==== Свити ====
+
+SCRIPT
+Event:ObjectPos=True,i=@SwitieX@,j=@SwitieY@,IncludeLinked=true,Object=twily
+Action:Type=ClearTarget,i=@SwitieX@,j=@SwitieY@
+Action:Type=Message,icon=twily_ico,"text=Приготовься, я отправляю тебя в наш лагерь. Три, два, раз..."
+Action:Type=Message,icon=rarity_ico,"text=И будь уверена, юная леди, я поговорю с тобой о поведении!"
+Action:Type=CompBattleTask,code=sweetiebelle
+Action:Type=RemoveObject,i=@SwitieX@,j=@SwitieY@
+
+# ==== Скут ====
+
+SCRIPT
+Event:ObjectPos=True,i=@ScootX@,j=@ScootY@,IncludeLinked=true,Object=twily
+Action:Type=ClearTarget,i=@ScootX@,j=@ScootY@
+Action:Type=Message,icon=twily_ico,"text=Готова? Три, два, раз... телепортация!"
+Action:Type=Message,icon=rarity_ico,"text=И будь уверена, Рейнбоу Дэш узнает о твоих проделках!"
+Action:Type=Message,icon=scoot_ico,"text=Вы расскажете Рейнбоу про меня! Круто! Оно того стоило!"
+Action:Type=CompBattleTask,code=scootaloo
+Action:Type=RemoveObject,i=@ScootX@,j=@ScootY@
+
+# ==== Эпплблум ====
+
+SCRIPT
+Event:ObjectPos=True,i=@AppleBloomX@,j=@AppleBloomY@,IncludeLinked=true,Object=twily
+Action:Type=ClearTarget,i=@AppleBloomX@,j=@AppleBloomY@
+Action:Type=Message,icon=twily_ico,"text=Начнем отправку. Три, два, раз... поехали!"
+Action:Type=Message,icon=applejack_ico,"text=И пока мы не закончим с энтими делами - будешь сидеть с бабулей Смит!"
+Action:Type=CompBattleTask,code=applebloom
+Action:Type=RemoveObject,i=@AppleBloomX@,j=@AppleBloomY@
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=twily_ico,"text=Ну вот и всё. Отличная работа, подруги."
+
+VICTORY
+ByNoTargetLeft:null

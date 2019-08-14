@@ -1,0 +1,312 @@
+Дом, милый дом
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+MMMMMMMMMFFFFFFFFLLLLLLLLLLLLLLLLLLLLFFFFFFF
+MMMMMMMMMMFFFFFFFLLLLLLLLLLLLLLLLLLLLLFFFFFFF
+MMMMMMMMMFFFFFFFFLLLLLLLLLLLLLLLLLLLLLLFFFFF
+MMMMMMMMMMFFFFFFFLLLLLLLLLLLLLLLLLLLLLLLFFFFF
+MMMMMMMMMMFFFFFLLLLLLLLLLLLLLLLLLLLLLLLLFFFF
+MMMMMMMMMMMFFFFLLLLLLLLLLLLLLLLLLLLLLLLLLLFFF
+MMMMMMMMMMFFFFLLLLLLLLLLLLLLLLLLLLLLLLLLLFFF
+MMMMMMMMMMMFFFLLLLLLLLLLLQQQLLLLLLLLLLLLLLFFF
+MMMMMMMMMMFFFFLLLLLLLLLLQAAQLLLLLLLLLLLLLLFF
+MMMMMMMMMMFFFFLLLLLLLLLQQAAAQLLLLLLLLLLLLLLFF
+MMMMMMMMMFFFFLLLLLLLLLLQAAAAQQLLLLLLLLLLLLFF
+MMMMMMMMMFFFFLLLLLLLLLLQQAAAQQQLLLLLLLLLLLLFF
+MMMMMMMMFFFFLLLLLLLLLLLQQQQQQQQLLLLLLLLLLLFF
+MMMMMMMFFFFFLLLLLLLLLLLLQQLLLQQQLLLLLLLLLLFFF
+MMMMMMFFFFFLLLLLLLLLLLLLLLLLLQQQLLLLLLLLLFFF
+MMMMMMFFFFLLLLLLLLLLLLLLLLLLLLQQQLLLLLLLLLFFF
+MMMMFFFFLLLLLLLLLLLLLLLLWWLLLLQQQLLLLLLLFFFF
+FFFFFFFFLLLLLLLLLLLLLLLLWLLLLLQQQLLLLLLLFFFFF
+FFFFFFFLLLLLLLLLLLLLLLLWLLLLLLQQQLLLLLFFFFFF
+FFFFFFFLLLLLLLLLLLLLLLLWLLLLLLQQQLLLLLFFFFFFF
+FFFLLLLLLLLLLLLLLLLLLLWLLLLLLLQQQLLLLFFFFFFF
+LLLLLLLLLLLLLLLLLWWLLLWLLLLLLLLQQQLLLLFFFFFFF
+LLLLLLLLLLLLLLLLLLWWWWWLLLLLLLLQQQLLLLFFFFFF
+LLLLLLLLLLLLLLLLLLLLLLLWLLLLLLLQQQLLLLLLFFFFF
+FFLLLLLLLLLLLLLLLLLLLLLWLLLLLLQQQLLLLLLLFFFF
+FFFFLLLLLLLLLLLLLLLLLLLWLLLLLLQQQLLLLLLLLLFFF
+FFFFFFFLLLLLLLLLLLLLLLWLLLLLLQQQLLLLLLLLLFFF
+FFFFFFFFFLLLLLLLLLLLLLLWWLLLQQQQLLLLLLLLLLFFF
+FFFFFFFFFFLLLLLLLLLLLLLLLLLQQQLLLLLLLLLLLFFF
+MMMFFFFFFFFFLLLLLLLLLLLLLQQQQLLLLLLLLLLLLFFFF
+MMMMMMMFFFFFFLLLLLLLLLLQQQQLLLLLLLLLLLLLFFFF
+MMMMMMMMMFFFFFFFLLLLQQQQQLLLLLLLLLLLLLLFFFFFF
+MMMMMMMMMFFFFFFFLLQQQQQLLLLLLLLLLLLLLFFFFFFF
+MMMMMMMMMMMFFFFFFLQQLLLLLLLLLLLLLLFFFFFFFFFFF
+MMMMMMMMMMMMMFFFFQQLLLLLLLLLLLLLLFFFFFFFFFFF
+MMMMMMMMMMMMMMFFQQQLLLLLLLLLLLFFFFFFFFFFFFFFF
+MMMMMMMMMMMMMMFQQFFFFLLLLLLLLFFFFFFFFFFFFFFF
+MMMMMMMMMMMMMMMQFFFFFFFLLLLFFFFFFFFFFFFFFFFFF
+MMMMMMMMMMMMMMQMMFFFFFFFFFFFFFFFFFFFFFFFFFFF
+MMMMMMMMMMMMMMQMMMFFFFFFFFFFFFFFFFFFFFFFFFFFF
+#===MAPEND===
+
+CONSTANTS
+Tesla_X:29
+Tesla_Y:18
+TwistStep:12
+SwormInfo:19
+SwormStep1:21
+SwormStep2:27
+SwormStep3:33
+FinalWave:40
+StepVictory:35
+SMS1_X:28
+SMS1_Y:16
+SMS2_X:27
+SMS2_Y:18
+SMS3_X:28
+SMS3_Y:20
+
+OBJECTS
+Pony:i=14,j=20,"name=Рарити",code=rarity
+Pony:i=14,j=19,"name=Эпплджек",code=applejack
+Pony:i=13,j=19,"name=Рейнбоу Дэш",code=rainbow
+Pony:i=12,j=20,"name=Твайлайт",code=twily
+Pony:i=13,j=21,"name=Пинки Пай",code=pinki
+Pony:i=14,j=21,"name=Флаттершай",code=flatter
+Pony:i=21,j=21,"name=Принцесса Каденс",code=cadence
+
+Monster:Code=ameba,"Name=Амеба",i=22,j=35,holdground=true
+Monster:Code=ameba,"Name=Амеба",i=26,j=34,holdground=true
+Monster:Code=ameba,"Name=Амеба",i=40,j=30,holdground=true
+Monster:Code=ameba,"Name=Амеба",i=41,j=26,holdground=true
+Monster:Code=ameba,"Name=Амеба",i=40,j=23,holdground=true
+Monster:Code=ameba,"Name=Амеба",i=41,j=15,holdground=true
+Monster:Code=ameba,"Name=Амеба",i=38,j=19,holdground=true
+Monster:Code=ameba,"Name=Амеба",i=39,j=1,holdground=true
+Monster:Code=ameba,"Name=Амеба",i=39,j=4,holdground=true
+Monster:Code=ameba,"Name=Амеба",i=42,j=5,holdground=true
+Monster:Code=ameba,"Name=Амеба",i=24,j=1,holdground=true
+Monster:Code=ameba,"Name=Амеба",i=12,j=28,holdground=true
+
+Monster:Code=troll,"Name=Тролль",i=18,j=4,holdground=true
+Monster:Code=troll,"Name=Тролль",i=22,j=3,holdground=true
+Monster:Code=troll,"Name=Тролль",i=39,j=18,holdground=true
+Monster:Code=troll,"Name=Тролль",i=39,j=21,holdground=true
+Monster:Code=troll,"Name=Тролль",i=17,j=31,holdground=true
+Monster:Code=troll,"Name=Тролль",i=15,j=29,holdground=true
+
+Monster:Code=gidra,"Name=Гидра",i=19,j=1,holdground=true
+Monster:Code=gidra,"Name=Гидра",i=41,j=3,holdground=true
+# hard ver
+#Monster:Code=gidra,"Name=Гидра",i=42,j=29,holdground=true
+Monster:Code=gidra,"Name=Гидра",i=24,j=36,holdground=true
+
+# hard ver
+#MonsterTent:Code=tent,"Name=Зеленый ужас",i=28,j=2,holdground=true
+MonsterTent:Code=tent,"Name=Зеленый ужас",i=24,j=34,holdground=true
+MonsterTent:Code=tent,"Name=Зеленый ужас",i=40,j=25,holdground=true
+
+Monster:Code=poison,"Name=Ядовитый шар",i=43,j=9,holdground=true
+Monster:Code=poison,"Name=Ядовитый шар",i=29,j=32,holdground=true
+Monster:Code=poison,"Name=Ядовитый шар",i=20,j=2,holdground=true
+
+Neutral:Code=pony_1,"Name=Беженец",i=20,j=17,EnemyTarget=true,MustSurvive=true
+Neutral:Code=pony_2,"Name=Беженец",i=21,j=19,EnemyTarget=true,MustSurvive=true
+Neutral:Code=pony_3,"Name=Беженец",i=19,j=20,EnemyTarget=true,MustSurvive=true
+Neutral:Code=pony_4,"Name=Беженец",i=18,j=23,EnemyTarget=true,MustSurvive=true
+Neutral:Code=pony_5,"Name=Беженец",i=20,j=25,EnemyTarget=true,MustSurvive=true
+Neutral:Code=pony_6,"Name=Беженец",i=21,j=23,EnemyTarget=true,MustSurvive=true
+Neutral:Code=pony_7,"Name=Беженец",i=25,j=19,EnemyTarget=true,MustSurvive=true
+Neutral:Code=pony_8,"Name=Беженец",i=23,j=20,EnemyTarget=true,MustSurvive=true
+Neutral:Code=pony_9,"Name=Беженец",i=25,j=22,EnemyTarget=true,MustSurvive=true
+Neutral:Code=pony_1,"Name=Беженец",i=24,j=24,EnemyTarget=true,MustSurvive=true
+
+Building:Code=HouseTravel,"Name=Временное жилище",i=21,j=18
+Building:Code=HouseTravel,"Name=Временное жилище",i=21,j=24
+Building:Code=HouseTravel,"Name=Временное жилище",i=24,j=21
+Building:Code=HouseTravel,"Name=Временное жилище",i=25,j=25
+Building:Code=HouseTravel,"Name=Временное жилище",i=25,j=18
+Building:Code=HouseTravel,"Name=Временное жилище",i=19,j=19
+Building:Code=HouseTravel,"Name=Временное жилище",i=17,j=23
+Building:Code=HouseTravel,"Name=Временное жилище",i=19,j=16
+Building:Code=HouseTravel,"Name=Временное жилище",i=26,j=22
+Building:Code=HouseTravel,"Name=Временное жилище",i=19,j=26
+
+Building:Code=FarmFood,"Name=Ферма",i=17,j=20
+Building:Code=FarmStone,"Name=Рудник",i=23,j=16
+Building:Code=FarmStone,"Name=Рудник",i=22,j=27
+
+Food:i=20,j=16,size=min
+Food:i=20,j=19,size=min
+Food:i=17,j=24,size=min
+Food:i=20,j=24,size=min
+Food:i=24,j=18,size=min
+Food:i=23,j=22,size=min
+
+#Stone:i=23,j=8,size=max
+Stone:i=22,j=10,size=min
+#Stone:i=23,j=13,size=max
+#Stone:i=26,j=13,size=max
+Stone:i=29,j=16,size=medium
+Stone:i=28,j=13,size=medium
+#Stone:i=30,j=22,size=max
+Stone:i=28,j=26,size=min
+#Stone:i=29,j=20,size=max
+     
+INITIAL
+Stone:0
+Food:200
+Task:Защитить всех пони в долине
+AttackedDefeatString:Беженцы пострадали
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Heal
+Permits:action=allow,code=Restore
+Permits:action=allow,code=CutEmptySector
+Permits:action=allow,code=BuildTreeShield
+Permits:action=allow,code=BuildFarmStone
+Permits:action=allow,code=BuildCrystalTowerBig
+Permits:action=allow,code=BuildCrystalTowerSmall
+Permits:action=allow,code=NightmareCall
+Permits:action=allow,code=BuildCrystalTowerDark
+Permits:action=allow,code=DarkTriden
+Permits:action=allow,code=CrystallRain
+Permits:action=allow,code=FrostAttack
+Permits:action=allow,code=SuperHealthAJ
+Permits:action=allow,code=SuperPowerPinki
+Permits:action=allow,code=BearSplash
+Permits:action=allow,code=SummoneBear
+Permits:action=allow,code=PrincessKiss
+Permits:action=allow,code=DeathKick
+Permits:action=allow,code=DeathRainbow
+Permits:action=allow,code=BuildForceTower
+Permits:action=allow,code=BuildHealTower
+Permits:action=allow,code=BuildMirage
+Permits:action=allow,code=IntRelax
+Permits:action=allow,code=SleepStar
+Permits:action=allow,code=BuildTornado
+Permits:action=allow,code=Wings
+Permits:action=allow,code=FlatterView
+Permits:action=allow,code=ForceShield
+Permits:action=allow,code=ForceShieldNR
+Permits:action=allow,code=SetupTeleport
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=20,j=20,immediate=true
+Action:Type=Message,icon=twily_ico,"text=Каденс? А где Принцесса Селестия?"
+Action:Type=Message,icon=cadence_ico,"text=Я за неё, и должна сказать, что мой защитный купол почти на нуле."
+Action:Type=Message,icon=applejack_ico,"text=Объясните мне, что тут происходит?"
+Action:Type=Message,icon=cadence_ico,"text=Как видишь, у нас некоторые проблемы."
+Action:Type=Message,icon=rarity_ico,"text=Да их же сотни!"
+Action:Type=Message,icon=cadence_ico,"text=Последние три дня были просто ужасны."
+Action:Type=Message,icon=twily_ico,"text=Так, девочки, мы готовились к этому всё последнее время. Ради нас, наших друзей и нашей Эквестрии - сделаем это!"
+Action:Type=Message,icon=rarity_ico,"text=Ради всего прекрасного!"
+Action:Type=Message,icon=rainbow_ico,"text=За чистое небо!"
+Action:Type=Message,icon=applejack_ico,"text=И родную землю!"
+Action:Type=Message,icon=pinki_ico,"text=Барук Кхазаааад!"
+Action:Type=ShowBattleTask
+
+SCRIPT      
+Event:Step=1
+Action:Type=SetFocus,i=@Tesla_X@,j=@Tesla_Y@
+Action:Type=NewObject,Object=Neutral,Code=switie,"Name=Свити Белль",i=@SMS2_X@,j=@SMS2_Y@
+Action:Type=NewObject,Object=Neutral,Code=applebloom,"Name=Эпплблум",i=@SMS1_X@,j=@SMS1_Y@
+Action:Type=NewObject,Object=Neutral,Code=scoot,"Name=Скуталу",i=@SMS3_X@,j=@SMS3_Y@
+Action:Type=NewObject,Object=Building,Code=tesla0,"Name=Электрическая Башня",i=@Tesla_X@,j=@Tesla_Y@,tag=tesla
+Action:Type=SetFlag,FlagName=tesla
+Action:Type=Message,icon=twily_ico,"text=Чем это вы тут заняты? Марш в лагерь, здесь небезопасно."
+Action:Type=Message,icon=applebloom_ico,"text=Не для нас. Пока вы занимались своими делами, мы порылись в библиотеке Твайлайт."
+Action:Type=Message,icon=switie_ico,"text=И мое первое работающее заклинание - невидимость для всех, кроме пони! Мы в безопасности."
+Action:Type=Message,icon=scoot_ico,"text=А здесь мы строим электрическую башню. Когда закончим - она здорово поможет вам."
+Action:Type=Message,icon=switie_ico,"text=Метконосцы - военные инженеры, ура!"
+Action:Type=Message,icon=rarity_ico,"text=Твайлат, разве детям можно читать ТАКИЕ книги?"
+Action:Type=Message,icon=twily_ico,"text=Конечно, нет. Но если лагерь будет прикрыт со стороны реки - это действительно пригодится."
+Action:Type=Message,icon=applejack_ico,"text=Сестренка, делайте своё дело, а мы позаботимся, чтобы вашу штуку не сломали."
+Action:Type=Message,icon=ok_ico,"text=Дополнительное задание: не дайте врагам сломать строящуюся электрическую башню в течении 8 ходов."
+
+
+SCRIPT      
+Event:TagCount=0,TagName=tesla
+Event1:Flag=tesla
+Action:Type=Message,icon=switie_ico,"text=Мы так и останемся пустобокими. Ужасно!"
+Action:Type=RemoveObject,i=@SMS1_X@,j=@SMS1_Y@
+Action:Type=RemoveObject,i=@SMS2_X@,j=@SMS2_Y@
+Action:Type=RemoveObject,i=@SMS3_X@,j=@SMS3_Y@
+
+SCRIPT      
+Event:Step=8
+Event1:TagCount=1,TagName=tesla
+Action:Type=SetFlag,FlagName=teslaok
+
+SCRIPT      
+Event:Flag=teslaok
+Action:Type=ClearFlag,FlagName=tesla
+Action:Type=RemoveObject,i=@Tesla_X@,j=@Tesla_Y@
+Action:Type=NewObject,Object=Building,Code=tesla,i=@Tesla_X@,j=@Tesla_Y@
+Action:Type=Message,icon=switie_ico,"text=Дело сделано! Как думаете, мы получим свои метки за эту башню?"
+Action:Type=Message,icon=twily_ico,"text=Не знаю насчет меток, но благодарность от жителей и принцесс - это точно!"
+Action:Type=Message,icon=help_ico,"text=Электрическая башня очень прочная и наносит фиксированный урон всем врагам в радиусе 6 клеток."
+Action:Type=RemoveObject,i=@SMS1_X@,j=@SMS1_Y@
+Action:Type=RemoveObject,i=@SMS2_X@,j=@SMS2_Y@
+Action:Type=RemoveObject,i=@SMS3_X@,j=@SMS3_Y@
+
+SCRIPT      
+Event:Step=2
+Action:Type=Message,icon=cadence_ico,"text=Твайлайт... моя защита более не прикрывает лагерь."
+Action:Type=FireTotalAttack
+
+SCRIPT      
+Event:Step=@TwistStep@
+Action:Type=Message,icon=rainbow_ico,"text=Я чувствую... бурю? Ветер идет с гор!"
+Action:Type=Message,icon=twily_ico,"text=Держимся, девочки. Бой еще не окончен!"
+# hard mode
+#Action:Type=NewObjectGroup,Object=MonsterTwist,Code=twist,"Name=Смерч",i=5,j=2,count=1,radius=1
+Action:Type=NewObjectGroup,Object=MonsterTwist,Code=twist,"Name=Смерч",i=3,j=10,count=1,radius=1
+Action:Type=NewObjectGroup,Object=MonsterTwist,Code=twist,"Name=Смерч",i=1,j=22,count=1,radius=1
+# hard mode
+#Action:Type=NewObjectGroup,Object=MonsterTwist,Code=twist,"Name=Смерч",i=2,j=33,count=1,radius=1
+Action:Type=NewObjectGroup,Object=MonsterTwist,Code=twist,"Name=Смерч",i=7,j=36,count=1,radius=1
+
+SCRIPT      
+Event:Step=@SwormInfo@
+Action:Type=Message,icon=applejack_ico,"text=Дрожжь земли! Никогда не ощущала ничего подобного."
+Action:Type=Message,icon=cadence_ico,"text=Твайлайт, это ведь не то, о чем я думаю?"
+Action:Type=Message,icon=pinki_ico,"text=Это загадка? Люблю загадки."
+Action:Type=Message,icon=help_ico,"text=Подземные черви могут появиться из-под земли в любом месте, даже посреди лагеря."
+
+SCRIPT      
+Event:Step=@SwormStep1@
+Action:Type=NewObjectGroup,Object=Monster,Code=sworm,"Name=Червь",i=13,j=13,count=1,radius=1
+Action:Type=NewObjectGroup,Object=Monster,Code=sworm,"Name=Червь",i=11,j=27,count=1,radius=1
+
+SCRIPT      
+Event:Step=@SwormStep2@
+Action:Type=NewObjectGroup,Object=Monster,Code=sworm,"Name=Червь",i=25,j=35,count=1,radius=1
+Action:Type=NewObjectGroup,Object=Monster,Code=sworm,"Name=Червь",i=31,j=6,count=1,radius=1
+Action:Type=NewObjectGroup,Object=Monster,Code=sworm,"Name=Червь",i=36,j=19,count=1,radius=1
+
+SCRIPT      
+Event:Step=@SwormStep3@
+Action:Type=NewObjectGroup,Object=Monster,Code=sworm,"Name=Червь",i=18,j=21,count=1,radius=1
+Action:Type=NewObjectGroup,Object=Monster,Code=sworm,"Name=Червь",i=24,j=16,count=1,radius=1
+
+SCRIPT      
+Event:Victory=True
+Action:Type=Message,icon=twily_ico,"text=Должна отметить, мы вернулись очень вовремя."
+Action:Type=Message,icon=cadence_ico,"text=Да, это просто чудо."
+Action:Type=Message,icon=discord_ico,"text=Браво, пони, браво. Я впечатлен, хотя и ожидал подобного. Твайлайт, неужели ты и теперь думаешь, что это всё зря?"
+Action:Type=Message,icon=twily_ico,"text=Но у нас по-прежнему ничего нет против Пустоты. Завтра, через неделю или год - но Эквестрия распадется полностью!"
+Action:Type=Message,icon=discord_ico,"text=Я бы не был так категоричен. Ваша команда полна сил и знаний, и у вас теперь куда больше шансов уцелеть самим и спасти свой мир. Это не конец истории, мои маленькие пони. Это еще не конец."
+
+VICTORY
+ByStep:StepNeed=@StepVictory@
+->ByNoMonsterLeft:null,AddType=And

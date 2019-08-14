@@ -1,0 +1,156 @@
+Полигон
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+LLLLLLAAAAAAAAAAAAAAAAAAAAAALLLLWLL
+LLLLLLLAAAAAAAAAAAAAAAAAAAAAALLLWLLL
+LLLLLLLAAAAAAAAAAAAAAAAAAAAALHLWLHL
+LLLFLLLLLAAAAAAAAAAAAAAAAAAALLLLWLLL
+LLLFFLLLLAAAA22222AAAAAAAAALLLHLWLL
+LLLFLLLLLLAAAA222AAAAAAAAAAALLLLWLLL
+LLLLLLLLLLAAAAAAAAAAAAAAAAAALLLWHLL
+LLLLLLLLLLAAAAAAAAAAAAAAAAAALLLLWLLL
+LLLLLLLLLLLAAAAAAAAAAAAAAAALLLLLWLL
+LLLLLLLLLLLAAAAAAAAAAAAAAAALLLLLWLLL
+LLLLLLLLLAAAAAAAAAAAAAAAAALLLLLWLLL
+LLLLWWWLLAAAAAAAAAAAAAAAAAALLLLWLLLL
+LLLWLLWLWWWWWWWWWWWWWWWWWWWLLLWLLLL
+LLLWLLLWWWWWWWWWWWWWWWWWWWWWWWWLLLLL
+LLWLLLLLWWWWWWWWWWWWWWWWWWWLLLWLLLL
+WWWLLLLLLAAAAAAAAAAAAAAAAAALLLLWLLLL
+KKKKKKKKKAAAAAAAAAAAAAAAAALLLLLWLLL
+LLLLLLLLLAAAAAAAAAAAAAAAAAALLLLWLLLL
+LLKKKKKLLAAAAAAAAAAAAAAAAALLLLWLLLL
+LLLLLLLLLLAAAAAAAAAAAAAAAAALLLWLHLLL
+LLLLLLLLLAAAAAAAAAAAAAAAAAALLLWLLLL
+LLLLLLLLLLAAAAAAAAAAAAAAAAAALLLWLHLL
+LLLLLLLLLLAAAAAAAAAAAAAAAAAALHLWLLL
+LLLPLLLLLLAAAAAAAAAAAAAAAAAALLLLWWWW
+LLLLLLLLLAAAAAAAAAAAAAAAAAAALLHLLLL
+LLLLLLLLLAAAAAAAAAAAAAAAAAAALLLLLLLL
+#===MAPEND===
+
+# Раздел константы должен идти в самом начале
+CONSTANTS
+CelObelisk1_I:3
+CelObelisk1_J:3
+CelObelisk2_I:3
+CelObelisk2_J:6
+
+OBJECTS
+#Pony:i=5,j=3,"name=Дирижабль",code=cepelline
+#Pony:i=5,j=3,"name=Фабрика дирижаблей",code=airfactory
+#Pony:i=9,j=9,"name=Верфь",code=shipyard
+Pony:i=4,j=2,"name=Флаттершай",code=flatter
+Pony:i=7,j=2,"name=Эпплджек",code=applejack
+Pony:i=7,j=3,"name=Твайлайт",code=twily
+Pony:i=7,j=4,"name=Рарити",code=rarity
+Pony:i=7,j=1,"name=Рейнбоу Дэш",code=rainbow
+Pony:i=5,j=5,"name=Пинки Пай",code=pinki
+#Pony:i=8,j=4,"name=Селестия",code=celestia_weak,Rank=1000
+Pony:i=8,j=4,"name=NSUN",code=nsun,Rank=1000
+Stone:i=9,j=4,size=min
+
+Pony:i=10,j=10,"name=Каденс",code=cadence,Rank=1000
+
+#Monster:Code=avatar,"Name=Облако пустоты",i=10,j=4,count=1,radius=1
+
+Pony:i=1,j=5,"name=Рарилайт",code=rarilight
+Pony:i=1,j=6,"name=Флаттерейн",code=flatterrain
+Pony:i=1,j=7,"name=Пинэпплай",code=pinapple
+
+#MonsterTent:Code=tent,"Name=Зеленый ужас",i=6,j=3,holdground=true
+
+Pony:i=10,j=11,"name=Транспорт",code=transport
+
+Monster:Code=troll,name=troll,i=2,j=10
+Monster:Code=troll,name=troll,i=2,j=11
+Monster:Code=troll,name=troll,i=2,j=12
+Monster:Code=troll,name=troll,i=2,j=13
+
+#MonsterPortal:i=31,j=13,code=darkportal_main,"name=Тёмный портал главный"
+
+#Building:i=5,j=5,Code=AutoFarmFood,"name=Поселок фермеров"
+#Building:i=7,j=7,Code=AutoFarmStone,"name=Поселок шахтеров"
+
+#Building:i=3,j=3,Code=Teleport,"name=Телепорт"
+#Building:i=3,j=20,Code=Teleport,"name=Телепорт"
+
+Stone:i=3,j=2,size=min
+#Stone:i=5,j=5,size=medium
+Stone:i=2,j=7,size=min
+#Monster:i=5,j=15,Code=ameba,Name=Амеба,strategy=AttackByRank
+Stone:i=7,j=23,size=min
+Stone:i=2,j=20,size=medium
+Stone:i=4,j=17,size=min,EnemyTarget=true
+
+Food:i=29,j=21,size=medium
+Food:i=29,j=24,size=max
+Food:i=32,j=20,size=medium
+Food:i=30,j=1,size=medium
+Food:i=30,j=5,size=max
+Food:i=34,j=3,size=medium
+
+Building:Code=celobelisk,"Name=Обелиск для Селестии",i=@CelObelisk1_I@,j=@CelObelisk1_J@
+Building:Code=celobelisk,"Name=Обелиск для Селестии",i=@CelObelisk2_I@,j=@CelObelisk2_J@
+
+
+Building:Code=chaostower,"Name=X",i=20,j=20
+Building:Code=tesla,"Name=X",i=24,j=20
+Building:Code=forcetower,"Name=X",i=28,j=20
+Building:Code=healtower,"Name=X",i=32,j=20
+
+INITIAL
+Stone:9000
+Food:0
+Task:Победить всех врагов
+DeathAllow:True
+ProgressiveMonster:True
+RegressiveFarms:True
+Permits:action=deny,code=all
+Permits:action=allow,code=all
+#Permits:action=deny,code=Wings
+
+SCRIPT
+Event:Step=1
+Action:Type=ExecProc,ProcName=startPortalAnim,str=3@4
+Action:Type=SetPersistentFlag,FlagName=final_split
+
+SCRIPT      
+Event:StepModN=8,Great=1
+Action:Type=FireTotalAttack
+
+### Трансформация
+SCRIPT
+Event:ObjectPos=True,ForceNoDel=true,i=@CelObelisk1_I@,j=@CelObelisk1_J@,IncludeLinked=true,Object=celestia_weak
+Action:Type=ReplaceObject,OldCode=celestia_weak,UseStore=true,Object=Pony,Code=nsun,"Name=Солнечный кошмар"
+
+SCRIPT
+Event:ObjectPos=True,ForceNoDel=true,i=@CelObelisk2_I@,j=@CelObelisk2_J@,IncludeLinked=true,Object=celestia_weak
+Action:Type=ReplaceObject,OldCode=celestia_weak,UseStore=true,Object=Pony,Code=nsun,"Name=Солнечный кошмар"
+
+#SCRIPT
+#Event:ObjectPos=False,ForceNoDel=true,i=@CelObelisk1_I@,j=@CelObelisk1_J@,IncludeLinked=true,Object=nsun
+#Event2:ObjectPos=False,ForceNoDel=true,i=@CelObelisk2_I@,j=@CelObelisk2_J@,IncludeLinked=true,Object=nsun
+#Action:Type=ReplaceObject,OldCode=nsun,UseStore=true,Object=Pony,Code=celestia_weak,"Name=Принцесса Селестия"
+###
+
+# Первая трансформация
+SCRIPT
+Event:ObjectPos=True,Direction=GreatX,i=1,j=1,Object=nsun
+Action:Type=Message,icon=nightmaresun_ico,"text=Это ваш план, пони?\nПривязать Солнечный Кошмар к этим кускам камня?"
+Action:Type=Message,icon=luna_ico,"text=Но ведь сработало?"
+Action:Type=Message,icon=nightmaresun_ico,"text=Это мы ещё посмотрим! Я покажу вам, что такое игра с огнём!"
+Action:Type=Message,icon=cadence_ico,"text=Как насчет показать это нашим общим врагам?"
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=ok_ico,"text=Победа за вами!"
+
+VICTORY
+ByStep:StepNeed=1000

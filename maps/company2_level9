@@ -1,0 +1,204 @@
+Поднять паруса!
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+WLLLLFFMMMMQQMMMMMFFLLLLLLLL
+LWLLLLFFMMMQQMMMMMFFLLELTLHLL
+LWWWLLLFMMMQQMMMMFFLLLLWLLLL
+LLLLWWWWWWWWWWWWWWWLLHLWLELLL
+LLLLLLLLLLLQQFFFFLWLLLWLLLLL
+QLLLLLLLLLLQQQFFFLLWWWWHLLLQQ
+QQLLLLLLLLQLQQLLLLLLLLLLLLQQ
+AAQQQQQLLQQLQLQLLLQQQQLLLLQQQ
+AAAQQQQQQLQLQLQLLQQQQQLLQQQQ
+AAAAQQQQQLQLQLQLLQQQQQQLQQQAA
+AAAAQQQQQQQLQLQLLQQQQQLQQAAA
+AAAAAQQQQQQQLQQQLLQQQQLQQAAAA
+AAAAQQLQQAAQQAAQLQAAAQQAAAAA
+AAAQQQQLQAAAAAAAQQAAAAAAAAAAA
+AAQFLQLLQAAAAAAAAAAAAAAAAAAA
+AAQFFFLLQAAAAAAAAAAQQQAAAAAAA
+AQFFFFFQAAAAAAAAAAQLLQQQAAAA
+AAQFFFFQAAAAAAAAAQQLFLLLQQAAA
+AAQQQQQAAAAAAAAAQLLFFFFLLQAA
+AAAAAAAAAAAAAAAAQLFFFQFFLLQAA
+AAAAAAAAAAAAAAAAQLLFQQFLLQAA
+AAAAAAAAAAAAAAAAAQQLFFFLLQAAA
+AAAAAAAAAAAAAAAAAQQLLLLQQAAA
+AAAAAAAAAAAAAAAAAQQQQLLQAAAAA
+AAQQQQAAAAAAAQQQQQQQQQQAAAAA
+AAQLLLQQAAAAAQLLQQQQAAAAAAAAA
+AQLFFLLQAAAAQLFFLLQAAAAAAAAA
+AQFFFFFLQAAAQFFFFFLQAAAAAAAAA
+QFFFFFFLQAAQFFFFQFLQAAAAAAAA
+AQFFFLFFQAAQLFFFQQQQAAAAAAAAA
+AQFFLQLLQAAQLFFQQQQAAAAAAAAA
+AQFFLQQQQAAAQLFFFLQAAAAAAAAAA
+AQFLQQQAAAAAQFFFLQAAAAAAAAAA
+AAQQQAAAAAAAAQQQQQAAAAAAAAAAA
+#===MAPEND===
+
+CONSTANTS
+Enemy1_I:20
+Enemy1_J:30
+Enemy2_I:24
+Enemy2_J:28
+Enemy3_I:3
+Enemy3_J:21
+Enemy4_I:10
+Enemy4_J:27
+EnemyF_I:11
+EnemyF_J:20
+WoodFor1Ship:12
+WoodFor2Ship:24
+WoodFor3Ship:36
+WoodFor4Ship:48
+WoodForFinalWave:42
+
+OBJECTS
+Pony:i=5,j=3,"name=Рарити",code=rarity
+Pony:i=2,j=4,"name=Эпплджек",code=applejack
+#Pony:i=4,j=5,"name=Рейнбоу Дэш",code=rainbow
+Pony:i=1,j=3,"name=Твайлайт",code=twily
+Pony:i=6,j=4,"name=Пинки Пай",code=pinki
+#Pony:i=7,j=5,"name=Флаттершай",code=flatter
+Building:Code=StoneMine,i=24,j=3,Tag=mine
+Neutral:code=shipyard,name=Верфь,i=18,j=11,EnemyTarget=true,MustSurvive=true
+Neutral:code=shipyard,name=Верфь,i=17,j=9,EnemyTarget=true,MustSurvive=true
+Neutral:code=shipyard,name=Верфь,i=18,j=7,EnemyTarget=true,MustSurvive=true
+Neutral:code=shipyard,name=Верфь,i=20,j=7,EnemyTarget=true,MustSurvive=true
+Neutral:Code=pony_1,"Name=Корабельщик",i=17,j=11,EnemyTarget=true,MustSurvive=true
+Neutral:Code=pony_2,"Name=Корабельщик",i=16,j=9,EnemyTarget=true,MustSurvive=true
+Neutral:Code=pony_3,"Name=Корабельщик",i=17,j=6,EnemyTarget=true,MustSurvive=true
+Neutral:Code=pony_4,"Name=Корабельщик",i=19,j=6,EnemyTarget=true,MustSurvive=true
+
+#Neutral:code=ship,name=Корабль,i=19,j=11,EnemyTarget=true
+
+INITIAL
+Stone:0
+Food:500
+Task:Построить четыре корабля
+AttackedDefeatString:Корабли не будут построены!
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=MineForest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Heal
+Permits:action=allow,code=Restore
+Permits:action=allow,code=CutEmptySector
+Permits:action=allow,code=BuildTreeShield
+#Permits:action=allow,code=BuildFarmStone
+Permits:action=allow,code=BuildCrystalTowerBig
+Permits:action=allow,code=BuildCrystalTowerSmall
+Permits:action=allow,code=NightmareCall
+Permits:action=allow,code=BuildCrystalTowerDark
+Permits:action=allow,code=DarkTriden
+Permits:action=allow,code=CrystallRain
+Permits:action=allow,code=FrostAttack
+Permits:action=allow,code=SuperHealthAJ
+Permits:action=allow,code=SuperPowerPinki
+Permits:action=allow,code=DeathKick
+Permits:action=allow,code=DeathRainbow
+Permits:action=allow,code=FlatterView
+Permits:action=allow,code=ForceShield
+Permits:action=allow,code=ForceShieldNR
+Permits:action=allow,code=SetupTeleport
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=3,j=3,immediate=true
+Action:Type=Message,icon=twily_ico,"text=Для кораблей нужен лес. Лес нужно рубить. Эпплджек, как у тебя с этим?"
+Action:Type=Message,icon=applejack_ico,"text=Свалю пару сосен быстрее, чем ты закончишь фразу."
+Action:Type=Message,icon=pinki_ico,"text=Я тоже умею! Мои родители занимались не только камнями."
+Action:Type=Message,icon=twily_ico,"text=Чтобы добыть досок на один корабль, нужно вырубить двенадцать участков леса. Думаю, вам обоим стоит потрудиться."
+Action:Type=Message,icon=help_ico,"text=Специальный навык земных пони - рубка леса."
+Action:Type=SetExtInfoModel,"ModelMicroCode=mapships;Осталось вырубить лес: %d;@WoodFor4Ship@"
+Action:Type=ShowBattleTask
+
+SCRIPT      
+Event:Step=1
+Action:Type=Message,icon=applejack_ico,"text=Как у нас с едой? Припасов много, но и работать придется немало."
+Action:Type=Message,icon=pinki_ico,"text=Я не уверена, что смогу поставить каменную ферму на морском берегу."
+Action:Type=Message,icon=twily_ico,"text=Местная шахта работает и уже дает нам небольшое количество камня, думаю, нужно использовать его с умом - нам нужны и фермы еды, и оборона верфи."
+Action:Type=Message,icon=pinki_ico,"text=Судя по виду шахты, она вот-вот обрушится."
+Action:Type=Message,icon=help_ico,"text=Некоторые постройки существуют ограниченное число ходов."
+
+SCRIPT      
+Event:Step=2
+Action:Type=Message,icon=applejack_ico,"text=Не хочу тебя расстраивать, но самый лучший лес - на островах. ==>
+Я-то плаваю, но не так чтоб очень быстро."
+Action:Type=Message,icon=twily_ico,"text=Могу дать тебе крылья, но только ненадолго. Это заклинание и так отнимет ==>
+у меня почти все силы."
+Action:Type=Message,icon=applejack_ico,"text=Ух ты, я буду почти что принцесса! Давай."
+Action:Type=SetPermits,action=allow,code=Wings
+Action:Type=Message,icon=help_ico,"text=Особое заклинание Твайлайт - выдача крыльев на десять ходов."
+
+SCRIPT      
+Event:Step=4
+Action:Type=SetFocus,i=@Enemy1_I@,j=@Enemy1_J@
+Action:Type=NewObjectGroup,Object=Monster,Code=watersnake,"Name=Морской змей",i=@Enemy1_I@,j=@Enemy1_J@,count=2,radius=2
+Action:Type=Message,icon=rarity_ico,"text=Что опять за напасть на наши крупы?"
+Action:Type=Message,icon=twily_ico,"text=Морские змеи. Обычно они спокойные, но магические потрясения последних ==>
+месяцев вывели их из равновесия. Придется защищаться самим и защищать верфи, корабли и пони-корабельщиков. И будьте внимательны - змеи быстрее в воде, чем на суше."
+
+SCRIPT      
+Event:StepModN=7
+Action:Type=NewObjectGroup,Object=Monster,Code=watersnake,"Name=Морской змей",i=@Enemy2_I@,j=@Enemy2_J@,count=1,radius=1
+SCRIPT      
+Event:StepModN=10
+Action:Type=NewObjectGroup,Object=Monster,Code=watersnake,"Name=Морской змей",i=@Enemy3_I@,j=@Enemy3_J@,count=2,radius=1
+SCRIPT      
+Event:StepModN=15
+Action:Type=NewObjectGroup,Object=Monster,Code=watersnake,"Name=Морской змей",i=@Enemy4_I@,j=@Enemy4_J@,count=3,radius=1
+
+SCRIPT
+Event:WoodReach=@WoodFor1Ship@
+Action:Type=SetFocus,i=19,j=9
+Action:Type=NewObjectGroup,Object=Neutral,code=ship,name=Корабль,i=19,j=9,EnemyTarget=true,MustSurvive=true,count=1,radius=1
+Action:Type=Message,icon=twily_ico,"text=Первый корабль готов. Отличная работа, девочки!"
+
+SCRIPT
+Event:WoodReach=@WoodFor2Ship@
+Action:Type=NewObjectGroup,Object=Neutral,code=ship,name=Корабль,i=19,j=9,EnemyTarget=true,MustSurvive=true,count=1,radius=1
+Action:Type=Message,icon=twily_ico,"text=Второй корабль завершен. Полдела уже сделано."
+
+SCRIPT
+Event:WoodReach=@WoodFor3Ship@
+Action:Type=NewObjectGroup,Object=Neutral,code=ship,name=Корабль,i=19,j=9,EnemyTarget=true,MustSurvive=true,count=1,radius=1
+Action:Type=Message,icon=twily_ico,"text=Еще один корабль спущен на воду. Мы близки к цели!"
+
+SCRIPT
+Event:WoodReach=@WoodFor4Ship@
+Action:Type=NewObjectGroup,Object=Neutral,code=ship,name=Корабль,i=19,j=9,EnemyTarget=true,MustSurvive=true,count=1,radius=1
+Action:Type=SetFlag,FlagName=Ship4
+
+SCRIPT
+Event:TagCount=0,TagName=mine
+Action:Type=Message,icon=pinki_ico,"text=Прощай, каменная шахта. Я буду по тебе скучать."
+
+SCRIPT
+Event:WoodReach=@WoodForFinalWave@     
+Action:Type=SetFocus,i=@EnemyF_I@,j=@EnemyF_J@
+Action:Type=NewObjectGroup,Object=Monster,Code=watersnake,"Name=Морской змей",i=@EnemyF_I@,j=@EnemyF_J@,count=4,radius=2
+Action:Type=Message,icon=twily_ico,"text=Девочки, огромная группа змей рядом с верфью! Бросаем все и защищаем корабли!"
+
+SCRIPT
+Event:Victory=True
+Action:Type=SetFocus,i=19,j=9
+Action:Type=Message,icon=twily_ico,"text=Четыре корабля готовы. Рарити, грузимся и отплываем. Рейнбоу догонит нас уже на воде."
+Action:Type=Message,icon=applejack_ico,"text=Удачи, Твайлат. Мы же пойдем к мастерам, как решили. Встретимся в этом порту, после всех дел."
+ 
+VICTORY
+ByFlag:FlagName=Ship4

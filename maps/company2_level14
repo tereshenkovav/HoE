@@ -1,0 +1,202 @@
+По колено в грязи
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+QQFFFFQFFFFFFFFFFFFFFFFFFFFFFFFFFQFFFQFFFFFQFFFFFFFFFFFF
+QQFFFFFQQFFFFFFFFQFFFFFFFFFFFFFFFQQFFFQFFFFQFFFFFFFFFFFFF
+QFFFFFFQQQFFFFFFFQQFFFFFFFFFFFFFFQQFFQFFFFFFFFFFFFMMFFFF
+FFFFFFFFFQQFFFQFFFQQQFFFFFMMMMFFFFFFFQFFFQFFFFFFFFFFMFFFF
+FFFFQFFFFFFFFQQFFFFFFFFFFFMLLMFFFFFFFFFQQFFFFFMMFFFMMFFF
+FFFFQQFFFFFFFQFFFFFFFFQQFFFMLLMFFFFFFFFFQQFFFFFMMFMMMMFFM
+FFFFQFFFFFFFQFFFFQQFFFQQFFMLLLLFFFFQFFFQFFFFFFFMMMMMMMFM
+FFQQQFFFFQFFQFFFFQQQFFQQFFLLLLLLFFFQFFFFQFFFFFFFMMMMMMMMM
+FFQFFFFFQFFQQFFFFQQFFFQFFLLLLLLLFFQQFQQQFFFFFFFMMMMMMMMM
+FFFFFFFFFQFFFFFFFFFFFFFQFFLLLLLLMFFFQFFFFFFFFFFFMMMMMMMMF
+FFFFFQFFQFFFFFFQFFFFFFQFFFMLLLLLMFFFFFFFFFFFFFFFMMMMMMMF
+FFFFFQFFFQFFFFQQFFFQQFFFFFMLLMMMMFFFFQQFFFFQFFFFMMMMMMMMF
+FFFQQQFFFFFFFFFQFFQQFFFFFMLLMFFFFFFFQQQFFFFQFFFMMFFMMMMF
+FFFFQQQFFFFQFFFQFFFQFFFFFMMMMFFFFFFFFQQFFFFAFFFFMFFFFMFFF
+FFFFFFFFFFQQFFFFFFFFFFFFFFFFFFFFFFFQQQFFFQQFFFFFFFFFFFFF
+FFFFFFFFFFQQQFFFFFFFFFFFFFFFFFFFFFFFFFFFFFQQFFFFFFFFFFFFF
+#===MAPEND===
+
+CONSTANTS
+Enemy1_I:10
+Enemy1_J:10
+Enemy2_I:13
+Enemy2_J:12
+Enemy3_I:2
+Enemy3_J:13
+Enemy4_I:18
+Enemy4_J:7
+Enemy5_I:23
+Enemy5_J:10
+VilliageX:27
+VilliageY:8
+Chief_I:52
+Chief_J:8
+Enemy6_I:49
+Enemy6_J:2
+Enemy7_I:54
+Enemy7_J:13
+
+OBJECTS
+#Pony:i=25,j=1,"name=Эпплджек",code=applejack
+#Pony:i=26,j=2,"name=Пинки Пай",code=pinki
+#Pony:i=25,j=4,"name=Флаттершай",code=flatter
+Pony:i=5,j=1,"name=Эпплджек",code=applejack
+Pony:i=3,j=1,"name=Пинки Пай",code=pinki
+Pony:i=2,j=3,"name=Флаттершай",code=flatter
+Stone:i=19,j=1,size=medium
+Stone:i=14,j=10,size=medium
+Stone:i=3,j=13,size=max
+Stone:i=40,j=3,size=max
+Stone:i=35,j=1,size=medium
+Stone:i=36,j=13,size=medium
+Food:i=27,j=4,size=max
+Food:i=27,j=12,size=max
+Food:i=29,j=5,size=max
+Food:i=27,j=10,size=max
+Food:i=30,j=10,size=max
+Food:i=30,j=7,size=max
+
+Neutral:Code=tower,"Name=Крепость мастеров",i=@VilliageX@,j=@VilliageY@,targeted=true
+
+
+INITIAL
+Stone:0
+Food:400
+Task:Добраться до поселка мастеров любой пони
+Permits:action=deny,code=all
+#Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Heal
+Permits:action=allow,code=Restore
+Permits:action=allow,code=CutEmptySector
+Permits:action=allow,code=BuildTreeShield
+#Permits:action=allow,code=BuildFarmStone
+Permits:action=allow,code=SuperHealthAJ
+Permits:action=allow,code=SuperPowerPinki
+Permits:action=allow,code=BearSplash
+#Permits:action=allow,code=SummoneBear
+Permits:action=allow,code=DeathKick
+Permits:action=allow,code=DeathRainbow
+Permits:action=allow,code=FlatterView
+Permits:action=allow,code=ForceShield
+Permits:action=allow,code=ForceShieldNR
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=3,j=3,immediate=true
+Action:Type=Message,icon=applejack_ico,"text=Мы обошли почти весь лес, но всё, что мы находим - это свирепых зверей. И еда почти закончилась, сколо придется траву есть."
+Action:Type=Message,icon=pinki_ico,"text=Или листья. Листья страшных деревьев! Я пробовала смеяться, но не помогает!"
+Action:Type=ShowBattleTask
+
+SCRIPT
+Event:ObjectPos=True,Direction=GreatX,i=5,j=0,"Object=pinki,flatter,applejack"
+Action:Type=Message,icon=himera_ico,"text=Обед сам пришел к нам! Как вежливо, пони."
+Action:Type=Message,icon=applejack_ico,"text=О Селестия! Третий день одно и тоже. Девочки, будем пробиваться."
+Action:Type=NewObjectGroup,Object=Monster,Code=himera,"Name=Химера",i=@Enemy1_I@,j=@Enemy1_J@,count=2,radius=2,autofocus=true
+
+SCRIPT
+Event:ObjectPos=True,Direction=GreatX,i=10,j=0,"Object=pinki,flatter,applejack"
+Action:Type=NewObjectGroup,Object=Monster,Code=vasilisk,"Name=Василиск",i=@Enemy2_I@,j=@Enemy2_J@,count=3,radius=2,autofocus=true,tag=vasilisk
+
+SCRIPT
+Event:TagCount=2,TagName=vasilisk
+Action:Type=SetFlag,FlagName=vasilisk_arrive
+
+SCRIPT
+Event:TagCount=3,TagName=vasilisk
+Action:Type=SetFlag,FlagName=vasilisk_arrive
+
+SCRIPT
+Event:Flag=vasilisk_arrive
+Action:Type=Message,icon=applejack_ico,"text=Жаль, здесь нет Твайлайт. Она бы сказала, как называется этот крылатый гад."
+Action:Type=Message,icon=flatter_ico,"text=Эм... девочки, это василиск. Он не превращет пони в камень, но он опасен."
+
+SCRIPT
+Event:ObjectPos=True,Direction=GreatX,i=15,j=0,"Object=pinki,flatter,applejack"
+Action:Type=NewObjectGroup,Object=Monster,Code=himera,"Name=Химера",i=@Enemy4_I@,j=@Enemy4_J@,count=1,radius=2,autofocus=true
+Action:Type=NewObjectGroup,Object=Monster,Code=vasilisk,"Name=Василиск",i=@Enemy4_I@,j=@Enemy4_J@,count=2,radius=2,autofocus=true
+
+SCRIPT
+Event:ObjectPos=True,Direction=GreatX,i=20,j=0,"Object=pinki,flatter,applejack"
+Action:Type=NewObjectGroup,Object=Monster,Code=himera,"Name=Химера",i=@Enemy5_I@,j=@Enemy5_J@,count=2,radius=2,autofocus=true
+Action:Type=NewObjectGroup,Object=Monster,Code=vasilisk,"Name=Василиск",i=@Enemy5_I@,j=@Enemy5_J@,count=3,radius=2,autofocus=true
+
+SCRIPT
+Event:ObjectPos=True,Direction=GreatY,i=0,j=10,"Object=pinki,flatter,applejack"
+Action:Type=NewObjectGroup,Object=Monster,Code=vasilisk,"Name=Василиск",i=@Enemy3_I@,j=@Enemy3_J@,count=2,radius=2,tag=vasilisk
+
+SCRIPT
+Event:ObjectPos=True,i=@VilliageX@,j=@VilliageY@,IncludeLinked=true,"Object=applejack,flatter,pinki"
+Action:Type=SetFlag,FlagName=villreach
+
+SCRIPT
+Event:ObjectPos=True,Direction=GreatX,i=@VilliageX@,"Object=applejack,flatter,pinki"
+Action:Type=SetFlag,FlagName=villreach
+
+SCRIPT
+Event:Flag=villreach
+Action:Type=ClearTarget,i=@VilliageX@,j=@VilliageY@
+Action:Type=Message,icon=ponyminer_ico,"text=Парни, у нас гости?"
+Action:Type=Message,icon=applejack_ico,"text=Не совсем. Мы пришли просить о помощи. В наших легендах..."
+Action:Type=Message,icon=ponyminer_ico,"text=Знаю, знаю. Когда-то вся Эквестрия ценила наше мастерство... А сейчас мы не можем справиться даже с дикими зверями и их безумным лидером."
+Action:Type=NewObject,Object=Monster,Code=manticore,"Name=Мантикора",i=@Chief_I@,j=@Chief_J@,autofocus=true,tag=chief,holdground=true
+Action:Type=Message,icon=manticore_ico,"text=Аргх! Внимайте, сородичи! Сегодня мы вышвырнем пони из нашего леса! Аргх!"
+Action:Type=Message,icon=ponyminer_ico,"text=И так каждую пятницу. Наши стены крепки и луки бьют сильно - но за пределами поселения, приходится очень туго."
+Action:Type=Message,icon=flatter_ico,"text=Эм.. мы могли бы.. предложить свою помощь... если вы не против, конечно."
+Action:Type=Message,icon=applejack_ico,"text=Надеюсь, вы в этой глуши не разучились строить прославленные осадные башни?"
+Action:Type=Message,icon=ponyminer_ico,"text=Надейтесь. Если честно - разучились. Но кое-что - еще умеем. Ты, с крыльями - не хочешь научиться выращивать целебное дерево за минуту?"
+Action:Type=Message,icon=flatter_ico,"text=Наверно..."
+Action:Type=Message,icon=ponyminer_ico,"text=Розовая пони - у тебя энергия так и кипит. Как насчет съедобного дерева, для восстановления сил в бою?"
+Action:Type=Message,icon=pinki_ico,"text=Да-да-да! Это будет весело!"
+Action:Type=Message,icon=applejack_ico,"text=Ну а я поработаю копытами - тем более, что после моего последнего приключения, на этого зверя мне хватит и одного удара."
+Action:Type=Message,icon=ponyminer_ico,"text=Тогда за дело!"
+Action:Type=CompBattleTask,code=initial
+Action:Type=SetBattleTask,code=mantikor,"Task=Уничтожить мантикору"
+Action:Type=SetPermits,action=allow,code=BuildForceTower
+Action:Type=SetPermits,action=allow,code=BuildHealTower
+Action:Type=ShowBattleTask
+Action:Type=SetFlag,FlagName=villiage
+
+SCRIPT      
+Event:StepModN=6
+Event2:Flag=villiage
+Action:Type=NewObjectGroup,Object=Monster,Code=himera,"Name=Химера",i=@Enemy6_I@,j=@Enemy6_J@,count=1,radius=2
+
+SCRIPT      
+Event:StepModN=9
+Event2:Flag=villiage
+Action:Type=NewObjectGroup,Object=Monster,Code=vasilisk,"Name=Василиск",i=@Enemy7_I@,j=@Enemy7_J@,count=2,radius=2
+
+SCRIPT
+Event:TagCount=0,TagName=chief
+Event2:Flag=villiage
+Action:Type=SetFlag,FlagName=finish
+Action:Type=Message,icon=manticore_ico,"text=Говорил же мне предыдущий вождь - не связывайся с пони!"
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=applejack_ico,"text=И-ха! Отлично мы справились, верно? Подруги, эти ваши деревья - просто чудо!"
+Action:Type=Message,icon=ponyminer_ico,"text=Да вы и сами молодцы. Давно не видел таких сильных и смелых пони, особенно среди пегасов. Я впечатлен."
+Action:Type=Message,icon=flatter_ico,"text=Ой... спасибо."
+Action:Type=Message,icon=ponyminer_ico,"text=Пожалуй, у меня будет подарок и лично для тебя. Этот амулет мы использовали для мгновенного призыва звездной медведицы. Бери и пользуйся."
+Action:Type=Message,icon=flatter_ico,"text=У меня теперь будет свой ручной звездный медведь! Ииииии!"
+ 
+VICTORY
+ByFlag:FlagName=villiage
+->ByFlag:FlagName=finish,AddType=And

@@ -1,0 +1,443 @@
+Загадочная крепость
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+1111111111111111111111111111111
+111CCCCCCCCCCCC1111CC1111111CC11
+11CCCCCCCCCCCCC11OCCCC11CCCCCC1
+11CCCCCCCCCCCCCC111CC111CC11CC11
+11CCC11111CC1CCC1111111CCC11111
+111CCC1111CC11CCC111111CCCC11111
+111CCCCCCCCC11CCC11CCCCCCCCCCC1
+1C11CCCCCCCCC11CCC11CC1CCCCC1CC1
+1C11CCCCCCCCC11CO11CCCCCCCCCCC1
+1CC11111111CC1111111CC1CCCCC1CC1
+1CC11111111111CCC11CCCCCCCCCCC1
+1CCCCCCCCCC111CCCC11CC1CCCCC1C11
+1CCCCCCCCCC111COC111CCCCCCCCC11
+1CCCCCCCCCCC111111111CC1CCC1C111
+1CCC11111CCCCCCCC1111CCCCCCC111
+1CCC111111CCCCCCOC1111CC1C1C1111
+1CC1111111CCCCCCC11111CCCCC1111
+1CCC1111111111111111111111111111
+#===MAPEND===
+
+# Раздел константы должен идти в самом начале
+CONSTANTS
+Place1X:25
+Place1Y:15
+Place2X:20
+Place2Y:10
+Place3X:27
+Place3Y:12
+Place4X:24
+Place4Y:4
+     
+OBJECTS
+Pony:i=3,j=15,"name=Флаттершай",code=flatter,tag=flatter
+Pony:i=2,j=14,"name=Твайлайт",code=twily,tag=twily,Rank=1000
+#Pony:i=19,j=6,"name=Флаттершай",code=flatter,tag=flatter
+#Pony:i=20,j=6,"name=Твайлайт",code=twily,tag=twily,Rank=1000
+Neutral:i=2,j=11,code=keyinactive,name=Переключатель
+Neutral:i=17,j=11,code=keyinactive,name=Переключатель
+Neutral:i=14,j=11,code=keyinactive,name=Переключатель
+Neutral:i=11,j=6,code=keyinactive,name=Переключатель
+Neutral:i=15,j=7,code=keyinactive,name=Переключатель
+Neutral:i=20,j=3,code=keyinactive,name=Переключатель
+
+#===OBJECTSEND===
+
+INITIAL
+Stone:0
+Food:700
+Task:Исследовать замок
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+#Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Heal
+Permits:action=allow,code=Restore
+Permits:action=allow,code=CutEmptySector
+Permits:action=allow,code=BuildTreeShield
+Permits:action=allow,code=BuildFarmStone
+Permits:action=allow,code=BuildCrystalTowerBig
+Permits:action=allow,code=BuildCrystalTowerSmall
+Permits:action=allow,code=NightmareCall
+Permits:action=allow,code=BuildCrystalTowerDark
+Permits:action=allow,code=DarkTriden
+Permits:action=allow,code=CrystallRain
+Permits:action=allow,code=FrostAttack
+Permits:action=allow,code=SuperHealthAJ
+Permits:action=allow,code=SuperPowerPinki
+Permits:action=allow,code=BearSplash
+Permits:action=allow,code=SummoneBear
+Permits:action=allow,code=PrincessKiss
+Permits:action=allow,code=DeathKick
+Permits:action=allow,code=DeathRainbow
+Permits:action=allow,code=BuildForceTower
+Permits:action=allow,code=BuildHealTower
+Permits:action=allow,code=BuildMirage
+Permits:action=allow,code=IntRelax
+Permits:action=allow,code=SleepStar
+Permits:action=allow,code=BuildTornado
+Permits:action=allow,code=Wings
+Permits:action=allow,code=FlatterView
+Permits:action=allow,code=ForceShield
+Permits:action=allow,code=ForceShieldNR
+#Permits:action=allow,code=SetupTeleport
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=2,j=14,immediate=true
+Action:Type=Message,icon=flatter_ico,"text=Какое-то жуткое место."
+Action:Type=Message,icon=twily_ico,"text=Да, здесь чувствуется древняя и сильная магия. Мои возможности по ближним и дальним телепортам - не работают."
+Action:Type=Message,icon=flatter_ico,"text=Но ведь должны же быть какие-то способы переместиться между частями замка? Давай посмотрим, что вокруг."
+Action:Type=ShowBattleTask
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFlag,FlagName=TnotXactive
+#Action:Type=SetFlag,FlagName=TXactive
+#Action:Type=SetFlag,FlagName=TYactive
+#Action:Type=SetFlag,FlagName=TZactive
+Action:Type=SetFlag,FlagName=TCactive
+
+# DEBUG
+#SCRIPT
+#Event:Step=0
+#Action:Type=SetFlag,FlagName=TXactive
+#Action:Type=SetFlag,FlagName=TYactive
+#Action:Type=SetFlag,FlagName=TZactive
+#Action:Type=SetTerrain,i=15,j=5,NewTerrCode=O
+#Action:Type=SetTerrain,i=15,j=10,NewTerrCode=O
+#Action:Type=SetTerrain,i=11,j=8,NewTerrCode=O
+#Action:Type=SetTerrain,i=14,j=15,NewTerrCode=O
+#Action:Type=SetTerrain,i=21,j=2,NewTerrCode=O
+#Action:Type=SetTerrain,i=29,j=2,NewTerrCode=O
+
+#SCRIPT      
+#Event:Step=2
+#Action:Type=ClearFlag,FlagName=TnotXactive
+#Action:Type=SetTerrain,i=16,j=15,NewTerrCode=J
+#Action:Type=SetTerrain,i=15,j=12,NewTerrCode=J
+#Action:Type=Message,icon=ok_ico,"text=Телепорт отключен"
+
+# Teleport NotX
+
+SCRIPT
+Event:ObjectPos=true,Object=twily,i=16,j=15,IncludeLinked=false,ForceNoDel=True
+Event1:Flag=TnotXactive,ForceNoDel=True
+Action:Type=TeleportObject,i=16,j=15,dst_i=16,dst_j=12,immediate=true
+
+SCRIPT
+Event:ObjectPos=true,Object=flatter,i=16,j=15,IncludeLinked=false,ForceNoDel=True
+Event1:Flag=TnotXactive,ForceNoDel=True
+Action:Type=TeleportObject,i=16,j=15,dst_i=14,dst_j=12,immediate=true
+
+SCRIPT
+Event:ObjectPos=true,Object=twily,i=15,j=12,IncludeLinked=false,ForceNoDel=True
+Event1:Flag=TnotXactive,ForceNoDel=True
+Action:Type=TeleportObject,i=15,j=12,dst_i=17,dst_j=15,immediate=true
+
+SCRIPT
+Event:ObjectPos=true,Object=flatter,i=15,j=12,IncludeLinked=false,ForceNoDel=True
+Event1:Flag=TnotXactive,ForceNoDel=True
+Action:Type=TeleportObject,i=15,j=12,dst_i=15,dst_j=15,immediate=true
+
+# END NotX
+
+# Teleport X
+
+SCRIPT
+Event:ObjectPos=true,Object=twily,i=14,j=15,IncludeLinked=false,ForceNoDel=True
+Event1:Flag=TXactive,ForceNoDel=True
+Action:Type=TeleportObject,i=14,j=15,dst_i=10,dst_j=8,immediate=true
+
+SCRIPT
+Event:ObjectPos=true,Object=flatter,i=14,j=15,IncludeLinked=false,ForceNoDel=True
+Event1:Flag=TXactive,ForceNoDel=True
+Action:Type=TeleportObject,i=14,j=15,dst_i=12,dst_j=8,immediate=true
+
+SCRIPT
+Event:ObjectPos=true,Object=twily,i=11,j=8,IncludeLinked=false,ForceNoDel=True
+Event1:Flag=TXactive,ForceNoDel=True
+Action:Type=TeleportObject,i=11,j=8,dst_i=13,dst_j=15,immediate=true
+
+SCRIPT
+Event:ObjectPos=true,Object=flatter,i=11,j=8,IncludeLinked=false,ForceNoDel=True
+Event1:Flag=TXactive,ForceNoDel=True
+Action:Type=TeleportObject,i=11,j=8,dst_i=15,dst_j=15,immediate=true
+
+# END X
+
+# Teleport Y
+
+SCRIPT
+Event:ObjectPos=true,Object=twily,i=15,j=10,IncludeLinked=false,ForceNoDel=True
+Event1:Flag=TYactive,ForceNoDel=True
+Action:Type=TeleportObject,i=15,j=10,dst_i=14,dst_j=5,immediate=true
+
+SCRIPT
+Event:ObjectPos=true,Object=flatter,i=15,j=10,IncludeLinked=false,ForceNoDel=True
+Event1:Flag=TYactive,ForceNoDel=True
+Action:Type=TeleportObject,i=15,j=10,dst_i=16,dst_j=5,immediate=true
+
+SCRIPT
+Event:ObjectPos=true,Object=twily,i=15,j=5,IncludeLinked=false,ForceNoDel=True
+Event1:Flag=TYactive,ForceNoDel=True
+Action:Type=TeleportObject,i=15,j=5,dst_i=14,dst_j=10,immediate=true
+
+SCRIPT
+Event:ObjectPos=true,Object=flatter,i=15,j=5,IncludeLinked=false,ForceNoDel=True
+Event1:Flag=TYactive,ForceNoDel=True
+Action:Type=TeleportObject,i=15,j=5,dst_i=16,dst_j=10,immediate=true
+
+# END Y
+
+# Teleport C
+
+SCRIPT
+Event:ObjectPos=true,Object=twily,i=16,j=8,IncludeLinked=false,ForceNoDel=True
+Event1:Flag=TCactive,ForceNoDel=True
+Action:Type=TeleportObject,i=16,j=8,dst_i=19,dst_j=1,immediate=true
+
+SCRIPT
+Event:ObjectPos=true,Object=flatter,i=16,j=8,IncludeLinked=false,ForceNoDel=True
+Event1:Flag=TCactive,ForceNoDel=True
+Action:Type=TeleportObject,i=16,j=8,dst_i=19,dst_j=3,immediate=true
+
+SCRIPT
+Event:ObjectPos=true,Object=twily,i=17,j=2,IncludeLinked=false,ForceNoDel=True
+Event1:Flag=TCactive,ForceNoDel=True
+Action:Type=TeleportObject,i=17,j=2,dst_i=17,dst_j=7,immediate=true
+
+SCRIPT
+Event:ObjectPos=true,Object=flatter,i=17,j=2,IncludeLinked=false,ForceNoDel=True
+Event1:Flag=TCactive,ForceNoDel=True
+Action:Type=TeleportObject,i=17,j=2,dst_i=15,dst_j=8,immediate=true
+
+# END С
+
+# Teleport Z
+
+SCRIPT
+Event:ObjectPos=true,Object=twily,i=21,j=2,IncludeLinked=false,ForceNoDel=True
+Event1:Flag=TZactive,ForceNoDel=True
+Action:Type=TeleportObject,i=21,j=2,dst_i=29,dst_j=1,immediate=true
+
+SCRIPT
+Event:ObjectPos=true,Object=flatter,i=21,j=2,IncludeLinked=false,ForceNoDel=True
+Event1:Flag=TZactive,ForceNoDel=True
+Action:Type=TeleportObject,i=21,j=2,dst_i=29,dst_j=3,immediate=true
+
+SCRIPT
+Event:ObjectPos=true,Object=twily,i=29,j=2,IncludeLinked=false,ForceNoDel=True
+Event1:Flag=TZactive,ForceNoDel=True
+Action:Type=TeleportObject,i=29,j=2,dst_i=20,dst_j=1,immediate=true
+
+SCRIPT
+Event:ObjectPos=true,Object=flatter,i=29,j=2,IncludeLinked=false,ForceNoDel=True
+Event1:Flag=TZactive,ForceNoDel=True
+Action:Type=TeleportObject,i=29,j=2,dst_i=20,dst_j=2,immediate=true
+
+# END Z
+
+# SWITCH X NOTX
+
+SCRIPT
+Event:ObjectPos=true,"Object=flatter,twily",i=2,j=11,IncludeLinked=true
+Event1:ObjectPos=true,"Object=flatter,twily",i=17,j=11,IncludeLinked=true
+Action:Type=SetFlag,FlagName=TXactive
+Action:Type=ClearFlag,FlagName=TnotXactive
+Action:Type=RemoveObject,i=2,j=11
+Action:Type=RemoveObject,i=17,j=11
+Action:Type=ExecProc,ProcName=startPortalAnim,str=2@11@17@11
+Action:Type=NewObject,i=2,j=11,Object=Neutral,Code=keyactive,"Name=Переключатель"
+Action:Type=NewObject,i=17,j=11,Object=Neutral,Code=keyactive,"Name=Переключатель"
+Action:Type=SetTerrain,i=15,j=12,NewTerrCode=C
+Action:Type=SetTerrain,i=16,j=15,NewTerrCode=C
+Action:Type=SetTerrain,i=11,j=8,NewTerrCode=O
+Action:Type=SetTerrain,i=14,j=15,NewTerrCode=O
+Action:Type=Message,icon=twily_ico,"text=Похоже, эти переключатели управляют работой внутренних порталов крепости."
+
+# END SWITCH X NOT X
+
+# SWITCH Y
+
+SCRIPT
+Event:ObjectPos=true,"Object=flatter,twily",i=14,j=11,IncludeLinked=true
+Event1:ObjectPos=true,"Object=flatter,twily",i=20,j=3,IncludeLinked=true
+Action:Type=SetFlag,FlagName=TYactive
+Action:Type=RemoveObject,i=14,j=11
+Action:Type=RemoveObject,i=20,j=3
+Action:Type=ExecProc,ProcName=startPortalAnim,str=14@11@20@3
+Action:Type=NewObject,i=14,j=11,Object=Neutral,Code=keyactive,"Name=Переключатель"
+Action:Type=NewObject,i=20,j=3,Object=Neutral,Code=keyactive,"Name=Переключатель"
+Action:Type=SetTerrain,i=15,j=5,NewTerrCode=O
+Action:Type=SetTerrain,i=15,j=10,NewTerrCode=O
+Action:Type=Message,icon=twily_ico,"text=Еще два телепорта активированы."
+
+# END SWITCH Y
+
+# SWITCH Z
+
+SCRIPT
+Event:ObjectPos=true,"Object=flatter,twily",i=11,j=6,IncludeLinked=true
+Event1:ObjectPos=true,"Object=flatter,twily",i=15,j=7,IncludeLinked=true
+Action:Type=SetFlag,FlagName=TZactive
+Action:Type=RemoveObject,i=11,j=6
+Action:Type=RemoveObject,i=15,j=7
+Action:Type=ExecProc,ProcName=startPortalAnim,str=11@6@15@7
+Action:Type=NewObject,i=11,j=6,Object=Neutral,Code=keyactive,"Name=Переключатель"
+Action:Type=NewObject,i=15,j=7,Object=Neutral,Code=keyactive,"Name=Переключатель"
+Action:Type=SetTerrain,i=21,j=2,NewTerrCode=O
+Action:Type=SetTerrain,i=29,j=2,NewTerrCode=O
+Action:Type=Message,icon=twily_ico,"text=Последняя пара порталов активирована. Надо добраться до внутренних помещений замка."
+
+# END SWITCH Z
+
+# Внутренние покои
+SCRIPT
+Event:ObjectPos=True,Direction=GreatX,i=23,j=0,"Object=flatter"
+Event1:ObjectPos=True,Direction=GreatX,i=23,j=0,"Object=twily"
+Action:Type=Message,icon=twily_ico,"text=Мы достигли главного зала. Замок выглядит пустым."
+Action:Type=Message,icon=batpony1_ico,"text=Незванных гостей никто не любит. А мы просто истребляем."
+Action:Type=Message,icon=twily_ico,"text=Невероятно! Уцелевшее поселение мышепоней, легендарной расы, созданной принцессой еще до лунной ссылки!"
+Action:Type=Message,icon=flatter_ico,"text=Твайлайт, эти странные пегасы вокруг не разделяют твой восторг. Они хотят нас, эммм..."
+Action:Type=Message,icon=batpony1_ico,"text=Вперед, во имя Принцессы Ночи!"
+Action:Type=Message,icon=twily_ico,"text=Вы помните Принцессу Луну! Это очень хорошо. Разрешите мне выйти наружу, я только свяжусь с ней и вы сможете..."
+Action:Type=Message,icon=batpony1_ico,"text=Может, вам еще и ключ от архива Ордена дать, где книги лежат? Шпионы уничтожаются. Быстро. Решительно. А вы не бэтпони и не Принцесса Ночи, значит, вы шпионы."
+Action:Type=Message,icon=twily_ico,"text=Вообще-то, это слишком категоричный силлогизм... Думаю, мы злоупотребили вашим гостепреимством."
+Action:Type=MoveObject,method=tag,Tag=flatter,dst_i=27,dst_j=2,immediate=true
+Action:Type=MoveObject,method=tag,Tag=twily,dst_i=25,dst_j=9,immediate=true
+Action:Type=NewObject,Object=Neutral,Code=stonewall,"Name=Стена пещеры",i=25,j=2
+Action:Type=NewObject,Object=Neutral,Code=stonewall,"Name=Стена пещеры",i=26,j=2
+Action:Type=NewObject,Object=Neutral,Code=stonewall,"Name=Стена пещеры",i=10,j=4
+Action:Type=NewObject,Object=Neutral,Code=stonewall,"Name=Стена пещеры",i=11,j=5
+Action:Type=Message,icon=twily_ico,"text=Стены движутся. Это ловушка! Флаттершай, пробивайся к выходу, я смогу продержаться столько, сколько нужно."
+Action:Type=Message,icon=flatter_ico,"text=Ой, мамочки. Здесь не будет битвы, говорила Твайлайт. Ты здесь в безопасности, говорила Твайлайт."
+Action:Type=Message,icon=twily_ico,"text=Попробуй пробежать мимо охраны. Там темные коридоры, возможно, они не станут атаковать, если ты будешь за пределами их зрения."
+Action:Type=SetVar,Name=wave1,Initial=CurrentStep,Delta=1
+Action:Type=SetVar,Name=wave2,Initial=CurrentStep,Delta=3
+Action:Type=SetVar,Name=wave3,Initial=CurrentStep,Delta=5
+Action:Type=SetVar,Name=wave4,Initial=CurrentStep,Delta=8
+Action:Type=SetVar,Name=wave5,Initial=CurrentStep,Delta=12
+Action:Type=SetVar,Name=wave6,Initial=CurrentStep,Delta=16
+Action:Type=SetVar,Name=wave7,Initial=CurrentStep,Delta=21
+Action:Type=SetVar,Name=wave8,Initial=CurrentStep,Delta=26
+Action:Type=SetBattleTask,code=siege,"Task=Привести Флаттершай к выходу из крепости."
+Action:Type=CompBattleTask,code=initial
+Action:Type=ShowBattleTask
+Action:Type=SetFlag,FlagName=part2
+#Action:Type=MoveObject,method=tag,Tag=flatter,dst_i=2,dst_j=14,immediate=true
+
+SCRIPT
+Event:StepVar=wave1
+Event1:Flag=part2
+Action:Type=NewObjectGroup,Object=Monster,Code=batpony,"Name=Бэтпони",i=@Place1X@,j=@Place1Y@,count=1,radius=1,strategy=AttackByRank
+
+Action:Type=NewObjectGroup,Object=Monster,Code=batpony,"Name=Бэтпони",i=16,j=7,count=1,radius=1,holdground=true
+
+SCRIPT
+Event:StepVar=wave2
+Event1:Flag=part2
+Action:Type=NewObjectGroup,Object=Monster,Code=batpony,"Name=Бэтпони",i=@Place4X@,j=@Place4Y@,count=1,radius=1,strategy=AttackByRank
+
+Action:Type=NewObjectGroup,Object=Monster,Code=batpony,"Name=Бэтпони",i=11,j=2,count=1,radius=1,holdground=true
+
+SCRIPT
+Event:StepVar=wave3
+Event1:Flag=part2
+Action:Type=NewObjectGroup,Object=Monster,Code=batpony,"Name=Бэтпони",i=@Place2X@,j=@Place2Y@,count=1,radius=1,strategy=AttackByRank
+Action:Type=NewObjectGroup,Object=Monster,Code=batpony,"Name=Бэтпони",i=@Place3X@,j=@Place3Y@,count=1,radius=1,strategy=AttackByRank
+
+Action:Type=NewObjectGroup,Object=Monster,Code=batpony,"Name=Бэтпони",i=3,j=2,count=1,radius=1,holdground=true
+
+SCRIPT
+Event:StepVar=wave4
+Event1:Flag=part2
+Action:Type=NewObjectGroup,Object=Monster,Code=batpony,"Name=Бэтпони",i=@Place1X@,j=@Place1Y@,count=1,radius=1,strategy=AttackByRank
+Action:Type=NewObjectGroup,Object=Monster,Code=batpony,"Name=Бэтпони",i=@Place4X@,j=@Place4Y@,count=1,radius=1,strategy=AttackByRank
+
+Action:Type=NewObjectGroup,Object=Monster,Code=batpony,"Name=Бэтпони",i=6,j=7,count=1,radius=1,holdground=true
+
+SCRIPT
+Event:StepVar=wave5
+Event1:Flag=part2
+Action:Type=NewObjectGroup,Object=Monster,Code=batpony,"Name=Бэтпони",i=@Place1X@,j=@Place1Y@,count=1,radius=1,strategy=AttackByRank
+Action:Type=NewObjectGroup,Object=Monster,Code=batpony,"Name=Бэтпони",i=@Place2X@,j=@Place2Y@,count=1,radius=1,strategy=AttackByRank
+Action:Type=NewObjectGroup,Object=Monster,Code=batpony,"Name=Бэтпони",i=@Place3X@,j=@Place3Y@,count=1,radius=1,strategy=AttackByRank
+
+Action:Type=NewObjectGroup,Object=Monster,Code=batpony,"Name=Бэтпони",i=9,j=12,count=3,radius=1,holdground=true
+
+SCRIPT
+Event:StepVar=wave6
+Event1:Flag=part2
+Action:Type=NewObjectGroup,Object=Monster,Code=batpony,"Name=Бэтпони",i=@Place2X@,j=@Place2Y@,count=1,radius=1,strategy=AttackByRank
+Action:Type=NewObjectGroup,Object=Monster,Code=batpony,"Name=Бэтпони",i=@Place1X@,j=@Place1Y@,count=1,radius=1,strategy=AttackByRank
+Action:Type=NewObjectGroup,Object=Monster,Code=batpony,"Name=Бэтпони",i=@Place4X@,j=@Place4Y@,count=1,radius=1,strategy=AttackByRank
+
+Action:Type=NewObjectGroup,Object=Monster,Code=batpony,"Name=Бэтпони",i=3,j=12,count=3,radius=1,holdground=true
+
+SCRIPT
+Event:StepVar=wave7
+Event1:Flag=part2
+Action:Type=NewObjectGroup,Object=Monster,Code=batpony,"Name=Бэтпони",i=@Place1X@,j=@Place1Y@,count=1,radius=1,strategy=AttackByRank
+Action:Type=NewObjectGroup,Object=Monster,Code=batpony,"Name=Бэтпони",i=@Place2X@,j=@Place2Y@,count=1,radius=1,strategy=AttackByRank
+Action:Type=NewObjectGroup,Object=Monster,Code=batpony,"Name=Бэтпони",i=@Place3X@,j=@Place3Y@,count=1,radius=1,strategy=AttackByRank
+Action:Type=NewObjectGroup,Object=Monster,Code=batpony,"Name=Бэтпони",i=@Place4X@,j=@Place4Y@,count=1,radius=1,strategy=AttackByRank
+
+SCRIPT
+Event:StepVar=wave8
+Event1:Flag=part2
+Action:Type=NewObjectGroup,Object=Monster,Code=batpony,"Name=Бэтпони",i=@Place1X@,j=@Place1Y@,count=1,radius=1,strategy=AttackByRank
+Action:Type=NewObjectGroup,Object=Monster,Code=batpony,"Name=Бэтпони",i=@Place2X@,j=@Place2Y@,count=1,radius=1,strategy=AttackByRank
+Action:Type=NewObjectGroup,Object=Monster,Code=batpony,"Name=Бэтпони",i=@Place3X@,j=@Place3Y@,count=1,radius=1,strategy=AttackByRank
+Action:Type=NewObjectGroup,Object=Monster,Code=batpony,"Name=Бэтпони",i=@Place4X@,j=@Place4Y@,count=1,radius=1,strategy=AttackByRank
+
+# Флаттершай уходит
+SCRIPT
+Event:ObjectPos=true,Object=flatter,i=2,j=17,IncludeLinked=true
+Event1:Flag=part2
+Action:Type=SetFlag,FlagName=flatterout
+
+SCRIPT
+Event:Flag=flatterout
+Action:Type=Message,icon=flatter_ico,"text=Я выбралась. Уииииии!"
+Action:Type=RemoveObject,method=tag,tag=flatter
+Action:Type=SetVar,Name=luna,Initial=CurrentStep,Delta=7
+Action:Type=SetBattleTask,code=luna,"Task=Держаться до прибытия помощи."
+Action:Type=CompBattleTask,code=siege
+Action:Type=ShowBattleTask
+
+SCRIPT
+Event:StepVar=luna
+Event1:Flag=part2
+Action:Type=SetFlag,FlagName=victory
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=twily_ico,"text=Ну, кто еще желает сразиться с Элементом Магии! Нет среди вас храбрецов?"
+Action:Type=SetFocus,i=25,j=9
+Action:Type=NewObject,Object=Neutral,Code=luna,"Name=Принцесса Луна",i=25,j=9
+Action:Type=Message,icon=luna_ico,"text=Ты стала суровой и могучей. В такие времена даже маленькие пони набираются свирепости."
+Action:Type=Message,icon=twily_ico,"text=Принцесса Луна! Успокойте, пожалуйста, ваших, гм, друзей. Они напугали бедную Флаттершай."
+Action:Type=Message,icon=batpony1_ico,"text=Повелительница! Вы вернулись спустя тысячу лет! Мы так рады вас видеть. Эти пони - они с вами?"
+Action:Type=Message,icon=luna_ico,"text=Да, воин Ордена. Эти пони спасли меня и не раз спасали Эквестрию. Вы уже испытали на себе их возможности?"
+Action:Type=Message,icon=batpony1_ico,"text=О да, Принцесса! Подобных героев я еще не видел. Десяток лучших парней, отъявленных ребят - лежат с выбитыми зубами и вывихнутыми копытами."
+Action:Type=Message,icon=twily_ico,"text=Флаттершай может помочь с этим. Ей куда больше понравится лечить."
+Action:Type=Message,icon=luna_ico,"text=А я пойду в архивы Ордена. Чувствую, что на сей раз нам действительно повезло."
+
+VICTORY
+ByFlag:FlagName=victory

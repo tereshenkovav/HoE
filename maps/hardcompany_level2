@@ -1,0 +1,189 @@
+Сомбромахия
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+DESCRIPTION
+Когда беженцы из Кристальной Империи добрались до правителей ==>
+Эквестрии - Селестия и Луна отправились на помощь в захваченную ==> 
+страну. Одни на чужой земле против могучего врага с неизвестными ==>
+возможностями... смогут ли они выиграть этот бой?
+
+MAP
+LLLLLLLLLLLLLLLFFMMMMMFFFFLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLFFFMMMMMFFFLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLFFFMMQMMFFFLLLLLLLLLLLLLLLLL
+LHLHLLHLLHLHLLFFFMMQMMFFFLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLFFMMQMFFFLLLLLLLLLLLLLLLLLLL
+HLWLHLHLHLWLHLFFFMQMFFLLLLLLLLLLLLLLLLLLLLL
+LLWLLLLLLWLLLLLFFFQFFLLLLLLLLLLLLLLLLLLLLL
+LHLWLELELWLHLLLFFFQFLLLLLLLWWWWWWWWWWWWWWWW
+LLLWLLLLWLLLLLFFFFQLLLLLLLWLLLLLLLLLLLLLLL
+LLLLWLDLWLELLLLFFLLQQQQQLLWLLLLLLLLLLLLLLLL
+LLLLDDDDLLLLLLFLLLLLQQQQLWLLLLLLLLLLLLLLLL
+HLEDDDDDDDLLLLLLLLLLLLLQQWLLLLLLLLLLLLLLLLL
+LLLDDDDDDLLLLLLLLLLLLLLQWQQQLLLLLLLLLLLLLL
+WWWDDDDDDDWWWWWWWWWWWWWWWQQQQLLLLLLLLLLLLLL
+LLLDDDDDDLLLLLLLLLLLLLLLLLLQQLLLLLLLLLLLLL
+HLEDDDDDDDLLLLLLLLLLLLLLLLLLQQQLLLLLLLLLLLL
+LLLLDDDDLLLLLLLLLLLLLLLLLLLLQQQQQLLLLLLLLL
+LLLLWLDLWLHLLLLLLLLLLLLLLLLLLQQAAQQQQQLLLLL
+LHLWLLLLWLLLLLLLLLLLLLLLLLLLLLQAAAQQQQQQLL
+LLLWLHLELWLHLLLLLLLLLLLLLLLLLLLQAQQLLQQQQQQ
+HLWLLLLLLWLLLLLLLLLLLLLLLLLLLLLQQLLLLLLQQA
+LLWLHLHLHLWLHLLLLLLLLLLLLLLLLLLLQLLLLLLLQAA
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLQQLLLLLQQAA
+LHLHLLHLLHLHLLLLLLLLLLLLLLLLLLLQQQLLLLQAAAA
+#===MAPEND===
+
+OBJECTS
+Pony:i=35,j=4,"name=Селестия",code=celestia
+#Pony:i=10,j=5,"name=Селестия",code=celestia
+Pony:i=36,j=6,"name=Луна",code=luna
+
+Food:i=38,j=2,size=max
+Food:i=39,j=2,size=max
+Food:i=40,j=2,size=max
+Food:i=39,j=3,size=max
+Food:i=40,j=3,size=max
+Food:i=39,j=4,size=max
+
+Neutral:Code=palatka,"Name=Шатер",i=39,j=1
+Neutral:Code=palatka,"Name=Шатер",i=40,j=1
+Neutral:Code=palatka,"Name=Шатер",i=38,j=5
+Neutral:Code=palatka,"Name=Шатер",i=41,j=5
+Neutral:Code=palatka,"Name=Шатер",i=39,j=6
+
+Neutral:Code=guard,"Name=Гвардеец",i=37,j=1
+Neutral:Code=guard,"Name=Гвардеец",i=37,j=3
+Neutral:Code=guard,"Name=Гвардеец",i=38,j=7
+Neutral:Code=guard,"Name=Гвардеец",i=40,j=8
+
+Monster:Code=darkcrystall,"Name=Отравляющий кристалл",i=5,j=11
+Monster:Code=darkcrystall,"Name=Отравляющий кристалл",i=7,j=11
+Monster:Code=darkcrystall,"Name=Отравляющий кристалл",i=5,j=15
+Monster:Code=darkcrystall,"Name=Отравляющий кристалл",i=7,j=15
+Monster:Code=darkcrystall,"Name=Отравляющий кристалл",i=4,j=13
+Monster:Code=darkcrystall,"Name=Отравляющий кристалл",i=8,j=13
+
+Monster:Code=sombra,"Name=Король Сомбра",i=6,j=13,holdground=true
+
+INITIAL
+Stone:0
+Food:50
+Task:Победить короля Сомбру
+Permits:action=allow,code=all
+Permits:action=deny,code=CutEmptySectorLuna
+Permits:action=deny,code=SetupTeleport
+
+CONSTANTS
+Mag_I:35
+Mag_J:21
+Warr_I:37
+Warr_J:21 
+Sham_I:36
+Sham_J:23
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=6,j=13,immediate=true
+Action:Type=Message,icon=sombra_ico,"text=Я рад приветствовать вас на пороге ==>
+своей земли, аликорны. Что привело вас так далеко от дома?"
+Action:Type=Message,icon=celestia_ico,"text=Это не твоя земля, Сомбра.==>
+Мы не допустим порабощения кристальных пони. Сдавайся, и будешь жить."
+Action:Type=Message,icon=sombra_ico,"text=В таком случае, готовьтесь к поражению, ничтожные ==>
+принцессы. А после я присоединю к своим владениям и остальную Эквестрию."
+Action:Type=Message,icon=luna_ico,"text=Хватит трепаться, Сомбра! ==>
+Я Принцесса Ночи, повелительница луны и звезд, и я разорву тебя на сотню черных кусочков."
+Action:Type=Message,icon=sombra_ico,"text=Попробуй, синекрылка."
+Action:Type=Message,icon=celestia_ico,"text=Хм, ""синекрылка"". Надо запомнить."
+Action:Type=Message,icon=luna_ico,"text=У нас есть более серьезные проблемы, чем обидные прозвища. Темная магия Сомбры нарушает дальную телепортацию - мы не можем установить стационарные порталы."
+Action:Type=Message,icon=celestia_ico,"text=Будем использовать заклинание или обычный полет."
+Action:Type=ShowBattleTask
+
+SCRIPT      
+Event:Step=1
+Action:Type=Message,icon=sombra_ico,"text=Вас двое, я один. Вам это не кажется ==>
+несправедливым, принцесса?"
+Action:Type=Message,icon=celestia_ico,"text=Цель оправдывает средства, ==>
+тиран и рабовладелец."
+Action:Type=Message,icon=sombra_ico,"text=Я ждал этого ответа, длиннорожка. ==>
+Значит, время уравнять шансы."
+Action:Type=Message,icon=luna_ico,"text=Хххх... ха-ха! ""Длиннорожка""! ==>
+Сестра, почему у всех злодеев такое чувство юмора?"
+
+SCRIPT      
+Event:Step=2
+Action:Type=Message,icon=sombra_ico,"text=Кристальные воины, вперед! Остановите аликорнов!"
+Action:Type=NewObjectGroup,autofocus=true,Object=Monster,Code=golem,"Name=Голем",i=20,j=15,count=5,radius=2
+Action:Type=NewObjectGroup,autofocus=true,Object=Monster,Code=golem,"Name=Голем",i=6,j=5,count=5,radius=2,holdground=true
+Action:Type=NewObjectGroup,autofocus=true,Object=Monster,Code=golem,"Name=Голем",i=6,j=21,count=5,radius=2,holdground=true
+Action:Type=Message,icon=golem_ico,"text=Вы не пройдете..."
+Action:Type=Message,icon=luna_ico,"text=Мы не ходим, а летаем, кристальная твоя башка."
+
+SCRIPT      
+Event:StepModN=6
+Action:Type=NewObjectGroup,autofocus=true,Object=Monster,Code=golem,"Name=Голем",i=13,j=13,count=3,radius=3
+
+SCRIPT      
+Event:Step=3
+Action:Type=Message,icon=sombra_ico,"text=Не желаете немного кристаллов, ==>
+аликорны? У меня есть красивые... жутко красивые!"
+Action:Type=NewObjectGroup,autofocus=true,Object=Monster,Code=darkcrystall,"Name=Отравляющий кристалл",i=25,j=12,count=5,radius=4
+Action:Type=Message,icon=luna_ico,"text=Сестра, тебе не кажется, что мы рискуем ==>
+не выиграть эту битву?"
+Action:Type=Message,icon=celestia_ico,"text=Но мы еще и не проиграли, Луна."
+Action:Type=Message,icon=help_ico,"text=Отравляющие кристаллы Сомбры отнимают здоровье в радиусе трех клеток"
+
+SCRIPT      
+Event:StepModN=2,Great=3
+Action:Type=NewObjectGroup,autofocus=true,Object=Monster,Code=darkcrystall,"Name=Отравляющий кристалл",i=2,j=5,count=1,radius=4
+Action:Type=NewObjectGroup,autofocus=true,Object=Monster,Code=darkcrystall,"Name=Отравляющий кристалл",i=10,j=5,count=1,radius=4
+Action:Type=NewObjectGroup,autofocus=true,Object=Monster,Code=darkcrystall,"Name=Отравляющий кристалл",i=14,j=13,count=1,radius=4
+Action:Type=NewObjectGroup,autofocus=true,Object=Monster,Code=darkcrystall,"Name=Отравляющий кристалл",i=10,j=21,count=1,radius=4
+Action:Type=NewObjectGroup,autofocus=true,Object=Monster,Code=darkcrystall,"Name=Отравляющий кристалл",i=2,j=21,count=1,radius=4
+
+SCRIPT      
+Event:Step=4
+Action:Type=NewObject,autofocus=true,Object=Neutral,Code=dragon1,"Name=Змей-маг",i=@Mag_I@,j=@Mag_J@,targeted=true
+Action:Type=NewObject,Object=Neutral,Code=dragon2,"Name=Змей-воин",i=@Warr_I@,j=@Warr_J@
+Action:Type=NewObject,Object=Neutral,Code=dragon3,"Name=Змей-шаман",i=@Sham_I@,j=@Sham_J@
+Action:Type=NewObject,Object=Monster,Code=golem,"Name=Голем-охранник",i=33,j=20,holdground=true
+Action:Type=NewObject,Object=Monster,Code=golem,"Name=Голем-охранник",i=36,j=19,holdground=true
+Action:Type=NewObject,Object=Monster,Code=golem,"Name=Голем-охранник",i=38,j=20,holdground=true
+Action:Type=Message,icon=dragon_warr_ico,"text=Принцессса Ссселестия, вы ссслышите меня?"
+Action:Type=Message,icon=celestia_ico,"text=Да. Кто вы?"
+Action:Type=Message,icon=dragon_warr_ico,"text=Мы мессстные жители. Монстры Сомбры уже несколько месяцев ==>
+пытаются изгнать нассс отсюда. Помогите нам, и мы с радоссстью поможем вам в битве."
+Action:Type=Message,icon=luna_ico,"text=Я думаю, стоит рискнуть. Любая помощь сейчас будет кстати."
+Action:Type=SetBattleTask,isreq=false,code=help,"Task=Освободите озерных жителей, приведя к ним Селестию."
+Action:Type=ShowBattleTask
+Action:Type=SetFlag,FlagName=DragonReady
+
+SCRIPT
+Event:ObjectPos=True,i=@Mag_I@,j=@Mag_J@,IncludeLinked=true,Object=celestia
+Event2:Flag=DragonReady
+Action:Type=CompBattleTask,code=help
+Action:Type=Message,icon=dragon_warr_ico,"text=Благодарю вассс, принцесса. Давайте вмесссте свергнем Сомбру!"
+Action:Type=ClearTarget,i=@Mag_I@,j=@Mag_J@
+Action:Type=ReplaceObject,OldCode=dragon1,Object=Pony,Code=dragon_mag,"Name=Змей-маг"
+Action:Type=ReplaceObject,OldCode=dragon2,Object=Pony,Code=dragon_warr,"Name=Змей-воин"
+Action:Type=ReplaceObject,OldCode=dragon3,Object=Pony,Code=dragon_sham,"Name=Змей-шаман"
+Action:Type=Message,icon=help_ico,"text=Озерные драконы - маг дальнего боя, воин ближнего боя и шаман с заклинаниями восстановления.  Они не расходуют еду, только собственное здоровье и силы. Ваши союзники должны выжить."
+
+SCRIPT
+Event:Flag=SombraEscaped
+Action:Type=Message,icon=celestia_ico,"text=Вернись, трус!"
+Action:Type=Message,icon=sombra_ico,"text=Я не убегаю! Я отступаю в крепость. Дома, как говорится, и стены помогают."
+Action:Type=Message,icon=help_ico,"text=Отравленные кристаллы восстанавливают здоровье короля Сомбры, если он находится рядом с ними."
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=sombra_ico,"text=Аргх! Я еще вернусь! Я отомщу, страшно, ужасно отомщу!"
+Action:Type=Message,icon=celestia_ico,"text=Размечался, великий мститель. Ты жалок. Тебя мог бы победить даже детеныш дракона."
+
+VICTORY
+ByObjectCount:Object=sombra,cnt=0

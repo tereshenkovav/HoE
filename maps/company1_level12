@@ -1,0 +1,194 @@
+Новый дом
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+MMMMMMMMMMMMMMMQMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMQMMMMMMMMMMMMMMMM
+MMMMFFFMMMFFFFFQMMFFFFMMFFF2MMM
+MMMFFFFFFFFFFFFQFFFFFFFFFF222MMM
+MMFFFFFFFFFFFFFQFFFFFFFFFFF2MMM
+MMFFFFLLLLLLFFFQLLFFLLFFFFF2MMMM
+MMFFFLLLLLLLLLQLLLLLLLLLFFF2MMM
+MMMFFLLLLLLLLLLQLLLLLLLLLLF2FMMM
+MMFFFLLLLLLLLLQLLLLLLLLLLL22MMM
+MMMFFFLLLLLLLLQLLLQQLLLLLL222FMM
+MMMFFLLLLLLLLQQLLQAQQLLLLL222MM
+MMMFFFLLLLLLLLQQQQAAAQLLLLL222MM
+MMFFFLLLLLLLLLQQQQQAQLLLLLL22MM
+MMFFFLLLLLLLLLLLLLLQQLLLLLLF2FMM
+MMFFLLLLLLLLLLLLLLLLLLLLLLL2FMM
+MMFFFLLLLLLLLLLLLLLLLLLLLL222FMM
+MMFFFFLLLLLLLLLLLLLFFFFFFFF2FMM
+MMMFFFFFFLLLLFFFFFFFFFFFFFF2FMMM
+MMMFFFFFFFFFFFFFFFFFMMFFFFFF2MM
+MMMMFFMMFFFFFFFFFFFMMMMMFFFMMMMM
+MMMMMMMMMMFFFFFMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+#===MAPEND===
+
+# Раздел константы должен идти в самом начале
+CONSTANTS
+FireAttackStep:10
+DefeatStep:30
+
+OBJECTS
+Pony:i=14,j=13,"name=Твайлайт Спаркл",code=twily
+Pony:i=13,j=14,"name=Рейнбоу Дэш",code=rainbow
+Pony:i=14,j=15,"name=Пинки Пай",code=pinki
+Pony:i=15,j=13,"name=Флаттершай",code=flatter
+Pony:i=15,j=14,"name=Рарити",code=rarity
+Pony:i=15,j=15,"name=Эпплджек",code=applejack
+
+Monster:Code=bat,"Name=Нетопырь",i=3,j=15,holdground=true
+Monster:Code=bat,"Name=Нетопырь",i=3,j=14,holdground=true
+Monster:Code=bat,"Name=Нетопырь",i=3,j=13,holdground=true
+Monster:Code=bat,"Name=Нетопырь",i=2,j=9,holdground=true
+Monster:Code=bat,"Name=Нетопырь",i=1,j=10,holdground=true
+Monster:Code=bat,"Name=Нетопырь",i=2,j=11,holdground=true
+Monster:Code=bat,"Name=Нетопырь",i=3,j=3,holdground=true
+Monster:Code=bat,"Name=Нетопырь",i=2,j=4,holdground=true
+Monster:Code=bat,"Name=Нетопырь",i=2,j=5,holdground=true
+Monster:Code=bat,"Name=Нетопырь",i=1,j=7,holdground=true
+Monster:Code=bat,"Name=Нетопырь",i=2,j=17,holdground=true
+
+Monster:Code=ameba,"Name=Амеба",i=4,j=4,holdground=true
+Monster:Code=ameba,"Name=Амеба",i=4,j=6,holdground=true
+Monster:Code=ameba,"Name=Амеба",i=3,j=7,holdground=true
+Monster:Code=ameba,"Name=Амеба",i=5,j=9,holdground=true
+Monster:Code=ameba,"Name=Амеба",i=5,j=10,holdground=true
+Monster:Code=ameba,"Name=Амеба",i=4,j=12,holdground=true
+Monster:Code=ameba,"Name=Амеба",i=5,j=15,holdground=true
+Monster:Code=ameba,"Name=Амеба",i=6,j=16,holdground=true
+Monster:Code=ameba,"Name=Амеба",i=6,j=13,holdground=true
+
+Monster:Code=troll,"Name=Тролль",i=6,j=6,holdground=true
+Monster:Code=troll,"Name=Тролль",i=3,j=8,holdground=true
+Monster:Code=troll,"Name=Тролль",i=6,j=10,holdground=true
+Monster:Code=troll,"Name=Тролль",i=6,j=12,holdground=true
+Monster:Code=troll,"Name=Тролль",i=2,j=14,holdground=true
+
+Monster:Code=poison,"Name=Ядовитый шар",i=5,j=7,holdground=true
+Monster:Code=poison,"Name=Ядовитый шар",i=3,j=11,holdground=true
+
+#MonsterTwist:Code=twist,"Name=Смерч",i=5,j=14,holdground=true
+#MonsterTwist:Code=twist,"Name=Смерч",i=6,j=8,holdground=true
+
+MonsterTent:Code=tent,"Name=Зеленый ужас",i=4,j=16,holdground=true
+MonsterTent:Code=tent,"Name=Зеленый ужас",i=6,j=3,holdground=true
+
+Monster:Code=gidra,"Name=Гидра",i=4,j=9,holdground=true
+
+Food:i=17,j=6,size=max
+Food:i=18,j=6,size=max
+Food:i=17,j=7,size=max
+Food:i=18,j=7,size=max
+Food:i=19,j=7,size=max
+Food:i=17,j=8,size=max
+Food:i=18,j=8,size=max
+
+Food:i=12,j=6,size=max
+Food:i=13,j=6,size=max
+Food:i=12,j=7,size=max
+Food:i=13,j=7,size=max
+Food:i=14,j=7,size=max
+Food:i=12,j=8,size=max
+Food:i=13,j=8,size=max
+
+Stone:i=20,j=9,size=min
+Stone:i=21,j=9,size=medium
+Stone:i=21,j=10,size=min
+Stone:i=22,j=11,size=medium
+Stone:i=21,j=12,size=medium
+Stone:i=21,j=13,size=medium
+
+INITIAL
+Stone:0
+Food:100
+Task:Полностью очистить долину от монстров и Пустоты за 30 ходов
+AttackedDefeatString:Поражение
+EmptyManager:40,40,40,40,40,40
+Permits:action=deny,code=all
+Permits:action=deny,code=all
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Heal
+Permits:action=allow,code=Restore
+Permits:action=allow,code=CutEmptySector
+Permits:action=allow,code=BuildTreeShield
+Permits:action=allow,code=BuildCrystalTowerBig
+Permits:action=allow,code=BuildCrystalTowerSmall
+Permits:action=allow,code=FlatterView
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=15,j=13,immediate=true
+Action:Type=Message,icon=twily_ico,"text=Долина, древнее убежище трёх рас... здесь мы и другие пони будем жить, пока Принцесса Селестия не найдет способ остановить разрушение нашего мира."
+Action:Type=SetFocus,i=2,j=12
+Action:Type=Message,icon=pinki_ico,"text=А это наши соседи?"
+Action:Type=SetFocus,i=25,j=11
+Action:Type=Message,icon=rarity_ico,"text=Почемуууууу!!!"
+Action:Type=Message,icon=twily_ico,"text=Девочки, от нас зависит судьба Эквестрии! ... Не в первый раз, конечно..."
+Action:Type=SetFocus,i=15,j=8
+Action:Type=Message,icon=applejack_ico,"text=Судя по всему, в нашем распоряжении все запасы, которые доставили для поселенцев."
+Action:Type=Message,icon=twily_ico,"text=Да, и мы их можем использовать. Очистим здесь всё! И действовать нужно быстро - скоро начнут прибывать поселенцы."
+Action:Type=ShowBattleTask
+
+# ==== Диалог с Рэр
+
+SCRIPT
+Event:Step=1
+Action:Type=Message,icon=applejack_ico,"text=Почему они не атакуют?"
+Action:Type=Message,icon=twily_ico,"text=Интересно... заклинание маскировки по четырем стихиям сразу. Рарити, ты ведь собиралась вернуть кольцо Аликорна принцесе Луне?"
+Action:Type=Message,icon=rarity_ico,"text=Ох, дорогая, я собиралась, но нас отправили на эвакуацию, а потом мы искали Свити Белль, и крепость надо было строить! Оно такое изящное... блестящее... моя прелесссть!"
+Action:Type=Message,icon=twily_ico,"text=Сколько времени еще продлится заклинание?"
+Action:Type=Message,icon=rarity_ico,"text=Не знаю. Кольцо очень сильное, но им сложно управлять."
+Action:Type=Message,icon=twily_ico,"text=Используем эту паузу с пользой, девочки!"
+
+SCRIPT
+Event:Step=2
+Action:Type=SetFocus,i=4,j=9
+Action:Type=Message,icon=rainbow_ico,"text=Селестия милосердная! Что это за четырехголовое?"
+Action:Type=Message,icon=applejack_ico,"text=Знаю таких... выбегали пару раз из леса. Ничего особого... но только держитесь подале. Достаточно одного удара для любой пони. Рарити, ты сможешь использовать свою прелесть, чтобы защитить нас?"
+Action:Type=Message,icon=rarity_ico,"text=Увы, я полностью и совершенно утомлена. Всё-таки, этот артефакт не для среднего единорога."
+Action:Type=Message,icon=applejack_ico,"text=Ну, Твайлайт у нас далеко не средний, есть какие трюки на этот случай?"
+Action:Type=Message,icon=twily_ico,"text=Брат шутки ради учил меня гвардейскому заклинанию щита - мой вариант слабее и лишь на время, но даст защиту от удара."
+Action:Type=Message,icon=applejack_ico,"text=Надеюсь, что так."
+Action:Type=Message,icon=help_ico,"text=Твайлайт создает на 4 хода силовой щит вокруг пони, поглощающий половину урона от любых атак противника."
+Action:Type=SetPermits,action=allow,code=ForceShield
+
+# ==== Падение поля ====
+
+SCRIPT
+Event:Step=@FireAttackStep@
+Action:Type=Message,icon=twily_ico,"text=Я не чувстую поле маскировки. Всем приготовиться! Стоять твердо на копытах! Сейчас начнется..."
+Action:Type=FireTotalAttack
+
+# Поражение
+SCRIPT
+Event:Step=@DefeatStep@
+Action:Type=Message,icon=twily_ico,"text=Слишком поздно. Мы не успели вовремя." 
+Action:Type=SetDefeat,"DefeatStr=Время упущено"
+
+
+# ===== Победа
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=twily_ico,"text=Мы спасли долину. Мы спасли... Эквестрию!"
+Action:Type=Message,icon=rarity_ico,"text=Твайлайт! Мы убрали три десятка монстров и немного расчистили Пустоту. Что будет с Эквестрией через неделю? Месяц? Год?"
+Action:Type=Message,icon=twily_ico,"text=Я не знаю, девочки. Я просто не знаю."
+
+VICTORY
+ByNoMonsterLeft:null
+->ByNoSpaceLeft:addType=And

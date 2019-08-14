@@ -1,0 +1,498 @@
+Крепость грифонов
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+#DefaultSandStone
+
+DESCRIPTION
+Молодое государство должно заботиться о надежности границ. ==>
+Селестия и Луна лично возглавляют дипломатическую миссию на восточные ==>
+рубежи, чтобы уладить все вопросы с грифонами-соседями.
+
+MAP
+AMMMMMMAAAAAAMMMMMMMMMLLMMMMAAMMMMMMMMMMMM
+MAAMMMMAAAMAAAMMMMMMMMLLMMMMAAMMMMMLMMMMMMM
+MMAMMAAAAMMAAAAMMMMMMLLFMMMMAAMMMMMLMMMLMM
+MMMAMAAAAMWMAAAAMMMMMLLFMMMMAAMMMMMLMMMLMMM
+MMMAAAAAAWWAAAAAMMMMLLFFMMMMAAMMMMLMMMMLMM
+MMMMAAAAAMWMAAAAAMMMLLFFMMMMAAMMLLLLLLLLMMM
+MMMMAAAAMWWMAAAAMMMMLLFFMMMMAALLMMLLLLLLLM
+MMMMMAAMWWWWWMAAAMMMFLLFMMMMMALMMMMLLLLMMLM
+MMMMAAMWWWWWWMAAMMMMFLLMMMMMMLAMMMMLLLMMLM
+FMMMAAMMMAWAMMMAAMMMFLLMMMMMLLAAMMMMLLMMMMM
+FMMMAAAAALLAAAAAMMMFLLMMMMMLMMAAMMMMLLLMMM
+FFMMMAAAAALAAAAAMMMFLLMMMMMLMMMAAAMMLMMLMMM
+FFFFMMMAALAAAMMMMMFFLLMMMMMLMMMMAAMLMMMLMM
+FFFFFMMMMALMMMMMMFFFFLLMMMMMLMMMMAALMMMMMMM
+LLLFFFMMMALMMMMFFFFFFLLMMMMMLLMMMALAAAMMMM
+LLLLFFFFFLLLLFFFFFFFFLLMMMMMLLLMMMLAAAAAAAA
+LLLLFFFFLLLLLLLLFFFFLLFMMMMMLLLLLLMMMAAAAA
+LLLLLLLLLLFALLLLLLLLLLFFMMMMMMMMMMMMMMMMMMM
+LLLLLLLLLFFAFFFLLLLLLFFFMMMMMMMMMMMMMMMMMM
+FFLFFFMMFFFAFMMLMMMMLLFFFMMMMMMMMMMMMMMMMMM
+FFFFMMMMMMAMMMLMMMMMLLLFMMMMMMMMMMMMMMMMMM
+FFFMMMMMMMAMMMMLMMMMMLLLFMMMMMMMMMMMMMMMMMM
+FMMMMMMMMAMMMMMLMMMMMMLLLMMMMMMMMMMMMMMMMM
+MMMMMMMMMMAMMMLLLLMMMMMLLLLMMMMMMMMMMMMMMMM
+MMMMMMMMAAMMMLWWWLMMMMMMLLLMMMMMMMMMMMMMMM
+MMMMMMMMAAMMMLWWWWLMMMMMMFLLMMMMMMMMMMMMMMM
+MMMMMMMAAMMMLLWWWLLMMMMMMFLLLLMMMMMMMMMMMM
+MMMMMMMMAAMMMLLWWLLMMMMMMMFLLLLLMMMMMMMMMMM
+MMMMMMMMAAMMMLLLLLMMMMMMMFFFFLLLLLMMMMMMMM
+MMMMMMMMAAAMMMMMMMMMMMMMMMFFFFFLLLLLLLMMMMM
+MMMMMMMMAAAMMMMMMMMMMMMMFFFFFFFFFLLLLLLMMM
+MMMMMMMMAAAAMMMMMMMMMMMMFFFFFFFFFFFFFLLLMMM
+#===MAPEND===
+
+CONSTANTS
+Gate1X:10
+Gate1Y:9
+Gate2X:15
+Gate2Y:22
+Gate3X:29
+Gate3Y:15
+Wave1X:26
+Wave1Y:2
+Wave2X:18
+Wave2Y:14
+Wave3X:23
+Wave3Y:18
+Wave4X:25
+Wave4Y:30
+Wave5X:34
+Wave5Y:22
+FoodNeed:400
+
+OBJECTS
+Pony:i=2,j=15,"name=Селестия",code=celestia,tag=cel,disableflying=true
+Pony:i=2,j=17,"name=Луна",code=luna,disableflying=true
+Building:Code=FarmFood,"name=Ферма еды",i=1,j=15
+Building:Code=FarmFood,"name=Ферма еды",i=3,j=17
+Building:Code=HouseTravel,"Name=Походный шатер",i=1,j=17
+Building:Code=HouseTravel,"Name=Походный шатер",i=3,j=15
+
+
+#
+Neutral:Code=gates,"name=Ворота",i=@Gate1X@,j=@Gate1Y@,targeted=true
+Neutral:Code=gwall,"name=Стены",i=7,j=7
+Neutral:Code=gwall,"name=Стены",i=6,j=8
+Neutral:Code=gwall,"name=Стены",i=6,j=9
+Neutral:Code=gwall,"name=Стены",i=7,j=9
+Neutral:Code=gwall,"name=Стены",i=8,j=9	
+Neutral:Code=gwall,"name=Стены",i=13,j=7
+Neutral:Code=gwall,"name=Стены",i=13,j=8
+Neutral:Code=gwall,"name=Стены",i=14,j=9
+Neutral:Code=gwall,"name=Стены",i=13,j=9
+Neutral:Code=gwall,"name=Стены",i=12,j=9	
+Neutral:Code=gwall,"name=Стены",i=9,j=3
+Neutral:Code=gwall,"name=Стены",i=9,j=2
+Neutral:Code=gwall,"name=Стены",i=10,j=1
+Neutral:Code=gwall,"name=Стены",i=10,j=2
+Neutral:Code=gwall,"name=Стены",i=11,j=3
+
+Neutral:Code=grifon1,"name=Грифон",i=9,j=4
+Neutral:Code=grifon2,"name=Грифон",i=8,j=7
+Neutral:Code=grifon2,"name=Грифон",i=10,j=4
+Neutral:Code=grifon1,"name=Грифон",i=12,j=7
+Neutral:Code=grifon3,"name=Командир",i=10,j=7
+
+#
+
+Neutral:Code=mount1,"name=Пики",i=12,j=23
+#Neutral:Code=mount1,"name=Пики",i=11,j=24
+Neutral:Code=mount1,"name=Пики",i=11,j=25
+Neutral:Code=mount1,"name=Пики",i=12,j=29
+#Neutral:Code=mount1,"name=Пики",i=11,j=28
+Neutral:Code=mount1,"name=Пики",i=11,j=27
+
+Neutral:Code=gwall,"name=Стены",i=10,j=26
+Neutral:Code=gwall,"name=Стены",i=12,j=22
+Neutral:Code=gwall,"name=Стены",i=12,j=30
+Neutral:Code=gwall,"name=Стены",i=20,j=26
+Neutral:Code=gwall,"name=Стены",i=18,j=22
+Neutral:Code=gwall,"name=Стены",i=18,j=30
+
+Neutral:Code=mount1,"name=Пики",i=19,j=23
+#Neutral:Code=mount1,"name=Пики",i=19,j=24
+Neutral:Code=mount1,"name=Пики",i=20,j=25
+Neutral:Code=mount1,"name=Пики",i=19,j=29
+#Neutral:Code=mount1,"name=Пики",i=19,j=28
+Neutral:Code=mount1,"name=Пики",i=20,j=27
+
+Neutral:Code=mount1,"name=Пики",i=13,j=22
+Neutral:Code=mount1,"name=Пики",i=14,j=22
+Neutral:Code=gates,"name=Ворота",i=@Gate2X@,j=@Gate2Y@,targeted=true
+Neutral:Code=mount1,"name=Пики",i=16,j=22
+Neutral:Code=mount1,"name=Пики",i=17,j=22
+Neutral:Code=mount1,"name=Пики",i=13,j=30
+Neutral:Code=mount1,"name=Пики",i=14,j=30
+#Neutral:Code=mount1,"name=Пики",i=15,j=30
+Neutral:Code=mount1,"name=Пики",i=16,j=30
+Neutral:Code=mount1,"name=Пики",i=17,j=30
+
+Neutral:Code=grifon2,"name=Грифон",i=9,j=26
+Neutral:Code=grifon1,"name=Грифон",i=13,j=21
+Neutral:Code=grifon2,"name=Грифон",i=18,j=21
+Neutral:Code=grifon1,"name=Грифон",i=21,j=26
+
+#
+#Neutral:Code=fort,"name=Казарма",i=35,j=1
+#Neutral:Code=fort,"name=Казарма",i=39,j=2
+#Neutral:Code=fort,"name=Казарма",i=40,j=8
+#Neutral:Code=fort,"name=Казарма",i=39,j=12
+
+Neutral:Code=flag,"name=Флаг",i=@Gate3X@,j=@Gate3Y@,targeted=true
+
+Neutral:Code=mount3,"name=Пики",i=30,j=0
+Neutral:Code=mount3,"name=Пики",i=30,j=1
+Neutral:Code=mount3,"name=Пики",i=30,j=2
+Neutral:Code=mount3,"name=Пики",i=30,j=3
+Neutral:Code=mount3,"name=Пики",i=30,j=4
+Neutral:Code=mount3,"name=Пики",i=30,j=5
+Neutral:Code=mount3,"name=Пики",i=31,j=7
+Neutral:Code=mount3,"name=Пики",i=31,j=8
+Neutral:Code=mount3,"name=Пики",i=32,j=9
+Neutral:Code=mount3,"name=Пики",i=32,j=10
+Neutral:Code=mount3,"name=Пики",i=33,j=10
+Neutral:Code=mount3,"name=Пики",i=34,j=11
+Neutral:Code=mount3,"name=Пики",i=34,j=12
+Neutral:Code=mount3,"name=Пики",i=36,j=13
+Neutral:Code=mount3,"name=Пики",i=37,j=13
+Neutral:Code=mount3,"name=Пики",i=38,j=13
+Neutral:Code=mount3,"name=Пики",i=38,j=14
+Neutral:Code=mount3,"name=Пики",i=39,j=14
+Neutral:Code=mount3,"name=Пики",i=40,j=14
+Neutral:Code=mount3,"name=Пики",i=41,j=14
+
+Monster:Code=barack,"Name=Казармы",i=35,j=1,tag=fort3,holdground=true,passive=true
+Monster:Code=barack,"Name=Казармы",i=39,j=2,tag=fort3,holdground=true,passive=true
+Monster:Code=barack,"Name=Казармы",i=40,j=8,tag=fort3,holdground=true,passive=true
+#Monster:Code=barack,"Name=Казармы",i=39,j=12,tag=fort3,holdground=true,passive=true
+#Monster:Code=bowltower,"Name=Башня лучников",i=31,j=1,tag=fort3,holdground=true,passive=true
+Monster:Code=bowltower,"Name=Башня лучников",i=31,j=3,tag=fort3,holdground=true,passive=true
+Monster:Code=bowltower,"Name=Башня лучников",i=31,j=5,tag=fort3,holdground=true,passive=true
+Monster:Code=bowltower,"Name=Башня лучников",i=32,j=7,tag=fort3,holdground=true,passive=true
+#Monster:Code=bowltower,"Name=Башня лучников",i=33,j=9,tag=fort3,holdground=true,passive=true
+Monster:Code=bowltower,"Name=Башня лучников",i=35,j=11,tag=fort3,holdground=true,passive=true
+Monster:Code=bowltower,"Name=Башня лучников",i=36,j=12,tag=fort3,holdground=true,passive=true
+Monster:Code=bowltower,"Name=Башня лучников",i=39,j=13,tag=fort3,holdground=true,passive=true
+#Monster:Code=bowltower,"Name=Башня лучников",i=41,j=13,tag=fort3,holdground=true,passive=true
+
+
+INITIAL
+Stone:0
+Food:100
+Task:Подойти Селестией ко всем трем крепостям
+AttackedDefeatString:Повозка каравана разрушена
+AssignAction:pony=luna,action=GuardPack1
+AssignAction:pony=celestia,action=GuardPack2
+Permits:action=allow,code=all
+Permits:action=deny,code=CutEmptySectorLuna
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=2,j=14,immediate=true
+Action:Type=Message,icon=celestia_ico,"text=Разведчики сообщают, что ущелье контролируют три крепости грифонов."
+Action:Type=Message,icon=luna_ico,"text=Давай подлетим к каждой и предложим мир. Если они будут на нашей стороне - проблема безопасности восточных гор решится раз и навсегда."
+Action:Type=Message,icon=celestia_ico,"text=Есть проблема - в этом ущелье сильные ветры, мы не можем безопасно летать."
+Action:Type=Message,icon=luna_ico,"text=Я еще не забыла заклинание телепортации, ты тоже."
+Action:Type=Message,icon=celestia_ico,"text=Тогда вперед. И не забудь фиал с зельем - единороги-целители сделали прекрасное средство для быстрого восстановления сил в бою."
+Action:Type=ShowBattleTask
+#Action:Type=SetFlag,FlagName=fort3reach
+#Action:Type=SetFlag,FlagName=fort2reach
+#Action:Type=SetFlag,FlagName=fort1reach
+
+SCRIPT      
+Event:Step=1
+Action:Type=SetVar,Name=runstep1,Initial=CurrentStep,Delta=1
+Action:Type=SetVar,Name=runstep2,Initial=CurrentStep,Delta=2
+Action:Type=SetVar,Name=runstep3,Initial=CurrentStep,Delta=3
+Action:Type=SetVar,Name=runstep4,Initial=CurrentStep,Delta=4
+Action:Type=SetVar,Name=runstep5,Initial=CurrentStep,Delta=5
+Action:Type=SetVar,Name=runstep6,Initial=CurrentStep,Delta=6
+Action:Type=SetVar,Name=runstep7,Initial=CurrentStep,Delta=7
+Action:Type=SetVar,Name=runstep8,Initial=CurrentStep,Delta=8
+Action:Type=SetFlag,FlagName=ponyvan
+
+SCRIPT      
+Event:StepVar=runstep1
+Event1:Flag=ponyvan
+Action:Type=NewObject,Object=Building,Code=ponyvan,"Name=Повозка",i=22,j=1,tag=ponyvan1,autofocus=true,mustsurvive=true
+Action:Type=NewObject,Object=Building,Code=ponyvan,"Name=Повозка",i=21,j=3,tag=ponyvan2,mustsurvive=true
+Action:Type=NewObject,Object=Building,Code=ponyvan,"Name=Повозка",i=20,j=5,tag=ponyvan3,mustsurvive=true
+
+SCRIPT      
+Event:Step=2
+Event1:Flag=ponyvan
+Action:Type=Message,icon=celestia_ico,"text=Луна, разве мы не должны были отменить торговые караваны на эти дни?"
+Action:Type=Message,icon=luna_ico,"text=Я думала, ты распорядилась об этом."
+Action:Type=Message,icon=celestia_ico,"text=Уже поздно. Придется одновременно вести переговоры и охранять проходящие караваны."
+Action:Type=SetBattleTask,code=protectcorovan,"Task=Не допустить уничтожения ни одной повозки караванов."
+Action:Type=ShowBattleTask
+
+SCRIPT      
+Event:StepVar=runstep2
+Event1:Flag=ponyvan
+Action:Type=MoveObject,method=tag,Tag=ponyvan3,dst_i=21,dst_j=10
+Action:Type=MoveObject,method=tag,Tag=ponyvan2,dst_i=21,dst_j=8
+Action:Type=MoveObject,method=tag,Tag=ponyvan1,dst_i=20,dst_j=6
+#Action:Type=NewObject,Object=Monster,Code=bat,"Name=Нетопырь",i=28,j=3
+
+SCRIPT      
+Event:StepVar=runstep3
+Event1:Flag=ponyvan
+Action:Type=MoveObject,method=tag,Tag=ponyvan3,dst_i=22,dst_j=15
+Action:Type=MoveObject,method=tag,Tag=ponyvan2,dst_i=22,dst_j=13
+Action:Type=MoveObject,method=tag,Tag=ponyvan1,dst_i=21,dst_j=11
+
+SCRIPT      
+Event:StepVar=runstep4
+Event1:Flag=ponyvan
+Action:Type=MoveObject,method=tag,Tag=ponyvan3,dst_i=21,dst_j=20
+Action:Type=MoveObject,method=tag,Tag=ponyvan2,dst_i=20,dst_j=18
+Action:Type=MoveObject,method=tag,Tag=ponyvan1,dst_i=21,dst_j=16
+
+SCRIPT      
+Event:StepVar=runstep5
+Event1:Flag=ponyvan
+Action:Type=MoveObject,method=tag,Tag=ponyvan3,dst_i=24,dst_j=24
+Action:Type=MoveObject,method=tag,Tag=ponyvan2,dst_i=23,dst_j=22
+Action:Type=MoveObject,method=tag,Tag=ponyvan1,dst_i=22,dst_j=20
+
+SCRIPT      
+Event:StepVar=runstep6
+Event1:Flag=ponyvan
+Action:Type=MoveObject,method=tag,Tag=ponyvan3,dst_i=28,dst_j=26
+Action:Type=MoveObject,method=tag,Tag=ponyvan2,dst_i=27,dst_j=25
+Action:Type=MoveObject,method=tag,Tag=ponyvan1,dst_i=25,dst_j=24
+
+SCRIPT      
+Event:StepVar=runstep7
+Event1:Flag=ponyvan
+Action:Type=MoveObject,method=tag,Tag=ponyvan3,dst_i=32,dst_j=29
+Action:Type=MoveObject,method=tag,Tag=ponyvan2,dst_i=30,dst_j=28
+Action:Type=MoveObject,method=tag,Tag=ponyvan1,dst_i=29,dst_j=27
+
+SCRIPT      
+Event:StepVar=runstep8
+Event1:Flag=ponyvan
+Action:Type=MoveObject,method=tag,Tag=ponyvan3,dst_i=36,dst_j=30
+Action:Type=RemoveObject,method=tag,Tag=ponyvan3
+Action:Type=MoveObject,method=tag,Tag=ponyvan2,dst_i=34,dst_j=30
+Action:Type=RemoveObject,method=tag,Tag=ponyvan2
+Action:Type=MoveObject,method=tag,Tag=ponyvan1,dst_i=33,dst_j=29
+Action:Type=RemoveObject,method=tag,Tag=ponyvan1
+Action:Type=SetVar,Name=runstep1,Initial=CurrentStep,Delta=6
+Action:Type=SetVar,Name=runstep2,Initial=CurrentStep,Delta=7
+Action:Type=SetVar,Name=runstep3,Initial=CurrentStep,Delta=8
+Action:Type=SetVar,Name=runstep4,Initial=CurrentStep,Delta=9
+Action:Type=SetVar,Name=runstep5,Initial=CurrentStep,Delta=10
+Action:Type=SetVar,Name=runstep6,Initial=CurrentStep,Delta=11
+Action:Type=SetVar,Name=runstep7,Initial=CurrentStep,Delta=12
+Action:Type=SetVar,Name=runstep8,Initial=CurrentStep,Delta=13
+
+
+SCRIPT      
+Event:Step=9
+Action:Type=Message,icon=celestia_ico,"text=Первый караван прошёл успешно. Думаю, нам придется сопровождать все до единого."
+
+# Атаки на караван
+
+# 1
+SCRIPT
+Event:Step=3
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",count=2,radius=1,i=@Wave1X@,j=@Wave1Y@
+
+# 2
+SCRIPT
+Event:Step=17
+Action:Type=NewObjectGroup,Object=Monster,Code=woodwolf,"Name=Древесный волк",count=3,radius=1,i=@Wave2X@,j=@Wave2Y@
+
+SCRIPT
+Event:Step=19
+Action:Type=NewObjectGroup,Object=Monster,Code=tiger,"Name=Тигр",count=2,radius=1,i=@Wave4X@,j=@Wave4Y@
+
+# 3
+SCRIPT
+Event:Step=29
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",count=3,radius=1,i=@Wave1X@,j=@Wave1Y@
+
+SCRIPT
+Event:Step=31
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Горный тролль",count=2,radius=1,i=@Wave3X@,j=@Wave3Y@
+
+SCRIPT
+Event:Step=33
+Action:Type=NewObjectGroup,Object=Monster,Code=batgreat,"Name=Гигантский нетопырь",count=1,radius=1,i=@Wave5X@,j=@Wave5Y@
+
+# 4
+SCRIPT
+Event:Step=43
+Action:Type=NewObjectGroup,Object=Monster,Code=woodwolf,"Name=Древесный волк",count=3,radius=1,i=@Wave2X@,j=@Wave2Y@
+
+SCRIPT
+Event:Step=44
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Горный тролль",count=3,radius=1,i=@Wave3X@,j=@Wave3Y@
+
+SCRIPT
+Event:Step=45
+Action:Type=NewObjectGroup,Object=Monster,Code=tiger,"Name=Тигр",count=3,radius=1,i=@Wave4X@,j=@Wave4Y@
+
+SCRIPT
+Event:Step=46
+Action:Type=NewObjectGroup,Object=Monster,Code=batgreat,"Name=Гигантский нетопырь",count=2,radius=1,i=@Wave5X@,j=@Wave5Y@
+
+# 5
+SCRIPT
+Event:Step=55
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",count=4,radius=1,i=@Wave1X@,j=@Wave1Y@
+
+SCRIPT
+Event:Step=56
+Action:Type=NewObjectGroup,Object=Monster,Code=woodwolf,"Name=Древесный волк",count=4,radius=1,i=@Wave2X@,j=@Wave2Y@
+
+SCRIPT
+Event:Step=57
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Горный тролль",count=3,radius=1,i=@Wave3X@,j=@Wave3Y@
+
+SCRIPT
+Event:Step=58
+Action:Type=NewObjectGroup,Object=Monster,Code=tiger,"Name=Тигр",count=3,radius=1,i=@Wave4X@,j=@Wave4Y@
+
+SCRIPT
+Event:Step=59
+Action:Type=NewObjectGroup,Object=Monster,Code=batgreat,"Name=Гигантский нетопырь",count=2,radius=1,i=@Wave5X@,j=@Wave5Y@
+
+# Конец скриптов караванов
+
+# Скрипты первой крепости
+
+SCRIPT
+Event:ObjectPos=True,i=@Gate1X@,j=@Gate1Y@,IncludeLinked=true,Object=celestia
+Action:Type=Message,icon=celestia_ico,"text=Приветствую вас, смелые грифоны. Мы пришли с миром и..."
+Action:Type=Message,icon=grifon1_ico,"text=Я знаю о вас, Принцесса Селестия. В молодости, я дружил с некоторыми пегасами, не так давно мне рассказали про новых правителей Эквестрии. Вам нужна помощь в охране восточных гор?"
+Action:Type=Message,icon=celestia_ico,"text=О да, никто не справится с этим лучше быстрых и сильных грифонов."
+Action:Type=Message,icon=grifon1_ico,"text=Мы готовы дружить с вами и сделаем всё, что нужно... за пару бочек продовольствия."
+Action:Type=Message,icon=luna_ico,"text=Почему я не удивлена?"
+Action:Type=Message,icon=celestia_ico,"text=Значит, договорились. Мы вернемся к вам, как только соберем нужное количество еды."
+Action:Type=Message,icon=luna_ico,"text=Нам стоит приглядывать за лагерем. Если будут разрушены фермы или палатки для рабочих - добыча еды остановится."
+Action:Type=SetBattleTask,code=fort1task,"Task=Первая крепость - собрать @FoodNeed@ единиц еды и вернуться к воротам."
+Action:Type=ShowBattleTask
+Action:Type=SetFlag,FlagName=fort1reach
+Action:Type=MoveObject,method=tag,Tag=cel,dst_i=10,dst_j=11,immediate=true
+
+SCRIPT
+Event:FoodReach=@FoodNeed@
+Event1:ObjectPos=True,i=@Gate1X@,j=@Gate1Y@,IncludeLinked=true,Object=celestia
+Event2:Flag=fort1reach
+Action:Type=ClearTarget,i=@Gate1X@,j=@Gate1Y@
+Action:Type=Message,icon=celestia_ico,"text=Здесь всё, что вам нужно."
+Action:Type=Message,icon=grifon1_ico,"text=Грифоны моей крепости - ваши верные союзники, Принцесса Селестия!"
+Action:Type=SetFlag,FlagName=fort1
+Action:Type=CompBattleTask,code=fort1task
+Action:Type=DecFood,Delta=@FoodNeed@
+
+# Скрипты второй крепости
+SCRIPT
+Event:ObjectPos=True,i=@Gate2X@,j=@Gate2Y@,IncludeLinked=true,Object=celestia
+Action:Type=ClearTarget,i=@Gate2X@,j=@Gate2Y@
+Action:Type=Message,icon=celestia_ico,"text=Доброго дня, могучие воины. От имени..."
+Action:Type=Message,icon=grifon_chief_ico,"text=Ближе к делу, пони. Я боец, а не болтун. Чего нужно?"
+Action:Type=Message,icon=celestia_ico,"text=Мы хотим предложить вам дружбу и просим охранять для нас восточные горные границы нашей страны за цену, которую вы сами назначите."
+Action:Type=Message,icon=grifon_chief_ico,"text=С чего это вдруг? Пони слабые и жалкие, мы дружим только с сильными. Иные грифоны за крошку золота продадут родную гору - но только не я, Бронзовое Крыло, комендант цитадели Пика Черного Когтя!"
+Action:Type=Message,icon=luna_ico,"text=Сестра, разреши мне обрушить на них гнев звезд и..."
+Action:Type=Message,icon=celestia_ico,"text=Подожди, Луна. Бронзовое Крыло, я Принцесса Селестия, повелительница Солнца. А это моя сестра, Принцесса Луна, повелительница Ночи. Мы правители Эквестрии, вызываем тебя на поединок за право управлять крепостью Пика Черного Когтя!"
+Action:Type=Message,icon=grifon_chief_ico,"text=Вызов принят, пони. Я жду вас."
+Action:Type=NewObject,Object=Monster,Code=grifon_chief,"Name=Бронзовое Крыло",i=15,j=28,tag=chief,autofocus=true,holdground=true
+Action:Type=RemoveObject,i=@Gate2X@,j=@Gate2Y@
+Action:Type=SetBattleTask,Code=fort2task,"Task=Вторая крепость - победить вождя Бронзовое Крыло."
+Action:Type=ShowBattleTask
+Action:Type=SetFlag,FlagName=fort2reach
+
+SCRIPT
+Event:TagCount=0,TagName=chief
+Event1:Flag=fort2reach
+Action:Type=Message,icon=grifon_chief_ico,"text=За три десятка лет я не встречал более достойного противника. Крепость ваша, Принцесса Селестия."
+Action:Type=Message,icon=celestia_ico,"text=Я возвращаю крепость под твоё управление - никто лучше тебя не сумеет командовать гарнизоном. Но с сегодняшнего дня охрана ущелий - ваша обязанность."
+Action:Type=Message,icon=grifon_chief_ico,"text=Вы столь же благородны, сколь и сильны. Сочту за честь служить вам!"
+Action:Type=CompBattleTask,code=fort2task
+Action:Type=SetFlag,FlagName=fort2
+
+# Скрипты третьей крепости
+SCRIPT
+Event:ObjectPos=True,i=@Gate3X@,j=@Gate3Y@,IncludeLinked=true,Object=celestia
+Action:Type=ClearTarget,i=@Gate3X@,j=@Gate3Y@
+Action:Type=Message,icon=celestia_ico,"text=Рада встрече, славные грифоны. Я Принцесса..."
+Action:Type=Message,icon=grifon_enemy_ico,"text=А я грифон, и приказываю вам убраться из моего ущелья и моих гор."
+Action:Type=Message,icon=celestia_ico,"text=Мы просто хотели предложить..."
+Action:Type=Message,icon=grifon_enemy_ico,"text=Слушай меня, четвероногое. Если вы придете сюда по одному - я вываляю вас в песке и спущу с горного склона, а если толпой - у моих парней будет свежий ужин. Это моя крепость, мои горы и здесь не будет никого, кроме нас!"
+Action:Type=Message,icon=celestia_ico,"text=Луна?"
+Action:Type=Message,icon=luna_ico,"text=Да, сестра?"
+Action:Type=Message,icon=celestia_ico,"text=Ты вроде хотела чего-то там обрушить? Думаю, самое время."
+Action:Type=Message,icon=luna_ico,"text=О да! Да!"
+Action:Type=SetBattleTask,Code=fort3task,"Task=Третья крепость - сровнять её с землей."
+Action:Type=ShowBattleTask
+Action:Type=SetFlag,FlagName=fort3reach
+
+SCRIPT
+Event:TagCount=8,TagName=fort3
+#Event1:Flag=fort3reach
+Action:Type=SetFlag,FlagName=fort_begin_destroy
+SCRIPT
+Event:TagCount=7,TagName=fort3
+#Event1:Flag=fort3reach
+Action:Type=SetFlag,FlagName=fort_begin_destroy
+SCRIPT
+Event:TagCount=6,TagName=fort3
+#Event1:Flag=fort3reach
+Action:Type=SetFlag,FlagName=fort_begin_destroy
+SCRIPT
+Event:TagCount=5,TagName=fort3
+#Event1:Flag=fort3reach
+Action:Type=SetFlag,FlagName=fort_begin_destroy
+SCRIPT
+Event:TagCount=4,TagName=fort3
+#Event1:Flag=fort3reach
+Action:Type=SetFlag,FlagName=fort_begin_destroy
+SCRIPT
+Event:TagCount=3,TagName=fort3
+#Event1:Flag=fort3reach
+Action:Type=SetFlag,FlagName=fort_begin_destroy
+
+SCRIPT
+Event:Flag=fort_begin_destroy
+Action:Type=Message,icon=grifon_enemy_ico,"text=Пони разрушают нашу крепость! В атаку!"
+Action:Type=SetFlag,FlagName=firefort3
+
+SCRIPT
+Event:StepModN=3
+Event1:Flag=firefort3
+Action:Type=NewObjectGroup,Object=Monster,Code=grifon,"Name=Грифон",i=36,j=6,count=1,radius=2
+
+SCRIPT
+Event:TagCount=0,TagName=fort3
+Event1:Flag=fort3reach
+Action:Type=Message,icon=luna_ico,"text=Крепость строптивых грифонов разрушена!"
+Action:Type=CompBattleTask,Code=fort3task
+Action:Type=ClearFlag,FlagName=firefort3
+Action:Type=SetFlag,FlagName=fort3
+
+# Скрипт обхода всех крепостей
+SCRIPT
+Event:Flag=fort1reach
+Event1:Flag=fort2reach
+Event2:Flag=fort3reach
+Action:Type=CompBattleTask,code=initial
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=celestia_ico,"text=Мы здесь завершили. Теперь за порядком будут следить грифоны. Сворачиваем лагерь и возвращаемся домой."
+
+VICTORY
+ByFlag:FlagName=fort1
+->ByFlag:FlagName=fort2,AddType=And
+->ByFlag:FlagName=fort3,AddType=And

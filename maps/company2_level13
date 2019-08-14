@@ -1,0 +1,175 @@
+Бонус: Копи царя Зеброна
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+1111111CC11111111111111111111111
+11111111C1111CC11CC11C11111111111
+1111111CC1111CC11C11CC1111111111
+1111111CCC111CC11CC11C11111CC1111
+1111111CC1111C111C11C11111CCC111
+1CC1111CCC11CCC1CCCCCC11CCCCCC111
+1CCCCCC1CCCCCCCCCCCCCCCCCCCCC111
+1CC1111CC1CCC1CCC1CCCCCCC1CCCC111
+111CCCC1CC1CC1CC1CCC1CCC1CCCC111
+111CCCCCCCCCC1CCC1CCC1CCC1CCCC111
+11CCCCC1CC1CCCCC1CCC1CCC1CCCC111
+1111111CC1CCCCCCCCCCCCCCCCCCCC111
+1CC111C1CCC11CCCCCCCCCCCCCCCC111
+1CCCCCCCCCC1111111111111111CC1111
+1C1111CCCC1111111111111111111111
+111111111111111111111111111111111
+#===MAPEND===
+
+CONSTANTS
+Enemy_I:1
+Treas1_I:1
+Treas1_J:6
+Treas2_I:4
+Treas2_J:9
+Treas3_I:2
+Treas3_J:13
+Treas4_I:13
+Treas4_J:2
+Treas5_I:18
+Treas5_J:1
+Treas6_I:21
+Treas6_J:1
+FireAttackStep:20
+
+OBJECTS
+Pony:i=8,j=3,"name=Рарити",code=rarity
+Monster:Code=stonewar,"Name=Боевой голем",i=27,j=4,holdground=true
+Monster:Code=stonewar,"Name=Боевой голем",i=28,j=5,holdground=true
+Monster:Code=stonewar,"Name=Боевой голем",i=27,j=6,holdground=true
+Monster:Code=stonewar,"Name=Боевой голем",i=28,j=7,holdground=true
+Monster:Code=stonewar,"Name=Боевой голем",i=27,j=8,holdground=true
+Monster:Code=stonewar,"Name=Боевой голем",i=28,j=9,holdground=true
+Monster:Code=stonewar,"Name=Боевой голем",i=27,j=10,holdground=true
+Monster:Code=stonewar,"Name=Боевой голем",i=28,j=11,holdground=true
+Monster:Code=stonewar,"Name=Боевой голем",i=27,j=12,holdground=true
+Neutral:Code=treas1,"Name=Самоцвет",i=@Treas1_I@,j=@Treas1_J@
+Neutral:Code=treas2,"Name=Самоцвет",i=@Treas2_I@,j=@Treas2_J@
+Neutral:Code=treas3,"Name=Самоцвет",i=@Treas3_I@,j=@Treas3_J@
+Neutral:Code=treas4,"Name=Самоцвет",i=@Treas4_I@,j=@Treas4_J@
+Neutral:Code=treas5,"Name=Самоцвет",i=@Treas5_I@,j=@Treas5_J@
+Neutral:Code=treas6,"Name=Самоцвет",i=@Treas6_I@,j=@Treas6_J@
+
+INITIAL
+Stone:0
+Food:300
+Task:Собрать все драгоценности в пещере
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=MineForest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+#Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Heal
+Permits:action=allow,code=Restore
+Permits:action=allow,code=CutEmptySector
+Permits:action=allow,code=BuildTreeShield
+#Permits:action=allow,code=BuildFarmStone
+Permits:action=allow,code=BuildCrystalTowerBig
+Permits:action=allow,code=BuildCrystalTowerSmall
+Permits:action=allow,code=NightmareCall
+Permits:action=allow,code=BuildCrystalTowerDark
+Permits:action=allow,code=DarkTriden
+Permits:action=allow,code=CrystallRain
+#Permits:action=allow,code=FrostAttack
+Permits:action=allow,code=SuperHealthAJ
+Permits:action=allow,code=SuperPowerPinki
+Permits:action=allow,code=BearSplash
+Permits:action=allow,code=SummoneBear
+Permits:action=allow,code=PrincessKiss
+Permits:action=allow,code=DeathKick
+Permits:action=allow,code=DeathRainbow
+Permits:action=allow,code=BuildForceTower
+Permits:action=allow,code=BuildHealTower
+Permits:action=allow,code=BuildMirage
+Permits:action=allow,code=IntRelax
+Permits:action=allow,code=SleepStar
+Permits:action=allow,code=FlatterView
+Permits:action=allow,code=ForceShield
+Permits:action=allow,code=ForceShieldNR
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=3,j=3,immediate=true
+Action:Type=Message,icon=rarity_ico,"text=В этих пещерах столько заброшенных сокровищ... изумруды, рубины, сапфиры. Просто нельзя оставлять всю эту красоту под землей. Рарити, твой долг - добыть эти камни."
+Action:Type=ShowBattleTask
+Action:Type=SetFocus,i=27,j=7
+Action:Type=Message,icon=stonewar_ico,"text=Сокровища царей останутся под землей! Ты останешься под землей!"
+Action:Type=Message,icon=rarity_ico,"text=Это моя добыча! Никто не встанет между мною и драгоценностями! Прочь, каменные истуканы, или сотру вас в гальку!"
+Action:Type=Message,icon=stonewar_ico,"text=Мы уничтожим тебя... как только соберем силы."
+Action:Type=Message,icon=rarity_ico,"text=Я подготовлю для вас сюрпризы, скучно не будет."
+Action:Type=SetBattleTask,"Task=Собрать драгоценности и уничтожить големов-охранников. "
+Action:Type=ShowBattleTask
+
+SCRIPT      
+Event:Step=1
+Action:Type=Message,icon=rarity_ico,"text=В этих пещерах так жарко, что заклинания заморозки бесполезны. И камня, чтобы сделать башни, тоже нет. Попробую добыть камень из стен, как земнопони? Все жё, мне не придется работать копытами - осталось только придумать подходящее заклинание."
+Action:Type=Message,icon=help_ico,"text=Специальное заклинание Рарити - добыча камня из стен, работает по площади."
+Action:Type=SetPermits,action=allow,code=RaritySuperMineStone
+
+SCRIPT
+Event:Step=@FireAttackStep@
+Action:Type=FireTotalAttack
+
+SCRIPT
+Event:ObjectPos=True,i=@Treas1_I@,j=@Treas1_J@,IncludeLinked=true,"Object=rarity,nrarity"
+Action:Type=Message,icon=rarity_ico,"text=Драгоценные камни. Люблю драгоценные камни."
+Action:Type=RemoveObject,i=@Treas1_I@,j=@Treas1_J@
+Action:Type=SetFlag,FlagName=treas1
+
+SCRIPT
+Event:ObjectPos=True,i=@Treas2_I@,j=@Treas2_J@,IncludeLinked=true,"Object=rarity,nrarity"
+Action:Type=Message,icon=rarity_ico,"text=Что за прекрасный образец! Моё!"
+Action:Type=RemoveObject,i=@Treas2_I@,j=@Treas2_J@
+Action:Type=SetFlag,FlagName=treas2
+
+SCRIPT
+Event:ObjectPos=True,i=@Treas3_I@,j=@Treas3_J@,IncludeLinked=true,"Object=rarity,nrarity"
+Action:Type=Message,icon=rarity_ico,"text=Да здесь просто кладезь сокровищ!"
+Action:Type=RemoveObject,i=@Treas3_I@,j=@Treas3_J@
+Action:Type=SetFlag,FlagName=treas3
+
+SCRIPT
+Event:ObjectPos=True,i=@Treas4_I@,j=@Treas4_J@,IncludeLinked=true,"Object=rarity,nrarity"
+Action:Type=Message,icon=rarity_ico,"text=Как же я вас обожаю, яркие и блестящие!"
+Action:Type=RemoveObject,i=@Treas4_I@,j=@Treas4_J@
+Action:Type=SetFlag,FlagName=treas4
+
+SCRIPT
+Event:ObjectPos=True,i=@Treas5_I@,j=@Treas5_J@,IncludeLinked=true,"Object=rarity,nrarity"
+Action:Type=Message,icon=rarity_ico,"text=Еще один камушек, ура!"
+Action:Type=RemoveObject,i=@Treas5_I@,j=@Treas5_J@
+Action:Type=SetFlag,FlagName=treas5
+
+SCRIPT
+Event:ObjectPos=True,i=@Treas6_I@,j=@Treas6_J@,IncludeLinked=true,"Object=rarity,nrarity"
+Action:Type=Message,icon=rarity_ico,"text=Прелесть!"
+Action:Type=RemoveObject,i=@Treas6_I@,j=@Treas6_J@
+Action:Type=SetFlag,FlagName=treas6
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=rarity_ico,"text=Все-таки я великолепна, что есть, того не отнять!"
+ 
+VICTORY
+ByFlag:FlagName=treas1
+->ByFlag:FlagName=treas2,AddType=And
+->ByFlag:FlagName=treas3,AddType=And
+->ByFlag:FlagName=treas4,AddType=And
+->ByFlag:FlagName=treas5,AddType=And
+->ByFlag:FlagName=treas6,AddType=And
+->ByNoMonsterLeft:null,AddType=And

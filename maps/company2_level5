@@ -1,0 +1,183 @@
+Руины королей
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+LLLLFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFQAAQLL1CCCCCC
+LLLLLFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFQAAQTLLCCCCCCC
+LLLLLLFFFFFFFFFFLLLLLLFFFFFFFFFFFFFFFFFFQAQTLLL1CCCCC
+LLLLLLFFFFFFFFFLLWWWWWLFFFFLFFFFFFFFFFFFQAAQLLLL1CCCCC
+LLLLLLLFFFFFFFFWWLFFLWLFFLLLLFFFFFFFFFFQAAQLLLLL1CCCC
+LLLLLLLLFFFFFFFWLFFFFLWLFFWWWLFFFFFFFFFFQAQTLLLLL1CCCC
+LLLLLLLLLFFFLWWFFFFFFLWFFWLLWLFFFFFFFFFQAAQLLLLLL1CCC
+LLLLLLLLLLFFLWLFFFFFFFLWWWLFLWLFFFFFFFFFQAAQLLLLLL1111
+LLLLLLLLLLLLWFFFFFFFFFLLLLFFLWLLLFFFFFFFQAQTLLLLLTTTT
+LLLLLLLLLLLLWFFFFFFFFFFFFFFFFLWWLLFFFFFFQQQTLLLLLTLLLL
+LLLLLLLWWWWWLFFFFFFFFFFFFFFFFFFWWLFFFFLWWWWWWLLLTLLLL
+WWWWWWWWLLLLLFFFFFFFFFFFFFFFFFFFFWLLLFLWQQQTLLLLTLLLLL
+LLLLLLLLLLLFFFFFFFFFFFFFFFFFFFFFFWWWWWWQAAQLLLLLLLLLL
+LLLLLLLLLLLLFFFFFFFFFFFFFFFFFFFFFFFFFLLQAAQLLLLLLLLLLL
+#===MAPEND===
+
+CONSTANTS
+Enter_I:51
+Enter_J:5
+Rage_I:36 
+Rage_J:8 
+Health_I:24
+Health_J:2
+Force_I:20
+Force_J:11
+Enemy1_I:4
+Enemy1_J:6
+Enemy2_I:22
+Enemy2_J:3
+Enemy3_I:30
+Enemy3_j:11
+Enemy4_I:51
+Enemy4_j:11
+
+OBJECTS
+Pony:i=2,j=10,"name=Рарити",code=rarity
+Pony:i=1,j=8,"name=Эпплджек",code=applejack
+Pony:i=2,j=9,"name=Рейнбоу Дэш",code=rainbow
+Pony:i=1,j=7,"name=Твайлайт",code=twily
+Pony:i=2,j=11,"name=Пинки Пай",code=pinki
+Pony:i=1,j=12,"name=Флаттершай",code=flatter
+Neutral:i=@Enter_I@,j=@Enter_J@,"name=Вход в подземелье",Code=dungeon_enter,targeted=true
+Neutral:Code=obelisk,"Name=Обелиск ярости",i=@Rage_I@,j=@Rage_J@,targeted=true
+Neutral:Code=obelisk,"Name=Обелиск силы",i=@Force_I@,j=@Force_J@,targeted=true
+Neutral:Code=obelisk,"Name=Обелиск жизни",i=@Health_I@,j=@Health_J@,targeted=true
+
+INITIAL
+Food:1000
+Task:Привести всех пони ко входу в подземелье
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Heal
+Permits:action=allow,code=Restore
+Permits:action=allow,code=CutEmptySector
+Permits:action=allow,code=BuildTreeShield
+Permits:action=allow,code=BuildFarmStone
+Permits:action=allow,code=BuildCrystalTower
+Permits:action=allow,code=FlatterView
+Permits:action=allow,code=ForceShield
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=3,j=12,immediate=true
+Action:Type=Message,icon=twily_ico,"text=Итак, наша цель - библиотека. По словам Дискорда, она спрятана в подземелье."
+Action:Type=Message,icon=rainbow_ico,"text=Я не думаю, что это будет легкая прогулка. Вокруг долины гвардия очищает местность, но здесь..."
+Action:Type=Message,icon=applejack_ico,"text=Просто сделаем это."
+Action:Type=ShowBattleTask
+
+SCRIPT      
+Event:Step=1
+Action:Type=SetFocus,i=@Force_I@,j=@Force_J@
+Action:Type=Sleep,ms=1000
+Action:Type=SetFocus,i=@Health_I@,j=@Health_J@
+Action:Type=Sleep,ms=1000
+Action:Type=SetFocus,i=@Rage_I@,j=@Rage_J@
+Action:Type=Sleep,ms=1000
+Action:Type=Message,icon=twily_ico,"text=Не может быть! Похоже, защитные системы замка до сих пор исправны и заряжены энергией!"
+Action:Type=Message,icon=applejack_ico,"text=Да, наверно, древние единороги умели делать на века."
+Action:Type=Message,icon=rainbow_ico,"text=И как эти штуки нам помогут?"
+Action:Type=Message,icon=twily_ico,"text=Мне бы только добраться до них, а там вы увидите, на что были способны наши предки!"
+Action:Type=Message,icon=help_ico,"text=Подсказка: приведя Твайлайт к обелискам, можно активировать защитные системы."
+
+# Monster
+
+SCRIPT      
+Event:StepModN=5
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@Enemy1_I@,j=@Enemy1_J@,count=4,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@Enemy1_I@,j=@Enemy1_J@,count=3,radius=3
+
+SCRIPT      
+Event:StepModN=6
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=@Enemy2_I@,j=@Enemy2_J@,count=2,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=poison,"Name=Ядовитый шар",i=@Enemy2_I@,j=@Enemy2_J@,count=1,radius=3
+
+SCRIPT      
+Event:StepModN=7
+Action:Type=NewObjectGroup,Object=MonsterTwist,Code=twist,"Name=Смерч",i=@Enemy3_I@,j=@Enemy3_J@,count=1,radius=3
+Action:Type=NewObjectGroup,Object=MonsterTent,Code=tent,"Name=Зеленый ужас",i=@Enemy3_I@,j=@Enemy3_J@,count=1,radius=3
+
+SCRIPT      
+Event:StepModN=8
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@Enemy4_I@,j=@Enemy4_J@,count=2,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=gidra,"Name=Гидра",i=@Enemy4_I@,j=@Enemy4_J@,count=1,radius=3
+
+# Obelisk
+
+SCRIPT
+Event:ObjectPos=True,i=@Rage_I@,j=@Rage_J@,IncludeLinked=true,Object=twily
+Action:Type=ExecProc,ProcName=damage_all
+Action:Type=Message,icon=twily_ico,"text=Невероятная мощь! Урон по всем врагам в округе!"
+Action:Type=ClearTarget,i=@Rage_I@,j=@Rage_J@
+# Очистка выделения
+
+SCRIPT
+Event:ObjectPos=True,i=@Health_I@,j=@Health_J@,IncludeLinked=true,Object=twily
+Action:Type=ExecProc,ProcName=heal_all
+Action:Type=Message,icon=twily_ico,"text=Если кто ранен - забудьте про это. Магия излечения все исправила."
+Action:Type=ClearTarget,i=@Health_I@,j=@Health_J@
+# Очистка выделения
+
+SCRIPT
+Event:ObjectPos=True,i=@Force_I@,j=@Force_J@,IncludeLinked=true,Object=twily
+Action:Type=ExecProc,ProcName=force_all
+Action:Type=Message,icon=twily_ico,"text=Девочки, наши силы полностью восстановлены. Это очень кстати."
+Action:Type=ClearTarget,i=@Force_I@,j=@Force_J@
+
+# Очистка выделения
+
+# Target
+
+SCRIPT
+Event:ObjectPos=True,i=@Enter_I@,j=@Enter_J@,IncludeLinked=true,Object=twily
+Action:Type=SetFlag,FlagName=twily_ready
+
+SCRIPT
+Event:ObjectPos=True,i=@Enter_I@,j=@Enter_J@,IncludeLinked=true,Object=rarity
+Action:Type=SetFlag,FlagName=rarity_ready
+
+SCRIPT
+Event:ObjectPos=True,i=@Enter_I@,j=@Enter_J@,IncludeLinked=true,Object=flatter
+Action:Type=SetFlag,FlagName=flatter_ready
+
+SCRIPT
+Event:ObjectPos=True,i=@Enter_I@,j=@Enter_J@,IncludeLinked=true,Object=pinki
+Action:Type=SetFlag,FlagName=pinki_ready
+
+SCRIPT
+Event:ObjectPos=True,i=@Enter_I@,j=@Enter_J@,IncludeLinked=true,Object=applejack
+Action:Type=SetFlag,FlagName=applejack_ready
+
+SCRIPT
+Event:ObjectPos=True,i=@Enter_I@,j=@Enter_J@,IncludeLinked=true,Object=rainbow
+Action:Type=SetFlag,FlagName=rainbow_ready
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=twily_ico,"text=Мы на месте. Если Дискорд не обманул, то здесь ==>
+хранится множество книг и архивов. Будем искать."
+
+VICTORY
+ByFlag:FlagName=rarity_ready
+->ByFlag:FlagName=twily_ready,AddType=And
+->ByFlag:FlagName=applejack_ready,AddType=And
+->ByFlag:FlagName=pinki_ready,AddType=And
+->ByFlag:FlagName=flatter_ready,AddType=And
+->ByFlag:FlagName=rainbow_ready,AddType=And

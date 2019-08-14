@@ -1,0 +1,69 @@
+Эпилог
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+NOMAP
+true
+
+NONUMBER
+true
+
+MAP
+MMMMMMMMMMMMMMMAMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMAMMMMMMMMMMMMMMMM
+MMMMFFFMMMFFFFFAMMFFFFMMFFFMMMM
+MMMFFFFFFFFFFFFAFFFFFFFFFFFFFMMM
+MMFFFFFFFFFFFFFAFFFFFFFFFFFFMMM
+MMFFFFLLLLLLFFFALLFFLLFFFFFFMMMM
+MMFFFLLLLLLLLLALLLLLLLLLFFFFMMM
+MMMFFLLLLLLLLLLALLLLLLLLLLFFFMMM
+MMFFFLLLLLLLLLALLLLLLLLLLLFFMMM
+MMMFFFLLLLLLLLALLLAALLLLLLFFFFMM
+MMMFFLLLLLLLLAALLAAAALLLLLFFFMM
+MMMFFFLLLLLLLLAAAAAAAALLLLLFFFMM
+MMFFFLLLLLLLLLAAAAAAALLLLLLFFMM
+MMFFFLLLLLLLLLLLLLLAALLLLLLFFFMM
+MMFFLLLLLLLLLLLLLLLLLLLLLLLFFMM
+MMFFFLLLLLLLLLLLLLLLLLLLLLFFFFMM
+MMFFFFLLLLLLLLLLLLLFFFFFFFFFFMM
+MMMFFFFFFLLLLFFFFFFFFFFFFFFFFMMM
+MMMFFFFFFFFFFFFFFFFFMMFFFFFFFMM
+MMMMFFMMFFFFFFFFFFFMMMMMFFFMMMMM
+MMMMMMMMMMFFFFFMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+#===MAPEND===
+
+# Раздел константы должен идти в самом начале
+CONSTANTS
+
+OBJECTS
+
+INITIAL
+Stone:0
+Food:0
+Task:Неопределено
+AttackedDefeatString:
+EmptyManager:10,10,10,10,10,10
+Permits:action=deny,code=all
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Heal
+Permits:action=allow,code=Restore
+Permits:action=allow,code=CutEmptySector
+Permits:action=allow,code=BuildTreeShield
+Permits:action=allow,code=BuildFarmStone
+Permits:action=allow,code=BuildCrystalTower
+
+VICTORY
+ByStep:StepNeed=1000
+

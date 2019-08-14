@@ -1,0 +1,106 @@
+Эпилог: Разделенная земля
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+NONUMBER
+true
+
+MAP
+4444444444444444444444444444444
+44444444444444444444444444444444
+4444444444444444444444444444444
+44444444444444444444444444444444
+4444444444444444444444444444444
+44444444444444444444444444444444
+4444444444444444444444444444444
+44444444444442222444444444444444
+44444444444442LL244444444444444
+44444LL4444442L22444444444444444
+LL4444LLL4444LL2444444444444444
+LLLLLLLLLL4LLLQQ444FFF4444444444
+LLLLLLLLLLLLQQAQFFFFFMMMM444444
+LLLLLLLLLLLLQAAAFFAAAMMMMMMM4444
+LLLLLLLLLLLLQQAAAAFFAAAMMMMMMMM
+LLLLLLLLLLLLLLQQFFFFMMMAAAMMMMMM
+LLLLLLLLLLLLLLLFFFFMMMMMMAAMMMM
+LLLLLLLLLLLLLLLLFFFFMMMMMMMMMMMM
+#===MAPEND===
+
+# Раздел константы должен идти в самом начале
+CONSTANTS
+
+OBJECTS
+Pony:i=5,j=13,"name=Твайлайт",code=twily
+Neutral:i=7,j=14,"name=Рарити",code=rarity
+#===OBJECTSEND===
+
+INITIAL
+Stone:0
+Food:100
+EmptyManager:0,0,0,0,0,0
+#EmptyManager:0,0,0,0,0,0
+Task:Страдать@Размышлять
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Heal
+Permits:action=allow,code=Restore
+Permits:action=allow,code=CutEmptySector
+Permits:action=allow,code=BuildTreeShield
+Permits:action=allow,code=BuildFarmStone
+Permits:action=allow,code=BuildCrystalTowerBig
+Permits:action=allow,code=BuildCrystalTowerSmall
+Permits:action=allow,code=NightmareCall
+Permits:action=allow,code=BuildCrystalTowerDark
+Permits:action=allow,code=DarkTriden
+Permits:action=allow,code=CrystallRain
+Permits:action=allow,code=FrostAttack
+Permits:action=allow,code=SuperHealthAJ
+Permits:action=allow,code=SuperPowerPinki
+Permits:action=allow,code=BearSplash
+Permits:action=allow,code=SummoneBear
+Permits:action=allow,code=PrincessKiss
+Permits:action=allow,code=DeathKick
+Permits:action=allow,code=DeathRainbow
+Permits:action=allow,code=BuildForceTower
+Permits:action=allow,code=BuildHealTower
+Permits:action=allow,code=BuildMirage
+Permits:action=allow,code=IntRelax
+Permits:action=allow,code=SleepStar
+Permits:action=allow,code=BuildTornado
+Permits:action=allow,code=Wings
+Permits:action=allow,code=FlatterView
+Permits:action=allow,code=ForceShield
+Permits:action=allow,code=ForceShieldNR
+Permits:action=allow,code=SetupTeleport
+#Permits:action=allow,code=ConsumeEnergy
+#Permits:action=allow,code=ExtraEmptyClear
+Permits:action=allow,code=CutEmptySectorEx
+Permits:action=allow,code=SonicRainbowEx
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=5,j=13,immediate=true
+Action:Type=Message,icon=rarity_ico,"text=Ты опять сидишь возле разрыва? Твайлайт, это не твоя вина. Ты - спасла. Спасла всех нас."
+Action:Type=Message,icon=twily_ico,"text=Рарити, по моим подсчетам, 69 процентов Эквестрии осталось оцепленой разломом пространства. Ты уверена, что это можно назвать - спасла?"
+Action:Type=Message,icon=rarity_ico,"text=Ты самая умная пони, которую я знаю. Если решения нет - ты должна это понять. Но если решение есть - только ты способна найти его. Я побуду с тобой здесь, если хочешь."
+Action:Type=ShowBattleTask
+
+SCRIPT
+Event:SpaceCount=357
+Action:Type=Message,icon=twily_ico,"text=Ты видела? Видела!? Я смогла очистить кусочек Пустоты по ТУ сторону разлома."
+Action:Type=Message,icon=rarity_ico,"text=Я же говорила, что ты найдешь решение. Просто соберись и попробуй повторить. Или хотя бы понять, как это вышло."
+Action:Type=Message,icon=twily_ico,"text=Пошли в город. Мне нужно о многом подумать и многое подготовить."
+Action:Type=SetFlag,FlagName=clearonce
+
+VICTORY
+ByFlag:FlagName=clearonce

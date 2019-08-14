@@ -1,0 +1,108 @@
+Эпилог: без Твайлайт
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+NONUMBER
+true
+
+MAP
+VVVNNNVVVVVVVVNNNNVVVVVVNNVVVVV
+VVVVNNNNVVVVVVVNNNVVVVVVNNNVVVVV
+VVVVVNNNVVVVVVVVNNNVVVVVVNNNVVV
+VVVVVNNNNVVVVVVVVNNNVVVVVNNNVVVV
+VVVVVVNNVVVVVVVVNNNVVVVVVVNNNVV
+VVVVVVVNNVVVVVVVVNNNVVVVVVNNNVVV
+VVVVVVVNNNVVVVVVVNNVVVVVVVVNNVV
+VVVVVVVVNNNVVVVVVVNNNVVVVVVVNNVV
+VVVVVVVVVNNNVVVVVVVNNVVVVVVVNNN
+VVVVVVVVVVNNVVVVVVVNNVVVVVVVNNNN
+VVVVVVVVVVNNNVVVVVVNNNNVVVVVVNN
+VVVVVVVVVVNNNVVVVVVVVNNNVVVVVNNN
+VVVVVVVVVVVNNNVVVVVVVVNNNVVVVVV
+VVVVVVVVVVVVNNNVVVVVVVVNNVVVVVVV
+#===MAPEND===
+
+# Раздел константы должен идти в самом начале
+CONSTANTS
+
+OBJECTS
+Pony:i=0,j=0,"name=Твайлайт",code=twily,tag=twily
+Neutral:Code=grass,Name=Трава,i=18,j=3
+Neutral:Code=grass,Name=Трава,i=18,j=5
+Neutral:Code=grass,Name=Трава,i=6,j=2
+Neutral:Code=grass,Name=Трава,i=10,j=8
+Neutral:Code=grass,Name=Трава,i=30,j=9
+Neutral:Code=hangar,"Name=Складской модуль",i=2,j=8
+Neutral:Code=hangar,"Name=Складской модуль",i=4,j=9
+Neutral:Code=hangar,"Name=Складской модуль",i=4,j=12
+Neutral:Code=hangar2,"Name=Жилой модуль",i=2,j=11
+Neutral:Code=hangar2,"Name=Жилой модуль",i=1,j=9
+#===OBJECTSEND===
+
+INITIAL
+Stone:0
+Food:0
+Task:Изучить окрестности
+Permits:action=deny,code=all
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=Harvest
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=29,j=3,immediate=true
+Action:Type=TeleportObject,method=tag,Tag=twily,dst_i=29,dst_j=3,immediate=true
+Action:Type=Message,icon=twily_ico,"text=...такого я не ожидала. Случайная телепортация не из приятных. Куда же я попала?"
+Action:Type=Message,icon=twily_ico,"text=Надо найти след, точку выхода - телепортация оставляет следы... я не вижу следов... я вообще ничего не вижу. Кто я?"
+Action:Type=Message,icon=twily_ico,"text=Хвала Селестии. По крайней мере, я помню всё. Я Твайлайт Спаркл, Элемент Магии - с которой сейчас, похоже, что-то не так. Я её не ощущаю, не могу использовать."
+Action:Type=Message,icon=twily_ico,"text=Спокойно. Либо это следствие телепортации, либо местная особенность. Тем более, нужно понять, где я и как вернуться домой."
+Action:Type=ShowBattleTask
+
+SCRIPT      
+Event:Step=1
+Action:Type=Message,icon=twily_ico,"text=По крайней мере, тут есть немного травы. Не самая лучшая еда, но вполне можно восстановить силы."
+Action:Type=Message,icon=help_ico,"text=Поедание травы - затратив немного сил, ==>
+можно получить 20 единиц силы и 10 единиц здоровья."
+Action:Type=SetPermits,action=allow,code=ConsumeGrass
+
+SCRIPT      
+Event:Step=2
+Action:Type=SetFocus,i=23,j=2
+Action:Type=NewObjectGroup,Object=Monster,Code=lizard,"Name=Ящер",i=23,j=3,count=1,radius=1
+Action:Type=Message,icon=twily_ico,"text=Создание не выглядит дружелюбно. Как же не вовремя я осталась без магии..."
+
+SCRIPT      
+Event:Step=4
+Action:Type=NewObjectGroup,Object=Monster,Code=lizard,"Name=Ящер",i=19,j=7,count=1,radius=1
+
+SCRIPT      
+Event:Step=6
+Action:Type=NewObjectGroup,Object=Monster,Code=lizard,"Name=Ящер",i=14,j=6,count=1,radius=1
+
+SCRIPT      
+Event:Step=8
+Action:Type=NewObjectGroup,Object=Monster,Code=lizard,"Name=Ящер",i=10,j=8,count=1,radius=1
+
+SCRIPT
+Event:ObjectPos=True,Direction=LessX,i=4,j=0,"Object=twily"
+Action:Type=NewObject,Object=Neutral,Code=kent1,"Name=Кентавр",i=4,j=5
+Action:Type=NewObject,Object=Neutral,Code=kent2,"Name=Кентавр",i=2,j=6
+Action:Type=Message,icon=twily_ico,"text=Наконец-то! Разумные создания."
+Action:Type=Message,icon=kent2_ico,"text=Халту! Ку естас ви?"
+Action:Type=Message,icon=twily_ico,"text=Извините, не понимаю вас. Я не враг. Просто потерялась."
+Action:Type=Message,icon=kent1_ico,"text=Те лингва? Лябма синдэ? Иго-го, иии, го?"
+Action:Type=Message,icon=twily_ico,"text=Последнее очень похоже на древнеэквестрийский, но я не слишком сильна в нём. Го, ииии, го-ааа!"
+Action:Type=Message,icon=kent1_ico,"text=Не утруждай себя. Я знаю язык Эквестрии, хоть последний раз была там очень давно. Нам запретили экспедиции в ваш мир, незнакомка."
+Action:Type=Message,icon=twily_ico,"text=Я очень рада, что мы можем общаться. Пожалуйста, помогите. Я оказалась здесь без еды, воды и к тому же - потеряла все свои магические навыки."
+Action:Type=Message,icon=kent1_ico,"text=Ты прошла пустыню без снаряжения? Поистине, ваш народ удивителен, это было ясно еще во время первой эквестрийской. Будь нашим гостем, пони."
+Action:Type=Message,icon=kent2_ico,"text=Разве мы не должны действовать по инструкции - отправить любую форму жизни в изолятор до возвращения командира или главного биолога?"
+Action:Type=Message,icon=kent1_ico,"text=Брат, не усложняй. Это не форма жизни, это всего лишь маленькая потерянная пони, которая нуждается в помощи."
+Action:Type=Message,icon=kent2_ico,"text=Во время второй эквестрийской, эти маленькие пони смогли уничтожить два тяжелых линкора. Не думаю, что они сильно изменились."
+Action:Type=Message,icon=kent1_ico,"text=Это было тысячи лет назад. Пони, следуй за нами, есть еда и вода. Попозже ты расскажешь свою историю и получишь помощь, когда наш лидер вернется из разведки."
+Action:Type=SetFlag,FlagName=vic
+
+VICTORY
+ByFlag:FlagName=vic

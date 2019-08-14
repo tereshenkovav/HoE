@@ -1,0 +1,127 @@
+Причинять добро
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+2222222222222222222LLLLFLFFFFMM
+222222222222222222LLLLLLLQLLFFMM
+222222222222222LLLLLLLLLLQLLLFM
+22222222222222LLLLLLLLLLLQLLFLFM
+2222222222222LLLLLLLLLLLQQQLLLF
+222222222222LLLLLLLLLLLLQQQLLLLL
+2222222222222LLLLLLLLLLLLQQLLLL
+222222222222LLLLLLLLLLLLLLLQLLLL
+222222222222LLLLLLLLLLLLLLQLLLL
+222222222222LLLLLLLLLLLLLLLLLLLL
+2222222222222LLLLLLLLLLLLLLLLLL
+222222222222LLLLLLLLLLLLLLLLLLLL
+2222222222222LLLLLLLLLLQQLLLLLL
+22222222222222LLLLLLLLLQQLLLLLLL
+222222222222222LLLLLLLQQQLLLLLL
+22222222222222222LLLLLQLQQLLLLLL
+222222222222222222LLLLLLLLLFFFF
+2222222222222222222LLLLFLFFFFFMM
+#===MAPEND===
+
+# Раздел константы должен идти в самом начале
+CONSTANTS
+
+OBJECTS
+Pony:i=28,j=12,"name=Эпплджек",code=applejack
+Pony:i=29,j=11,"name=Рейнбоу",code=rainbow
+Pony:i=29,j=13,"name=Твайлайт",code=twily
+
+#Monster:Code=bizon,"Name=Амеба",i=13,j=8,holdground=true,MustSurvive=true
+Neutral:code=figvam2,"Name=Дом бизонов",i=21,j=7,MustSurvive=true
+Neutral:code=figvam,"Name=Дом бизонов",i=20,j=9,MustSurvive=true
+Neutral:code=figvam,"Name=Дом бизонов",i=18,j=6,MustSurvive=true
+Neutral:code=figvam2,"Name=Дом бизонов",i=18,j=8,MustSurvive=true
+Neutral:code=figvam,"Name=Дом бизонов",i=23,j=8,MustSurvive=true
+Neutral:code=figvam,"Name=Дом бизонов",i=21,j=5,MustSurvive=true
+#===OBJECTSEND===
+
+INITIAL
+Stone:0
+Food:900
+Task:Очистить Пустоту
+EmptyManager:7,7,7,7,7,7
+Permits:action=deny,code=all
+#Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Heal
+Permits:action=allow,code=Restore
+Permits:action=allow,code=CutEmptySector
+Permits:action=allow,code=BuildTreeShield
+#Permits:action=allow,code=BuildFarmStone
+Permits:action=allow,code=BuildCrystalTowerBig
+Permits:action=allow,code=BuildCrystalTowerSmall
+Permits:action=allow,code=NightmareCall
+Permits:action=allow,code=BuildCrystalTowerDark
+Permits:action=allow,code=DarkTriden
+Permits:action=allow,code=CrystallRain
+Permits:action=allow,code=FrostAttack
+Permits:action=allow,code=SuperHealthAJ
+Permits:action=allow,code=SuperPowerPinki
+Permits:action=allow,code=BearSplash
+Permits:action=allow,code=SummoneBear
+Permits:action=allow,code=PrincessKiss
+Permits:action=allow,code=DeathKick
+Permits:action=allow,code=DeathRainbow
+Permits:action=allow,code=BuildForceTower
+Permits:action=allow,code=BuildHealTower
+Permits:action=allow,code=BuildMirage
+Permits:action=allow,code=IntRelax
+Permits:action=allow,code=SleepStar
+Permits:action=allow,code=BuildTornado
+Permits:action=allow,code=Wings
+Permits:action=allow,code=FlatterView
+Permits:action=allow,code=ForceShield
+Permits:action=allow,code=ForceShieldNR
+Permits:action=allow,code=SetupTeleport
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=20,j=8,immediate=true
+Action:Type=Message,icon=twily_ico,"text=Очень хорошо. Деревня бизонов там, где нам сказала Сильное Сердце. Правда, я не вижу ни одного жителя."
+Action:Type=Message,icon=bizon_ico,"text=Пони! У вас хватает наглости приходить в наш новый дом после всех бед, что вы принесли бизонам?"
+Action:Type=Message,icon=twily_ico,"text=Я искренне сожалею про тот случай с яблонями на тропе, но вроде мы..."
+Action:Type=Message,icon=bizon_ico,"text=При чём здесь яблони? Это страшное чёрное, оно пожрало наше стойбище, наши луга, наш водопой! Мы только чудом не потеряли наших братьев. Теперь оно здесь, и вы пришли сюда, чтобы посмеяться над старыми бизонами на краю гибели?"
+Action:Type=Message,icon=applejack_ico,"text=Твай, я конечно не сильна в переговорах, но вроде эти быки нам не рады."
+Action:Type=Message,icon=twily_ico,"text=Они считают, что мы как-то связаны с Пустотой."
+Action:Type=Message,icon=bizon_ico,"text=А разве нет? Я не такой мудрый, как наш старый вождь, но кто еще обладает магией, чтобы сотворить такое?"
+Action:Type=Message,icon=rainbow_ico,"text=Полегче, вождь! Я очень уважаю ваш народ - вы круты и всё такое, но мы не меньше вашего..."
+Action:Type=Message,icon=bizon_ico,"text=Пусть мы погибнем во мраке, но перед этим отомстим!\nВ бой, сыны прерий! Не посрамим духов предков."
+Action:Type=Message,icon=twily_ico,"text=Плохо дело. Девочки, новый план: мы отгоняем Пустоту от деревни, не позволяем бизонам нас прикончить, и не допускаем гибели ни одного из них."
+Action:Type=Message,icon=rainbow_ico,"text=Звучит почти невыполнимо. Эти бизоны очень сильны и очень упрямы."
+Action:Type=NewObjectGroup,Object=Monster,Code=bizon,"Name=Бизон",i=22,j=7,count=1,radius=1,MustSurvive=true
+Action:Type=SetBattleTask,code=safehouse,"Task=Не допустить потери от Пустоты ни одного дома бизонов."
+Action:Type=SetBattleTask,code=safebizon,"Task=Не допустить гибели ни одного бизона."
+Action:Type=ShowBattleTask
+
+SCRIPT      
+Event:StepModN=7
+Action:Type=NewObjectGroup,Object=Monster,Code=bizon,"Name=Бизон",i=22,j=7,count=1,radius=1,MustSurvive=true
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=twily_ico,"text=Местность безопасна. Бизоны спасены."
+Action:Type=Message,icon=rainbow_ico,"text=Зато мы едва не погибли.."
+Action:Type=Message,icon=bizon_ico,"text=Да... теперь я вижу, что пони не делали черное - они борются с ним."
+Action:Type=Message,icon=applejack_ico,"text=А то!"
+Action:Type=Message,icon=bizon_ico,"text=Мы подтверждаем союз пони и бизонов. Будьте нашими гостями."
+Action:Type=Message,icon=twily_ico,"text=Спасибо, но нам нужно спешить к друзьям - они прикрывали проход в ущелье."
+Action:Type=Message,icon=bizon_ico,"text=Удачи, пони!"
+
+VICTORY
+ByNoSpaceLeft:null

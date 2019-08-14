@@ -1,0 +1,162 @@
+Возвращение в Понивилль
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+LWLLLLLLLQQQLLLLLLLFFMMMMMMMM
+LLWLLLLLLLQQQLLLLLLLFFMMMMMMMF
+LEWLLLLELLQQQLLLLLLLLFFFMMMFF
+LLLWHLLLLLQQQLLLLLLLLLFFFFFFFL
+LLHWLELLLLQQQLLLLLLLLLLLLFFLL
+LLLLWLWWWWWLWWLLLWWWWLLLLLLLLL
+LLLWLWLLLLWWLWWWWLLLWLLLLWWWW
+LLELWWLHLLLQQQLLLLLLLWWWWWLLLL
+LLLWLELLLLLQQQLLLLLLLLLLLLLLL
+LLEWLLLLLLLLQQQLLLLLLFFFFFFFLL
+LLWLLLLHLLLQQQLLLLLFFFFFFFFFF
+LLWLLLLLLLLQQQLLLLFFFMMMMMFFFF
+LWLLLLLLLLQQQLLLLLFFMMMMMMMMF
+LLLLLLLLLLLQQQLLLFFFMMMMMMMMMM
+#===MAPEND===
+
+# Раздел константы должен идти в самом начале
+CONSTANTS 
+StepWave:21
+StepGuard:5
+WaveX:27
+WaveY:6
+
+OBJECTS
+Pony:i=27,j=6,"name=Рарити",code=rarity
+Pony:i=28,j=8,"name=Эпплджек",code=applejack
+Stone:i=3,j=10,size=min
+Stone:i=3,j=11,size=max
+Stone:i=4,j=11,size=min
+
+Stone:i=3,j=1,size=medium
+Stone:i=4,j=1,size=medium
+Stone:i=5,j=1,size=max
+Stone:i=6,j=1,size=max
+
+Stone:i=1,j=6,size=max
+Stone:i=1,j=7,size=min
+Stone:i=1,j=5,size=max
+
+INITIAL
+Stone:0
+Food:150
+Task:Добраться до Понивилля
+AttackedDefeatString:Понивилль обречен!
+Permits:action=deny,code=all
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=27,j=7,immediate=true
+Action:Type=Message,icon=rarity_ico,"text=Дом, милый дом."
+Action:Type=Message,icon=applejack_ico,"text=Агась. Реку перейти и всё."
+Action:Type=SetFocus,i=12,j=8
+Action:Type=ShowBattleTask
+
+# ==== Первый монстр ====
+
+SCRIPT
+Event:Step=3
+Action:Type=SetFocus,i=27,j=7
+Action:Type=NewObject,Object=Monster,Code=bat,"Name=Нетопырь",i=27,j=7
+Action:Type=Message,icon=rarity_ico,"text=Опять? Я так надеялась, что в Понивилле обойдется без приключений."
+Action:Type=Message,icon=applejack_ico,"text=Ты же помнишь, что их будет больше? Нам нужно подготовиться."
+Action:Type=Message,icon=rarity_ico,"text=Собирать камни, строить ферму? Ну хорошо."
+Action:Type=SetBattleTask,"Task=Отразить атаку на Понивилль"
+Action:Type=ShowBattleTask
+
+#  ===== Способность башни =====
+
+SCRIPT
+Event:Step=4
+Action:Type=Message,icon=rarity_ico,"text=Эпплджек, нас только двое, и гвардию ждать не стоит."
+Action:Type=Message,icon=applejack_ico,"text=Сахарок, я могу только работать копытами. Неужели у тебя нет каких-нибудь магических штучек?"
+Action:Type=Message,icon=rarity_ico,"text=Недавно я научилась ставить кристальный обелиск с молниями. Не спрашивай, кому и зачем. Но на него нужно СТОЛЬКО камня..."
+Action:Type=Message,icon=applejack_ico,"text=Будет тебе камень. В Понивилле его достаточно, собрать и всё."
+Action:Type=SetPermits,action=allow,code=BuildCrystalTowerBig
+Action:Type=SetPermits,action=allow,code=BuildCrystalTowerSmall
+Action:Type=Message,icon=help_ico,"text=Способность Рарити - установка большой и малой защитной башни"
+
+# ==== Появление гвардии
+
+SCRIPT
+Event:Step=@StepGuard@
+Action:Type=SetFocus,i=9,j=9
+Action:Type=NewObject,Object=Neutral,Code=guard,"Name=Гвардеец",i=9,j=9,tag=guard1
+Action:Type=NewObject,Object=Neutral,Code=guard,"Name=Гвардеец",i=8,j=10,tag=guard2
+Action:Type=NewObject,Object=Neutral,Code=guard,"Name=Гвардеец",i=9,j=10,tag=guard3
+Action:Type=Message,icon=guard_white_ico,"text=О, я вас знаю. Вы те самые кобылки, что спасли Западное Поле!"
+Action:Type=Message,icon=applejack_ico,"text=Да, там было жарковато."
+Action:Type=Message,icon=rarity_ico,"text=Что королевская гвардия делает в Понивилле?"
+Action:Type=Message,icon=guard_white_ico,"text=По приказу Принцессы Луны, мы патрулируем окрестности Кантерлота. Сообщаем о новых появлениях Пустоты и уничтожаем монстров. Впрочем, мой отряд еще никого не встретил... кроме вас, милашки."
+Action:Type=Message,icon=rarity_ico,"text=Хи-хи."
+Action:Type=Message,icon=applejack_ico,"text=Тут вроде скоро начнется заварушка... вы не могли бы нам помочь?"
+Action:Type=Message,icon=guard_white_ico,"text=О чем разговор, леди! Парни, этим милым кобылкам нужны крепкие копыта. Защитное построение!"
+Action:Type=MoveObject,i=9,j=9,dst_i=6,dst_j=4
+Action:Type=MoveObject,i=8,j=10,dst_i=7,dst_j=6
+Action:Type=MoveObject,i=9,j=10,dst_i=6,dst_j=8
+
+# ===== Появление монстров =====
+
+SCRIPT
+Event:Step=@StepWave@
+Action:Type=SetFocus,i=@WaveX@,j=@WaveY@
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@WaveX@,j=@WaveY@,count=7,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@WaveX@,j=@WaveY@,count=9,radius=3
+Action:Type=SetFlag,FlagName=IsWaveStarted
+Action:Type=Message,icon=guard_gray_ico,"text=Святая Селестия и Луна повелительница ночи! Их полтора десятка!"
+Action:Type=Message,icon=guard_white_ico,"text=Мне оставалось три дня до ухода в запас!"
+Action:Type=Message,icon=guard_gray_ico,"text=Я слишком красив, чтобы умирать!"
+Action:Type=Message,icon=guard_white_ico,"text=Спасайте свои крупы, каждый сам за себя!"
+Action:Type=SetFocus,i=8,j=6
+Action:Type=MoveObject,method=tag,Tag=guard1,dst_i=2,dst_j=8
+Action:Type=MoveObject,method=tag,Tag=guard2,dst_i=3,dst_j=6
+Action:Type=MoveObject,method=tag,Tag=guard3,dst_i=2,dst_j=4
+Action:Type=RemoveObject,method=tag,Tag=guard1
+Action:Type=RemoveObject,method=tag,Tag=guard2
+Action:Type=RemoveObject,method=tag,Tag=guard3
+#Action:Type=MoveObject,i=6,j=8,dst_i=2,dst_j=8
+#Action:Type=MoveObject,i=7,j=6,dst_i=3,dst_j=6
+#Action:Type=MoveObject,i=6,j=4,dst_i=2,dst_j=4
+#Action:Type=RemoveObject,i=2,j=8
+#Action:Type=RemoveObject,i=3,j=6
+#Action:Type=RemoveObject,i=2,j=4
+Action:Type=Message,icon=rarity_ico,"text=Трусы! Ничтожные морды! А я в детстве ещё мечтала выйти замуж за гвардейца."
+Action:Type=Message,icon=applejack_ico,"text=А разве не за принца, сахарок?"
+Action:Type=Message,icon=rarity_ico,"text=Молчи, Эпплджек. Просто молчи."
+
+# ==== Победа
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=rarity_ico,"text=Это был последний?"
+Action:Type=Message,icon=applejack_ico,"text=Похоже на то."
+Action:Type=Message,icon=rarity_ico,"text=Мы спасли Понивилль!"
+Action:Type=Message,icon=applejack_ico,"text=Да, в очередной раз."
+Action:Type=SetFocus,i=16,j=1
+Action:Type=NewObject,Object=Neutral,Code=luna,"Name=Принцесса Луна",i=16,j=1
+Action:Type=Message,icon=luna_ico,"text=Рарити, с тобой всё хорошо?"
+Action:Type=Message,icon=rarity_ico,"text=Не считая того, что я лично перебила полдесятка тварей на пороге дома - всё остальное вполне сносно."
+Action:Type=Message,icon=luna_ico,"text=Я дам тебе кольцо Аликорна. Его использует королевская гвардия в исключительных ситуациях. Отправляйся к восточным склонам гор Кантерлота и помоги Твайлайт добраться до замка. Мы её ждем."
+
+VICTORY
+ByNoMonsterLeft:null
+->ByFlag:FlagName=IsWaveStarted,AddType=And

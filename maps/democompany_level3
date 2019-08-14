@@ -1,0 +1,129 @@
+Боевые навыки
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+LLLLLLLLLLLLLLLLLLLLLLLQQQQLLL
+LLLLLLLLLLLAQLLLLLLLLLLLQQQLLLL
+LLLLLLLLLQAAQLLLLLLLLLLLQQQLLL
+LLLLLLLLLQAAAQLLLLLLLLLLLQQQLLL
+LLLLLLLLLAAAAQLLLLLLLLLLQQQLLL
+LLLLLWWWWQAAAQLLLLLLLLLLLQQQLLL
+LLLWWLLLWWWWWWLLLLLLLLLLLQQQLL
+LLWWLLLLLQAAAQWWWWLLLLLLLQQQQLL
+LWLLLLLLLQAAAQLLLWLLLLLHLQQQLL
+LWLLLLLLLQAAAQLLLLWLLEWWLLQQQLL
+LWLLLLLLLQAQFFLLLLWWWWQWHLQQLL
+LLWLLLLLLLQQFFFLLLLLLLWWLLLQQLL
+LWLLLLLLLFFFFFFLLLLLLLLELLQQLL
+LLWLLLLLLFFFFFFLLLLLLLLLLQQQQLL
+LWLLLLLLFFFFFFFLLLLLLLQQQQQQLL
+LLWLLLLLLFFFFFFFLLLLLLQQQQLQQLL
+LWLLLLLLFFFFFFFFFLLLLQQLLLLLLL
+LWLLLLLFFFFFFFFFFFLLLLQLLLLLLLL
+WLLLLLLFFFFFFFFFFFFLLLQLLLLLLL
+LLLLLLLFFFFFFFFFFFFFFFLQLFFFLLL
+LLLLLLFFFFFFFFFFFFFFFFFQFFFFFL
+LLLLLLFFFFFFFFFFFFFFFFFQFFFFFFF
+LLLLFFFFFFFFFFFFFFFFFFQFFFMFFF
+LLLLFFFFFFFFFFMMFFFFFFQFFMMMMMM
+LLFFFFFFFFFFMMMMMFFFMQMMMMMMMM
+FFFFFFFFFFFFMMMMMMMFMMQMMMMMMMM
+FFFFFFFFFFMMMMMMMMMMMMQMMMMMMM
+FFFFFFFFMMMMMMMMMMMMMMMQMMMMMMM
+#===MAPEND===
+
+CONSTANTS
+TowerX:21
+TowerY:12
+FoodNeed:120
+
+OBJECTS
+Pony:i=22,j=11,"name=Рейнбоу Дэш",code=rainbow
+Pony:i=22,j=12,"name=Твайлайт",code=twily
+Pony:i=20,j=13,"name=Эпплджек",code=applejack
+Neutral:Code=tower,"Name=Крепость",i=@TowerX@,j=@TowerY@
+Building:Code=FarmFood,"Name=Ферма",i=22,j=7
+Building:Code=FarmFood,"Name=Ферма",i=19,j=12
+
+INITIAL
+Stone:0
+Food:120
+Task:Отбить атаку древесных волков
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=@TowerX@,j=@TowerY@,immediate=true
+Action:Type=Message,icon=twily_ico,"text=Еще час и домой. Не понимаю, зачем это всё было нужно."
+Action:Type=Message,icon=applejack_ico,"text=Принцессе виднее, как по мне. Пойду паковать вещи."
+Action:Type=NewObject,Object=Monster,Code=woodwolf,"Name=Древесный волк",i=13,j=14,tag=wolf1,autofocus=true
+Action:Type=NewObject,Object=Monster,Code=woodwolf,"Name=Древесный волк",i=14,j=16,tag=wolf1
+Action:Type=SetFlag,FlagName=wolf1set
+Action:Type=Message,icon=rainbow_ico,"text=Сборы подождут - у нас гости. Эпплджек, ты вроде неплохо с ними управляешься?"
+Action:Type=ShowBattleTask
+Action:Type=Message,icon=help_ico,"text=Выделяя пони, и выбирая нужный тип атаки, вы получаете разрешенные клетки для атаки. Наведите курсор на цель и нажмите левую кнопку для атаки. Также можно в любой момент нажать правую кнопку над врагом, чтобы узнать его характеристики."
+Action:Type=Message,icon=help_ico,"text=Если враг слишком далеко для атаки, можно или подойди к нему, или позволить ему подойти самому. Чтобы увидеть возможные ходы врага, наведите курсор на него, клетки будет выделены красным."
+
+SCRIPT
+Event:TagCount=1,TagName=wolf1
+Event1:Flag=wolf1set
+Action:Type=Message,icon=applejack_ico,"text=Еще один остался. Может, кто подсобит?"
+Action:Type=Message,icon=help_ico,"text=Когда врагов много - нужно использовать всех возможных пони, не дожидаясь, пока враг подойдет вплотную для атаки."
+
+SCRIPT
+Event:TagCount=0,TagName=wolf1
+Event1:Flag=wolf1set
+Action:Type=Message,icon=twily_ico,"text=С ними покончено. Давайте уходить отсюда."
+Action:Type=NewObject,Object=Monster,Code=woodwolf,"Name=Древесный волк",i=13,j=14,tag=wolf2,autofocus=true
+Action:Type=NewObject,Object=Monster,Code=woodwolf,"Name=Древесный волк",i=14,j=16,tag=wolf2
+Action:Type=NewObject,Object=Monster,Code=woodwolf,"Name=Древесный волк",i=15,j=17,tag=wolf2
+Action:Type=SetFlag,FlagName=wolf2set
+Action:Type=Message,icon=rainbow_ico,"text=Их стало больше. Что делаем, девочки?"
+Action:Type=Message,icon=applejack_ico,"text=Нельзя оставлять столько опасных животных вблизи деревни. Продолжим. И, как мне кажется, самое время для Радужного Удара!"
+Action:Type=Message,icon=help_ico,"text=Радужный Удар - урон по площади. Нужно выбрать у Рейнбоу Радужный Удар, навести курсор на разрешенную клетку и нажать левую кнопку. На это действие уходит очень много сил, будьте внимательны. При необходимости, нужно подойти поближе к целям."
+Action:Type=SetPermits,action=allow,code=SonicRainbow
+
+SCRIPT
+Event:TagCount=0,TagName=wolf2
+Event1:Flag=wolf2set
+Action:Type=Message,icon=rainbow_ico,"text=Это было несложно. Пойдем уже?"
+Action:Type=Message,icon=twily_ico,"text=Нет, Рейнбоу. Здесь творится что-то странное. И надо выяснить, что именно."
+Action:Type=Message,icon=help_ico,"text=После боя - лучше всего пропустить ход, чтобы пони максимально восстановили силы и здоровье."
+Action:Type=SetVar,Name=finalwave,Initial=CurrentStep,Delta=2
+
+SCRIPT
+Event:StepVar=finalwave
+Event1:Flag=wolf2set
+Event2:TagCount=0,TagName=wolf2
+Action:Type=NewObject,Object=Monster,Code=woodwolf_chief,"Name=Гигантский волк",i=20,j=20,tag=wolf3,autofocus=true
+Action:Type=SetFlag,FlagName=wolf3set
+Action:Type=Message,icon=applejack_ico,"text=Гнилые яблоки! Он просто огромен!"
+Action:Type=Message,icon=rainbow_ico,"text=Мы справимся с ним, если возьмемся все вместе."
+Action:Type=Message,icon=help_ico,"text=Некоторым врагам нужно много ударов - атакуйте их по очереди, и отводите раненых пони от врага."
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=twily_ico,"text=Похоже, это был последний. Как хорошо, что они не прорвались в деревню."
+Action:Type=NewObject,Object=Pony,Code=celestia,"Name=Селестия",i=19,j=3,autofocus=true
+Action:Type=Message,icon=celestia_ico,"text=Разве это было возможно, когда такие герои защищают Эквестрию и её жителей?"
+Action:Type=Message,icon=twily_ico,"text=Принцесса Селестия!"
+Action:Type=Message,icon=celestia_ico,"text=Я ощутила надвигающуюся угрозу из леса - и отправила сюда тех, на кого могу положиться. Вы отлично справились, мои маленькие пони. Я открываю портал - идём домой. Вы заслужили отдых."
+
+Action:Type=Message,icon=ok_ico,"text=Поздравляем! Вы освоили навыки атак и применения боевых заклинаний."
+
+VICTORY
+ByFlag:FlagName=wolf3set
+->ByNoMonsterLeft:null,AddType=And
+

@@ -1,0 +1,163 @@
+На краю вселенной
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+#DefaultSandStone
+
+MAP
+AAQQQQQQAAAAAAAAAAAAAAAAAAAAAAA22222
+AAQQWWWQQQAAAA2AAAAAAAAQQQQQQQAAA2222
+AQQWWWWWQQAAA2AAAAAAQQQQQQQQQAAA22A2
+AAQQQWWWWQQAAA2AAAAAQWWWQQWWWQAA2AAA2
+AAAQQQQQQQAAA2AAAAAAQQQWWWWWQAAAAAA2
+AAAAQQQQQQAAAA2AAAAAAQQQQQWWWQAAAAAAA
+AAAAAAAAAAAAAA2AAAAAAAAQQQQQQQAAAAAA
+AAAAAAAAAAAAAA2AAAAAAAAAAAQQQQQQQAAAA
+AAAAAAAAAAAAAA22AAAAAAAAAAAAQQQQQQQQ
+AAAAAAAAAAAAA22AAAAAAAAAAAAAQQWWQQQQQ
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAQQWWWWQ
+AAAAAQQQQAAAAAAAAAAAAAAAAAAAAAQQQQWQQ
+AAAQQQQQQQAAAAAAAAAAAAAAAAAAAAAAQQQW
+AAAQQWWWWQQQAA2AA222AAAA2AAAAAAAAQQWW
+AAQWWWHLWWQAA22222A222A2AAAAAAAAAQQW
+AAAQWWLLWQQQ22AAAAAAAA22AAAAAAAAAQQWW
+AAQQQWWWWQQ2AAAAAAAAAAQ22QQQAAAAQQWL
+AAAAQQQQQQ2AAAAAAAAAAAQQWWQQQAAAQQWLL
+AAAAAQQQQ2AAAAAAAAAAAQQWWWWQQQQQQWWL
+AAAAAAAAAAAAAAAAAAAAAAQQWWQQQQQQWWWLL
+AAAAAAAAAAAAAAAAAAAAAAQQQQQAAQQWWLLL
+AAAAAAAAAAAAAAAAAAAAAAAAQQQAAAQQWWLLL
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAQQWWLLL
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAQWWWWLLL
+AAAAQQQAAAAAAAAAAAAAAAAAAAQQQQQWWLLL
+2AAAQWQQQQAAAAAAAAAAAAAAAQQQQQQQWLLLL
+2AQQWWWQQQAAAAAAAAAQQQQQQQQQQWWWWLLL
+222WWWWWQQAAAAAAAAQQQQQQQWWWWWWWWLLLL
+2222WQQQQQAAAAAAQQQQWWWWWWLLLLLLLLLL
+22222WQQQQQAAAAAQQWWWLLLLLLLLLLLLLLLL
+#===MAPEND===
+
+# Раздел константы должен идти в самом начале
+CONSTANTS
+StepNewMonster:3
+StepNew2Monster:5
+StepNew3Monster:7
+StepDiscord:2
+Pony1_I:3
+Pony1_J:2
+Pony2_I:5
+Pony2_J:14
+Pony3_I:7
+Pony3_J:27
+Pony4_I:24
+Pony4_J:18
+Pony5_I:26
+Pony5_J:5
+StepMaxAllow:15
+
+OBJECTS
+Neutral:Code=pony_1,"Name=Местный пони",i=@Pony1_I@,j=@Pony1_J@,targeted=true,MustSurvive=true
+Neutral:Code=pony_2,"Name=Местный пони",i=@Pony2_I@,j=@Pony2_J@,targeted=true,MustSurvive=true
+Neutral:Code=pony_3,"Name=Местный пони",i=@Pony3_I@,j=@Pony3_J@,targeted=true,MustSurvive=true
+Neutral:Code=pony_4,"Name=Местный пони",i=@Pony4_I@,j=@Pony4_J@,targeted=true,MustSurvive=true
+Neutral:Code=pony_5,"Name=Местный пони",i=@Pony5_I@,j=@Pony5_J@,targeted=true,MustSurvive=true
+
+Pony:i=34,j=24,"name=Рейнбоу",code=rainbow
+Pony:i=33,j=26,"name=Пинки",code=pinki
+Pony:i=32,j=28,"name=Флаттершай",code=flatter
+
+INITIAL
+Stone:0
+Food:350
+EmptyManager:10,10,10,10,10,10
+Task:Добраться Рейнбоу до всех пони на карте
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Heal
+Permits:action=allow,code=Restore
+Permits:action=allow,code=CutEmptySector
+Permits:action=allow,code=BuildTreeShield
+Permits:action=allow,code=BuildFarmStone
+Permits:action=allow,code=BuildCrystalTower
+Permits:action=allow,code=FlatterView
+Permits:action=allow,code=ForceShield
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT
+Event:Step=0
+Action:Type=Message,i=@Pony1_I@,j=@Pony1_J@,autofocus=true,icon=anonpony_ico,==>
+"text=Спасите! Помогите! Пони-будь!"
+Action:Type=Message,i=34,j=24,autofocus=true,icon=rainbow_ico,==>
+"text=Не надо так кричать. ==>
+Мы прекрасно тебя слышим. А вот ты, похоже не слышала, когда ==>
+Принцесса Селестия собирала всех в безопасное место."
+Action:Type=Message,icon=flatter_ico,"text=Бедняжка, ей так страшно!"
+Action:Type=Message,icon=pinki_ico,"text=Когда мне страшно, я пою песенки!"
+Action:Type=Message,icon=rainbow_ico,"text=Это не поможет. А вот амулет телепортации, ==>
+который вытащит этих растяп прямо в нашу долину - да! Полетели."
+Action:Type=ShowBattleTask
+
+SCRIPT
+Event:Step=3
+Action:Type=NewObjectGroup,Object=MonsterTwist,Code=twist,"Name=Смерч",i=2,j=5,count=1,radius=3,autofocus=true
+Action:Type=Message,icon=rainbow_ico,==>
+"text=Уже пятый смерч за эту неделю! Что происходит? Ну то есть конец света и всё такое, но пятый!?"
+
+# ===== Контакт
+
+SCRIPT
+Event:ObjectPos=True,i=@Pony1_I@,j=@Pony1_J@,IncludeLinked=true,Object=rainbow
+Action:Type=Message,icon=rainbow_ico,"text=Три, два, раз... ты в безопасности!"
+Action1:Type=ClearTarget,i=@Pony1_I@,j=@Pony1_J@
+Action2:Type=RemoveObject,i=@Pony1_I@,j=@Pony1_J@
+
+SCRIPT
+Event:ObjectPos=True,i=@Pony2_I@,j=@Pony2_J@,IncludeLinked=true,Object=rainbow
+Action:Type=Message,icon=rainbow_ico,"text=Ну и чего ждала здесь? Отправляйся в убежище."
+Action1:Type=ClearTarget,i=@Pony2_I@,j=@Pony2_J@
+Action2:Type=RemoveObject,i=@Pony2_I@,j=@Pony2_J@
+
+SCRIPT
+Event:ObjectPos=True,i=@Pony3_I@,j=@Pony3_J@,IncludeLinked=true,Object=rainbow
+Action:Type=Message,icon=rainbow_ico,"text=И откуда вас здесь столько?"
+Action1:Type=ClearTarget,i=@Pony3_I@,j=@Pony3_J@
+Action2:Type=RemoveObject,i=@Pony3_I@,j=@Pony3_J@
+
+SCRIPT
+Event:ObjectPos=True,i=@Pony4_I@,j=@Pony4_J@,IncludeLinked=true,Object=rainbow
+Action:Type=Message,icon=rainbow_ico,"text=И больше не игнорируй приказы Принцессы!"
+Action1:Type=ClearTarget,i=@Pony4_I@,j=@Pony4_J@
+Action2:Type=RemoveObject,i=@Pony4_I@,j=@Pony4_J@
+
+SCRIPT
+Event:ObjectPos=True,i=@Pony5_I@,j=@Pony5_J@,IncludeLinked=true,Object=rainbow
+Action:Type=Message,icon=rainbow_ico,"text=Неужели так сложно вовремя уйти в лагерь?"
+Action1:Type=ClearTarget,i=@Pony5_I@,j=@Pony5_J@
+Action2:Type=RemoveObject,i=@Pony5_I@,j=@Pony5_J@
+
+SCRIPT
+Event:Step=@StepDiscord@
+Action:Type=Message,icon=discord_ico,"text=Привет, Рейнбоу. Рад видеть тебя в хорошей форме. Она скоро тебе понадобится."
+Action:Type=Message,icon=rainbow_ico,"text=Дискорд, тебе придется очень, очень сильно постараться оправдать свое поведение!"
+Action:Type=Message,icon=flatter_ico,"text=Да, мы же волновались за тебя..."
+Action:Type=Message,icon=discord_ico,"text=И я рад вам, но время не ждет. Заканчивайте свои дела здесь и бегом в долину. Нам предстоит много дел."
+Action:Type=Message,icon=rainbow_ico,"text=Мы придем, уж не сомневайся."
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=rainbow_ico,"text=Мы успели. ==>
+Дискорд, я надеюсь, это действительно важно."
+
+VICTORY
+ByNoTargetLeft:null

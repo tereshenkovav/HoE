@@ -1,0 +1,353 @@
+Крепость
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+MFFQQQQLLLLLLLQQAAAAAAAQLLLLLLL
+MMFFQQLLWLEELWLLQAAAQQQQLLLLLLLL
+MMFFQQLHWWLWWHLQAQQQLLLLLLLLLLL
+MMMFFQQQLHWWHLQQQQLLLLLLLLLLLLLL
+MMFFQAQQQLWLQQQQLLLLLLLLLLLLLLL
+FFFFQAAAAQQWQAQLLLLLLLLFFFFFLLLL
+FFFQAAAAAQWQQQLLLLLLLFFFFFFFFLL
+FFQQAAQQQQQWQLLLLLLLLFFFFFFFFFLL
+FQAAQQFFFFWLLLLLLLLLFFMMMMFFFLL
+FQAQQFFFFFFWLLLLLLLLFFFMMMMFFLLL
+QAQFFFFFFFWLLLLLLLLLFFMMMMFFFLL
+AAQFFFFFFFWFFLLLLLLLLFFMMMFFFLLL
+AQFFFFFFFWFFFLLLLLLLFFFMMFFFLLL
+QQLLLFFFWWFFFFLLLLLLFFFFFFFLLLLL
+LLLLLLFWFFFFFFLLLLLLLFFFFFLLLLL
+LLLLWWWWFFFFFFFFLLLLLLLLLLLLLLLL
+LLLWLLLLFFFFFFFFLLLLLLLLLLLLLLL
+WWWWLLLLLFFFFFFFFFLLLLLLLLLLLLLL
+LLLLLLLLLLFFFFFFFFLLLLLLLLLLLLL
+LLLLLLLLLLLLFFFFFFFFLLLLLLLLLLLL
+LLLLLLLLLLLLFFFFFFFFLLLLLLLLLLL
+LLLLLLLLLLLLLFFFFFFFLLLLLLLLLLLL
+#===MAPEND===
+
+# Раздел константы должен идти в самом начале
+CONSTANTS
+Pos1X:20
+Pos1Y:20
+Pos2X:27
+Pos2Y:3
+Pos3X:4
+Pos3Y:17
+StepWave1:4
+StepWave2:9
+StepWave3:14
+StepWave4:23
+StepWave5:31
+StepWave6:40
+StepWaveFinal:50
+StoneQuant:60
+
+OBJECTS
+Pony:i=4,j=15,"name=Твайлайт Спаркл",code=twily
+Pony:i=3,j=16,"name=Рейнбоу Дэш",code=rainbow
+Pony:i=4,j=17,"name=Пинки Пай",code=pinki
+Pony:i=5,j=15,"name=Флаттершай",code=flatter
+Pony:i=5,j=16,"name=Рарити",code=rarity
+Pony:i=5,j=17,"name=Эпплджек",code=applejack
+
+# 23 стена в финале + 4 строители = 27
+
+Neutral:Code=tower,"Name=Стены крепости",i=8,j=0
+Neutral:Code=tower,"Name=Стены крепости",i=9,j=1
+Neutral:Code=tower,"Name=Стены крепости",i=10,j=2
+Neutral:Code=tower,"Name=Стены крепости",i=12,j=1
+Neutral:Code=tower,"Name=Стены крепости",i=12,j=0
+Neutral:Code=wall_2,"Name=Стены крепости",i=11,j=2
+Neutral:Code=wall_2_r,"Name=Стены крепости",i=9,j=2
+
+Neutral:i=8,j=2,"name=Строитель",Code=pony_1,EnemyTarget=true,MustSurvive=true
+Neutral:i=12,j=2,"name=Строитель",Code=pony_2,EnemyTarget=true,MustSurvive=true
+Neutral:i=10,j=3,"name=Строитель",Code=pony_3,EnemyTarget=true,MustSurvive=true
+Neutral:i=11,j=3,"name=Строитель",Code=pony_4,EnemyTarget=true,MustSurvive=true
+
+#Neutral:Code=tower,"Name=Стены крепости",i=11,j=4
+#Neutral:Code=wall_2,"Name=Стены крепости",i=12,j=4
+#Neutral:Code=tower,"Name=Стены крепости",i=13,j=3
+#Neutral:Code=wall_2,"Name=Стены крепости",i=14,j=3
+#Neutral:Code=tower,"Name=Стены крепости",i=14,j=2
+#Neutral:Code=tower,"Name=Стены крепости",i=15,j=1
+#Neutral:Code=wall_2_r,"Name=Стены крепости",i=14,j=1
+#Neutral:Code=tower,"Name=Стены крепости",i=13,j=0
+
+#Neutral:Code=tower,"Name=Стены крепости",i=9,j=4
+#Neutral:Code=wall_2_r,"Name=Стены крепости",i=8,j=4
+#Neutral:Code=tower,"Name=Стены крепости",i=8,j=3
+#Neutral:Code=wall_2_r,"Name=Стены крепости",i=7,j=3
+#Neutral:Code=tower,"Name=Стены крепости",i=6,j=2
+#Neutral:Code=tower,"Name=Стены крепости",i=6,j=1
+#Neutral:Code=wall_2,"Name=Стены крепости",i=7,j=1
+#Neutral:Code=tower,"Name=Стены крепости",i=7,j=0
+
+Stone:i=1,j=1,size=max
+Stone:i=1,j=2,size=max
+Stone:i=1,j=3,size=max
+Stone:i=7,j=17,size=min
+Stone:i=10,j=20,size=medium
+Stone:i=26,j=3,size=min
+Stone:i=28,j=4,size=medium
+Stone:i=29,j=6,size=max
+Stone:i=17,j=6,size=medium
+Stone:i=21,j=5,size=max
+Stone:i=24,j=9,size=max
+Stone:i=23,j=10,size=max
+Stone:i=24,j=10,size=max
+Stone:i=28,j=15,size=medium
+Stone:i=23,j=16,size=medium
+Stone:i=5,j=9,size=medium
+Stone:i=7,j=8,size=medium
+Stone:i=12,j=15,size=medium
+Stone:i=14,j=18,size=medium
+
+INITIAL
+Stone:0
+Food:150
+Task:Добывать камни до завершения постройки замка
+AttackedDefeatString:Строители пострадали
+EmptyManager:10,10,10,10,10,10
+Permits:action=deny,code=all
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Heal
+Permits:action=allow,code=Restore
+Permits:action=allow,code=CutEmptySector
+Permits:action=allow,code=BuildTreeShield
+Permits:action=allow,code=BuildFarmStone
+Permits:action=allow,code=BuildCrystalTowerBig
+Permits:action=allow,code=BuildCrystalTowerSmall
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=9,j=2,immediate=true
+Action:Type=Message,icon=applejack_ico,"text=И это - крепость? Сарай Флаттершай и то выглядит лучше!"
+Action:Type=Message,icon=twily_ico,"text=Поэтому мы здесь. На постройку одной стены - нужно собрать @StoneQuant@ камня. Пинки, ты жила на каменной ферме. Сможешь?"
+Action:Type=Message,icon=pinki_ico,"text=О да! Я могу сделать ферму! Мы добудем много-много камней!"
+Action:Type=Message,icon=help_ico,"text=Пинки Пай умеет устанавливать ферму камней, на которой добывается камень."
+Action:Type=Message,icon=twily_ico,"text=Остальные - собираем то, что есть. Время не ждет."
+Action:Type=SetFocus,i=@Pos1X@,j=@Pos1Y@
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@Pos1X@,j=@Pos1Y@,count=1,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@Pos1X@,j=@Pos1Y@,count=1,radius=3
+Action:Type=Message,icon=rarity_ico,"text=И они тоже."
+Action:Type=Message,icon=applejack_ico,"text=Придется защитить строителей. Они нужны для ремонта замка."
+Action:Type=Message,icon=twily_ico,"text=Рарити, мне уже рассказали о твоих защитных кристаллах. Сможешь еще раз?"
+Action:Type=Message,icon=rarity_ico,"text=А ты знаешь, что на их создание тоже уходят камни?"
+Action:Type=Message,icon=rainbow_ico,"text=Выхода нет, придется часть камней потратить на защиту."
+Action:Type=SetExtInfoModel,"ModelMicroCode=mapcastle;Осталось построить стен: %d;27"
+Action:Type=ShowBattleTask
+
+# === Волны ===
+
+# === Волна 1
+
+SCRIPT      
+Event:Step=@StepWave1@
+Action:Type=SetFocus,i=@Pos1X@,j=@Pos1Y@
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@Pos1X@,j=@Pos1Y@,count=2,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@Pos1X@,j=@Pos1Y@,count=3,radius=3
+
+# === Волна 2
+
+SCRIPT      
+Event:Step=@StepWave2@
+Action:Type=SetFocus,i=@Pos2X@,j=@Pos2Y@
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@Pos2X@,j=@Pos2Y@,count=3,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@Pos2X@,j=@Pos2Y@,count=2,radius=3
+Action:Type=Message,icon=twily_ico,"text=Флаттершай, мы ценим твою помощь насчет исцеления ран, но может, ты попробуешь применить Взгляд?"
+Action:Type=Message,icon=flatter_ico,"text=Девочки, я не уверена, что смогу..."
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=@Pos2X@,j=@Pos2Y@,count=1,radius=3
+Action:Type=Message,icon=flatter_ico,"text=...но очень постараюсь!"
+Action:Type=Message,icon=help_ico,"text=Взгляд Флаттершай - подавляет противников на три хода, снижая на это время их здоровье и атаку, а также парализует на 1 ход."
+Action:Type=SetPermits,action=allow,code=FlatterView
+
+# === Волна 3
+
+SCRIPT      
+Event:Step=@StepWave3@
+Action:Type=SetFocus,i=@Pos3X@,j=@Pos3Y@
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@Pos3X@,j=@Pos3Y@,count=2,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@Pos3X@,j=@Pos3Y@,count=3,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=@Pos3X@,j=@Pos3Y@,count=1,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=poison,"Name=Ядовитый шар",i=@Pos3X@,j=@Pos3Y@,count=1,radius=3
+Action:Type=Message,icon=twily_ico,"text=Девочки, внимание. Эта зеленая гадость - ядовитый шар. Не подходите близко к нему!"
+
+# === Волна 4
+
+SCRIPT      
+Event:Step=@StepWave4@
+Action:Type=SetFocus,i=@Pos1X@,j=@Pos1Y@
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@Pos1X@,j=@Pos1Y@,count=3,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@Pos1X@,j=@Pos1Y@,count=2,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=@Pos1X@,j=@Pos1Y@,count=1,radius=3
+Action:Type=SetFocus,i=@Pos2X@,j=@Pos2Y@
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@Pos2X@,j=@Pos2Y@,count=2,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@Pos2X@,j=@Pos2Y@,count=3,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=@Pos2X@,j=@Pos2Y@,count=1,radius=3
+
+# === Волна 5
+
+SCRIPT      
+Event:Step=@StepWave5@
+Action:Type=SetFocus,i=@Pos1X@,j=@Pos1Y@
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@Pos1X@,j=@Pos1Y@,count=4,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@Pos1X@,j=@Pos1Y@,count=2,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=@Pos1X@,j=@Pos1Y@,count=1,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=poison,"Name=Ядовитый шар",i=@Pos1X@,j=@Pos1Y@,count=1,radius=3
+Action:Type=SetFocus,i=@Pos3X@,j=@Pos3Y@
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@Pos3X@,j=@Pos3Y@,count=3,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@Pos3X@,j=@Pos3Y@,count=2,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=@Pos3X@,j=@Pos3Y@,count=1,radius=3
+
+# === Волна 6
+
+SCRIPT      
+Event:Step=@StepWave6@
+Action:Type=SetFocus,i=@Pos1X@,j=@Pos1Y@
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@Pos1X@,j=@Pos1Y@,count=3,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@Pos1X@,j=@Pos1Y@,count=2,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=poison,"Name=Ядовитый шар",i=@Pos1X@,j=@Pos1Y@,count=1,radius=3
+Action:Type=SetFocus,i=@Pos2X@,j=@Pos2Y@
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@Pos2X@,j=@Pos2Y@,count=3,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@Pos2X@,j=@Pos2Y@,count=3,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=@Pos2X@,j=@Pos2Y@,count=1,radius=3
+Action:Type=SetFocus,i=@Pos3X@,j=@Pos3Y@
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@Pos3X@,j=@Pos3Y@,count=2,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@Pos3X@,j=@Pos3Y@,count=3,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=@Pos3X@,j=@Pos3Y@,count=1,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=poison,"Name=Ядовитый шар",i=@Pos3X@,j=@Pos3Y@,count=1,radius=3
+
+# === Building
+
+SCRIPT
+Event:StoneReach=@StoneQuant@
+Action:Type=Message,icon=twily_ico,"text=У нас уже есть камень на первую стену. Можно отправить его строителям или пока что использовать для собственных нужд." 
+Action:Type=Message,icon=ok_ico,"text=Когда остаток камня не менее @StoneQuant@, вы можете в любой момент отправить камни на постройку стен кнопкой в левом нижнем углу." 
+
+SCRIPT
+Event:Flag=stoneusersend
+Action:Type=SetFocus,i=11,j=4
+Action:Type=NewObject,Object=Neutral,Code=tower,"Name=Стены крепости",i=11,j=4
+Action:Type=Message,icon=twily_ico,"text=Начало положено. Продолжаем добывать камни, замок должен быть построен!" 
+Action:Type=DecStone,Delta=@StoneQuant@
+Action:Type=ClearFlag,FlagName=stoneusersend
+
+SCRIPT
+Event:Flag=stoneusersend
+Action:Type=NewObject,Object=Neutral,Code=tower,"Name=Стены крепости",i=9,j=4
+Action:Type=DecStone,Delta=@StoneQuant@
+Action:Type=ClearFlag,FlagName=stoneusersend
+
+SCRIPT
+Event:Flag=stoneusersend
+Action:Type=NewObject,Object=Neutral,Code=wall_2,"Name=Стены крепости",i=12,j=4
+Action:Type=DecStone,Delta=@StoneQuant@
+Action:Type=ClearFlag,FlagName=stoneusersend
+
+SCRIPT
+Event:Flag=stoneusersend
+Action:Type=NewObject,Object=Neutral,Code=wall_2_r,"Name=Стены крепости",i=8,j=4
+Action:Type=DecStone,Delta=@StoneQuant@
+Action:Type=ClearFlag,FlagName=stoneusersend
+
+SCRIPT
+Event:Flag=stoneusersend
+Action:Type=NewObject,Object=Neutral,Code=tower,"Name=Стены крепости",i=13,j=3
+Action:Type=DecStone,Delta=@StoneQuant@
+Action:Type=ClearFlag,FlagName=stoneusersend
+
+SCRIPT
+Event:Flag=stoneusersend
+Action:Type=NewObject,Object=Neutral,Code=tower,"Name=Стены крепости",i=8,j=3
+Action:Type=DecStone,Delta=@StoneQuant@
+Action:Type=ClearFlag,FlagName=stoneusersend
+
+SCRIPT
+Event:Flag=stoneusersend
+Action:Type=NewObject,Object=Neutral,Code=wall_2,"Name=Стены крепости",i=14,j=3
+Action:Type=DecStone,Delta=@StoneQuant@
+Action:Type=ClearFlag,FlagName=stoneusersend
+
+SCRIPT
+Event:Flag=stoneusersend
+Action:Type=NewObject,Object=Neutral,Code=wall_2_r,"Name=Стены крепости",i=7,j=3
+Action:Type=DecStone,Delta=@StoneQuant@
+Action:Type=ClearFlag,FlagName=stoneusersend
+
+SCRIPT
+Event:Flag=stoneusersend
+Action:Type=NewObject,Object=Neutral,Code=tower,"Name=Стены крепости",i=14,j=2
+Action:Type=DecStone,Delta=@StoneQuant@
+Action:Type=ClearFlag,FlagName=stoneusersend
+
+SCRIPT
+Event:Flag=stoneusersend
+Action:Type=NewObject,Object=Neutral,Code=tower,"Name=Стены крепости",i=6,j=2
+Action:Type=DecStone,Delta=@StoneQuant@
+Action:Type=ClearFlag,FlagName=stoneusersend
+
+SCRIPT
+Event:Flag=stoneusersend
+Action:Type=NewObject,Object=Neutral,Code=tower,"Name=Стены крепости",i=15,j=1
+Action:Type=DecStone,Delta=@StoneQuant@
+Action:Type=ClearFlag,FlagName=stoneusersend
+
+SCRIPT
+Event:Flag=stoneusersend
+Action:Type=NewObject,Object=Neutral,Code=tower,"Name=Стены крепости",i=6,j=1
+Action:Type=DecStone,Delta=@StoneQuant@
+Action:Type=ClearFlag,FlagName=stoneusersend
+
+SCRIPT
+Event:Flag=stoneusersend
+Action:Type=NewObject,Object=Neutral,Code=wall_2_r,"Name=Стены крепости",i=14,j=1
+Action:Type=DecStone,Delta=@StoneQuant@
+Action:Type=ClearFlag,FlagName=stoneusersend
+
+SCRIPT
+Event:Flag=stoneusersend
+Action:Type=NewObject,Object=Neutral,Code=wall_2,"Name=Стены крепости",i=7,j=1
+Action:Type=DecStone,Delta=@StoneQuant@
+Action:Type=ClearFlag,FlagName=stoneusersend
+
+SCRIPT
+Event:Flag=stoneusersend
+Action:Type=NewObject,Object=Neutral,Code=tower,"Name=Стены крепости",i=13,j=0
+Action:Type=DecStone,Delta=@StoneQuant@
+Action:Type=ClearFlag,FlagName=stoneusersend
+
+SCRIPT
+Event:Flag=stoneusersend
+Action:Type=NewObject,Object=Neutral,Code=tower,"Name=Стены крепости",i=7,j=0
+Action:Type=DecStone,Delta=@StoneQuant@
+Action:Type=ClearFlag,FlagName=stoneusersend
+
+# ===== Победа
+
+SCRIPT
+Event:NeutralCount=27
+Action:Type=SetFocus,i=12,j=2
+Action:Type=SetFlag,FlagName=CastleReady
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=twily_ico,"text=И снова наша команда справляется с заданием! Принцесса Селестия будет довольна."
+
+VICTORY
+ByFlag:FlagName=CastleReady

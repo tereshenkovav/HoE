@@ -1,0 +1,504 @@
+Конец эпохи
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+DESCRIPTION
+Злой дух Найтмер подчинил себе Принцессу Луну. Все силы Селестии ==>
+уходят на сдерживание её разрушительной мощи, и единственная надежда ==>
+Эквестрии - гости, которые в этот момент пребывали в замке. ==>
+Защитить Селестию от порождений ночи, выполнить план спасения мира и ==>
+не терять ни минуты в момент кризиса - такова задача дракона, грифона ==>
+и бывшего пирата на службе Принцессы.
+
+MAP
+LLLLAAAAAAAAAAAAAAAAAAAALLLLLLLLLLLWLLLLLLL
+LLLLAAANNNAAAAAAAAAAAAAAALLLLLLLLLLLWLLLLLLL
+LLLAAANNNNAAAANNNNNNNNNAALLLLLLLLLLLWLLLLLL
+LLLLAANNNNNAAANNNNNNNNNNAALLLLLLLLLLLWLLLLLL
+LLLLAANNNNNNNNNNNNNNNNNNAAALLLLLLLLLLWLLLLL
+LLLLAAANNNNNNNNNNNNNNNNNNAAAAAALLLLLLWLLLLLL
+LLLLAAAANNNNNNNNNNNNNNNNNAAAAAALLLLLWLLLLLL
+LLLLLAAANNNNNNNNNNNNNNNNNNNNNNAALLLLWLLLLLLL
+LLLLLAANNNNNNNNNNNNNNNNNNNNNNNAALLLWLLLLLWW
+LLLLLAANNNNNNNNNNNNNNNNNNNNNNNNLLLLWLLLLLWLL
+LLLLAANNNNNNNNNNNNNNNNNNNNNNNNWWWWWLLLLLWLL
+LLLLLAANNNNNNNNNNNNNNNNNNNNNNNNLLLLWLLLLWLLL
+LLLLLAANNNNNNNNNNNNNNNNNNNNNNNAALLLWLLLWLLL
+LLLLLAAANNNNNNNNNNNNNNNNNNNNNNAALLLLWWWWLLLL
+LLLLAAAANNNNNNNNNNNNNNNNNAAAAAALLLLLWLLLLLL
+LLLLAAAANNNNNNNNNNNNNNNNNAAAAAALLLLLLWLLLLLL
+LLLAAANNNNNNNNNNNNNNNNNNAAAAALLLLLLLLWLLLLL
+LLLLAANNNNAAANNNNNNNNNNNAAAALLLLLLLLLLWLLLLL
+LLLAANNNNNAAAAANNNNNNNNAAALLLLLLLLLLLLWLLLL
+LLLAAANNNNAAAAAAAAAAAAAAAALLLLLLLLLLLLLWLLLL
+LLLAAANNNAALLAAAAAAAAAAAALLLLLLLLLLLLLWLLLL
+LLLLAAAAAAALLLLAAAAAAAAAALLLLLLLLLLLLLWLLLLL
+#===MAPEND===
+
+CONSTANTS
+AS_X1:16
+AS_Y1:17
+AS_X2:15
+AS_Y2:3
+AS_X3:8
+AS_Y3:18
+AS_X4:8
+AS_Y4:2
+
+OBJECTS
+Pony:i=21,j=12,"name=Дракон",code=dragon_warr1,DeathAllow=true,tag=dragon
+Pony:i=21,j=8,"name=Грифон",code=grifon_warr1,DeathAllow=true,tag=grifon
+Pony:i=22,j=10,"name=Пират",code=pirate_warr1,DeathAllow=true,tag=pirate
+Neutral:i=@AS_X1@,j=@AS_Y1@,"name=Арсенал",code=armorstore
+Neutral:i=@AS_X2@,j=@AS_Y2@,"name=Арсенал",code=armorstore
+Neutral:i=@AS_X3@,j=@AS_Y3@,"name=Арсенал",code=armorstore
+Neutral:i=@AS_X4@,j=@AS_Y4@,"name=Арсенал",code=armorstore
+Neutral:i=10,j=10,"name=Найтмер Мун",code=nm_ray
+Neutral:i=11,j=10,"name=Луч Найтмер Мун",code=blue_ray
+Neutral:i=12,j=10,"name=Взрыв",code=clash_ray
+Neutral:i=13,j=10,"name=Луч Селестии",code=yellow_ray
+Neutral:i=14,j=10,"name=Луч Селестии",code=yellow_ray
+Neutral:i=15,j=10,"name=Луч Селестии",code=yellow_ray
+Neutral:i=16,j=10,"name=Луч Селестии",code=yellow_ray
+Neutral:i=17,j=10,"name=Луч Селестии",code=yellow_ray
+Neutral:i=18,j=10,"name=Луч Селестии",code=yellow_ray
+Neutral:i=19,j=10,"name=Луч Селестии",code=yellow_ray
+Neutral:i=20,j=10,"name=Луч Селестии",code=yellow_ray
+Pony:i=21,j=10,"name=Селестия",code=celestia_ray,Rank=1000
+Building:Code=House,"Name=Дом пони",Tag=house,i=38,j=2
+Building:Code=House2,"Name=Дом пони",Tag=house,i=35,j=4
+Building:Code=House3,"Name=Дом пони",Tag=house,i=39,j=5
+Building:Code=House,"Name=Дом пони",Tag=house,i=40,j=17
+Building:Code=House2,"Name=Дом пони",Tag=house,i=36,j=19
+Building:Code=House3,"Name=Дом пони",Tag=house,i=40,j=20
+#Monster:i=1,j=1,"name=Найтмер Мун",Code=nmoon_ray
+Neutral:Code=castlewall,"Name=Стены замка",i=6,j=2
+Neutral:Code=castlewall,"Name=Стены замка",i=7,j=1
+Neutral:Code=castlewall,"Name=Стены замка",i=8,j=1
+Neutral:Code=castlewall,"Name=Стены замка",i=9,j=1
+Neutral:Code=castlewall,"Name=Стены замка",i=9,j=2
+Neutral:Code=castlewall,"Name=Стены замка",i=10,j=3
+Neutral:Code=castlewall,"Name=Стены замка",i=9,j=4
+Neutral:Code=castlewall,"Name=Стены замка",i=10,j=4
+Neutral:Code=castlewall,"Name=Стены замка",i=11,j=4
+Neutral:Code=castlewall,"Name=Стены замка",i=12,j=4
+Neutral:Code=castlewall,"Name=Стены замка",i=13,j=4
+Neutral:Code=castlewall,"Name=Стены замка",i=14,j=4
+Neutral:Code=castlewall,"Name=Стены замка",i=15,j=4
+Neutral:Code=castlewall,"Name=Стены замка",i=14,j=3
+Neutral:Code=castlewall,"Name=Стены замка",i=14,j=2
+Neutral:Code=castlewall,"Name=Стены замка",i=15,j=2
+Neutral:Code=castlewall,"Name=Стены замка",i=16,j=2
+Neutral:Code=castlewall,"Name=Стены замка",i=17,j=2
+Neutral:Code=castlewall,"Name=Стены замка",i=17,j=4
+Neutral:Code=castlewall,"Name=Стены замка",i=18,j=4
+Neutral:Code=castlewall,"Name=Стены замка",i=19,j=4
+Neutral:Code=castlewall,"Name=Стены замка",i=20,j=4
+Neutral:Code=castlewall,"Name=Стены замка",i=19,j=2
+Neutral:Code=castlewall,"Name=Стены замка",i=20,j=2
+Neutral:Code=castlewall,"Name=Стены замка",i=21,j=2
+Neutral:Code=castlewall,"Name=Стены замка",i=22,j=2
+Neutral:Code=castlewall,"Name=Стены замка",i=23,j=3
+Neutral:Code=castlewall,"Name=Стены замка",i=23,j=4
+Neutral:Code=castlewall,"Name=Стены замка",i=24,j=5
+Neutral:Code=castlewall,"Name=Стены замка",i=24,j=6
+Neutral:Code=castlewall,"Name=Стены замка",i=25,j=7
+Neutral:Code=castlewall,"Name=Стены замка",i=27,j=7
+Neutral:Code=castlewall,"Name=Стены замка",i=28,j=7
+Neutral:Code=castlewall,"Name=Стены замка",i=29,j=7
+Neutral:Code=castlewall,"Name=Стены замка",i=29,j=8
+Neutral:Code=castlewall,"Name=Стены замка",i=29,j=12
+Neutral:Code=castlewall,"Name=Стены замка",i=29,j=13
+Neutral:Code=castlewall,"Name=Стены замка",i=28,j=13
+Neutral:Code=castlewall,"Name=Стены замка",i=27,j=13
+Neutral:Code=castlewall,"Name=Стены замка",i=26,j=13
+Neutral:Code=castlewall,"Name=Стены замка",i=25,j=13
+Neutral:Code=castlewall,"Name=Стены замка",i=24,j=15
+Neutral:Code=castlewall,"Name=Стены замка",i=23,j=16
+Neutral:Code=castlewall,"Name=Стены замка",i=23,j=17
+Neutral:Code=castlewall,"Name=Стены замка",i=22,j=18
+Neutral:Code=castlewall,"Name=Стены замка",i=21,j=14
+Neutral:Code=castlewall,"Name=Стены замка",i=22,j=13
+Neutral:Code=castlewall,"Name=Стены замка",i=22,j=12
+Neutral:Code=castlewall,"Name=Стены замка",i=23,j=11
+Neutral:Code=castlewall,"Name=Стены замка",i=20,j=12
+Neutral:Code=castlewall,"Name=Стены замка",i=17,j=12
+Neutral:Code=castlewall,"Name=Стены замка",i=14,j=12
+Neutral:Code=castlewall,"Name=Стены замка",i=13,j=14
+Neutral:Code=castlewall,"Name=Стены замка",i=14,j=14
+Neutral:Code=castlewall,"Name=Стены замка",i=15,j=14
+Neutral:Code=castlewall,"Name=Стены замка",i=16,j=14
+Neutral:Code=castlewall,"Name=Стены замка",i=17,j=14
+Neutral:Code=castlewall,"Name=Стены замка",i=18,j=14
+Neutral:Code=castlewall,"Name=Стены замка",i=19,j=14
+Neutral:Code=castlewall,"Name=Стены замка",i=20,j=16
+Neutral:Code=castlewall,"Name=Стены замка",i=19,j=16
+Neutral:Code=castlewall,"Name=Стены замка",i=18,j=16
+Neutral:Code=castlewall,"Name=Стены замка",i=17,j=16
+Neutral:Code=castlewall,"Name=Стены замка",i=16,j=16
+Neutral:Code=castlewall,"Name=Стены замка",i=15,j=16
+Neutral:Code=castlewall,"Name=Стены замка",i=15,j=17
+Neutral:Code=castlewall,"Name=Стены замка",i=15,j=18
+Neutral:Code=castlewall,"Name=Стены замка",i=16,j=18
+Neutral:Code=castlewall,"Name=Стены замка",i=17,j=18
+Neutral:Code=castlewall,"Name=Стены замка",i=18,j=18
+Neutral:Code=castlewall,"Name=Стены замка",i=19,j=18
+Neutral:Code=castlewall,"Name=Стены замка",i=20,j=18
+Neutral:Code=castlewall,"Name=Стены замка",i=14,j=17
+Neutral:Code=castlewall,"Name=Стены замка",i=13,j=17
+Neutral:Code=castlewall,"Name=Стены замка",i=12,j=16
+Neutral:Code=castlewall,"Name=Стены замка",i=11,j=16
+Neutral:Code=castlewall,"Name=Стены замка",i=9,j=16
+Neutral:Code=castlewall,"Name=Стены замка",i=11,j=14
+Neutral:Code=castlewall,"Name=Стены замка",i=10,j=16
+Neutral:Code=castlewall,"Name=Стены замка",i=11,j=12
+Neutral:Code=castlewall,"Name=Стены замка",i=10,j=13
+Neutral:Code=castlewall,"Name=Стены замка",i=9,j=12
+Neutral:Code=castlewall,"Name=Стены замка",i=9,j=11
+Neutral:Code=castlewall,"Name=Стены замка",i=8,j=13
+Neutral:Code=castlewall,"Name=Стены замка",i=8,j=14
+Neutral:Code=castlewall,"Name=Стены замка",i=8,j=15
+Neutral:Code=castlewall,"Name=Стены замка",i=7,j=16
+Neutral:Code=castlewall,"Name=Стены замка",i=6,j=16
+Neutral:Code=castlewall,"Name=Стены замка",i=6,j=17
+Neutral:Code=castlewall,"Name=Стены замка",i=5,j=18
+Neutral:Code=castlewall,"Name=Стены замка",i=6,j=19
+Neutral:Code=castlewall,"Name=Стены замка",i=6,j=20
+Neutral:Code=castlewall,"Name=Стены замка",i=8,j=20
+Neutral:Code=castlewall,"Name=Стены замка",i=9,j=19
+Neutral:Code=castlewall,"Name=Стены замка",i=9,j=18
+Neutral:Code=castlewall,"Name=Стены замка",i=9,j=17
+Neutral:Code=castlewall,"Name=Стены замка",i=7,j=11
+Neutral:Code=castlewall,"Name=Стены замка",i=6,j=10
+Neutral:Code=castlewall,"Name=Стены замка",i=7,j=9
+Neutral:Code=castlewall,"Name=Стены замка",i=7,j=8
+Neutral:Code=castlewall,"Name=Стены замка",i=8,j=7
+Neutral:Code=castlewall,"Name=Стены замка",i=8,j=6
+Neutral:Code=castlewall,"Name=Стены замка",i=6,j=4
+Neutral:Code=castlewall,"Name=Стены замка",i=7,j=5
+Neutral:Code=castlewall,"Name=Стены замка",i=8,j=5
+Neutral:Code=castlewall,"Name=Стены замка",i=10,j=6
+Neutral:Code=castlewall,"Name=Стены замка",i=10,j=7
+Neutral:Code=castlewall,"Name=Стены замка",i=9,j=8
+Neutral:Code=castlewall,"Name=Стены замка",i=9,j=9
+Neutral:Code=castlewall,"Name=Стены замка",i=11,j=8
+Neutral:Code=castlewall,"Name=Стены замка",i=12,j=6
+Neutral:Code=castlewall,"Name=Стены замка",i=13,j=6
+Neutral:Code=castlewall,"Name=Стены замка",i=14,j=6
+Neutral:Code=castlewall,"Name=Стены замка",i=15,j=6
+Neutral:Code=castlewall,"Name=Стены замка",i=16,j=6
+Neutral:Code=castlewall,"Name=Стены замка",i=14,j=8
+Neutral:Code=castlewall,"Name=Стены замка",i=17,j=8
+Neutral:Code=castlewall,"Name=Стены замка",i=18,j=6
+Neutral:Code=castlewall,"Name=Стены замка",i=19,j=6
+Neutral:Code=castlewall,"Name=Стены замка",i=20,j=8
+Neutral:Code=castlewall,"Name=Стены замка",i=20,j=6
+Neutral:Code=castlewall,"Name=Стены замка",i=21,j=6
+Neutral:Code=castlewall,"Name=Стены замка",i=22,j=7
+Neutral:Code=castlewall,"Name=Стены замка",i=22,j=8
+Neutral:Code=castlewall,"Name=Стены замка",i=23,j=9
+#===OBJECTSEND===
+
+INITIAL
+Stone:0
+Food:500
+Task:Защищать Принцессу столько, сколько потребуется
+DefaultMonsterStrategy:AttackByRank
+Permits:action=deny,code=all
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=20,j=10,immediate=true
+Action:Type=Message,icon=celestia_ico,"text=Уходите, мои друзья. Меня хватит еще на некоторое время, вы успеете."
+Action:Type=Message,icon=grifon1_ico,"text=Грифоны не бегут от битвы! Слухи о нашей жадности имеют основания, но мы не трусы."
+Action:Type=Message,icon=pirate_ico,"text=Вы сохранили мне жизнь при разгроме пиратской базы. Я готов вернуть вам долг, как велит пиратский кодекс."
+Action:Type=Message,icon=dragon_warr_ico,"text=Принцессса Ссселестия, что мы можем ccсделать в этой ccситуации?"
+Action:Type=Message,icon=celestia_ico,"text=Увы, не знаю. Я еле сдерживаю атаку одной Найтмер, но этого мало. Её злая воля призывает на помощь порождений ночи и просто местных чудовищ. А крепкие стены замка оказались не такими уж крепкими - часть их обрушилась, и враги могут войти где угодно."
+Action:Type=Message,icon=pirate_ico,"text=Вам нужна защита? Это вполне по силам. Вот только я, гм, немного безоружен. Грифон?"
+Action:Type=Message,icon=grifon1_ico,"text=Мои когти и клюв со мной, но в настоящем бою этого мало."
+Action:Type=Message,icon=dragon_warr_ico,"text=Драконы сссвирепы, но без меча и копья - ссс..."
+Action:Type=Message,icon=celestia_ico,"text=Мне жаль, что так вышло - я приглашала вас на пир, а не сечу. В коридорах замка полно арсеналов, но я не знаю, где и что хранится. Возможно, снаряжение стражи будет полезным."
+Action:Type=Message,icon=grifon1_ico,"text=Так, парни, задача ясна. Разбираем игрушки и прикрываем Селестию, пока она что-нибудь не придумает. Вы ведь найдете выход, Принцесса?"
+Action:Type=SetBattleTask,code=collect_armor,isreq=false,"Task=Порыться в арсеналах замка"
+Action:Type=SetBattleTask,code=allow_death,isreq=false,"Task=Допустимы потери среди героев, кроме Принцессы Селестии"
+Action:Type=ShowBattleTask
+
+# Скрипты на зажигательную смесь
+
+SCRIPT
+Event:ObjectPos=True,i=@AS_X1@,j=@AS_Y1@,IncludeLinked=true,Object=dragon_warr1
+Event2:Flag=armor1,CheckNoFlag=true
+Action:Type=Message,icon=dragon_warr_ico,"text=Вот это находка - сссожгу врагов!"
+Action:Type=SetPermits,action=allow,code=FireBomb1
+Action:Type=SetFlag,FlagName=armor1
+
+SCRIPT
+Event:ObjectPos=True,i=@AS_X1@,j=@AS_Y1@,IncludeLinked=true,Object=grifon_warr1
+Event2:Flag=armor1,CheckNoFlag=true
+Action:Type=Message,icon=grifon1_ico,"text=Горячую штучку я нашел!"
+Action:Type=SetPermits,action=allow,code=FireBomb2
+Action:Type=SetFlag,FlagName=armor1
+
+SCRIPT
+Event:ObjectPos=True,i=@AS_X1@,j=@AS_Y1@,IncludeLinked=true,Object=pirate_warr1
+Event2:Flag=armor1,CheckNoFlag=true
+Action:Type=Message,icon=pirate_ico,"text=Зажигательная смесь, аррр!"
+Action:Type=SetPermits,action=allow,code=FireBomb3
+Action:Type=SetFlag,FlagName=armor1
+
+# Скрипты на восстановительную смесь
+
+SCRIPT
+Event:ObjectPos=True,i=@AS_X2@,j=@AS_Y2@,IncludeLinked=true,Object=dragon_warr1
+Event2:Flag=armor2,CheckNoFlag=true
+Action:Type=Message,icon=dragon_warr_ico,"text=Не оружие, но поможет продержаться."
+Action:Type=SetPermits,action=allow,code=GuardPack1
+Action:Type=SetFlag,FlagName=armor2
+
+SCRIPT
+Event:ObjectPos=True,i=@AS_X2@,j=@AS_Y2@,IncludeLinked=true,Object=grifon_warr1
+Event2:Flag=armor2,CheckNoFlag=true
+Action:Type=Message,icon=grifon1_ico,"text=У нас в горах нет таких фиалов. Да и магов нет, честно говоря."
+Action:Type=SetPermits,action=allow,code=GuardPack2
+Action:Type=SetFlag,FlagName=armor2
+
+SCRIPT
+Event:ObjectPos=True,i=@AS_X2@,j=@AS_Y2@,IncludeLinked=true,Object=pirate_warr1
+Event2:Flag=armor2,CheckNoFlag=true
+Action:Type=Message,icon=pirate_ico,"text=Как кстати - а то я уже почти выбился из сил."
+Action:Type=SetPermits,action=allow,code=GuardPack3
+Action:Type=SetFlag,FlagName=armor2
+
+# Скрипты на скорпиона
+
+SCRIPT
+Event:ObjectPos=True,i=@AS_X3@,j=@AS_Y3@,IncludeLinked=true,Object=dragon_warr1
+Event2:Flag=armor3,CheckNoFlag=true
+Action:Type=Message,icon=dragon_warr_ico,"text=Драконы не сссильны в механике. Хорошо, что есть инссструкция."
+Action:Type=SetPermits,action=allow,code=CreateScorpion1
+Action:Type=SetFlag,FlagName=armor3
+
+SCRIPT
+Event:ObjectPos=True,i=@AS_X3@,j=@AS_Y3@,IncludeLinked=true,Object=grifon_warr1
+Event2:Flag=armor3,CheckNoFlag=true
+Action:Type=Message,icon=grifon1_ico,"text=Отличная боевая машина, и сборка несложная."
+Action:Type=SetPermits,action=allow,code=CreateScorpion2
+Action:Type=SetFlag,FlagName=armor3
+
+SCRIPT
+Event:ObjectPos=True,i=@AS_X3@,j=@AS_Y3@,IncludeLinked=true,Object=pirate_warr1
+Event2:Flag=armor3,CheckNoFlag=true
+Action:Type=Message,icon=pirate_ico,"text=Соберу компьемет при первом же удобном случае."
+Action:Type=SetPermits,action=allow,code=CreateScorpion3
+Action:Type=SetFlag,FlagName=armor3
+
+
+# Скрипты на башню
+
+SCRIPT
+Event:ObjectPos=True,i=@AS_X4@,j=@AS_Y4@,IncludeLinked=true,Object=dragon_warr1
+Event2:Flag=armor4,CheckNoFlag=true
+Action:Type=Message,icon=dragon_warr_ico,"text=Магия... темная магия... ссстрашно, но использую."
+Action:Type=SetPermits,action=allow,code=BuildDT1
+Action:Type=SetFlag,FlagName=armor4
+
+SCRIPT
+Event:ObjectPos=True,i=@AS_X4@,j=@AS_Y4@,IncludeLinked=true,Object=grifon_warr1
+Event2:Flag=armor4,CheckNoFlag=true
+Action:Type=Message,icon=grifon1_ico,"text=Надеюсь, этот амулет не требует волшебных навыков."
+Action:Type=SetPermits,action=allow,code=BuildDT2
+Action:Type=SetFlag,FlagName=armor4
+
+SCRIPT
+Event:ObjectPos=True,i=@AS_X4@,j=@AS_Y4@,IncludeLinked=true,Object=pirate_warr1
+Event2:Flag=armor4,CheckNoFlag=true
+Action:Type=Message,icon=pirate_ico,"text=Попробую разобраться методом тыка... я же не глупее королевского гвардейца?"
+Action:Type=SetPermits,action=allow,code=BuildDT3
+Action:Type=SetFlag,FlagName=armor4
+
+# Волны
+
+SCRIPT
+Event:Step=2
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=40,j=10,count=2,radius=2,autofocus=true
+Action:Type=Message,icon=grifon1_ico,"text=А вот и гости к столу пожаловали."
+Action:Type=Message,icon=celestia_ico,"text=Если это будет возможно, постарайтесь уберечь деревню возле замка... Ну хотя бы половину деревни. Жители успеют убежать, но не сразу."
+Action:Type=Message,icon=dragon_warr_ico,"text=Принцессса благородна и заботится о подданных. Мы сделаем всё, что сссможем."
+Action:Type=SetBattleTask,isreq=false,code=protect,"Task=Сохраните не менее трех домов пони в течении 8 ходов."
+Action:Type=ShowBattleTask
+
+SCRIPT
+Event:Step=3
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=2,j=10,count=2,radius=2,autofocus=true
+
+SCRIPT
+Event:Step=4
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=40,j=10,count=1,radius=2,autofocus=true
+
+SCRIPT
+Event:Step=6
+Action:Type=NewObjectGroup,Object=Monster,Code=gidra,"Name=Гидра",i=40,j=10,count=1,radius=2,autofocus=true
+
+SCRIPT
+Event:Step=8
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=25,j=2,count=2,radius=2,autofocus=true
+
+SCRIPT
+Event:Step=9
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=26,j=21,count=2,radius=2,autofocus=true
+
+# Провалено по домам
+
+SCRIPT
+Event:TagCount=2,TagName=house,Compare=LessOrEqual
+Event2:Flag=savestep,CheckNoFlag=true
+Action:Type=Message,icon=celestia_ico,"text=Я понимаю, трудно одновременно защищать замок и деревню. Но ничего, главное, что у меня намечается план спасения..."
+Action:Type=FailBattleTask,code=protect
+Action:Type=SetFlag,FlagName=failsave
+
+# Выполнение по домам
+SCRIPT
+Event:Step=10
+Event2:Flag=failsave,CheckNoFlag=true
+Action:Type=Message,icon=celestia_ico,"text=Вы отлично справились, друзья мои. Жители успешно спаслись. Я тоже кое-что придумала... нужно еще немного времени."
+Action:Type=CompBattleTask,code=protect
+Action:Type=SetFlag,FlagName=savestep
+
+# Решение
+SCRIPT
+Event:Step=13
+Action:Type=Message,icon=celestia_ico,"text=Слушайте внимательно, это наш единственный шанс одержать победу. Я сотворю заклинание, воспользуясь силами из тех запасов, которые нельзя трогать без крайней нужды. Это сильно ослабит меня, но сделает Найтмер Мун уязвимой для ваших атак. Вам придется действовать очень быстро - меня хватит совсем ненадолго."
+
+SCRIPT
+Event:Step=13
+Event2:TagCount=1,TagName=dragon
+Action:Type=Message,icon=dragon_warr_ico,"text=Мы сссокрушим злую пони. Приссступайте!"
+
+SCRIPT
+Event:Step=13
+Event2:TagCount=1,TagName=grifon
+Action:Type=Message,icon=grifon1_ico,"text=Я в ожидании настоящего боя!"
+
+SCRIPT
+Event:Step=13
+Event2:TagCount=1,TagName=pirate
+Action:Type=Message,icon=pirate_ico,"text=Слово капитана, наш враг пожалеет, что напал на Принцессу!"
+
+SCRIPT
+Event:Step=13
+Action:Type=Message,icon=celestia_ico,"text=Отлично, начинаю творить заклинание... будьте готовы!"
+
+SCRIPT
+Event:Step=14
+Action:Type=Message,icon=celestia_ico,"text=Всё, друзья. Я сняла всю защиту с Найтмер Мун... но и моя собственная защита почти иссякла. У вас мало времени."
+
+SCRIPT
+Event:Step=14
+Event2:TagCount=1,TagName=dragon
+Action:Type=Message,icon=dragon_warr_ico,"text=Поссспешим же!"
+
+SCRIPT
+Event:Step=14
+Event2:TagCount=1,TagName=grifon
+Action:Type=Message,icon=grifon1_ico,"text=Грифоны быстры, я буду ещё быстрее."
+
+SCRIPT
+Event:Step=14
+Event2:TagCount=1,TagName=pirate
+Action:Type=Message,icon=pirate_ico,"text=Стремительность - моё второе имя."
+
+SCRIPT
+Event:Step=14
+Action:Type=Message,icon=nmoon_ico,"text=Вы серьезно? Этот жалкий сброд надеется на победу? Как только я расправлюсь с тобой, Селестия - придет их черед. И придёт скоро - ты слабеешь..."
+Action:Type=ReplaceObject,OldCode=nm_ray,Object=Monster,Code=nmoon_ray,"Name=Найтмер Мун",holdground=true,passive=true
+Action:Type=SetExtInfoModel,"ModelMicroCode=mapnmoon;Осталось нанести урона: %d ед.;100"
+Action:Type=SetBattleTask,isreq=true,code=crush,"Task=Нанесите максимальный урон Найтмер Мун"
+Action:Type=SetBattleTask,isreq=true,code=stopray,"Task=Луч Найтмер Мун не должен достигнуть Принцессы Селестии"
+Action:Type=ShowBattleTask
+
+SCRIPT
+Event:Step=15
+Action:Type=RemoveObject,i=12,j=10
+Action:Type=NewObject,Object=Neutral,i=12,j=10,"name=Луч Найтмер Мун",code=blue_ray,showimmediate=true
+Action:Type=RemoveObject,i=13,j=10
+Action:Type=NewObject,Object=Neutral,i=13,j=10,"name=Взрыв",code=clash_ray,showimmediate=true
+
+SCRIPT
+Event:Step=16
+Action:Type=RemoveObject,i=13,j=10
+Action:Type=NewObject,Object=Neutral,i=13,j=10,"name=Луч Найтмер Мун",code=blue_ray,showimmediate=true
+Action:Type=RemoveObject,i=14,j=10
+Action:Type=NewObject,Object=Neutral,i=14,j=10,"name=Взрыв",code=clash_ray,showimmediate=true
+
+SCRIPT
+Event:Step=17
+Action:Type=RemoveObject,i=14,j=10
+Action:Type=NewObject,Object=Neutral,i=14,j=10,"name=Луч Найтмер Мун",code=blue_ray,showimmediate=true
+Action:Type=RemoveObject,i=15,j=10
+Action:Type=NewObject,Object=Neutral,i=15,j=10,"name=Взрыв",code=clash_ray,showimmediate=true
+
+SCRIPT
+Event:Step=18
+Action:Type=RemoveObject,i=15,j=10
+Action:Type=NewObject,Object=Neutral,i=15,j=10,"name=Луч Найтмер Мун",code=blue_ray,showimmediate=true
+Action:Type=RemoveObject,i=16,j=10
+Action:Type=NewObject,Object=Neutral,i=16,j=10,"name=Взрыв",code=clash_ray,showimmediate=true
+
+SCRIPT
+Event:Step=19
+Action:Type=RemoveObject,i=16,j=10
+Action:Type=NewObject,Object=Neutral,i=16,j=10,"name=Луч Найтмер Мун",code=blue_ray,showimmediate=true
+Action:Type=RemoveObject,i=17,j=10
+Action:Type=NewObject,Object=Neutral,i=17,j=10,"name=Взрыв",code=clash_ray,showimmediate=true
+
+SCRIPT
+Event:Step=20
+Action:Type=RemoveObject,i=17,j=10
+Action:Type=NewObject,Object=Neutral,i=17,j=10,"name=Луч Найтмер Мун",code=blue_ray,showimmediate=true
+Action:Type=RemoveObject,i=18,j=10
+Action:Type=NewObject,Object=Neutral,i=18,j=10,"name=Взрыв",code=clash_ray,showimmediate=true
+
+SCRIPT
+Event:Step=21
+Action:Type=RemoveObject,i=18,j=10
+Action:Type=NewObject,Object=Neutral,i=18,j=10,"name=Луч Найтмер Мун",code=blue_ray,showimmediate=true
+Action:Type=RemoveObject,i=19,j=10
+Action:Type=NewObject,Object=Neutral,i=19,j=10,"name=Взрыв",code=clash_ray,showimmediate=true
+
+SCRIPT
+Event:Step=22
+Action:Type=RemoveObject,i=19,j=10
+Action:Type=NewObject,Object=Neutral,i=19,j=10,"name=Луч Найтмер Мун",code=blue_ray,showimmediate=true
+Action:Type=RemoveObject,i=20,j=10
+Action:Type=NewObject,Object=Neutral,i=20,j=10,"name=Взрыв",code=clash_ray,showimmediate=true
+
+SCRIPT
+Event:Step=23
+Action:Type=SetDefeat,"DefeatStr=Селестию поразил луч Найтмер Мун!"
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=celestia_ico,"text=Вы справились! Найтмер Мун предельно ослаблена. Сейчас её ждет небольшое... аааах, это трудно, но я выдержу!"
+Action:Type=Message,icon=nmoon_ico,"text=Нет, нет! Я не могу проиграть! Я истинная Принцесса! Ночь будет дли..."
+Action:Type=RemoveObject,i=10,j=10
+Action:Type=RemoveObject,i=11,j=10
+Action:Type=RemoveObject,i=12,j=10
+Action:Type=RemoveObject,i=13,j=10
+Action:Type=RemoveObject,i=14,j=10
+Action:Type=RemoveObject,i=15,j=10
+Action:Type=RemoveObject,i=16,j=10
+Action:Type=RemoveObject,i=17,j=10
+Action:Type=RemoveObject,i=18,j=10
+Action:Type=RemoveObject,i=19,j=10
+Action:Type=RemoveObject,i=20,j=10
+Action:Type=RemoveObject,i=21,j=10
+Action:Type=Message,icon=celestia_ico,"text=Ну вот и всё. Элементы Гармонии сделали своё дело. Я, правда, ожидала другого эффекта, но выбирать не приходилось. Прости меня, сестра - я попыталась всё исправить, но видимо, это ещё предстоит кому-то другому."
+
+VICTORY
+ByFlag:FlagName=nmoon_crushed

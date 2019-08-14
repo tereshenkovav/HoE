@@ -1,0 +1,119 @@
+Эпилог: Новые герои
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+NONUMBER
+true
+
+MAP
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL2222FFMMMMMM
+LLLLLLLLFFFFFFLLLLLLLLLLLLLLLL222LLFFFFMMMMM
+LLLLLLLFFFFFMFFLLLLLLLLLLLLLL2222LLLLFFFMMM
+LLLLLLLLFFFMMFFFFLLLLLLLLLLLL222LLLLLLFFFFFM
+LLLLLLLLLLFFMMFFLLLLLLLLLLLLLL222LLLLLLLLFF
+LLLLLLLLLLLFFFFLLLLLLLLLLLLLL2222LLLLLLLLLLL
+LLLLLLLLLLLLFFLLLLLLLLLLLLLL2222LLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLL2222LLLLLLFFFFF
+LLLLLLLLLLLLLLLLLLLLLLLLLLLL2222LLLLLFFFFFF
+LLLLLLLLLLLLLLLLLLLLLLLLLLLFFF22222FFFFFFFFF
+LLLLLLLLLLLLLLLLLLLLLLLLFFFFFFF222MMMMMMMMM
+LLLLLLLLLLLLLLLLLLLLFFFFFMMMM2222222MMMMMMMM
+LLLLLLLLLLLLLLLLFFFFFFMMMMMMMMMM2222222MMMM
+LLLLLLLLLLLLLFFFFFMMMMMMMMMMMMMMMMM222222222
+#===MAPEND===
+
+# Раздел константы должен идти в самом начале
+CONSTANTS
+HouseX:39
+HouseY:4
+
+OBJECTS
+Pony:i=4,j=9,"name=Рарилайт",code=rarilight
+Neutral:Code=grifonhouse1,"Name=Дом в горах",i=@HouseX@,j=@HouseY@,mustsurvive=true
+
+#===OBJECTSEND===
+
+INITIAL
+Stone:0
+Food:200
+EmptyManager:30,30,30,30,30,30
+#EmptyManager:0,0,0,0,0,0
+Task:Очистить всю Пустоту
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Heal
+Permits:action=allow,code=Restore
+Permits:action=allow,code=CutEmptySector
+Permits:action=allow,code=BuildTreeShield
+Permits:action=allow,code=BuildFarmStone
+Permits:action=allow,code=BuildCrystalTowerBig
+Permits:action=allow,code=BuildCrystalTowerSmall
+Permits:action=allow,code=NightmareCall
+Permits:action=allow,code=BuildCrystalTowerDark
+Permits:action=allow,code=DarkTriden
+Permits:action=allow,code=CrystallRain
+Permits:action=allow,code=FrostAttack
+Permits:action=allow,code=SuperHealthAJ
+Permits:action=allow,code=SuperPowerPinki
+Permits:action=allow,code=BearSplash
+Permits:action=allow,code=SummoneBear
+Permits:action=allow,code=PrincessKiss
+Permits:action=allow,code=DeathKick
+Permits:action=allow,code=DeathRainbow
+Permits:action=allow,code=BuildForceTower
+Permits:action=allow,code=BuildHealTower
+Permits:action=allow,code=BuildMirage
+Permits:action=allow,code=IntRelax
+Permits:action=allow,code=SleepStar
+Permits:action=allow,code=BuildTornado
+Permits:action=allow,code=Wings
+Permits:action=allow,code=FlatterView
+Permits:action=allow,code=ForceShield
+Permits:action=allow,code=ForceShieldNR
+Permits:action=allow,code=SetupTeleport
+Permits:action=allow,code=ConsumeEnergy
+Permits:action=allow,code=ExtraEmptyClear
+Permits:action=allow,code=CutEmptySectorEx
+Permits:action=allow,code=SonicRainbowEx
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=5,j=9,immediate=true
+Action:Type=Message,icon=rarilight_ico,"text=Небольшой фрагмент Пустоты еще остался в этих горах. Не вижу смысла вызывать команду поддержки - я сама легко очищу здесь."
+Action:Type=ShowBattleTask
+
+SCRIPT
+Event:Step=1
+Action:Type=SetFocus,i=39,j=5
+Action:Type=Message,icon=rarilight_ico,"text=Дом посреди гор, так далеко от поселений? Мне нужно добраться до него прежде Пустоты - там могут быть пони. Хотя он больше похож на постройку грифона."
+Action:Type=SetBattleTask,code=protect,"Task=Дом в горах должен уцелеть."
+Action:Type=SetBattleTask,code=arrive,"Task=Добраться до дома в горах."
+Action:Type=ShowBattleTask
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=rarilight_ico,"text=Пустоты больше не будет в этом ущелье. Посмотрим, кто у нас живет в домике..."
+Action:Type=Message,icon=grifonglass_ico,"text=Здравствуйте, пони. Рад вас видеть, обеих."
+Action:Type=Message,icon=rarilight_ico,"text=Это не очень смешная шутка, грифон. "
+Action:Type=Message,icon=grifonglass_ico,"text=Я и не смеюсь. Два единорога в теле одной пони - редкий случай. Я помню Твайлайт Спаркл ещё по школе принцессы Селестии."
+Action:Type=Message,icon=rarilight_ico,"text=Ты знал Твайлайт? Это одна из тех пони, которая создала меня."
+Action:Type=Message,icon=grifonglass_ico,"text=Она была лучшей ученицей, как по теории, так и по практике. Вторая пони, увы, мне не знакома... белый единорог, не слишком сильный, но очень искуссный... да, твои создатели достойные пони."
+Action:Type=Message,icon=rarilight_ico,"text=Увы, были достойными - до того, как пожертвовали собой."
+Action:Type=Message,icon=grifonglass_ico,"text=Тебе еще многому предстоит научиться, могучий герой. Я вижу души твоих создателей - и думаю, что есть способы вернуть их."
+Action:Type=Message,icon=rarilight_ico,"text=Наше дело еще не окончено, грифон. Но когда мы одержим окончательную победу - я и мои друзья навестим тебя, и послушаем всё, что ты предложишь."
+
+VICTORY
+ByNoSpaceLeft:null
+->ByObjectPos:Object=rarilight,i=@HouseX@,j=@HouseY@,IncludeLinked=true,AddType=And
+
+

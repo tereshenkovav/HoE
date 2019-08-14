@@ -1,0 +1,100 @@
+Королевский портал
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+LLLLLLLLFFFFFFFLLLLLLWL
+LLLLLLLLLFFFFFFLLLLWWWLL
+LLHLLLWWWWWFFFLLLLWLLLL
+LLLLLWWLLFFWWWWWWWWLLLLL
+LLLLWLLLFFFFFFLLLLWWWLL
+LLLLWLLLLFFFFFFLLLLLLWLL
+LLLLWLLLFFFFFFFLLLLLLWL
+LLLLLWLFFFFFFFFFFLLLLLWW
+LLLLWLFFFFMMFFFFFFLLLLL
+LLLWWLFFFFFMMFFFFFFFLLLL
+LLWLLFFFFFMMMMMFFFFFFFL
+LLWLFFFFFMMMMMMMFFFFFFFF
+LWLLFFFFMMMMMMMMMMMMFFF
+LLWLFFFFMMMMMMMMMMMMMMMF
+LLWLFFFFMMMMMMMMMMMMMMM
+#===MAPEND===
+
+# Раздел константы должен идти в самом начале
+CONSTANTS
+StepNewMonster:3
+
+OBJECTS
+Food:i=3,j=2,size=min,tag=foods
+Food:i=3,j=3,size=min,tag=foods
+Pony:i=2,j=12,"name=Рарити",code=rarity
+Pony:i=1,j=13,"name=Эпплджек",code=applejack
+Neutral:i=20,j=8,"name=Телепорт",code=teleport,targeted=true
+
+INITIAL
+Stone:0
+Food:50
+Task:Добраться обеими понями до портала
+Permits:action=deny,code=all
+#Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT
+Event:Step=0
+Action:Type=SetFocus,i=2,j=12,immediate=true
+Action:Type=Message,icon=rarity_ico,"text=До Кантерлота ==>
+идти полдня. Почему бы нам не воспользоваться ==>
+королевским порталом? Принцесса Луна недавно поставила его возле Понивилля, ==>
+как раз на подобный случай."
+Action:Type=Message,icon=applejack_ico,"text=Что-то не доверяю я этим ==>
+единорожьим штукам. Может, по старинке, копытами?"
+Action:Type=Message,icon=rarity_ico,"text=Дорогуша, этим порталом уже не ==>
+раз пользовалась Твайлайт. И мы сможем."
+Action:Type=ShowBattleTask
+
+SCRIPT
+Event:Step=1
+Action:Type=SetFocus,i=3,j=3
+Action:Type=Message,icon=applejack_ico,"text=На этой дороге есть заброшеный дом лесорубов, ==>
+наверняка, и припасы остались. Нужно подобрать."
+Action:Type=SetBattleTask,isreq=false,code=foods,"Task=Соберите припасы у дома."
+
+SCRIPT
+Event:TagCount=0,TagName=foods
+Action:Type=CompBattleTask,code=foods
+
+SCRIPT
+Event:Step=@StepNewMonster@
+Action:Type=SetFocus,i=15,j=4
+Action:Type=NewObject,Object=Monster,Code=woodwolf,"Name=Древесный волк",i=15,j=4
+Action:Type=NewObject,Object=Monster,Code=woodwolf,"Name=Древесный волк",i=17,j=2
+Action:Type=Message,icon=rarity_ico,"text=Древесные волки? ==> 
+Так близко от Понивилля?"
+Action:Type=Message,icon=applejack_ico,"text=Полагаю, нам стоит ==>
+решить эту проблему, тем более, что они на нашем пути."
+Action:Type=SetPermits,action=allow,code=AttackNear
+Action:Type=SetPermits,action=allow,code=AttackLong
+Action:Type=Message,icon=help_ico,"text=Способность всех пони: Ближняя ==>
+и дальняя атака."
+Action:Type=SetBattleTask,isreq=false,code=woodwolf,"Task=Уничтожьте древесных волков"
+Action:Type=SetFlag,FlagName=woodwolf
+
+SCRIPT
+Event:Flag=woodwolf
+Event1:MonsterCount=0
+Action:Type=CompBattleTask,code=woodwolf
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=applejack_ico,"text=Ну вот твой портал. Идем в Кантер..."
+
+VICTORY
+#ByStep:StepNeed=1
+ByObjectPos:Object=rarity,i=20,j=8,IncludeLinked=true
+->ByObjectPos:Object=applejack,i=20,j=8,AddType=And,IncludeLinked=true

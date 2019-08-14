@@ -1,0 +1,414 @@
+Битва бессмертных
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+LLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLLLLLLWWWW
+LLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLLLLLLWLLL
+LLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLLLLLWLLLL
+LLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLWWWWWLLLL
+LLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLWLLLLLLLLL
+LLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLWWWWLLLLLLLLL
+LLLLLLLLLLLLLLLLLWLLLLLLLLLLLLLWLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLWLLLLLLLWWWWWWLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLWLLLLLLWLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLWLLLLLWLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLWWLWWWLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLWWLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLWLLLLLLLLLLLLLLLLLLLLL
+#===MAPEND===
+
+CONSTANTS
+HouseMustSave:12
+HouseMustSaveLess:11
+CelObelisk1_I:16
+CelObelisk1_J:19
+CelObelisk2_I:19
+CelObelisk2_J:28
+CelObelisk3_I:26
+CelObelisk3_J:21
+CorovanStep1:5
+CorovanStep2:20
+CorovanStep3:33
+DragonStep:43
+Spawn1_X:4
+Spawn1_Y:41
+Spawn2_X:2
+Spawn2_Y:33
+Spawn3_X:3
+Spawn3_Y:3
+Spawn4_X:2
+Spawn4_Y:10
+Spawn5_X:22
+Spawn5_Y:2
+Spawn6_X:30
+Spawn6_Y:4
+Spawn7_X:39
+Spawn7_Y:7
+Spawn8_X:41
+Spawn8_Y:22
+Spawn9_X:39
+Spawn9_Y:35
+Spawn10_X:34
+Spawn10_Y:42
+       
+OBJECTS
+Pony:i=20,j=21,"name=Селестия",code=celestia_weak
+Pony:i=22,j=21,"name=Каденс",code=cadence
+Pony:i=21,j=23,"name=Луна",code=luna
+
+ 
+Neutral:Code=obelisk,"Name=Обелиск Солнечного Кошмара",i=@CelObelisk1_I@,j=@CelObelisk1_J@
+Neutral:Code=obelisk,"Name=Обелиск Солнечного Кошмара",i=@CelObelisk2_I@,j=@CelObelisk2_J@
+Neutral:Code=obelisk,"Name=Обелиск Солнечного Кошмара",i=@CelObelisk3_I@,j=@CelObelisk3_J@
+
+Building:Code=House2,"Name=Дом пони",Tag=house,i=18,j=18
+Neutral:Code=tower,Name=Башня,i=21,j=17
+Neutral:Code=tower,Name=Башня,i=17,j=25
+Neutral:Code=tower,Name=Башня,i=25,j=25
+Building:Code=House2,"Name=Дом пони",Tag=house,i=24,j=17
+Neutral:Code=tower,Name=Башня,i=20,j=17
+Neutral:Code=tower,Name=Башня,i=22,j=17
+Neutral:Code=tower,Name=Башня,i=16,j=24
+Neutral:Code=tower,Name=Башня,i=17,j=26
+Neutral:Code=tower,Name=Башня,i=25,j=24
+Neutral:Code=tower,Name=Башня,i=24,j=26
+Building:Code=House,"Name=Дом пони",Tag=house,i=19,j=22
+Building:Code=House3,"Name=Дом пони",Tag=house,i=20,j=23
+Building:Code=House,"Name=Дом пони",Tag=house,i=20,j=20
+Building:Code=House3,"Name=Дом пони",Tag=house,i=21,j=20
+Building:Code=House,"Name=Дом пони",Tag=house,i=22,j=22
+Building:Code=House,"Name=Дом пони",Tag=house,i=22,j=23
+Building:Code=House3,"Name=Дом пони",Tag=house,i=23,j=18
+Building:Code=House,"Name=Дом пони",Tag=house,i=23,j=19
+Building:Code=House2,"Name=Дом пони",Tag=house,i=22,j=20
+Building:Code=House,"Name=Дом пони",Tag=house,i=18,j=17
+Building:Code=House,"Name=Дом пони",Tag=house,i=19,j=19
+Building:Code=House2,"Name=Дом пони",Tag=house,i=19,j=20
+Building:Code=House2,"Name=Дом пони",Tag=house,i=23,j=23
+Building:Code=House,"Name=Дом пони",Tag=house,i=23,j=24
+Building:Code=House,"Name=Дом пони",Tag=house,i=24,j=25
+Building:Code=House2,"Name=Дом пони",Tag=house,i=18,j=22
+Building:Code=House,"Name=Дом пони",Tag=house,i=18,j=23
+Building:Code=House,"Name=Дом пони",Tag=house,i=17,j=24
+Building:Code=House2,"Name=Дом пони",Tag=house,i=19,j=25
+Building:Code=House3,"Name=Дом пони",Tag=house,i=17,j=21
+Building:Code=House3,"Name=Дом пони",Tag=house,i=24,j=22
+Building:Code=House2,"Name=Дом пони",Tag=house,i=20,j=24
+#===OBJECTSEND===
+
+INITIAL
+Stone:0
+Food:100
+Task:Сохранить не менее @HouseMustSave@ домов нового Кантерлота
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Heal
+Permits:action=allow,code=Restore
+Permits:action=allow,code=CutEmptySector
+Permits:action=allow,code=BuildTreeShield
+Permits:action=allow,code=BuildFarmStone
+Permits:action=allow,code=BuildCrystalTowerBig
+Permits:action=allow,code=BuildCrystalTowerSmall
+Permits:action=allow,code=NightmareCall
+Permits:action=allow,code=BuildCrystalTowerDark
+Permits:action=allow,code=DarkTriden
+Permits:action=allow,code=CrystallRain
+Permits:action=allow,code=FrostAttack
+Permits:action=allow,code=SuperHealthAJ
+Permits:action=allow,code=SuperPowerPinki
+Permits:action=allow,code=BearSplash
+Permits:action=allow,code=SummoneBear
+Permits:action=allow,code=PrincessKiss
+Permits:action=allow,code=DeathKick
+Permits:action=allow,code=DeathRainbow
+Permits:action=allow,code=BuildForceTower
+Permits:action=allow,code=BuildHealTower
+Permits:action=allow,code=BuildMirage
+Permits:action=allow,code=IntRelax
+Permits:action=allow,code=SleepStar
+Permits:action=allow,code=BuildTornado
+Permits:action=allow,code=Wings
+Permits:action=allow,code=BuildFantom
+Permits:action=allow,code=SleepEnemy
+Permits:action=allow,code=SunBeam
+Permits:action=allow,code=FireBall
+Permits:action=allow,code=FlatterView
+Permits:action=allow,code=SuperNova
+Permits:action=allow,code=AlicornSword
+#Permits:action=allow,code=SunRage
+Permits:action=allow,code=SetupTeleport
+Permits:action=allow,code=BuildChaosTower
+Permits:action=allow,code=MakeMork
+Permits:action=allow,code=RestoreAll
+Permits:action=allow,code=FlameWall
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,immediate=true,i=20,j=20
+Action:Type=Message,icon=celestia_ico,"text=Мы снова вдвоем на поле боя, как в старые добрые времена."
+Action:Type=Message,icon=cadence_ico,"text=Я тоже здесь, и эти прекрасные обелиски ярости - моя работа. Используй их правильно."
+Action:Type=Message,icon=luna_ico,"text=Жалко, что твоей ученицы нет рядом. Когда-нибудь она станет гораздо сильнее всех нас."
+Action:Type=Message,icon=celestia_ico,"text=Что ж, мы справимся и сами, верно?"
+Action:Type=Message,icon=ok_ico,"text=Селестия не может атаковать, но может превратиться в Солнечный Кошмар возле любого обелиска ярости."
+Action:Type=SetExtInfoModel,"ModelMicroCode=maptirek;Уцелевших домов: %d;house"
+Action:Type=ShowBattleTask
+Action:Type=SetVar,Name=newdiscord,Initial=CurrentStep,Delta=999
+       
+### Трансформация
+SCRIPT
+Event:ObjectPos=True,ForceNoDel=true,i=@CelObelisk1_I@,j=@CelObelisk1_J@,IncludeLinked=true,Object=celestia_weak
+Action:Type=ReplaceObject,OldCode=celestia_weak,UseStore=true,Object=Pony,Code=nsun,"Name=Солнечный кошмар"
+
+SCRIPT
+Event:ObjectPos=True,ForceNoDel=true,i=@CelObelisk2_I@,j=@CelObelisk2_J@,IncludeLinked=true,Object=celestia_weak
+Action:Type=ReplaceObject,OldCode=celestia_weak,UseStore=true,Object=Pony,Code=nsun,"Name=Солнечный кошмар"
+
+SCRIPT
+Event:ObjectPos=True,ForceNoDel=true,i=@CelObelisk3_I@,j=@CelObelisk3_J@,IncludeLinked=true,Object=celestia_weak
+Action:Type=ReplaceObject,OldCode=celestia_weak,UseStore=true,Object=Pony,Code=nsun,"Name=Солнечный кошмар"
+
+SCRIPT
+Event:ObjectPos=False,ForceNoDel=true,i=@CelObelisk1_I@,j=@CelObelisk1_J@,IncludeLinked=true,Object=nsun
+Event2:ObjectPos=False,ForceNoDel=true,i=@CelObelisk2_I@,j=@CelObelisk2_J@,IncludeLinked=true,Object=nsun
+Event3:ObjectPos=False,ForceNoDel=true,i=@CelObelisk3_I@,j=@CelObelisk3_J@,IncludeLinked=true,Object=nsun
+Action:Type=ReplaceObject,OldCode=nsun,UseStore=true,Object=Pony,Code=celestia_weak,"Name=Принцесса Селестия"
+###
+
+# Первая трансформация
+SCRIPT
+Event:ObjectPos=True,Direction=GreatX,i=1,j=1,Object=nsun
+Action:Type=Message,icon=nightmaresun_ico,"text=Это ваш план, пони? Привязать Солнечный Кошмар к этим кускам камня?"
+Action:Type=Message,icon=luna_ico,"text=Но ведь сработало?"
+Action:Type=Message,icon=nightmaresun_ico,"text=Это мы ещё посмотрим! Я покажу вам, что такое игра с огнём!"
+Action:Type=Message,icon=cadence_ico,"text=Как насчет показать это нашим общим врагам?"
+
+SCRIPT      
+Event:Step=@CorovanStep1@
+Action:Type=SetFocus,i=24,j=43
+Action:Type=NewObject,Object=Neutral,Code=pony_1,"Name=Караванщик",i=22,j=42,tag=corovan1
+Action:Type=NewObject,Object=Neutral,Code=pony_2,"Name=Караванщик",i=24,j=42,tag=corovan2
+Action:Type=NewObject,Object=Building,Code=ponyvan,"Name=Повозка",i=23,j=42,tag=corovan3
+Action:Type=Message,icon=ponyminer_ico,"text=Первая поставка еды в новую столицу, примите накладную по..."
+Action:Type=Message,icon=anonpony_ico,"text=Ужас! Чудовища в городе! Бегите, пони, бегите!"
+Action:Type=NewObject,Object=Food,i=22,j=43,size=max,immediate=true
+Action:Type=NewObject,Object=Food,i=24,j=44,size=max,immediate=true
+Action:Type=MoveObject,method=tag,Tag=corovan1,dst_i=23,dst_j=45
+Action:Type=MoveObject,method=tag,Tag=corovan2,dst_i=22,dst_j=45
+Action:Type=RemoveObject,method=tag,Tag=corovan1
+Action:Type=RemoveObject,method=tag,Tag=corovan2
+Action:Type=RemoveObject,method=tag,Tag=corovan3
+Action:Type=Message,icon=luna_ico,"text=Пони! Немедленно доставьте груз в город! ВАША ПРИНЦЕССА ПРИКАЗЫВАЕТ ВАМ!!!"
+Action:Type=Message,icon=celestia_ico,"text=Луна, это всего лишь пони. Нельзя требовать от них слишком многого."
+Action:Type=Message,icon=cadence_ico,"text=Однако, я проголодалась. Кому-то придётся слетать и подобрать все эти бочки."
+
+SCRIPT      
+Event:Step=@CorovanStep2@
+Action:Type=SetFocus,i=13,j=3
+Action:Type=NewObject,Object=Neutral,Code=pony_3,"Name=Караванщик",i=14,j=3,tag=corovan1
+Action:Type=NewObject,Object=Neutral,Code=pony_4,"Name=Караванщик",i=15,j=2,tag=corovan2
+Action:Type=NewObject,Object=Building,Code=ponyvan,"Name=Повозка",i=13,j=3,tag=corovan3
+Action:Type=Message,icon=ponyminer_ico,"text=Груз на подходе, открывайте..."
+Action:Type=Message,icon=anonpony_ico,"text=Нет, ЭТОГО не было в моём контракте перевозчика. Валим!"
+Action:Type=NewObject,Object=Food,i=13,j=2,size=max,immediate=true
+Action:Type=NewObject,Object=Food,i=14,j=5,size=max,immediate=true
+Action:Type=MoveObject,method=tag,Tag=corovan1,dst_i=13,dst_j=0
+Action:Type=MoveObject,method=tag,Tag=corovan2,dst_i=14,dst_j=0
+Action:Type=RemoveObject,method=tag,Tag=corovan1
+Action:Type=RemoveObject,method=tag,Tag=corovan2
+Action:Type=RemoveObject,method=tag,Tag=corovan3
+Action:Type=Message,icon=luna_ico,"text=Снова подбирать груз на обочине?"
+Action:Type=Message,icon=celestia_ico,"text=Как будто у нас есть выбор..."
+
+SCRIPT      
+Event:Step=@CorovanStep3@
+Action:Type=SetFocus,i=41,j=11
+Action:Type=NewObject,Object=Neutral,Code=pony_5,"Name=Караванщик",i=42,j=10,tag=corovan1
+Action:Type=NewObject,Object=Neutral,Code=pony_6,"Name=Караванщик",i=41,j=12,tag=corovan2
+Action:Type=NewObject,Object=Building,Code=ponyvan,"Name=Повозка",i=41,j=11,tag=corovan3
+Action:Type=Message,icon=ponyminer_ico,"text=Очередная повозка - бочки яблок, три штуки..."
+Action:Type=Message,icon=anonpony_ico,"text=... и тысячи кошмарных тварей вокруг! Ааааааа!"
+Action:Type=NewObject,Object=Food,i=39,j=12,size=max,immediate=true
+Action:Type=NewObject,Object=Food,i=41,j=9,size=max,immediate=true
+Action:Type=MoveObject,method=tag,Tag=corovan1,dst_i=44,dst_j=9
+Action:Type=MoveObject,method=tag,Tag=corovan2,dst_i=44,dst_j=13
+Action:Type=RemoveObject,method=tag,Tag=corovan1
+Action:Type=RemoveObject,method=tag,Tag=corovan2
+Action:Type=RemoveObject,method=tag,Tag=corovan3
+Action:Type=Message,icon=luna_ico,"text=Нам стоит серьезно поработать над храбростью населения."
+
+# Монстры лезут
+SCRIPT      
+Event:Step=1
+Action:Type=SetFocus,i=5,j=37
+Action:Type=NewObjectGroup,Object=Monster,Code=gidra,"Name=Гидра",i=@Spawn1_X@,j=@Spawn1_Y@,count=2,radius=2
+Action:Type=NewObjectGroup,Object=MonsterTent,Code=tent,"Name=Зеленый ужас",i=@Spawn2_X@,j=@Spawn2_Y@,count=1,radius=2
+Action:Type=Message,icon=celestia_ico,"text=Неожиданно! Разве не должны были первыми появиться слабые нетопыри, как обычно?"
+Action:Type=Message,icon=luna_ico,"text=Сестра, ты пытаешься искать логику в порождениях Пустоты и чудищах из леса?"
+
+SCRIPT      
+Event:Step=3
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@Spawn4_X@,j=@Spawn4_Y@,count=3,radius=2
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=@Spawn5_X@,j=@Spawn5_Y@,count=2,radius=2
+
+SCRIPT      
+Event:Step=6
+Action:Type=SetFocus,i=@Spawn7_X@,j=@Spawn7_Y@
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@Spawn7_X@,j=@Spawn7_Y@,count=5,radius=3
+Action:Type=Message,icon=cadence_ico,"text=Кто-то расстраивался из-за отсутствия нетопырей?"
+Action:Type=Message,icon=luna_ico,"text=И это точно была не я."
+Action:Type=Message,icon=celestia_ico,"text=Очень смешно, жаль, я не могу разделить ваш юмор - слишком занята защитой столицы."
+
+SCRIPT      
+Event:Step=7
+Action:Type=NewObjectGroup,Object=Monster,Code=poison,"Name=Ядовитый шар",i=@Spawn2_X@,j=@Spawn2_Y@,count=3,radius=2
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=@Spawn3_X@,j=@Spawn3_Y@,count=3,radius=3
+Action:Type=Message,icon=luna_ico,"text=Во имя меня! Они лезут со всех сторон. Нам втроём не сдержать их."
+Action:Type=Message,icon=cadence_ico,"text=Нужна четвертая принцесса?"
+Action:Type=Message,icon=celestia_ico,"text=Или четвертый. Ох, чувствую, что я пожалею об этом, но... Я прошу тебя, помоги!"
+Action:Type=Message,icon=discord_ico,"text=По мне, так у вас всё под контролем. Ты же знаешь, я не слишком люблю лично..."
+Action:Type=Message,icon=celestia_ico,"text=Неделя шоколадных дождей! Сто километров мыльных дорог. Грива Каденс, покрашенная в зеленый цвет!"
+Action:Type=Message,icon=cadence_ico,"text=..."
+Action:Type=Message,icon=discord_ico,"text=Разве можно отказать, когда так просят? Я в деле."
+Action:Type=NewObject,Object=Pony,Code=discord,"Name=Дискорд",i=20,j=22,"Name=Дискорд",tag=discord
+Action:Type=Message,icon=help_ico,"text=Дискорд - могучий, но своенравный дух поддержки, способен ставить защитную башню, лечить/восстанавливать силы пони и превращать врагов в морковки на любом расстоянии. После применения способностей, исчезает на 6 ходов."
+   
+SCRIPT
+Event:Flag=DiscordApply,ForceNoDel=true,ForceOnceAtStep=true
+Action:Type=Message,icon=discord_ico,"text=Я потратил уйму сил. Пойду передохну чуток, не скучайте."
+Action:Type=RemoveObject,method=tag,Tag=discord
+#Action:Type=ClearFlag,FlagName=newdiscordflag
+Action:Type=SetVar,Name=newdiscord,Initial=CurrentStep,Delta=6
+#Action:Type=SetFlag,FlagName=newdiscordflag
+Action:Type=ClearFlag,FlagName=DiscordApply
+
+SCRIPT
+Event:StepVar=newdiscord
+#Event2:Flag=newdiscordflag
+Action:Type=NewObject,Object=Pony,Code=discord,"Name=Дискорд",i=20,j=22,"Name=Дискорд",tag=discord,DebugInfo=creatediscord
+                
+SCRIPT      
+Event:Step=10
+Action:Type=NewObjectGroup,Object=MonsterTwist,Code=twist,"Name=Смерч",i=@Spawn8_X@,j=@Spawn8_Y@,count=1,radius=4
+Action:Type=NewObjectGroup,Object=Monster,Code=gidra,"Name=Гидра",i=@Spawn10_X@,j=@Spawn10_Y@,count=3,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@Spawn6_X@,j=@Spawn6_Y@,count=4,radius=3
+
+SCRIPT      
+Event:Step=13
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@Spawn4_X@,j=@Spawn4_Y@,count=3,radius=2
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=@Spawn5_X@,j=@Spawn5_Y@,count=2,radius=2
+
+SCRIPT      
+Event:Step=18
+Action:Type=NewObjectGroup,Object=MonsterTent,Code=tent,"Name=Зеленый ужас",i=@Spawn1_X@,j=@Spawn1_Y@,count=2,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@Spawn3_X@,j=@Spawn3_Y@,count=5,radius=4
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=@Spawn5_X@,j=@Spawn5_Y@,count=3,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=poison,"Name=Ядовитый шар",i=@Spawn7_X@,j=@Spawn7_Y@,count=2,radius=3
+
+SCRIPT      
+Event:Step=23
+Action:Type=NewObjectGroup,Object=MonsterTwist,Code=twist,"Name=Смерч",i=@Spawn2_X@,j=@Spawn2_Y@,count=1,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@Spawn4_X@,j=@Spawn4_Y@,count=4,radius=4
+Action:Type=NewObjectGroup,Object=Monster,Code=gidra,"Name=Гидра",i=@Spawn7_X@,j=@Spawn7_Y@,count=3,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=woodwolf_chief,"Name=Гигантский волк",i=@Spawn9_X@,j=@Spawn9_Y@,count=2,radius=3
+
+SCRIPT      
+Event:Step=28
+Action:Type=NewObjectGroup,Object=MonsterTent,Code=tent,"Name=Зеленый ужас",i=@Spawn1_X@,j=@Spawn1_Y@,count=1,radius=4
+Action:Type=NewObjectGroup,Object=Monster,Code=gidra,"Name=Гидра",i=@Spawn3_X@,j=@Spawn3_Y@,count=2,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=@Spawn8_X@,j=@Spawn8_Y@,count=3,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=poison,"Name=Ядовитый шар",i=@Spawn10_X@,j=@Spawn10_Y@,count=3,radius=3
+
+SCRIPT      
+Event:Step=35
+Action:Type=NewObjectGroup,Object=Monster,Code=sworm,"Name=Червь",i=@Spawn2_X@,j=@Spawn2_Y@,count=1,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=sworm,"Name=Червь",i=@Spawn4_X@,j=@Spawn4_Y@,count=1,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=sworm,"Name=Червь",i=@Spawn6_X@,j=@Spawn6_Y@,count=1,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=sworm,"Name=Червь",i=@Spawn9_X@,j=@Spawn9_Y@,count=1,radius=3
+Action:Type=Message,icon=cadence_ico,"text=Эти черви - самое страшное, что я видела во время прошлой осады. Будьте очень осторожны."
+
+SCRIPT      
+Event:Step=@DragonStep@
+Action:Type=SetFocus,i=12,j=2
+Action:Type=NewObject,Object=Monster,Code=dragon,"Name=Дракон",i=12,j=2
+#Action:Type=NewObject,Object=Monster,Code=dragon2,"Name=Дракон",i=19,j=1,showimmediate=true
+Action:Type=NewObject,Object=Monster,Code=dragon,"Name=Дракон",i=24,j=2,showimmediate=true
+Action:Type=NewObject,Object=Monster,Code=dragon2,"Name=Дракон",i=42,j=5,showimmediate=true
+#Action:Type=NewObject,Object=Monster,Code=dragon,"Name=Дракон",i=41,j=9,showimmediate=true
+Action:Type=NewObject,Object=Monster,Code=dragon2,"Name=Дракон",i=42,j=14,showimmediate=true
+Action:Type=NewObject,Object=Monster,Code=dragon,"Name=Дракон",i=19,j=44,showimmediate=true
+#Action:Type=NewObject,Object=Monster,Code=dragon2,"Name=Дракон",i=27,j=43,showimmediate=true
+Action:Type=NewObject,Object=Monster,Code=dragon,"Name=Дракон",i=33,j=44,showimmediate=true
+Action:Type=NewObject,Object=Monster,Code=dragon,"Name=Дракон",i=38,j=35,showimmediate=true
+#Action:Type=NewObject,Object=Monster,Code=dragon,"Name=Дракон",i=41,j=32,showimmediate=true
+Action:Type=NewObject,Object=Monster,Code=dragon2,"Name=Дракон",i=1,j=27,showimmediate=true
+Action:Type=NewObject,Object=Monster,Code=dragon2,"Name=Дракон",i=3,j=32,showimmediate=true
+Action:Type=Message,icon=celestia_ico,"text=Драконы Эквестрии. Вы ОЧЕНЬ не вовремя."
+Action:Type=Message,icon=dragon_ico,"text=Тысяча извинений, принцесса. Ничего личного, мы просто пришли пограбить и может быть, немного пошалить."
+Action:Type=Message,icon=luna_ico,"text=Пограбить? Нам даже еду привозят!"
+Action:Type=Message,icon=dragon_ico,"text=Легендарные сокровища Кантерлота, конечно же! В былые дни, когда их охраняли крепкие стены и храбрые стражи, нечего было и надеяться, но теперь, когда..."
+Action:Type=Message,icon=celestia_ico,"text=Глупые, глупые рептилии. Почти все сокровища остались посреди развалин Кантерлота. Идите и ищите их там - нам не жалко."
+Action:Type=Message,icon=luna_ico,"text=Почти все?"
+Action:Type=Message,icon=cadence_ico,"text=Ну, подруга Твайлайт успела сделать не меньше десятка рейдов, перетаскивая королевские самоцветы - под самый конец эвакуации, её пришлось уводить силой - она совершенно не знает меры и..."
+Action:Type=Message,icon=dragon_ico,"text=Ничего, жадность драконов сильно преувеличена легендами. Мы заберем то, что есть."
+Action:Type=Message,icon=celestia_ico,"text=А знаете, я не против. Моя коллекция черепов драконов тоже была утеряна. Соберу её заново - и начну прямо сейчас!"
+Action:Type=SetFlag,FlagName=DragonCome
+
+# Defeat
+SCRIPT
+Event:TagCount=@HouseMustSaveLess@,TagName=house,Compare=LessOrEqual
+Action:Type=SetDefeat,"DefeatStr=Слишком много домов потеряно"
+
+SCRIPT      
+Event:Victory=True
+Action:Type=Message,icon=luna_ico,"text=Мы справились, и новая столица - спасена!"
+Action:Type=Message,icon=cadence_ico,"text=Хоть бы Твайлайт с подругами скорее вернулись. Я уже не кобылка для таких приключений."
+
+VICTORY
+ByFlag:FlagName=DragonCome
+->ByNoMonsterLeft:null,AddType=And

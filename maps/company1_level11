@@ -1,0 +1,234 @@
+В осаде
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+LLLWLWLLLLLLLLLLLLLLLLLLLLLLLLLL
+HLHLWWLLHLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLWLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLWWWWLLLLLLLLLLLLLLLLLLLLLLLLLLL
+WWLLLWLLLLLLLLLLLLLLLLLLLLLLLLLL
+HLHLLLWLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLWLLLLLLLLLWWWWWWLLLLLWWWWW
+LLLLLLLWLLLLLLLLWLLLLLWLLLLWLLLLL
+LLLLLLLWWWWWWWWWLLLLLLWWWWWLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+#===MAPEND===
+
+CONSTANTS
+StepWave1:3
+StepWaveTwist:5
+StepWave2:8
+StepWaveTent:10
+StepWave3:13
+StepFirstInfo:13
+StepWave4:18
+StepFinalWave:20
+StepTransform:20
+
+StepVictory:32
+WaveStartX:28
+WaveStartY:7
+BackStartX:10
+BackStartY:13
+CX1:14
+CX2:23
+CY:6
+
+OBJECTS
+Pony:Code=celestia,"Name=Принцесса Селестия",i=8,j=6,tag=celestia
+
+#Building:Code=FarmFood,i=2,j=2
+
+#Neutral:Code=guard,"Name=Гвардеец",i=1,j=6
+#Neutral:Code=guard,"Name=Гвардеец",i=3,j=5
+#Neutral:Code=guard,"Name=Гвардеец",i=4,j=4
+#Neutral:Code=guard,"Name=Гвардеец",i=6,j=3
+#Neutral:Code=guard,"Name=Гвардеец",i=7,j=2
+#Neutral:Code=guard,"Name=Гвардеец",i=9,j=1
+
+Neutral:i=1,j=3,"name=Горожанин",Code=pony_1,EnemyTarget=true,MustSurvive=true
+Neutral:i=1,j=1,"name=Горожанин",Code=pony_2,EnemyTarget=true,MustSurvive=true
+Neutral:i=2,j=0,"name=Горожанин",Code=pony_3,EnemyTarget=true,MustSurvive=true
+Neutral:i=1,j=5,"name=Горожанин",Code=pony_5,EnemyTarget=true,MustSurvive=true
+Neutral:i=4,j=0,"name=Горожанин",Code=pony_6,EnemyTarget=true,MustSurvive=true
+Neutral:i=6,j=0,"name=Горожанин",Code=pony_8,EnemyTarget=true,MustSurvive=true
+                                   
+Neutral:Code=tower,"Name=Стены Кантерлота",i=9,j=0
+Neutral:Code=tower,"Name=Стены Кантерлота",i=10,j=1
+Neutral:Code=tower,"Name=Стены Кантерлота",i=9,j=2
+Neutral:Code=wall_2,"Name=Стены Кантерлота",i=9,j=3
+Neutral:Code=tower,"Name=Стены Кантерлота",i=8,j=3
+Neutral:Code=wall_2,"Name=Стены Кантерлота",i=7,j=4
+Neutral:Code=tower,"Name=Стены Кантерлота",i=6,j=4
+Neutral:Code=tower,"Name=Стены Кантерлота",i=5,j=5
+Neutral:Code=wall_2,"Name=Стены Кантерлота",i=4,j=6
+Neutral:Code=tower,"Name=Стены Кантерлота",i=3,j=6
+Neutral:Code=wall_2,"Name=Стены Кантерлота",i=3,j=7
+Neutral:Code=tower,"Name=Стены Кантерлота",i=2,j=7
+Neutral:Code=wall_3,"Name=Стены Кантерлота",i=1,j=7
+Neutral:Code=wall_3,"Name=Стены Кантерлота",i=0,j=7
+
+Monster:Code=bat,"Name=Нетопырь",i=@WaveStartX@,j=@WaveStartY@
+
+INITIAL
+Stone:0
+Food:500
+Task:Защищать жителей за стенами города, пока они эвакуируются в лагеря
+AttackedDefeatString:Пони пострадали
+Permits:action=deny,code=all
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SunBeam
+Permits:action=allow,code=FireBall
+Permits:action=allow,code=SuperNova
+Permits:action=allow,code=AlicornSword
+#Permits:action=allow,code=SunRage
+Permits:action=allow,code=SetupTeleport
+Permits:action=allow,code=FlameWall
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT
+Event:Step=0
+Action:Type=SetFocus,i=8,j=6,immediate=true
+Action:Type=Message,icon=guard_white_ico,"text=Ваше Высочество, что вы делаете за стенами города?".
+Action:Type=Message,icon=celestia_ico,"text=Защищаю подданных, тебя это удивляет?"
+Action:Type=Message,icon=twily_ico,"text=Принцесса Селестия, вам нельзя так рисковать!" 
+Action:Type=Message,icon=celestia_ico,"text=Я люблю тортики, это так.\nДа!\nНо эти комиксы...\nОни рисуют комиксы! Им нужно напомнить! Им нужно наглядно показать, КТО ими правит!"
+Action:Type=Message,icon=guard_white_ico,"text=Они? Комиксы? Ваше Высочество, о чем вы..."
+Action:Type=Message,icon=help_ico,"text=Луч солнца - заклинание дальней дистанции, действует по всей линии удара.\nОгненный шар - заклинание средней дистанции, действует по области, эффективен против групп врагов."
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@WaveStartX@,j=@WaveStartY@,count=4,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@WaveStartX@,j=@WaveStartY@,count=2,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=@WaveStartX@,j=@WaveStartY@,count=1,radius=3
+
+# ===== Волна 1 ===== #
+
+SCRIPT
+Event:Step=@StepWave1@
+Action:Type=SetFocus,i=@WaveStartX@,j=@WaveStartY@
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=@WaveStartX@,j=@WaveStartY@,count=1,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@WaveStartX@,j=@WaveStartY@,count=4,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@WaveStartX@,j=@WaveStartY@,count=3,radius=3
+
+# ===== Волна 2 ===== #
+
+SCRIPT
+Event:Step=@StepWave2@
+Action:Type=SetFocus,i=@WaveStartX@,j=@WaveStartY@
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=@WaveStartX@,j=@WaveStartY@,count=1,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@WaveStartX@,j=@WaveStartY@,count=3,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@WaveStartX@,j=@WaveStartY@,count=2,radius=3
+
+# ===== Волна 3 ===== #
+
+SCRIPT
+Event:Step=@StepWave3@
+Action:Type=SetFocus,i=@WaveStartX@,j=@WaveStartY@
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=@WaveStartX@,j=@WaveStartY@,count=2,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@WaveStartX@,j=@WaveStartY@,count=2,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@WaveStartX@,j=@WaveStartY@,count=2,radius=3
+
+# ===== Волна 4 ===== #
+
+SCRIPT
+Event:Step=@StepWave4@
+Action:Type=SetFocus,i=@WaveStartX@,j=@WaveStartY@
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=@WaveStartX@,j=@WaveStartY@,count=1,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@WaveStartX@,j=@WaveStartY@,count=3,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@WaveStartX@,j=@WaveStartY@,count=2,radius=3
+Action:Type=NewObjectGroup,Object=MonsterTent,Code=tent,"Name=Зеленый ужас",i=@WaveStartX@,j=@WaveStartY@,count=1,radius=3
+
+# ===== Волна финальная ===== #
+
+SCRIPT
+Event:Step=@StepFinalWave@
+Action:Type=SetFocus,i=@CX1@,j=@CY@
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@CX1@,j=@CY@,count=5,radius=5
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@CX1@,j=@CY@,count=3,radius=6
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=@CX1@,j=@CY@,count=1,radius=6
+Action:Type=NewObjectGroup,Object=MonsterTwist,Code=twist,"Name=Смерч",i=@CX1@,j=@CY@,count=1,radius=6
+Action:Type=SetFocus,i=@CX2@,j=@CY@
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@CX2@,j=@CY@,count=5,radius=5
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@CX2@,j=@CY@,count=3,radius=6
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=@CX2@,j=@CY@,count=1,radius=6
+Action:Type=NewObjectGroup,Object=MonsterTent,Code=tent,"Name=Зеленый ужас",i=@CX2@,j=@CY@,count=1,radius=6
+
+# ===== Волна со смерчем =====
+
+SCRIPT
+Event:Step=@StepWaveTwist@
+Action:Type=SetFocus,i=@BackStartX@,j=@BackStartY@
+Action:Type=NewObject,Object=MonsterTwist,Code=twist,"Name=Смерч",i=@BackStartX@,j=@BackStartY@
+Action:Type=Message,icon=twily_ico,"text=Принцесса Селестия! Этот смерч полон нетопырей! Развейте его скорее!"
+Action:Type=Message,icon=celestia_ico,"text=Я не пропущу его.\nНикого из них."
+
+# ===== Волна с ужасом =====
+
+SCRIPT
+Event:Step=@StepWaveTent@
+Action:Type=SetFocus,i=@BackStartX@,j=@BackStartY@
+Action:Type=NewObject,Object=MonsterTent,Code=tent,"Name=Зеленый ужас",i=@BackStartX@,j=@BackStartY@
+Action:Type=Message,icon=shining_ico,"text=Эта зеленая тварь! Я читал о подобном в рапортах патрульных.\nПринцесса! Держитесь от этой дряни как можно дальше! Она каким-то образом блокирует всякие попытки к действию!"
+Action:Type=Message,icon=celestia_ico,"text=Как можно дальше, значит..."
+
+# ===== Уведомлялки =====
+   
+SCRIPT                                    
+Event:Step=@StepFirstInfo@
+Action:Type=Message,icon=shining_ico,"text=Моя Принцесса, треть населения эвакуирована через порталы и горными тропами. Вы в порядке?"
+Action:Type=Message,icon=celestia_ico,"text=Да, спасибо.\nИ я бы действительно не отказалась от тортика и чашечки чая, что бы они там ни нарисовали!"
+Action:Type=Message,icon=shining_ico,"text=Поледний кондитер был эвакуирован еще вчера, но если вам угодно..."
+Action:Type=Message,icon=celestia_ico,"text=Не будь таким серьезным, Шайнинг. Я пошутила."
+
+
+# ===== Трансформация =======
+
+SCRIPT
+Event:Step=@StepTransform@
+Action:Type=SetFocus,"i=$GetObjPos(celestia,x)$","j=$GetObjPos(celestia,y)$"
+Action:Type=Message,icon=applejack_ico,"text=Принцесса Селестия, их становится только больше. Спасайтесь, мы с гвардией их задержим.\nНаверно."
+Action:Type=Message,icon=celestia_ico,"text=Ничего, моя дорогая. У каждой уважающей себя принцессы всегда найдется под крылом последний довод."
+Action:Type=Message,icon=celestia_ico,"text=<Глубокий вдох>\nЯ бы попросила тебя вести себя хорошо...\n<Медленный выдох>\n...но ты нужна мне..."
+Action:Type=Message,icon=twily_ico,"text=Принцесса Селестия?"
+Action:Type=Message,icon=celestia_ico,"text=<Глубокий вдох>\n...чтобы они утонули...\n<Медленный выдох>\n...в огне..."
+Action:Type=Message,icon=celestia_ico,"text=<Вопль>"
+Action:Type=ReplaceObject,OldCode=celestia,Object=Pony,Code=nsun,"Name=Солнечный кошмар"
+Action:Type=Message,icon=nightmaresun_ico,"text=Наступит День что будет длиться вечно!"
+Action:Type=Message,icon=twily_ico,"text=Принцесса Селестия?!"
+Action:Type=Message,icon=nightmaresun_ico,"text=Твоя принцесса взяла перерыв."
+Action:Type=Message,icon=twily_ico,"text=Что? Я не понимаю! Что происходит?!"
+Action:Type=Message,icon=nightmaresun_ico,"text=Не понимаешь?\n<Хихикает>\nТак тебе правда никто ничего не рассказывал?\n<Истерический смех>\nДаже Каденс?"
+Action:Type=Message,icon=rarity_ico,"text=Что ты сделала с Принцессой Селестией, чудовище?!"
+Action:Type=Message,icon=nightmaresun_ico,"text=ТЕПЕРЬ Я ВАША ПРИНЦЕССА!!!"
+Action:Type=Message,icon=nightmaresun_ico,"text=И ваш дорогой учитель.\nСмотрите и не оглядывайтесь, этот урок не повторится."
+Action:Type=Message,icon=nightmaresun_ico,"text=А ТЕПЕРЬ ВСЕ СЮДА, ТВАРИ!!!"
+Action:Type=Message,icon=help_ico,"text=Солнечный Кошмар владеет мощными заклинаниями 'Стена огня', 'Взрыв Сверхновой', 'Меч Аликорна', и практически неуязвима, но не умеет восстанавливать силы и здоровье."
+
+# ==== Победа ====
+
+SCRIPT                                    
+Event:Victory=True
+Action:Type=Message,icon=nightmaresun_ico,"text=<Глубоко затягивается>\nОх, как же это бодрит! Люблю запах палёной плоти по утрам... или из чего там они сделаны?"
+Action:Type=Message,icon=twily_ico,"text=Где Принцесса Селестия?!"
+Action:Type=Message,icon=nightmaresun_ico,"text=Опять ты?\n<Глубокий вдох>\nХорошо...\n<Медленный выдох>"
+Action:Type=Message,icon=nightmaresun_ico,"text=Эй! Лучшая ученица! Принимай королевскую особу!"
+Action:Type=ReplaceObject,OldCode=nsun,Object=Pony,Code=celestia,"Name=Принцесса Селестия"
+Action:Type=Message,icon=celestia_ico,"text=Твайлайт?\nВсе хорошо?\nМне так жаль, что тебе пришлось это увидеть."
+Action:Type=Message,icon=applejack_ico,"text=Это было пугающе. Внушительно и пугающе."
+Action:Type=Message,icon=applejack_ico,"text=Неважно! В городе никого не осталось кроме нас, пора уходить."
+Action:Type=Message,icon=celestia_ico,"text=Да. Бежим отсюда, мои дорогие."
+
+VICTORY
+ByNoMonsterLeft:null
+->ByStep:StepNeed=@StepTransform@,addType=And

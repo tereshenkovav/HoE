@@ -1,0 +1,243 @@
+Замок Сестер
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+DESCRIPTION
+Для правителей нового государства нужен новый замок. Место выбрано, ==>
+но требуется ещё собрать необходимые материалы и позаботиться о ==>
+безопасноcти будущей столицы Эквестрии.
+
+MAP
+FFFFFFFFFFFFFFFFFFFLLLLFFFFFFFFFFFFLFMMMMM
+FFFFFFFFFFFFFFFFFFFFLLLFFFFFFFFFFFFFLFMMMMM
+FFFFFLLLLLFFFFFFFFFLLLFFFFFFFFFFFFFFLFFMMM
+FFFFFLLFFFLFFFFFFFFFLLLFFFFFFFFFFFFFLFFFMMM
+FFFFLLLFFFLFFFFFFFFFFLLFFFFFFFFFFFFLFFFFMM
+FFFFLLLFFFFLFFFFFFFFFFLFFFFFFFFFFFFLFFFFMMM
+FFFLFFFFFFLFFFFFFFFFFLFFFFFFFFFFFFLLFFFFMM
+FFFLFFFFFFLFFFFFFFFFFLFFFFLLLLFFLLLFLLFFFMM
+FFFLFFFFFFLFFFFFFFFFLFFLLLFFFLLLFFFFFLFFFM
+FFFLFFFFFFFLLLLLLFFFFLFLFFFFFFLFFFFFFFLLFFF
+FFFLFFFFFFFFLFFFLFFFFLLFFFFFFFLFFFFFFFFLFF
+FFFFLFFFFFFFLFFFFLFFFFLFFFFFFFFLFFFFFFFLFFF
+FFFFLFFFFFFLFFFFFLLLFFLFFFFFFFLFFFFFFFLFFF
+FFFFLLFFFFFLFFFFFFFFLLLFFFFFFLLFFFFFFFLFFFF
+FFFLFLLLFFLFFFFFFFFFFLFFFFFFLFFFFFFFFLFFFF
+FFFLFFFFLLLLFFFFFFFFFFLFFFFLLFFFFFFFFLLFFFF
+FFFLFMMFFFFLFFLLLFFFFFLFFFLFLFFFFFFFLLLFFF
+LLFFLFMMMFFFLFLLLLFFFFLFFFLFFLFFFFFFFLLLFFF
+FLFLFMMMMFFFLLLLLLFFFFLFFLFFFLFFFFFFFFFLFF
+FFLLFMMMMMMMFFFFFFLFFFFLLLFFFFLFFFFFFFFFLLL
+FFFFFMMMMMMMFFFFFFLFFFFFFFFFFLFFFFFFFFFFFF
+FFFFFFMMMMMMFFFFFFLFFFFFFFFFFFLFFFFFFFFFFFF
+#===MAPEND===
+
+CONSTANTS
+StoneNeed:2000
+Farm1_X:5
+Farm1_Y:4
+Farm2_X:16
+Farm2_Y:17
+Farm3_X:37
+Farm3_Y:16
+Dragon_X1:20
+Dragon_Y1:15
+Dragon_X2:24
+Dragon_Y2:16
+Dragon_X3:28
+Dragon_Y3:15
+Dragon_X4:15
+Dragon_Y4:16
+
+OBJECTS
+Pony:i=20,j=3,"name=Селестия",code=celestia
+Pony:i=22,j=3,"name=Луна",code=luna
+
+Neutral:Code=stonemine,"name=Брошенный рудник",i=@Farm1_X@,j=@Farm1_Y@,targeted=true,tag=mine
+Neutral:Code=stonemine,"name=Брошенный рудник",i=@Farm2_X@,j=@Farm2_Y@,targeted=true,tag=mine
+Neutral:Code=stonemine,"name=Брошенный рудник",i=@Farm3_X@,j=@Farm3_Y@,targeted=true,tag=mine
+
+MonsterCave:i=9,j=19,"name=Пещера",Code=cave
+MonsterCave:i=40,j=3,"name=Пещера",Code=cave
+
+Stone:i=13,j=1,size=max     
+Stone:i=14,j=5,size=min
+Stone:i=17,j=8,size=max
+Stone:i=2,j=2,size=medium
+Stone:i=2,j=5,size=max
+Stone:i=8,j=12,size=min
+Stone:i=9,j=10,size=max
+Stone:i=7,j=9,size=medium
+Stone:i=20,j=20,size=max
+Stone:i=19,j=17,size=min
+Stone:i=13,j=14,size=max
+Stone:i=28,j=2,size=medium
+Stone:i=32,j=5,size=max
+Stone:i=27,j=4,size=min
+Stone:i=28,j=9,size=max
+Stone:i=24,j=12,size=medium
+Stone:i=25,j=15,size=max
+Stone:i=27,j=18,size=medium
+Stone:i=36,j=20,size=max
+Stone:i=31,j=16,size=min
+Stone:i=35,j=13,size=max
+
+Stone:i=6,j=18,size=max
+Stone:i=7,j=20,size=medium
+Stone:i=11,j=19,size=max
+Stone:i=41,j=5,size=medium
+Stone:i=40,j=1,size=max
+Stone:i=33,j=1,size=max   
+
+INITIAL
+Stone:0
+Food:300
+Task:Собрать @StoneNeed@ камня
+Permits:action=allow,code=all
+Permits:action=deny,code=CutEmptySectorLuna
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=20,j=3,immediate=true
+Action:Type=Message,icon=celestia_ico,"text=А тут не так много камня."
+Action:Type=Message,icon=luna_ico,"text=Это лес, сестра. Здесь деревья."
+Action:Type=Message,icon=celestia_ico,"text=Всё же, давай начнем с того, что есть."
+Action:Type=Message,icon=luna_ico,"text=Что с продовольствием? Мы не сможем поставить ферму посреди леса."
+Action:Type=Message,icon=celestia_ico,"text=Пегасы будут поставлять нам запасы на эту поляну. Запланировано пять вылетов."
+Action:Type=ShowBattleTask
+
+SCRIPT      
+Event:Step=2
+Action:Type=Message,icon=celestia_ico,"text=Похоже, эти пещеры полны агрессивных созданий."
+Action:Type=Message,icon=luna_ico,"text=Мы видели и пострашней, и посильней. Очистим здесь все?"
+Action:Type=Message,icon=celestia_ico,"text=Придется, иначе спокойного сбора камня нам не видать."
+Action:Type=SetBattleTask,code=cave,"Task=Обрушить входы в пещеры"
+Action:Type=ShowBattleTask
+
+SCRIPT      
+Event:Step=1
+Action:Type=SetFocus,i=@Farm1_X@,j=@Farm1_Y@
+Action:Type=Message,icon=ponyminer_ico,"text=Вы те пони, что спасли нас от Дискорда? Помогите, пожалуйста!"
+Action:Type=Message,icon=celestia_ico,"text=Мы слушаем вас."
+Action:Type=Message,icon=ponyminer_ico,"text=Мы тут занимались добычей камня в рудниках, но эти гадкие нетопыри прогнали нас и скоро разрушат рудники."
+Action:Type=Message,icon=luna_ico,"text=С нетопырями мы разберемся, но с вас камень для нашего замка."
+Action:Type=Message,icon=ponyminer_ico,"text=Для героев Эквестрии - всё, что угодно! Только учтите - рудники уже старые, и много добыть не получится."
+Action:Type=SetBattleTask,isreq=false,code=mine,"Task=Добраться Селестией до трёх рудников"
+Action:Type=Message,icon=ok_ico,"text=Дополнительные задание: добраться Селестией до трёх рудников"
+Action:Type=SetFlag,FlagName=FarmReady
+
+# Продовольствие
+SCRIPT      
+Event:StepModN=5,Great=1,Less=30
+Action:Type=NewObjectGroup,autofocus=true,Object=Food,size=medium,i=21,j=3,count=2,radius=2
+
+SCRIPT      
+Event:Step=5
+Action:Type=Message,icon=celestia_ico,"text=Первая партия продовольствия доставлена."
+
+SCRIPT      
+Event:Step=25
+Action:Type=Message,icon=celestia_ico,"text=Это была последняя доставка. Больше еды не будет."
+
+SCRIPT      
+Event:MonsterCount=0
+Action:Type=CompBattleTask,code=cave
+Action:Type=SetFlag,FlagName=FinalDragons
+
+SCRIPT
+Event:Flag=FinalDragons
+Action:Type=SetFocus,i=@Dragon_X1@,j=@Dragon_Y1@
+Action:Type=NewObjectGroup,Object=Monster,Code=dragon,"Name=Дракон",i=@Dragon_X1@,j=@Dragon_Y1@,count=1,radius=1,tag=dragon
+Action:Type=Message,icon=dragon_ico,"text=Кто обрушил наши пещеры? Вы жалкие, ничтожные пони, и вы заплатите за это!"
+Action:Type=Message,icon=celestia_ico,"text=Луна, беги! Я остановлю его."
+Action:Type=Message,icon=luna_ico,"text=Сестра, что случилось? Это всего-навсего один дракон. Правда, большой дракон."
+Action:Type=NewObjectGroup,Object=Monster,Code=dragon,"Name=Дракон",i=@Dragon_X2@,j=@Dragon_Y2@,count=1,radius=1,tag=dragon
+Action:Type=NewObjectGroup,Object=Monster,Code=dragon,"Name=Дракон",i=@Dragon_X3@,j=@Dragon_Y3@,count=1,radius=1,tag=dragon
+Action:Type=NewObjectGroup,Object=Monster,Code=dragon,"Name=Дракон",i=@Dragon_X4@,j=@Dragon_Y4@,count=1,radius=1,tag=dragon
+Action:Type=Message,icon=luna_ico,"text=...и уже не один."
+Action:Type=SetBattleTask,code=dragon,"Task=Победить всех драконов"
+Action:Type=ShowBattleTask
+Action:Type=SetFlag,FlagName=FinalDragonsSet
+
+SCRIPT
+Event:Flag=FinalDragonsSet
+Event1:TagCount=0,TagName=dragon
+Action:Type=CompBattleTask,code=dragon
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=celestia_ico,"text=Отлично сработано, сестра! Не могу дождаться, когда наш прекрасный замок будет построен."
+
+# Фермы
+SCRIPT
+Event:ObjectPos=True,i=@Farm1_X@,j=@Farm1_Y@,IncludeLinked=true,Object=celestia
+Event2:Flag=FarmReady
+Action:Type=Message,icon=celestia_ico,"text=Рудник теперь работает. Мы получаем камень!"
+Action:Type=ClearTarget,i=@Farm1_X@,j=@Farm1_Y@
+Action:Type=RemoveObject,i=@Farm1_X@,j=@Farm1_Y@
+Action:Type=NewObject,Object=Building,Code=StoneMinePerm,i=@Farm1_X@,j=@Farm1_Y@
+Action:Type=DecStone,Delta=-100
+Action:Type=Message,icon=ok_ico,"text=Пополнение камня: 100"
+
+SCRIPT
+Event:ObjectPos=True,i=@Farm2_X@,j=@Farm2_Y@,IncludeLinked=true,Object=celestia
+Event2:Flag=FarmReady
+Action:Type=Message,icon=celestia_ico,"text=Рудник лишним не будет."
+Action:Type=ClearTarget,i=@Farm2_X@,j=@Farm2_Y@
+Action:Type=RemoveObject,i=@Farm2_X@,j=@Farm2_Y@
+Action:Type=NewObject,Object=Building,Code=StoneMinePerm,i=@Farm2_X@,j=@Farm2_Y@
+Action:Type=DecStone,Delta=-100
+Action:Type=Message,icon=ok_ico,"text=Пополнение камня: 100"
+
+SCRIPT
+Event:ObjectPos=True,i=@Farm3_X@,j=@Farm3_Y@,IncludeLinked=true,Object=celestia
+Event2:Flag=FarmReady
+Action:Type=Message,icon=celestia_ico,"text=Отлично, рудник наш."
+Action:Type=ClearTarget,i=@Farm3_X@,j=@Farm3_Y@
+Action:Type=RemoveObject,i=@Farm3_X@,j=@Farm3_Y@
+Action:Type=NewObject,Object=Building,Code=StoneMinePerm,i=@Farm3_X@,j=@Farm3_Y@
+Action:Type=DecStone,Delta=-100
+Action:Type=Message,icon=ok_ico,"text=Пополнение камня: 100"
+
+SCRIPT
+Event:Flag=FarmReady
+Event1:TagCount=0,TagName=mine
+Action:Type=CompBattleTask,code=mine
+
+SCRIPT
+Event:Step=33
+Event1:TagCount=1,TagName=mine
+Action:Type=FailBattleTask,code=mine
+
+SCRIPT
+Event:Step=33
+Event1:TagCount=2,TagName=mine
+Action:Type=FailBattleTask,code=mine
+
+SCRIPT
+Event:Step=33
+Event1:TagCount=3,TagName=mine
+Action:Type=FailBattleTask,code=mine
+
+# Delete farms
+SCRIPT
+Event:Step=33
+Action:Type=Message,icon=ponyminer_ico,"text=Я же говорил, что рудники старые. Больше они не могут приносить строительный камень."
+Action:Type=RemoveObject,i=@Farm1_X@,j=@Farm1_Y@
+Action:Type=NewObject,Object=Neutral,Code=stonemine,"name=Истощенный рудник",i=@Farm1_X@,j=@Farm1_Y@
+Action:Type=RemoveObject,i=@Farm2_X@,j=@Farm2_Y@
+Action:Type=NewObject,Object=Neutral,Code=stonemine,"name=Истощенный рудник",i=@Farm2_X@,j=@Farm2_Y@
+Action:Type=RemoveObject,i=@Farm3_X@,j=@Farm3_Y@
+Action:Type=NewObject,Object=Neutral,Code=stonemine,"name=Истощенный рудник",i=@Farm3_X@,j=@Farm3_Y@
+Action:Type=Message,icon=ok_ico,"text=Добыча камня в рудниках остановлена"
+Action:Type=ClearFlag,FlagName=FarmReady
+
+
+VICTORY
+ByNoMonsterLeft:null
+->ByStone:StoneNeed=@StoneNeed@,AddType=And
+->ByFlag:FlagName=FinalDragons,AddType=And

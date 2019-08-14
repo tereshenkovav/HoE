@@ -1,0 +1,95 @@
+Приключения Трикси
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+DESCRIPTION
+Чтобы дать представление, Трикси должна пересечь ==>
+лес, полный чудовищ и опасностей.
+
+MAP
+LLLFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFLLLL
+LLLFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFLLLLL
+LLLFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFLLLL
+LLLLFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFLLLL
+LLFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFLLLLL
+LLLFFFFFFFFFFFFFFFFFFFFFFWWWWFFFFFFFFFFFFLLLLL
+LLLFFWWWWWWWFFFFFFFFFFFFWFFFWWWFFFFFFFWWWWWLL
+WWWWWWFFFFFFWWWWWFFFFWWWWFFFFFFWWWWWWWWFFLLLLL
+LLLFFFFFFFFFFFFFWWWWWFFFFFFFFFFFFFFFFFFFLLLLL
+LLLFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFLLLL
+LLFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFLLLL
+LLLFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFLLLL
+LLFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFLLLL
+LLLLFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFLLLLL
+#===MAPEND===
+
+# Раздел константы должен идти в самом начале
+CONSTANTS
+SceneX:43
+SceneY:6
+
+OBJECTS
+Pony:i=1,j=8,"name=Трикси Луламун",code=trixie
+#Monster:i=20,j=13,"name=Крокодил",code=rept
+#Monster:i=20,j=3,"name=Большая медведица",code=bigursa
+Building:i=22,j=4,"name=Целебный куст",code=healgrass
+Building:i=10,j=9,"name=Бодрящий куст",code=forcegrass
+Neutral:Code=newhouse,"Name=Дом пони",i=42,j=7
+Neutral:Code=newhouse,"Name=Дом пони",i=43,j=2
+Neutral:Code=newhouse,"Name=Дом пони",i=42,j=10
+Neutral:Code=newhouse,"Name=Дом пони",i=42,j=5
+Neutral:Code=scene,"Name=Сцена",i=@SceneX@,j=@SceneY@,targeted=true
+#===OBJECTSEND===
+
+INITIAL
+Stone:0
+Food:300
+Task:Добраться Трикси до сцены
+Permits:action=deny,code=all
+#Permits:action=allow,code=TrixieDup
+#Permits:action=allow,code=TrixieJump1
+#Permits:action=allow,code=TrixieJump2
+
+SCRIPT
+Event:Step=0
+Action:Type=SetFocus,i=2,j=13
+Action:Type=Message,icon=trixie_ico,"text=Великая и Могущественная Трикси отправляется на выступление!"
+Action:Type=ShowBattleTask
+
+SCRIPT
+Event:Step=1
+Action:Type=Message,icon=trixie_ico,"text=Этот лес выглядит недружелюбным. По крайней мере, Трикси знает, какие растения в нём полезные."
+Action:Type=Message,icon=help_ico,"text=Целебный и бодрящие кусты восстанавливают здоровье и силы пони."
+
+SCRIPT
+Event:ObjectPos=True,Direction=GreatX,i=9,j=0,"Object=trixie"
+Action:Type=NewObjectGroup,Object=Monster,Code=rept,"Name=Лесной крокодил",i=15,j=2,count=1,radius=1,autofocus=true
+Action:Type=Message,icon=trixie_ico,"text=Трикси не любит крокодилов. Придется использовать лучшие трюки, чтобы выжить."
+Action:Type=SetPermits,action=allow,code=TrixieDup
+Action:Type=SetPermits,action=allow,code=TrixieJump1
+Action:Type=SetPermits,action=allow,code=TrixieJump2
+Action:Type=Message,icon=help_ico,"text=Трикси не умеет атаковать, но может дважды переместиться на 6 клеток телепортацией, а также создавать управляемые, но нестойкие иллюзии."
+
+SCRIPT
+Event:ObjectPos=True,Direction=GreatX,i=18,j=0,"Object=trixie"
+Action:Type=NewObjectGroup,Object=Monster,Code=rept,"Name=Лесной крокодил",i=25,j=11,count=1,radius=1,autofocus=true
+
+SCRIPT
+Event:ObjectPos=True,Direction=GreatX,i=26,j=0,"Object=trixie"
+Action:Type=NewObjectGroup,Object=Monster,Code=rept,"Name=Лесной крокодил",i=30,j=5,count=1,radius=1,autofocus=true
+
+SCRIPT
+Event:ObjectPos=True,Direction=GreatX,i=30,j=0,"Object=trixie"
+Action:Type=NewObjectGroup,Object=Monster,Code=bigursa,"Name=Большая медведица",i=33,j=8,count=1,radius=1,autofocus=true
+Action:Type=Message,icon=trixie_ico,"text=И медведей тоже!!!"
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=trixie_ico,"text=Великая и Могущественная Трикси снова преодолела все трудности и готова выступать!"
+
+VICTORY
+ByObjectPos:Object=trixie,i=@SceneX@,j=@SceneY@,IncludeLinked=true

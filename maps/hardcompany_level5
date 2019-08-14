@@ -1,0 +1,297 @@
+Лорд Тирек
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+DESCRIPTION
+Незванный гость в Эквестрии - он похищает магию, разрушает дома ==>
+и по мнению его собственного брата, не очень расположен к дипломатии. ==>
+Селестия и Луна вынуждены лично разобраться с новой угрозой, ==>
+но даже их силы и умения могут оказаться недостаточными против ==>
+Лорда Тирека.
+
+MAP
+LLWLLLLLLLLLLLLLLLLLLLLLLLLLLLLLMMMMMMMMMMM
+LLLWLLLLLLLLLLLLWWWLLLLLLLLLLLLLLMMFMMMMMMMM
+LLLWWLLLLLLLLLLWLLWLLLLLWWWLLLLLLMMMMMFMMMM
+LLLLLWLLLLLLLWWWLLLWLLLLWLLWWWWWLLMMFMMMMMMM
+LLLLLWWLLLLLWLLLLLLWWWWWLLLLLLLWLLMMMMMMMMM
+LLLLLLLWWLLLWLLLLLLLLLLLLLLLLLLLWLLLMMMMMMMM
+LLLLLLLLWWWWLLLLLLLLLLLLLLLLLLLLWLLMFFMMMMM
+LLLLLLLLWLLLLLLLLLLLLLLLLLLLLLLLLWLMMMMMMMMM
+LLLLLLLWLLLLLLLLLLLLQQQQQLLLLLLLLWMMMMMFMMM
+LLLLLLLWLLLLLFFLLLLQQQQQQQLLLLLLLLWWWWMMMMMA
+LLLLLLWLLLLLLFLLLLQQLLLLQQLLLLLLLWMMMWMMAAA
+LLLLLLWLLLLLFLLLLLQQLLLLLLQLLLLLLWMMFMWWAMMM
+LLLLLLWLLLFLLFLLLQQLLWWLLLQQLLQQWMMFFMAWWWW
+LLLLLLLWLLLFFLLLWWWWWWLWLLQQQLQFQWQMAAAWMMMM
+LLLLLLWLLLFFLLLWLQQLLWWLLLQLQQFFMWQQWWWMMFM
+LLLLLWWLLLFFLLLWLLQQLLLLLLQLLLMMMMWWWMMMMMMM
+LLWWWLLLLFFFLLWLLLQQLLLLQQLLLLLLLWMMMMMMFMM
+WWWLLLLLLFFFLLLWLLLQQQQQQQLLLLLLLWLMMMFMMMMM
+LLLLLLLFFFFFLLLWLLLLQQQQQLLLLLLLWLLLMMFMMMM
+LLLLLLLFFFFFFLLLWLLLLLLLLLLLLLLLWLLLMMMMMMMM
+LLLLLFFFFFFFLLLLWLLLLLLLLLLLLLWWLLLLMMMMFMM
+LLLLFFFFFFFFFLLLLWWWLLLLLLLLWWWLLLLLLLMMFMMM
+LLFFFFFMFMFFFFLLLLLWLLLLLLLWLLLLLLLLLLMMMMM
+LFFFFFMFMMMFFFFLLLLLWWWWWWWWLLLLLLLLLLLMMMMM
+FFFFFMMMMMMMFFFLLLLLLLLLLLLLLLLLLLLLLLLMMMM
+FFFFFMMMMMMMMMFFFFLLLLLLLLLLLLLLLLLLLLLMMMMM
+#===MAPEND===
+
+CONSTANTS
+HouseMustSave:8
+HouseMustSaveLess:7
+StepWave1:5
+StepWave2:10
+StepWave3:15
+StepWave4:20
+StepWave5:24
+StepWave6:28
+StepWave7:32
+StepWave8:36
+StepWave9:39
+StepWave10:41
+StepWave11:44
+StepWave12:47
+StepWave13:49
+StepWave14:51
+StepWave15:53
+StepWave16:55
+StepWave17:56
+StepWave18:57
+StepWave19:58
+StepWave20:59
+XC1:8
+YC1:22
+XC2:10
+YC2:12
+XC3:12
+YC3:12
+XC4:14
+YC4:12
+XC5:8
+YC5:22
+XC6:10
+YC6:12
+XC7:12
+YC7:12
+XC8:14
+YC8:12
+
+
+OBJECTS
+#Pony:i=3,j=11,"name=Катапульта",code=scorpion,DeathAllow=true
+#Pony:i=3,j=10,"name=Катапульта",code=scorpion,DeathAllow=true
+
+Pony:i=22,j=11,"name=Луна",code=luna
+Pony:i=22,j=15,"name=Селестия",code=celestia
+Pony:i=22,j=13,"name=Ратуша",code=castle,DeathAllow=true
+MonsterTirek:Code=tirek,"Name=Тирек",i=1,j=1,tag=tirek,strategy=AttackNearFirst
+
+Building:Code=House,"Name=Дом пони",Tag=house,i=3,j=4
+Building:Code=House2,"Name=Дом пони",Tag=house,i=5,j=6
+Building:Code=House3,"Name=Дом пони",Tag=house,i=6,j=2
+Building:Code=House,"Name=Дом пони",Tag=house,i=8,j=3
+Building:Code=TreeApple,Name=Яблоня,i=3,j=6
+Building:Code=TreeApple,Name=Яблоня,i=9,j=4
+Building:Code=TreeApple,Name=Яблоня,i=5,j=0
+Building:Code=House,"Name=Дом пони",Tag=house,i=14,j=1
+Building:Code=House2,"Name=Дом пони",Tag=house,i=17,j=3
+Building:Code=TreeApple,Name=Яблоня,i=16,j=5
+Building:Code=House3,"Name=Дом пони",Tag=house,i=18,j=5
+Building:Code=House,"Name=Дом пони",Tag=house,i=20,j=2
+Building:Code=House2,"Name=Дом пони",Tag=house,i=25,j=4
+Building:Code=House3,"Name=Дом пони",Tag=house,i=28,j=1
+Building:Code=House,"Name=Дом пони",Tag=house,i=28,j=5
+Building:Code=TreeApple,Name=Яблоня,i=30,j=5
+Building:Code=TreeApple,Name=Яблоня,i=30,j=1
+Building:Code=TreeApple,Name=Яблоня,i=32,j=17
+Building:Code=TreeApple,Name=Яблоня,i=34,j=19
+Building:Code=House2,"Name=Дом пони",Tag=house,i=30,j=18
+Building:Code=House3,"Name=Дом пони",Tag=house,i=33,j=21
+Building:Code=House,"Name=Дом пони",Tag=house,i=31,j=22
+Building:Code=TreeApple,Name=Яблоня,i=29,j=19
+Building:Code=TreeApple,Name=Яблоня,i=29,j=23
+Building:Code=TreeApple,Name=Яблоня,i=21,j=21
+Building:Code=House,"Name=Дом пони",Tag=house,i=23,j=21
+Building:Code=House2,"Name=Дом пони",Tag=house,i=21,j=25
+Building:Code=House3,"Name=Дом пони",Tag=house,i=18,j=23
+Building:Code=TreeApple,Name=Яблоня,i=19,j=25
+Building:Code=House3,"Name=Дом пони",Tag=house,i=15,j=22
+Building:Code=House,"Name=Дом пони",Tag=house,i=18,j=19
+Building:Code=TreeApple,Name=Яблоня,i=31,j=8
+Building:Code=TreeApple,Name=Яблоня,i=35,j=12
+Building:Code=TreeApple,Name=Яблоня,i=31,j=14
+Building:Code=House,"Name=Дом пони",Tag=house,i=20,j=12
+Building:Code=House3,"Name=Дом пони",Tag=house,i=20,j=14
+Building:Code=House2,"Name=Дом пони",Tag=house,i=23,j=12
+Building:Code=House,"Name=Дом пони",Tag=house,i=23,j=14
+Building:Code=TreeApple,Name=Яблоня,i=26,j=21
+#===OBJECTSEND===
+
+INITIAL
+Stone:100
+Food:200
+Task:Уничтожить Тирека
+AssignAction:pony=luna,action=BuildCrystalTowerDark
+AssignAction:pony=celestia,action=CreateScorpion
+Permits:action=allow,code=all
+Permits:action=deny,code=SummoneFlatter
+Permits:action=deny,code=SummoneApplejack
+Permits:action=deny,code=SummonePinki
+Permits:action=deny,code=SummoneRarity
+Permits:action=deny,code=SummoneTwily
+Permits:action=deny,code=SummoneRainbow
+Permits:action=deny,code=SummoneCadence
+Permits:action=deny,code=SummoneLuna
+Permits:action=deny,code=SummoneCelestia
+
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=2,j=2,immediate=true
+Action:Type=Message,icon=celestia_ico,"text=Вот и он. Сейчас посмотрим, так ли он силён, как говорил нам Скорпан."
+Action:Type=Message,icon=luna_ico,"text=..."
+Action:Type=Message,icon=celestia_ico,"text=Немыслимо!"
+Action:Type=Message,icon=luna_ico,"text=Ты видишь то же, что и я, сестра. Он практически неуязвим, и способен забирать нашу силу на огромном расстоянии."
+Action:Type=Message,icon=celestia_ico,"text=Есть идеи, как нам справиться с ним?"
+Action:Type=Message,icon=luna_ico,"text=Мастера-земнопони разработали боевые машины - они не используют магию и Тирек не сможет их остановить."
+Action:Type=Message,icon=celestia_ico,"text=Но он может сломать их. Придется заказывать не одну, хорошо, что мастера ДЕЙСТВИТЕЛЬНО работают за еду."
+Action:Type=Message,icon=luna_ico,"text=Кроме того, я наконец-то добралась до секретных разделов библиотеки и..."
+Action:Type=Message,icon=celestia_ico,"text=Я не помню, чтобы разрешала тебе!"
+Action:Type=Message,icon=luna_ico,"text=Крутые времена требуют крутых решений. Ты ещё скажешь спасибо, сестричка."
+Action:Type=Message,icon=ok_ico,"text=Селестия может заказать механическую катапульту с мгновенной доставкой на поле боя. Луна может устанавливать Темную Башню - мощное оборонительное сооружение. Установка ферм выполняется из ратуши."
+Action:Type=ShowBattleTask
+
+SCRIPT      
+Event:Step=1
+Action:Type=SetFocus,i=2,j=2,immediate=true
+Action:Type=Message,icon=tirek_ico,"text=Пони... жалкие, хрупкие создания с каплей магии внутри... я заберу её, заберу всю!"
+Action:Type=Message,icon=celestia_ico,"text=Твоя жадность тебя погубит, двурогий."
+Action:Type=Message,icon=tirek_ico,"text=Хранители Солнца и Луны... я знаю вашу историю и вашу силу. Забрать магию Изначальных - будет поистине прекрасное завершение моего дня".
+Action:Type=Message,icon=luna_ico,"text=У меня уже рог чешется. Может, давай попробуем обычный подход? Наши атаки его немного ослабят, пока мы готовим оборону и армию."
+Action:Type=Message,icon=celestia_ico,"text=Попробуй, но соблюдай осторожность. Мы не знаем, на что он способен."
+
+SCRIPT      
+Event:Step=2
+Action:Type=SetFocus,i=4,j=4,immediate=true
+Action:Type=Message,icon=celestia_ico,"text=Похоже, он никуда не торопится. Деревья, дома..."
+Action:Type=Message,icon=luna_ico,"text=Разрушение доставляет ему такое же наслаждение, как тебе - утренний тортик."
+Action:Type=Message,icon=celestia_ico,"text=Думаю, мы можем пойти на некоторые потери построек и садов. Пока он тут всё раздраконивает - ему не до нас."
+Action:Type=Message,icon=luna_ico,"text=Согласна. Но нельзя допустить снос всех домов. Зима близко."
+Action:Type=SetBattleTask,code=house,"Task=Сохранить не менее @HouseMustSave@ домов"
+Action:Type=SetExtInfoModel,"ModelMicroCode=maptirek;Уцелевших домов: %d;house"
+Action:Type=ShowBattleTask
+
+SCRIPT
+Event:Flag=TirekFailSleep
+Action:Type=Message,icon=tirek_ico,"text=Ваша жалкая пони-магия не действует на меня. Я Лорд Тирек!".
+Action:Type=Message,icon=celestia_ico,"text=Я начинаю думать, что применение сведений из тех книг будет оправдано."
+
+SCRIPT      
+Event:Step=@StepWave1@
+Action:Type=Message,icon=tirek_ico,"text=Пора добавить веселья в это место."
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь","i=$GetObjPos(tirek,x)$","j=$GetObjPos(tirek,y)$",count=6,radius=3
+Action:Type=Message,icon=celestia_ico,"text=Он использует захваченную магию для призыва чудовищ.... пока, правда, это обычные нетопыри."
+
+SCRIPT      
+Event:Step=@StepWave2@
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль","i=$GetObjPos(tirek,x)$","j=$GetObjPos(tirek,y)$",count=4,radius=2
+Action:Type=Message,icon=luna_ico,"text=Надо же, горные тролли. Наш гость не жалеет сил на заклинание призыва."
+
+SCRIPT      
+Event:Step=@StepWave3@
+Action:Type=NewObjectGroup,Object=Monster,Code=gidra,"Name=Гидра","i=$GetObjPos(tirek,x)$","j=$GetObjPos(tirek,y)$",count=3,radius=2
+Action:Type=Message,icon=celestia_ico,"text=Гидры болот Вечнодикого... Четыре головы разрушения у нас на пороге."
+
+SCRIPT      
+Event:Step=@StepWave4@
+Action:Type=Message,icon=tirek_ico,"text=Думаю, я смогу вас удивить... зверушками из моего мира!"
+Action:Type=NewObjectGroup,Object=MonsterTent,Code=tent,"Name=Зеленый ужас","i=$GetObjPos(tirek,x)$","j=$GetObjPos(tirek,y)$",count=2,radius=2
+Action:Type=Message,icon=luna_ico,"text=Отвратительно и опасно. Ты почувствовала?"
+Action:Type=Message,icon=celestia_ico,"text=Увы, да. Они не похищают магию, но блокируют её применение вблизи. Мы может достать их только на расстоянии."
+
+SCRIPT      
+Event:Step=@StepWave5@
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь","i=$GetObjPos(tirek,x)$","j=$GetObjPos(tirek,y)$",count=6,radius=3
+
+SCRIPT      
+Event:Step=@StepWave6@
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль","i=$GetObjPos(tirek,x)$","j=$GetObjPos(tirek,y)$",count=4,radius=2
+
+SCRIPT      
+Event:Step=@StepWave7@
+Action:Type=NewObjectGroup,Object=Monster,Code=gidra,"Name=Гидра","i=$GetObjPos(tirek,x)$","j=$GetObjPos(tirek,y)$",count=3,radius=2
+
+SCRIPT      
+Event:Step=@StepWave8@
+Action:Type=NewObjectGroup,Object=MonsterTent,Code=tent,"Name=Зеленый ужас","i=$GetObjPos(tirek,x)$","j=$GetObjPos(tirek,y)$",count=2,radius=2
+
+SCRIPT      
+Event:Step=@StepWave9@
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь","i=$GetObjPos(tirek,x)$","j=$GetObjPos(tirek,y)$",count=6,radius=3
+
+SCRIPT      
+Event:Step=@StepWave10@
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль","i=$GetObjPos(tirek,x)$","j=$GetObjPos(tirek,y)$",count=4,radius=2
+
+SCRIPT      
+Event:Step=@StepWave11@
+Action:Type=NewObjectGroup,Object=Monster,Code=gidra,"Name=Гидра","i=$GetObjPos(tirek,x)$","j=$GetObjPos(tirek,y)$",count=3,radius=2
+
+SCRIPT      
+Event:Step=@StepWave12@
+Action:Type=NewObjectGroup,Object=MonsterTent,Code=tent,"Name=Зеленый ужас","i=$GetObjPos(tirek,x)$","j=$GetObjPos(tirek,y)$",count=2,radius=2
+
+SCRIPT      
+Event:Step=@StepWave13@
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь","i=$GetObjPos(tirek,x)$","j=$GetObjPos(tirek,y)$",count=6,radius=3
+
+SCRIPT      
+Event:Step=@StepWave14@
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль","i=$GetObjPos(tirek,x)$","j=$GetObjPos(tirek,y)$",count=4,radius=2
+
+SCRIPT      
+Event:Step=@StepWave15@
+Action:Type=NewObjectGroup,Object=Monster,Code=gidra,"Name=Гидра","i=$GetObjPos(tirek,x)$","j=$GetObjPos(tirek,y)$",count=3,radius=2
+
+SCRIPT      
+Event:Step=@StepWave16@
+Action:Type=NewObjectGroup,Object=MonsterTent,Code=tent,"Name=Зеленый ужас","i=$GetObjPos(tirek,x)$","j=$GetObjPos(tirek,y)$",count=2,radius=2
+
+SCRIPT      
+Event:Step=@StepWave17@
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь","i=$GetObjPos(tirek,x)$","j=$GetObjPos(tirek,y)$",count=6,radius=3
+
+SCRIPT      
+Event:Step=@StepWave18@
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль","i=$GetObjPos(tirek,x)$","j=$GetObjPos(tirek,y)$",count=4,radius=2
+
+SCRIPT      
+Event:Step=@StepWave19@
+Action:Type=NewObjectGroup,Object=Monster,Code=gidra,"Name=Гидра","i=$GetObjPos(tirek,x)$","j=$GetObjPos(tirek,y)$",count=3,radius=2
+
+SCRIPT      
+Event:Step=@StepWave20@
+Action:Type=NewObjectGroup,Object=MonsterTent,Code=tent,"Name=Зеленый ужас","i=$GetObjPos(tirek,x)$","j=$GetObjPos(tirek,y)$",count=2,radius=2
+
+# Defeat
+SCRIPT
+Event:TagCount=@HouseMustSaveLess@,TagName=house,Compare=LessOrEqual
+Action:Type=SetDefeat,"DefeatStr=Слишком много домов потеряно"
+
+SCRIPT
+Event:TagCount=0,TagName=tirek
+Action:Type=SetFlag,FlagName=tirekkilled
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=tirek_ico,"text=Тартар не удержит меня навсегда, пони! Я Лорд Тирек! Вы еще ответите за эту дерзость..."
+Action:Type=Message,icon=luna_ico,"text=Могу и ответить. Я тебе открытку пришлю, на тысячную годовщину заточения."
+
+VICTORY
+ByFlag:FlagName=tirekkilled

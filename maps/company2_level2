@@ -1,0 +1,142 @@
+Сбор героев
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+LLLLLLLLLLLLLLLLLLLLLLLL2222222
+LLLLLLLLLLLLLLLLLLLLLLLLL2222222
+LLLLLLLLLLLLLLLLLLLLLLLLLL22222
+LLLLLLLLLLLLLLLLLLLLLLLLLLL22222
+LLLLLLLLLLLFFLLLLLLLLLLLLLLL222
+LLLLLLLLLLFFFFFLLLLLLLLLLLLLL222
+LLLLLLLLLFFQQFFFLLLLLLLLLLLLL22
+LLLLLLLLLFFQQQQFFLLLLLLLLLLLL222
+LLLLLLLLLFFQAQQFLLLLLLLLLLLLLL2
+LLLLLLLLLLFFQQQFFLLLLLLLLLLLLL22
+LLLLLLLLLLFFFQQFLLLLLLLLLLLLLLL
+LLLLLLLLLLLLFFQQFFLLLLLLLLLLLLLL
+LLLLLLLLLLLLLFFQFFFLLLLLLLLLLLL
+LLLLLLLLLLLLLFFFQFFFFLLLLLLLLLLL
+LLLLLLLLLLLLLLFFQQFFFFFFLLLLLLL
+LLLLLLLLLLLLLLFFFFQFFFFFFLLFLLLL
+2LLLLLLLLLLLLFFFFFQQFFFFFFFFFFL
+222LLLLLLLLFFFFFFFFFQFFFFFFFFFMM
+222LLLLLFFFFFFFFFFFFQQQFFFFMMMM
+22222LLFFFFFFFFFFFFFFFFQQFMMMMMM
+222222LFFFFFFFFFFFFFFFFMQQMMMMM
+#===MAPEND===
+
+# Раздел константы должен идти в самом начале
+CONSTANTS
+FoodNeed:300
+StepEnemy:30
+
+OBJECTS
+Food:i=2,j=9,size=min
+Food:i=2,j=12,size=medium
+Food:i=3,j=14,size=min
+Food:i=2,j=12,size=medium
+Food:i=6,j=16,size=min
+Food:i=7,j=13,size=medium
+Food:i=6,j=11,size=min
+
+Food:i=25,j=11,size=min
+Food:i=24,j=8,size=medium
+Food:i=23,j=6,size=min
+Food:i=21,j=4,size=medium
+Food:i=20,j=8,size=min
+Food:i=22,j=10,size=medium
+Food:i=28,j=14,size=min
+Food:i=19,j=5,size=medium
+
+Food:i=8,j=1,size=medium
+Food:i=7,j=3,size=max
+Food:i=6,j=5,size=medium
+Food:i=2,j=3,size=max
+
+Pony:i=12,j=7,"name=Рарити",code=rarity
+Pony:i=13,j=8,"name=Эпплджек",code=applejack
+
+#MonsterCave:i=27,j=18,"name=Пещера",Code=cave,period=2
+
+INITIAL
+Stone:0
+Food:100
+Task:Очистить Пустоту
+EmptyManager:10,10,10,10,10,10
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Heal
+Permits:action=allow,code=Restore
+Permits:action=allow,code=CutEmptySector
+Permits:action=allow,code=BuildTreeShield
+Permits:action=allow,code=BuildFarmStone
+Permits:action=allow,code=BuildCrystalTowerSmall
+Permits:action=allow,code=BuildCrystalTowerBig
+Permits:action=allow,code=FlatterView
+Permits:action=allow,code=ForceShield
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT
+Event:Step=0
+Action:Type=SetFocus,i=12,j=7,immediate=true
+Action:Type=Message,icon=rarity_ico,"text=Заметка на будущее: ==>
+намекнуть Принцессе Каденс, что точность её телепорта оставляет желать ==>
+лучшего. Мы посреди озера, ты не считаешь это странным?"
+Action:Type=Message,icon=applejack_ico,"text=Скажи спасибо, что не посреди Пустоты. ==>
+Лучшая по телепортам - это Твайлайт, но она уже неделю как сидит возле бочки сидра."
+Action:Type=Message,icon=rarity_ico,"text=Она не может смириться с тем, что не в силах остановить конец света? Но ведь даже Принцессы бессильны?".
+Action:Type=Message,icon=applejack_ico,"text=Если мы не выполним ==>
+задание - не помогут и Принцессы. Пустота в опасной близости от долины, а ты - лучший единорог по этой части."
+Action:Type=Message,icon=rarity_ico,"text=Да и ты тоже отлично справляешься. Ну, дорогуша, сделаем это."
+Action:Type=ShowBattleTask
+
+SCRIPT
+Event:Step=1
+Action:Type=Message,icon=rarity_ico,"text=Здесь так много припасов... пегасы-лентяи растеряли почти четверть." 
+Action:Type=Message,icon=applejack_ico,"text=Было бы неплохо собрать их побольше. Никому не станет хуже, если у нас будет запас."
+Action:Type=SetBattleTask,code=food,isreq=false,"Task=К концу миссии, собрать @FoodNeed@ единиц еды." 
+Action:Type=Message,icon=ok_ico,"text=Дополнительное задание: к концу миссии, собрать @FoodNeed@ единиц еды." 
+
+SCRIPT
+Event:Step=3
+Action:Type=Message,icon=discord_ico,"text=Я смотрю, вы всё так же упорны в своей борьбе. Похвально, но бессмысленно."
+Action:Type=Message,icon=rarity_ico,"text=А ты, как я поняла, вообще устранился? Нам столько раз была нужна твоя помощь и..."
+Action:Type=Message,icon=discord_ico,"text=Именно по этой причине я здесь. Ваши подруги уже летят в долину к Твайлайт, нам есть что обсудить."
+Action:Type=Message,icon=applejack_ico,"text=Закончим с работой - и сразу придём. Только не исчезни, как в прошлый раз."
+
+SCRIPT
+Event:Step=5
+Action:Type=Message,icon=discord_ico,"text=Мои милые пони, не хочу мешать, но скоро здесь будет не только Пустота. Поторопитесь!"
+Action:Type=Message,icon=rarity_ico,"text=Мы не уйдем, пока не завершим нашу задачу."
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=applejack_ico,"text=Пустота отброшена... на время. ==>
+Возвращаемся к Твайлайт, может быть, Дискорд действительно что-то нашел?"
+
+SCRIPT
+Event:Step=@StepEnemy@
+Action:Type=NewObjectGroup,Object=MonsterTent,Code=tent,"Name=Зеленый ужас",i=1,j=1,count=1,radius=1,autofocus=true
+Action:Type=Message,icon=rarity_ico,"text=Нееееет! Мы ничего не сможем сделать с этим!"
+Action:Type=Message,icon=applejack_ico,"text=Без паники, сахарок. Заканчиваем работу и уходим, пока до нас не добрались."
+
+SCRIPT
+Event:Victory=True
+Event1:FoodReach=@FoodNeed@
+Action:Type=Message,icon=rarity_ico,"text=И мы даже успели подобрать прилично еды!"
+
+VICTORY
+ByNoSpaceLeft:null
+

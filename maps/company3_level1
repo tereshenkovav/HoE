@@ -1,0 +1,259 @@
+Надежный тыл
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+222222MMMFFFFFFFFLLLLLLLLLLLLLLLLLLLLFFFFFFF
+222222MMMMFFFFFFFLLLLLLLLLLLLLLLLLLLLLFFFFFFF
+2222MM2MMFFFFFFFFLLLLLLLLLLLLLLLLLLLLLLFFFFF
+22MMMMMMMMFFFFFFFLLLLLLLLLLLLLLLLLLLLLLLFFFFF
+M22MMMMMMMFFFFFLLLLLLLLLLLLLLLLLLLLLLLLLFFFF
+2MM2MMMMMMMFFFFLLLLLLLLLLLLLLLLLLLLLLLLLLLFFF
+MMMMMMMMMMFFFFLLLLLLLLLLLLLLLLLLLLLLLLLLLFFF
+MMMMMMMMMMMFFFLLLLLLLLLLLQQQLLLLLLLLLLLLLLFFF
+MMMMMMMMMMFFFFLLLLLLLLLLQAAQLLLLLLLLLLLLLLFF
+MMMMMMMMMMFFFFLLLLLLLLLQQAAAQLLLLLLLLLLLLLLFF
+MMMMMMMMMFFFFLLLLLLLLLLQAAAAQQLLLLLLLLLLLLFF
+MMMMMMMMMFFFFLLLLLLLLLLQQAAAQQQLLLLLLLLLLLLFF
+MMMMMMMMFFFFLLLLLLLLLLLQQQQQQQQLLLLLLLLLLLFF
+MMMMMMMFFFFFLLLLLLLLLLLLQQLLLQQQLLLLLLLLLLFFF
+MMMMMMFFFFFLLLLLLLLLLLLLLLLLLQQQLLLLLLLLLFFF
+MMMMMMFFFFLLLLLLLLLLLLLLLLLLLLQQQLLLLLLLLLFFF
+MMMMFFFFLLLLLLLLLLLLLLLLWWLLLLQQQLLLLLLLFFFF
+FFFFFFFFLLLLLLLLLLLLLLLLWLLLLLQQQLLLLLLLFFFFF
+FFFFFFFLLLLLLLLLLLLLLLLWLLLLLLQQQLLLLLFFFFFF
+FFFFFFFLLLLLLLLLLLLLLLLWLLLLLLQQQLLLLLFFFFFFF
+FFFLLLLLLLLLLLLLLLLLLLWLLLLLLLQQQLLLLFFFFFFF
+LLLLLLLLLLLLLLLLLWWLLLWLLLLLLLLQQQLLLLFFFFFFF
+LLLLLLLLLLLLLLLLLLWWWWWLLLLLLLLQQQLLLLFFFFFF
+LLLLLLLLLLLLLLLLLLLLLLLWLLLLLLLQQQLLLLLLFFFFF
+FFLLLLLLLLLLLLLLLLLLLLLWLLLLLLQQQLLLLLLLFFFF
+FFFFLLLLLLLLLLLLLLLLLLLWLLLLLLQQQLLLLLLLLLFFF
+FFFFFFFLLLLLLLLLLLLLLLWLLLLLLQQQLLLLLLLLLFFF
+FFFFFFFFFLLLLLLLLLLLLLLWWLLLQQQQLLLLLLLLLLFFF
+FFFFFFFFFFLLLLLLLLLLLLLLLLLQQQLLLLLLLLLLLFFF
+MMMFFFFFFFFFLLLLLLLLLLLLLQQQQLLLLLLLLLLLLFFFF
+MMMMMMMFFFFFFLLLLLLLLLLQQQQLLLLLLLLLLLLLFFFF
+MMMMMMMMMFFFFFFFLLLLQQQQQLLLLLLLLLLLLLLFFFFFF
+MMMMMMMMMFFFFFFFLLQQQQQLLLLLLLLLLLLLLFFFFFFF
+MMMMMMMMMMMFFFFFFLQQLLLLLLLLLLLLLLFFFFFFFFFFF
+MMMMMMMMMMMMMFFFFQQLLLLLLLLLLLLLLFFFFFFFFFFF
+MMMMMMMMMMMMMMFFQQQLLLLLLLLLLLFFFFFFFFFFFFFFF
+MMMMMMMMMMMMMMFQQFFFFLLLLLLLLFFFFFFFFFF22FF2
+MMMMMMMMMMMMMMMQFFFFFFFLLLLFFFFFFFFFFFFF22222
+MMMMMMMMMMMMMMQMMFFFFFFFFFFFFFFFFFFFFFFFF222
+MMMMMMMMMMMMMMQMMMFFFFFFFFFFFFFFFFFFFFF222222
+#===MAPEND===
+
+CONSTANTS
+Tesla_X:29
+Tesla_Y:18
+StoneNeed:300
+FoodNeed:1000
+TowerCnt:10
+StepLimit:50
+
+OBJECTS
+Pony:i=21,j=20,"name=Рарити",code=rarity
+Pony:i=21,j=21,"name=Эпплджек",code=applejack
+Pony:i=22,j=23,"name=Рейнбоу Дэш",code=rainbow
+Pony:i=22,j=24,"name=Твайлайт",code=twily
+Pony:i=23,j=21,"name=Пинки Пай",code=pinki
+Pony:i=23,j=22,"name=Флаттершай",code=flatter
+
+Monster:Code=ameba,"Name=Амеба",i=7,j=23,holdground=true
+Monster:Code=ameba,"Name=Амеба",i=8,j=25,holdground=true
+Monster:Code=ameba,"Name=Амеба",i=6,j=22,holdground=true
+Monster:Code=troll,"Name=Тролль",i=4,j=22,holdground=true
+Monster:Code=gidra,"Name=Гидра",i=9,j=27,holdground=true
+Monster:Code=gidra,"Name=Гидра",i=9,j=21,holdground=true
+Monster:Code=poison,"Name=Ядовитый шар",i=5,j=20,holdground=true
+
+Monster:Code=ameba,"Name=Амеба",i=39,j=4,holdground=true
+Monster:Code=ameba,"Name=Амеба",i=42,j=5,holdground=true
+Monster:Code=ameba,"Name=Амеба",i=38,j=6,holdground=true
+Monster:Code=ameba,"Name=Амеба",i=40,j=3,holdground=true
+Monster:Code=troll,"Name=Тролль",i=37,j=8,holdground=true
+Monster:Code=gidra,"Name=Гидра",i=41,j=5,holdground=true
+MonsterTent:Code=tent,"Name=Зеленый ужас",i=38,j=5,holdground=true
+Monster:Code=poison,"Name=Ядовитый шар",i=42,j=7,holdground=true
+
+Building:Code=HouseTravel,"Name=Временное жилище",i=21,j=18
+Building:Code=HouseTravel,"Name=Временное жилище",i=21,j=24
+Building:Code=HouseTravel,"Name=Временное жилище",i=24,j=21
+Building:Code=HouseTravel,"Name=Временное жилище",i=25,j=25
+Building:Code=HouseTravel,"Name=Временное жилище",i=25,j=18
+Building:Code=HouseTravel,"Name=Временное жилище",i=19,j=19
+Building:Code=HouseTravel,"Name=Временное жилище",i=17,j=23
+Building:Code=HouseTravel,"Name=Временное жилище",i=19,j=16
+Building:Code=HouseTravel,"Name=Временное жилище",i=26,j=22
+Building:Code=HouseTravel,"Name=Временное жилище",i=19,j=26
+
+Building:Code=FarmFood,"Name=Ферма",i=17,j=20
+Building:Code=FarmStone,"Name=Рудник",i=23,j=16
+Building:Code=FarmStone,"Name=Рудник",i=22,j=27
+
+Building:Code=tesla,i=@Tesla_X@,j=@Tesla_Y@
+    
+INITIAL
+Stone:100
+Food:100
+#Task:Построить башни: 10 малых, 10 больших, 10 силы, 10 здоровья. Очистить Пустоту. Уничтожить монстров. Собрать @FoodNeed@ еды и @StoneNeed@ камня. Успеть за @StepLimit@ ходов.
+AttackedDefeatString:
+EmptyManager:20,5,5,20,5,5
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Heal
+Permits:action=allow,code=Restore
+Permits:action=allow,code=CutEmptySector
+Permits:action=allow,code=BuildTreeShield
+Permits:action=allow,code=BuildFarmStone
+Permits:action=allow,code=BuildCrystalTowerBig
+Permits:action=allow,code=BuildCrystalTowerSmall
+Permits:action=allow,code=NightmareCall
+Permits:action=allow,code=BuildCrystalTowerDark
+Permits:action=allow,code=DarkTriden
+Permits:action=allow,code=CrystallRain
+Permits:action=allow,code=FrostAttack
+Permits:action=allow,code=SuperHealthAJ
+Permits:action=allow,code=SuperPowerPinki
+Permits:action=allow,code=BearSplash
+Permits:action=allow,code=SummoneBear
+Permits:action=allow,code=PrincessKiss
+Permits:action=allow,code=DeathKick
+Permits:action=allow,code=DeathRainbow
+Permits:action=allow,code=BuildForceTower
+Permits:action=allow,code=BuildHealTower
+Permits:action=allow,code=BuildMirage
+Permits:action=allow,code=IntRelax
+Permits:action=allow,code=SleepStar
+Permits:action=allow,code=BuildTornado
+Permits:action=allow,code=Wings
+Permits:action=allow,code=FlatterView
+Permits:action=allow,code=ForceShield
+Permits:action=allow,code=ForceShieldNR
+Permits:action=allow,code=SetupTeleport
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=20,j=20,immediate=true
+Action:Type=Message,icon=twily_ico,"text=Приступим. Нам нужно разделить силы и выполнить подготовку к походу. И сделать это быстро, насколько возможно."
+Action:Type=Message,icon=rarity_ico,"text=Обычно я не люблю спешку, но сейчас согласна с Твайлайт. Нам дорог каждый час. Пустота уже подбирается к долине."
+Action:Type=SetBattleTask,code=buildtowerbig,"Task=Построить @TowerCnt@ больших башен"
+Action:Type=SetBattleTask,code=buildtowersmall,"Task=Построить @TowerCnt@ малых башен"
+Action:Type=SetBattleTask,code=buildtowerforce,"Task=Построить @TowerCnt@ деревьев силы"
+Action:Type=SetBattleTask,code=buildtowerheal,"Task=Построить @TowerCnt@ деревьев лечения"
+Action:Type=SetBattleTask,code=food,"Task=Собрать @FoodNeed@ еды"
+Action:Type=SetBattleTask,code=stone,"Task=Собрать @StoneNeed@ камня"
+Action:Type=SetBattleTask,code=space,"Task=Очистить Пустоту"
+Action:Type=SetBattleTask,code=kill,"Task=Уничтожить монстров"
+Action:Type=SetBattleTask,code=limit,isreq=false,"Task=По возможности, успеть за @StepLimit@ ходов"
+Action:Type=ShowBattleTask
+
+SCRIPT      
+Event:Victory=True
+Action:Type=Message,icon=twily_ico,"text=Этого достаточно на все случаи. Следующим шагом станет наше наступление. И в этот раз, нас ничто не остановит!"
+
+# Башни малые
+SCRIPT
+Event:BuildingCount=@TowerCnt@,BuildingCode=CrystalTowerSmall
+Action:Type=Message,icon=twily_ico,"text=Я вижу, что твоя магия так же хороша, как и твои дальнобойные башни."
+Action:Type=Message,icon=rarity_ico,"text=У меня уже рог отваливается, дорогуша."
+Action:Type=CompBattleTask,code=buildtowersmall
+Action:Type=ShowBattleTask
+
+# Башни большие
+SCRIPT
+Event:BuildingCount=@TowerCnt@,BuildingCode=CrystalTowerBig
+Action:Type=Message,icon=twily_ico,"text=Приятно знать, что лагерь будет прикрыт такой мощной обороной."
+Action:Type=Message,icon=rarity_ico,"text=Я рождена, чтобы делать изысканные наряды, а не боевые обелиски."
+Action:Type=CompBattleTask,code=buildtowerbig
+Action:Type=ShowBattleTask
+
+# Башни лечение
+SCRIPT
+Event:BuildingCount=@TowerCnt@,BuildingCode=HealTower
+Action:Type=Message,icon=twily_ico,"text=Теперь беженцы всегда получат своевременное лечение - да и мы, если понадобится."
+Action:Type=Message,icon=flatter_ico,"text=Спасибо. Я очень старалась."
+Action:Type=CompBattleTask,code=buildtowerheal
+Action:Type=ShowBattleTask
+
+# Башни силы
+SCRIPT
+Event:BuildingCount=@TowerCnt@,BuildingCode=ForceTower
+Action:Type=Message,icon=twily_ico,"text=У нас достаточно источников силы, чтобы быть в форме. Отличная работа, Пинки!"
+Action:Type=Message,icon=pinki_ico,"text=Как говорила моя бабушка - кексовых деревьев не бывает слишком много!"
+Action:Type=CompBattleTask,code=buildtowerforce
+Action:Type=ShowBattleTask
+
+# Еда
+SCRIPT
+Event:FoodReach=@FoodNeed@
+Event2:Flag=foodok,CheckNoFlag=true
+Action:Type=SetFlag,FlagName=foodok
+SCRIPT
+Event:Flag=foodok
+Action:Type=Message,icon=applejack_ico,"text=Эй, мы тут собрали изрядные припасы."
+Action:Type=Message,icon=twily_ico,"text=Отлично. Пакуем всё, нам нужна еда в походе."
+Action:Type=DecFood,Delta=@FoodNeed@
+Action:Type=CompBattleTask,code=food
+Action:Type=ShowBattleTask
+
+# Камни
+SCRIPT
+Event:StoneReach=@StoneNeed@
+Event2:Flag=stoneok,CheckNoFlag=true
+Action:Type=SetFlag,FlagName=stoneok
+SCRIPT
+Event:Flag=stoneok
+Action:Type=Message,icon=pinki_ico,"text=Кучи камней большие-пребольшие."
+Action:Type=Message,icon=twily_ico,"text=Спасибо, Пинки. Куда лучше подготовить их заранее."
+Action:Type=DecStone,Delta=@StoneNeed@
+Action:Type=CompBattleTask,code=stone
+Action:Type=ShowBattleTask
+
+# Пустота очищена
+SCRIPT
+Event:SpaceCount=0
+Action:Type=CompBattleTask,code=space
+Action:Type=Message,icon=twily_ico,"text=Пустота снова отброшена. Хотя бы на время."
+Action:Type=ShowBattleTask
+
+# Монстры удалены
+SCRIPT      
+Event:MonsterCount=0
+Action:Type=CompBattleTask,code=kill
+Action:Type=Message,icon=twily_ico,"text=Остатки врагов в долине уничтожены. Мы можем оставить пони без присмотра какое-то время."
+Action:Type=ShowBattleTask
+
+# Время
+SCRIPT      
+Event:Step=@StepLimit@
+Action:Type=Message,icon=twily_ico,"text=Слишком долго, девочки. Нам нужно быстрее работать, если хотим спасти мир."
+Action:Type=Message,icon=applejack_ico,"text=Постараемся нагнать время, когда пойдем дальше."
+Action:Type=FailBattleTask,code=limit
+#Action:Type=SetDefeat,"DefeatStr=Вы не уложились в график"
+
+VICTORY
+ByNoSpaceLeft:null
+->ByNoMonsterLeft:null,AddType=And
+->ByFlag:FlagName=foodok,AddType=And
+->ByFlag:FlagName=stoneok,AddType=And
+#->ByStone:StoneNeed=@StoneNeed@,AddType=And
+#->ByFood:FoodNeed=@FoodNeed@,AddType=And
+->ByObjectCount:Object=CrystalTowerSmall,cnt=g@TowerCnt@,AddType=And
+->ByObjectCount:Object=CrystalTowerBig,cnt=g@TowerCnt@,AddType=And
+->ByObjectCount:Object=ForceTower,cnt=g@TowerCnt@,AddType=And
+->ByObjectCount:Object=HealTower,cnt=g@TowerCnt@,AddType=And

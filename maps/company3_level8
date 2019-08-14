@@ -1,0 +1,244 @@
+Древняя гордость
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+LLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLDDLLLDLLLLLLLLDDLLLLLLL
+LLLLDDDDDDDDDLLDDDDDDLDDLLL
+LLLLDDDDDDDDLLLLLDDDDDDDLLLL
+LLLLLDDDDDDDDLDLDDDDDDLLLLL
+LLLLLLLDDDDDDDDDDDDDDDDDDLLL
+LLLLLLLDDDDDDDDDDDDDDDDDLLL
+LLLLLDDDDDDDDDDDDDDDDDDDLLLL
+LLLLDDLDDDDDDDDDDDDDDDDDLLL
+LLLLLLLDDDDDDDDDDDDDDDDDDLLL
+LLLLLLLDDDDDDDDDDDDDDDDLLLL
+LLLLLLDDDDDDDDDDDDDDDDDLLLLL
+LLLLLLLDDDDDDDDDDDDDDDLLLLL
+FLLLLLLLDDDDDDDDDDDDDDLLLLLL
+FLLLLLLDDDDDDDDDDDDDLLLLLLL
+FFLLLLLDLLDDDDDDDDDDLLLLLLLL
+FFFLLLLLLLLLDDDLLLDLLLLLLLL
+FFFFLLLLLLLLLDDLLLLLLLLLLLLL
+FFFFLLLLLLLLLLDLLLLLLLLLLLL
+FFFFFFLLLLLLLLLLLLLLLLLLLLLL
+FFFFFFLLLLLLLLLLLLLLLLLLLLL
+FLFFFFFFLLLLLLLLLLLLLLLLLLLL
+LLLFFFFFFLLLLLLLLLLLLLLLLLL
+LLLLLLFFFFFLLLLLLLLLLLLLLLLL
+LLLLLLLLLFFLLLLLLLLLLLLLLLL
+LLLLLLLLLLFFLLLLLLLLLLLLLLLL
+LLLLLLLLLLLFLLLLLLLLLLLLLLL
+WWWLLLLLLLLLFLLLLLLLLLLLLLLQ
+LLWWWWLLLLLLLLLLLLLLLLLLLQQ
+LLLLLLWLLLLLLLLLLLLLLLLLQQQQ
+LLLLLLWWWLLLLLLLLLLLLLLQQQQ
+LLLLLLLLLWWWLLLLLLLLLLQQQMMM
+LLLLLLLLLLLWLLLLLLLLQQQMMMM
+LLLLLLLLLLLLWWLLLLLLQQMMWWMM
+LLLLLLLLLLLLLWLLLLQQQMWWMWM
+LLLLLLLLLLLLLLWLLQQQMMWMMMWM
+LLLLLLLLLLLLLWLLQQQMWWMMWWM
+LLLLLLLLLLLLLWLLQQMMWMMWWMMM
+LLLLLLLLLLLLLWLQQMWWMWWMMMM
+LLLLLLLLLLLLLLWWWMWMMLLMMMMM
+LLLLLLLLLLLLLLQQWWMMLLLLMMM
+LLLLLLLLLLLLLLQQMMMMMLLLLMMM
+LLLLLLLLLLLLLQQQMMMMLLLLLLM
+LLLLLLLLLLLLLLQQMMMMLLLLLLLM
+#===MAPEND===
+
+# Раздел константы должен идти в самом начале
+CONSTANTS
+
+INITIAL
+Stone:0
+Food:2000
+Task:Ради Эквестрии, закрыть все порталы.
+DefaultMonsterStrategy:AttackByRank
+Permits:action=deny,code=all
+#Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Heal
+Permits:action=allow,code=Restore
+Permits:action=allow,code=CutEmptySector
+Permits:action=allow,code=BuildTreeShield
+#Permits:action=allow,code=BuildFarmStone
+Permits:action=allow,code=BuildCrystalTowerBig
+Permits:action=allow,code=BuildCrystalTowerSmall
+Permits:action=allow,code=NightmareCall
+Permits:action=allow,code=BuildCrystalTowerDark
+Permits:action=allow,code=DarkTriden
+Permits:action=allow,code=CrystallRain
+Permits:action=allow,code=FrostAttack
+Permits:action=allow,code=SuperHealthAJ
+Permits:action=allow,code=SuperPowerPinki
+Permits:action=allow,code=BearSplash
+Permits:action=allow,code=SummoneBear
+Permits:action=allow,code=PrincessKiss
+Permits:action=allow,code=DeathKick
+Permits:action=allow,code=DeathRainbow
+Permits:action=allow,code=BuildForceTower
+Permits:action=allow,code=BuildHealTower
+Permits:action=allow,code=BuildMirage
+Permits:action=allow,code=IntRelax
+Permits:action=allow,code=SleepStar
+Permits:action=allow,code=BuildTornado
+Permits:action=allow,code=Wings
+Permits:action=allow,code=FlatterView
+Permits:action=allow,code=ForceShield
+Permits:action=allow,code=ForceShieldNR
+Permits:action=allow,code=SetupTeleport
+Permits:action=allow,code=FireBoom
+Permits:action=allow,code=SteelArrow
+Permits:action=allow,code=FireBoom1
+Permits:action=allow,code=SteelArrow1
+Permits:action=allow,code=FireBoom2
+Permits:action=allow,code=SteelArrow2
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+OBJECTS
+Pony:i=2,j=27,"name=Пинки Пай",code=pinki
+Pony:i=3,j=25,"name=Эпплджек",code=applejack
+Pony:i=3,j=26,"name=Рарити",code=rarity
+Pony:i=3,j=28,"name=Рейнбоу Дэш",code=rainbow
+
+Neutral:Code=grifoncastle,"Name=Замок грифонов",i=21,j=40,tag=castle,EnemyTarget=true,Rank=1000,Removable=true
+
+Neutral:Code=grifonhouse1,"Name=Дом грифонов",i=23,j=42
+Neutral:Code=grifonhouse2,"Name=Дом грифонов",i=24,j=43
+Neutral:Code=grifonhouse2,"Name=Дом грифонов",i=21,j=42
+Neutral:Code=grifonhouse1,"Name=Дом грифонов",i=21,j=43
+
+MonsterPortal:Code=darkportal_small,Name=Портал,i=12,j=7,tag=portal
+MonsterPortal:Code=darkportal_small,Name=Портал,i=13,j=10,tag=portal
+MonsterPortal:Code=darkportal_small,Name=Портал,i=15,j=8,tag=portal
+MonsterPortal:Code=darkportal_small,Name=Портал,i=11,j=5,tag=portal
+MonsterPortal:Code=darkportal_small,Name=Портал,i=11,j=9,tag=portal
+MonsterPortal:Code=darkportal_small,Name=Портал,i=14,j=7,tag=portal
+MonsterPortal:Code=darkportal_small,Name=Портал,i=16,j=10,tag=portal
+MonsterPortal:Code=darkportal_small,Name=Портал,i=17,j=8,tag=portal
+MonsterPortal:Code=darkportal_small,Name=Портал,i=18,j=6,tag=portal
+MonsterPortal:Code=darkportal_small,Name=Портал,i=16,j=6,tag=portal
+MonsterPortal:Code=darkportal_small,Name=Портал,i=20,j=7,tag=portal
+Monster:Code=ameba,Name=Амеба,i=10,j=11,holdground=true,tag=nofired 
+Monster:Code=ameba,Name=Амеба,i=12,j=13,holdground=true,tag=nofired
+Monster:Code=ameba,Name=Амеба,i=15,j=14,holdground=true,tag=nofired
+Monster:Code=ameba,Name=Амеба,i=18,j=12,holdground=true,tag=nofired
+Monster:Code=ameba,Name=Амеба,i=20,j=10,holdground=true,tag=nofired
+Monster:Code=ameba,Name=Амеба,i=22,j=6,holdground=true,tag=nofired
+Monster:Code=ameba,Name=Амеба,i=19,j=4,holdground=true,tag=nofired
+Monster:Code=ameba,Name=Амеба,i=9,j=3,holdground=true,tag=nofired
+Monster:Code=ameba,Name=Амеба,i=9,j=7,holdground=true,tag=nofired
+MonsterTent:Code=tent,"Name=Зеленый ужас",i=13,j=14,holdground=true,tag=nofired
+MonsterTent:Code=tent,"Name=Зеленый ужас",i=9,j=13,holdground=true,tag=nofired
+MonsterTent:Code=tent,"Name=Зеленый ужас",i=8,j=9,holdground=true,tag=nofired
+MonsterTent:Code=tent,"Name=Зеленый ужас",i=8,j=5,holdground=true,tag=nofired
+MonsterTent:Code=tent,"Name=Зеленый ужас",i=17,j=4,holdground=true,tag=nofired
+MonsterTent:Code=tent,"Name=Зеленый ужас",i=21,j=8,holdground=true,tag=nofired
+MonsterTent:Code=tent,"Name=Зеленый ужас",i=20,j=12,holdground=true,tag=nofired
+Monster:Code=poison,"Name=Ядовитый шар",i=17,j=14,holdground=true,tag=nofired
+Monster:Code=poison,"Name=Ядовитый шар",i=10,j=14,holdground=true,tag=nofired
+Monster:Code=poison,"Name=Ядовитый шар",i=8,j=11,holdground=true,tag=nofired
+Monster:Code=poison,"Name=Ядовитый шар",i=7,j=3,holdground=true,tag=nofired
+Monster:Code=poison,"Name=Ядовитый шар",i=21,j=5,holdground=true,tag=nofired
+Monster:Code=poison,"Name=Ядовитый шар",i=19,j=2,holdground=true,tag=nofired
+Stone:size=medium,i=16,j=41
+Stone:size=max,i=19,j=39
+Stone:size=medium,i=21,j=35
+Stone:size=max,i=24,j=34
+#===OBJECTSEND===                                 
+                                                 
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=12,j=8,immediate=true
+Action:Type=Message,icon=applejack_ico,"text=Лягать-колотить!"
+Action:Type=Message,icon=rarity_ico,"text=А я-то думала, что видела уже всё."
+Action:Type=Message,icon=rainbow_ico,"text=Эти черно-синие дыры - порталы. Верно?"
+Action:Type=Message,icon=rarity_ico,"text=Да. И если Твайлайт права - именно через них к нам проникают создания других миров - известные ранее и неизвестные."
+Action:Type=Message,icon=applejack_ico,"text=Тогда сделаем дело. Вперед, подруги!"
+Action:Type=ShowBattleTask
+
+SCRIPT      
+Event:Step=1
+Action:Type=SetFocus,i=21,j=42
+Action:Type=Message,icon=applejack_ico,"text=Эта гора обитаема, верно?"
+Action:Type=Message,icon=rarity_ico,"text=Грифоны могут жить где угодно, они очень сильные и выносливые. Но как так получилось, что их дом до сих пор не разрушен?"
+Action:Type=Message,icon=rainbow_ico,"text=Я имела дело с грифонами. Они скорее погибнут, но не позовут на помощь."
+Action:Type=Message,icon=grifon1_ico,"text=Так и есть, радужная пони. Мы древняя и гордая раса, имевшая королей и историю еще в те времена, когда пони даже хлеб печь не умели."
+Action:Type=Message,icon=applejack_ico,"text=Что здесь вообще творится?"
+Action:Type=Message,icon=grifon1_ico,"text=Мало хорошего. Неисчислимые полчища чудовищ здорово потрепали нашу гору. Мои воины проявляли чудеса героизма, но за каждым поверженным противником приходило десять. Мы решили оставить наш дом."
+Action:Type=Message,icon=rarity_ico,"text=Мы здесь, чтобы покончить с этим. Присоединяйтесь к нам, и вместе мы положим конец этому вторжению, вернув мир и спокойствие в Эквестрию."
+Action:Type=Message,icon=grifon1_ico,"text=Да вы шутите, синегривка. Единорог, пегас и два несчастных земнопони - против сотен чудовищ?"
+Action:Type=Message,icon=pinki_ico,"text=Похоже, эти грифоны ничуть не изменились."
+Action:Type=Message,icon=applejack_ico,"text=Они всё это время знали про порталы - и не сообщили Принцессам?"
+Action:Type=Message,icon=rarity_ico,"text=Сейчас уже не важно. Грифон! Мы сделаем это с вами или без вас."
+Action:Type=Message,icon=grifon1_ico,"text=Мы мало чем сможем помочь. Почти все бойцы ранены. Единственное, что у нас осталось - старые боевые механизмы, но они очень тяжелые. Я прикажу выносить их из крепости по мере возможности."
+Action:Type=Message,icon=applejack_ico,"text=Это лучше, чем ничего. Спасибо."
+Action:Type=Message,icon=grifon1_ico,"text=Я надеюсь, что вы понимаете - если чудовища доберутся до замка, мы немедленно уйдем. Помогите нам продержаться."
+Action:Type=Message,icon=help_ico,"text=Пока замок грифонов цел - вам в течении 30 ходов будут доставлять по боевой машине каждые 10 ходов."
+Action:Type=SetBattleTask,code=castle,isreq=false,"Task=Защищать замок грифонов 30 ходов"
+Action:Type=SetFlag,FlagName=castleneedyet
+Action:Type=ShowBattleTask
+
+SCRIPT
+Event:Step=10
+Event2:TagCount=1,TagName=castle
+Action:Type=Message,icon=grifon1_ico,"text=Первая машина доставлена. Осталось еще две. Защищайте наш замок!".
+Action:Type=NewObject,Object=Pony,Code=taran,autofocus=true,"Name=Осадная машина",DeathAllow=true,i=16,j=32
+Action:Type=Message,icon=help_ico,"text=Осадные машины грифонов - механическая поддержка наступления, несут один зажигательный снаряд и одну мощную стрелу, неподвержены блоку магических действий."
+# set machine
+
+SCRIPT
+Event:Step=20
+Event2:TagCount=1,TagName=castle
+Action:Type=Message,icon=grifon1_ico,"text=Вторая машина на месте. Продержитесь еще немного!"
+Action:Type=NewObject,Object=Pony,Code=taran1,autofocus=true,"Name=Осадная машина",DeathAllow=true,i=16,j=32
+# set machine
+
+SCRIPT
+Event:Step=30
+Event2:TagCount=1,TagName=castle
+Action:Type=Message,icon=grifon1_ico,"text=Спасибо, что держали оборону. Ваша последняя машина у моста. Мы уходим."
+Action:Type=NewObject,Object=Pony,Code=taran2,autofocus=true,"Name=Осадная машина",DeathAllow=true,i=16,j=32
+Action:Type=Message,icon=rarity_ico,"text=Мы найдем ей правильное применение."
+Action:Type=ClearFlag,FlagName=castleneedyet
+Action:Type=CompBattleTask,code=castle
+# set machine
+
+SCRIPT
+Event:TagCount=0,TagName=castle
+Event2:Flag=castleneedyet
+Action:Type=Message,icon=grifon1_ico,"text=Наш замок захвачен. Мы не останемся здесь больше ни одной минуты.".
+Action:Type=FailBattleTask,code=castle
+
+SCRIPT      
+Event:StepModN=3
+Action:Type=FireTotalAttack
+
+SCRIPT
+Event:TagCount=0,TagName=portal
+Action:Type=SetFlag,FlagName=Victory
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=rainbow_ico,"text=Порталы закрыты. Без пополнения, остальные монстры разбегутся и будут быстро истреблены."
+Action:Type=Message,icon=applejack_ico,"text=Мы это сделали! Но как же быть с Пустотой?"
+Action:Type=Message,icon=rarity_ico,"text=Твайлайт что-то придумает, уж я уверена. Главное, нас больше не будут атаковать сотни чудовищ. Вот только..."
+Action:Type=Message,icon=applejack_ico,"text=В чем дело, сахарок?"
+Action:Type=Message,icon=rarity_ico,"text=Возможно, ничего. Просто мои познания в области аналитической магии сильно увеличились с тех пор, как я приняла силы Найтмер - и на какой-то миг, мне показалось, что после закрытия последнего портала, огромный поток энергии перестал поглощаться. Это может... изменить что-то."
+Action:Type=Message,icon=rainbow_ico,"text=Давай не будем беспокоиться заранее. Мы заслужили толику отдыха."
+
+VICTORY
+ByFlag:FlagName=victory

@@ -1,0 +1,141 @@
+Ученье - свет
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+#DefaultSandStone
+
+MAP
+FFFFFFFFFFFFFMLMFFFFFFFFFFFF
+FFFFFFFFFFFFFMLMMFFFFFFFFFFFF
+FFFFFFFFFFFFMMLMMFFFFFFFFFFF
+FFFFFFFFFFFFMWWWWMFFFFFFFFFFF
+FFFFMFFFFFFWWLLLWWFFFFFFFFFF
+FFFFMMFFFFFWLLLMLLWFFFFFFFFFF
+FFFMLMFFFWWLLLMLLLWWMFFFFFFF
+FFFMLLMMMWLMLLMLLLLLWMMFFFFFF
+FFMLLLLLWLLMLLLLMLLLWMMMFFFF
+FFMLLLLLWLLLMLLLLMLLLWLLLFFFF
+FFMLLLLLWLLLLLMLLMLLWMMMFFFF
+FFFMLLMMMWLLLLMLLLLLWMMFFFFFF
+FFFMLMFFFWWLLMLLLLWWMFFFFFFF
+FFFFMMFFFFFWLLLLLLWFFFFFFFFFF
+FFFFMFFFFFFWWLLLWWFFFFFFFFFF
+FFFFFFFFFFFFMWWWWMFFFFFFFFFFF
+FFFFFFFFFFFFMMLMMFFFFFFFFFFF
+FFFFFFFFFFFFFMMLMFFFFFFFFFFFF
+FFFFFFFFFFFFFMLMFFFFFFFFFFFF
+#===MAPEND===
+
+CONSTANTS
+Start_I:10
+Start_J:9
+Golem1_I:19
+Golem1_J:9
+Golem2_I:14
+Golem2_J:0
+Golem3_I:14
+Golem3_J:18
+Golem4_I:24
+Golem4_J:9
+
+OBJECTS
+Pony:i=@Start_I@,j=@Start_J@,"name=Твайлайт",code=twily
+Neutral:Code=zebra_1,"Name=Вождь-шаман",i=5,j=9
+Monster:Code=bat,"Name=Страж",i=7,j=0,holdground=true
+Monster:Code=bat,"Name=Страж",i=21,j=0,holdground=true
+Monster:Code=bat,"Name=Страж",i=5,j=2,holdground=true
+Monster:Code=bat,"Name=Страж",i=3,j=9,holdground=true
+Monster:Code=bat,"Name=Страж",i=5,j=16,holdground=true
+Monster:Code=bat,"Name=Страж",i=7,j=18,holdground=true
+Monster:Code=bat,"Name=Страж",i=21,j=18,holdground=true
+Monster:Code=bat,"Name=Страж",i=24,j=3,holdground=true
+Monster:Code=bat,"Name=Страж",i=24,j=14,holdground=true
+Monster:Code=bat,"Name=Страж",i=27,j=9,holdground=true
+
+INITIAL
+Stone:0
+Food:400
+Task:Пройти курс обучения у зебр
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=MineForest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Heal
+Permits:action=allow,code=Restore
+Permits:action=allow,code=CutEmptySector
+Permits:action=allow,code=BuildTreeShield
+#Permits:action=allow,code=BuildFarmStone
+Permits:action=allow,code=BuildCrystalTower
+Permits:action=allow,code=FlatterView
+Permits:action=allow,code=ForceShield
+Permits:action=allow,code=ForceShieldNR
+Permits:action=allow,code=SetupTeleport
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=@Start_I@,j=@Start_J@,immediate=true
+Action:Type=Message,icon=twily_ico,"text=Я готова изучать магию под вашим руководством, но зачем мы в этом странном месте с нетопырями?"
+Action:Type=Message,icon=zebra_ico,"text=Учение - не зубрежка,\nИди непротореной дорожкой!"
+Action:Type=Message,icon=twily_ico,"text=Да, я поняла, что задача непростая. Но мне очень нужно научиться чему-то новому!"
+Action:Type=Message,icon=zebra_ico,"text=В этом круге - сила живет.\nА вот и первый - Твайлайт, вперед!"
+Action:Type=NewObject,Object=Monster,Code=stonewar,"Name=Учебный голем",i=@Golem1_I@,j=@Golem1_J@,autofocus=true,tag=golem1
+Action:Type=SetFlag,FlagName=Task1
+Action:Type=SetBattleTask,code=battle1,"task=Уничтожить учебного голема."
+Action:Type=ShowBattleTask
+
+SCRIPT
+Event:TagCount=0,TagName=golem1
+Event2:Flag=Task1
+Action:Type=NewObject,Object=Monster,Code=stonewar,"Name=Учебный голем",i=@Golem2_I@,j=@Golem2_J@,autofocus=true,tag=golem2
+Action:Type=NewObject,Object=Monster,Code=stonewar,"Name=Учебный голем",i=@Golem3_I@,j=@Golem3_J@,autofocus=true,tag=golem2
+Action:Type=SetFlag,FlagName=Task2
+Action:Type=Message,icon=zebra_ico,"text=Неплохо для пони, моя ученица.\nНо лучше тебе побыстрей шевелиться.\nЧтоб шансы сравнять, вот навык иллюзий.\nИспользуем силу и хитрость в союзе." 
+Action:Type=Message,icon=twily_ico,"text=Полезная штука, ничего не скажешь. Сейчас применю на практике."
+Action:Type=Message,icon=help_ico,"text=Заклинание Мираж - создает копию пони на 3 хода, выдерживает любые удары."
+Action:Type=SetPermits,action=allow,code=BuildMirage
+Action:Type=CompBattleTask,code=battle1
+Action:Type=SetBattleTask,code=battle2,"task=Уничтожить двух големов."
+Action:Type=ShowBattleTask
+
+SCRIPT
+Event:TagCount=0,TagName=golem2
+Event2:Flag=Task2
+Action:Type=NewObject,Object=Monster,Code=stonewar,"Name=Учебный голем",i=@Golem2_I@,j=@Golem2_J@,autofocus=true,tag=golem3
+Action:Type=NewObject,Object=Monster,Code=stonewar,"Name=Учебный голем",i=@Golem3_I@,j=@Golem3_J@,autofocus=true,tag=golem3
+Action:Type=NewObject,Object=Monster,Code=stonewar,"Name=Учебный голем",i=@Golem4_I@,j=@Golem4_J@,autofocus=true,tag=golem3
+Action:Type=SetFlag,FlagName=Task3
+Action:Type=Message,icon=zebra_ico,"text=Силу и свет в тебе чувствую я.\nНо ты подавляешь - что гложет тебя?"
+Action:Type=Message,icon=twily_ico,"text=Я бесполезна! Я не смогла спасти свою страну, едва не потеряла мою принцессу и учительницу, а вы напускаете на меня каменных болванов? Это ваше обучение!?"
+Action:Type=Message,icon=zebra_ico,"text=Гнев не помощник, а страх не даст знаний.\nДля битвы очисти свой ум и сознание.\nТо, что боишься - признать ты смогла.\nДаю тебе силы, борись против зла."
+Action:Type=Message,icon=twily_ico,"text=Это... магия зебр? Я могу это использовать?"
+Action:Type=Message,icon=help_ico,"text=Мощные заклинания шаманов зебр: Звездная Пыль и Внутренний Покой. Звездная Пыль уменьшает здоровье противников на треть и погружает их в сон. Внутренний Покой требует много еды, но полностью восстанавливает силы и здоровье мага."
+Action:Type=SetPermits,action=allow,code=IntRelax
+Action:Type=SetPermits,action=allow,code=SleepStar
+Action:Type=CompBattleTask,code=battle2
+Action:Type=SetBattleTask,code=battle3,"task=Уничтожить всех големов."
+Action:Type=ShowBattleTask
+
+
+SCRIPT
+Event:TagCount=0,TagName=golem3
+Event2:Flag=Task3
+Action:Type=SetFlag,FlagName=Finish
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=zebra_ico,"text=Нечему больше учить мне тебя.\nДостигла вершины, ученица моя."
+Action:Type=Message,icon=twily_ico,"text=Должна сказать, ваши методы обучения... эффективны. Утомительны, но эффективны."
+ 
+VICTORY
+ByFlag:FlagName=Finish

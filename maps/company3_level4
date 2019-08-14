@@ -1,0 +1,225 @@
+Они не пройдут
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+MMMMMMMFMMMMMMMMMMFFFFLLLLLLLLLLLLLLLLLLL
+FFFMMMMFFFFFFFMMMMFFFLLLLLLLLLLLLLLLLLLLLL
+FFFFFMFLLLLLFFFMMFFLLLLLLLLLLLLLLLLLLLLLL
+LLLLFFFLLLLLLLFFFFLLLLLLLQQLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLQQLLLLLLLLLLLLLLL
+LLLQLLLLLLLLLLLLLLLLLLLLQQQLLLLLLLLLLLLLLL
+LLLQQLLLLQLLLLLLQQLLLLLLLQLLLLLLLLLLLLLLL
+LLLLQLLLLQQLLLLLQQQLLLLLLLLLLLLLLLLLLLLLLW
+LLLLLLLLLLQLLLLLLQLLLLLLLLLLLLLLLLLLLLWWW
+LLLLLLLLLLQLLLQLLLQLLLLLLLLLLLLLLLLLLLWLLL
+LLLLLLLLLLLLLLQLLQLLLLLLLLLLLLLLLLLLLWLLL
+LLLLLLQLLLLLLQQLLLLLLLLLLQLLLLLLLLLLLWLLLL
+LLLLLQQLLLLLLLLLLLLLLLQQQQLLLLLLLLLLWLLLL
+LLLLLLQLLLLLLLWWWWWWLLQQQLLLLLLLLWWWWLLLLL
+LLLLLQLLLQQLLWLLLLLWLLQQQLLLLLLLWLLLWLLLL
+WLLLLLLLLQQLLWLQLLLLWLQQQQLLLLLWWLLLLWLLLL
+WWWWLLLLLLQLWLLQQLLLWLLLLLLLLLWLLLLLLWLLL
+LLLLWWWWWLLLWLLLQQLLLWWWWWWWWWWLLLLLLLWLLL
+LLLLLLLLWWWWLLLQQLLLLLLLLLLLLLLLLLLLLWLLL
+LLLLLLQLLLLLLLLLLQLLLLLQQLLLLLLLLLLLLWLLLL
+LLLLLQQLLLLLLLLLLLLLLLLLQLLLLLLLLLLLWLLLL
+LLLLLLQQLLLQLLLLLLLLLLLLQLLLLLLLLLLLWLLLLL
+LLLLLLLQLLQLLLLLQLLLLLLQLLLLLLLLLLLLWWLLL
+LLLLLLLQLLLQQLLLLQLLLLLLLLLLLLLLLLLLLLWLLL
+LLLLLQQLLLLLQLLLQLLLLLLLLLLLLLLLLLLLLLWLL
+LLLLLQQLLLLLLLLLLLLLLQLLLLLLLLLLLLLLLLLWWL
+LLLLLLLLLLLLLLLLLLLLQQLLLLLLLLLLLLLLLLLLW
+LLLLLLLLLLLLLLLQALLLLQLLLLLLLLLLLLLLLLLLLW
+LLLLLLLLLLLLLLLQLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLFFFLLLAALLLLLLLLLLLQLLLLLLLLLLLLL
+LLLLLLLLFFFFFFLLLLLLLLLLLLLLQLLLLLLLLLLLL
+FFFFLLLLFFMMFFFFFFLLLLLLLLLQQLLLLLLLLLLLLL
+MMFFLLFFMMMMMMMMFFFLLLLLLLLQQLLLLLLLLLLLL
+MMMMFFFMMMMMMMMMFFFFFFLLLLLLLLLLLLLLLLLLLL
+#===MAPEND===
+
+# Раздел константы должен идти в самом начале
+CONSTANTS
+Stone1_X:2
+Stone1_Y:4
+Stone2_X:12
+Stone2_Y:3
+Stone3_X:21
+Stone3_Y:3
+Stone4_X:5
+Stone4_Y:33
+Stone5_X:15
+Stone5_Y:28
+Stone6_X:22
+Stone6_Y:31
+StepTwilyReturn:33
+
+OBJECTS
+Pony:i=2,j=17,"name=Пинки Пай",code=pinki
+Pony:i=3,j=15,"name=Флаттершай",code=flatter
+Pony:i=3,j=16,"name=Рарити",code=rarity
+#Stone:i=3,j=20,size=min
+#Stone:i=5,j=18,size=medium
+#Stone:i=8,j=29,size=min
+Neutral:i=0,j=5,"name=Дерево",code=tree,EnemyTarget=true,Rank=1000
+Neutral:i=0,j=16,"name=Дерево",code=tree,EnemyTarget=true,Rank=1000
+Neutral:i=0,j=28,"name=Дерево",code=tree,EnemyTarget=true,Rank=1000
+
+#===OBJECTSEND===
+
+INITIAL
+Stone:120
+Food:100
+Task:Защищать ущелье до возврата Твайлайт.
+Permits:action=deny,code=all
+#Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Heal
+Permits:action=allow,code=Restore
+Permits:action=allow,code=CutEmptySector
+Permits:action=allow,code=BuildTreeShield
+#Permits:action=allow,code=BuildFarmStone
+Permits:action=allow,code=BuildCrystalTowerBig
+Permits:action=allow,code=BuildCrystalTowerSmall
+Permits:action=allow,code=NightmareCall
+Permits:action=allow,code=BuildCrystalTowerDark
+Permits:action=allow,code=DarkTriden
+Permits:action=allow,code=CrystallRain
+Permits:action=allow,code=FrostAttack
+Permits:action=allow,code=SuperHealthAJ
+Permits:action=allow,code=SuperPowerPinki
+Permits:action=allow,code=BearSplash
+Permits:action=allow,code=SummoneBear
+Permits:action=allow,code=PrincessKiss
+Permits:action=allow,code=DeathKick
+Permits:action=allow,code=DeathRainbow
+Permits:action=allow,code=BuildForceTower
+Permits:action=allow,code=BuildHealTower
+Permits:action=allow,code=BuildMirage
+Permits:action=allow,code=IntRelax
+Permits:action=allow,code=SleepStar
+Permits:action=allow,code=BuildTornado
+Permits:action=allow,code=Wings
+Permits:action=allow,code=FlatterView
+Permits:action=allow,code=ForceShield
+Permits:action=allow,code=ForceShieldNR
+Permits:action=allow,code=SetupTeleport
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=2,j=14,immediate=true
+Action:Type=Message,icon=rarity_ico,"text=Я так думаю, что без башен и деревьев нам не обойтись. Ущелье широкое, а еды и камня у нас почти нет."
+Action:Type=Message,icon=pinki_ico,"text=Я сделаю дерево кексиков прямо сейчас. Больше кексиков - больше веселья!"
+Action:Type=Message,icon=rarity_ico,"text=И помните - наша цель не пропустить ни одного врага к стойбищу бизонов, пока Твайлайт убирает там Пустоту. Пока мы здесь - монстры будут атаковать нас, это даст для наших подруг время."
+Action:Type=ShowBattleTask
+
+#SCRIPT      
+#Event:Step=1
+#Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Нетопырь",i=4,j=28,count=1,radius=1
+
+# Враги
+
+SCRIPT      
+Event:Step=2
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=25,j=5,count=3,radius=3
+
+SCRIPT      
+Event:Step=4
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=22,j=10,count=2,radius=3
+
+SCRIPT      
+Event:Step=6
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=18,j=15,count=2,radius=3
+
+SCRIPT      
+Event:Step=7
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=21,j=12,count=4,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=23,j=17,count=3,radius=3
+
+SCRIPT      
+Event:Step=11
+Action:Type=NewObjectGroup,Object=Monster,Code=gidra,"Name=Гидра",i=22,j=20,count=2,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=25,j=25,count=3,radius=3
+
+SCRIPT      
+Event:Step=16
+Action:Type=NewObjectGroup,Object=Monster,Code=poison,"Name=Ядовитый шар",i=22,j=10,count=3,radius=3
+Action:Type=NewObjectGroup,Object=MonsterTent,Code=tent,"Name=Зеленый ужас",i=25,j=20,count=2,radius=3
+
+SCRIPT      
+Event:Step=24
+Action:Type=NewObjectGroup,Object=Monster,Code=poison,"Name=Ядовитый шар",i=22,j=5,count=4,radius=3
+Action:Type=NewObjectGroup,Object=MonsterTent,Code=tent,"Name=Зеленый ужас",i=25,j=2,count=2,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=gidra,"Name=Гидра",i=22,j=13,count=2,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=25,j=18,count=4,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=21,j=24,count=8,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=23,j=28,count=6,radius=3
+Action:Type=Message,icon=rarity_ico,"text=Ох, Твайлайт, я надеюсь, ты спешишь. Тут становится тесновато."
+
+SCRIPT      
+Event:Step=26
+Action:Type=SetFocus,i=30,j=20
+Action:Type=NewObjectGroup,Object=MonsterPortal,Code=darkportal_small,"Name=Портал",i=30,j=20,count=1,radius=3
+Action:Type=Message,icon=rarity_ico,"text=Я не владею аналитической магией в достаточной степени - но распознать портал способна. Неужели..."
+
+# Камни
+
+SCRIPT      
+Event:Step=5
+Action:Type=Message,icon=pinki_ico,"text=Эти горные породы очень старые. Края ущелья постоянно осыпаются. Мы сможем собирать камни."
+Action:Type=Message,icon=rarity_ico,"text=Отлично. Главное, не отходите далеко от деревьев кексиков - у нас нет других возможностей восстановить силы."
+Action:Type=Message,icon=help_ico,"text=Запасы камня можно пополнить, собирая периодически возникающие кучи камней с краёв ущелья."
+
+SCRIPT      
+Event:StepModN=5
+Action:Type=NewObjectGroup,Object=Stone,size=min,i=@Stone1_X@,j=@Stone1_Y@,count=2,radius=1
+
+SCRIPT      
+Event:StepModN=8
+Action:Type=NewObjectGroup,Object=Stone,size=min,i=@Stone2_X@,j=@Stone2_Y@,count=2,radius=1
+
+SCRIPT      
+Event:StepModN=12
+Action:Type=NewObjectGroup,Object=Stone,size=medium,i=@Stone3_X@,j=@Stone3_Y@,count=2,radius=1
+
+SCRIPT      
+Event:StepModN=16
+Action:Type=NewObjectGroup,Object=Stone,size=medium,i=@Stone4_X@,j=@Stone4_Y@,count=2,radius=1
+
+SCRIPT      
+Event:StepModN=21
+Action:Type=NewObjectGroup,Object=Stone,size=max,i=@Stone5_X@,j=@Stone5_Y@,count=2,radius=1
+
+SCRIPT      
+Event:StepModN=28
+Action:Type=NewObjectGroup,Object=Stone,size=max,i=@Stone6_X@,j=@Stone6_Y@,count=2,radius=1
+
+# Поражение
+SCRIPT
+Event:ObjectPos=True,Direction=LessXmin,i=2,j=0,"Object=bat,ameba,troll,poison,gidra,tent"
+Action:Type=SetDefeat,"DefeatStr=Враги прорвались через ущелье"
+
+SCRIPT
+Event:Step=@StepTwilyReturn@
+Action:Type=SetFocus,i=3,j=20
+Action:Type=NewObject,Object=Pony,Code=twily,"Name=Твайлайт Спаркл",i=3,j=20
+Action:Type=Message,icon=twily_ico,"text=Мы справились со своей задачей. Судя по тому, что нас никто не побеспокоил - вы тоже?"
+Action:Type=Message,icon=rarity_ico,"text=Вполне. Не представляю, как мы раньше выполняли задания без новых способностей."
+Action:Type=Message,icon=twily_ico,"text=Тогда возвращаемся домой."
+Action:Type=Message,icon=rarity_ico,"text=Твайлайт, тут помимо обычного набора гостей, мы нашли портал и он не бездействовал. Думаю, тебе стоит поразмыслить над этим."
+Action:Type=SetFlag,FlagName=twily
+
+VICTORY
+ByFlag:FlagName=twily

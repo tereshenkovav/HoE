@@ -1,0 +1,122 @@
+Долгий путь
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+LLLLLLLLLLLLLLLLLLLLLLLQQQQL
+LLLLLLLLLLLAQLLLLLLLLLLLQQQLL
+LLLLLLLLLQAAQLLLLLLLLLLLQQQL
+LLLLLLLLLQAAAQLLLLLLLLLLLQQQL
+LLLLLLLLLAAAAQLLLLLLLLLLQQQL
+LLLLLWWWWQAAAQLLLLLLLLLLLQQQL
+LLLWWLLLWWWWWWLLLLLLLLLLLQQQ
+LLWWLLLLLQAAAQWWWWLLLLLLLQQQQ
+LWLLLLLLLQAAAQLLLWLLLLLHLQQQ
+LWLLLLLLLQAAAQLLLLWLLEWWLLQQQ
+LWLLLLLLLQAQFFLLLLWWWWQWHLQQ
+LLWLLLLLLLQQFFFLLLLLLLWWLLLQQ
+LWLLLLLLLFFFFFFLLLLLLLLELLQQ
+LLWLLLLLLFFFFFFLLLLLLLLLLQQQQ
+LWLLLLLLFFFFFFFLLLLLLLQQQQQQ
+LLWLLLLLLFFFFFFFLLLLLLQQQQLQQ
+LWLLLLLLFFFFFFFFFLLLLQQLLLLL
+LWLLLLLFFFFFFFFFFFLLLLQLLLLLL
+WLLLLLLFFFFFFFFFFFFLLLQLLLLL
+LLLLLLLLFFFFFFFFFFFFLLLQLLLLL
+#===MAPEND===
+
+CONSTANTS
+TowerX:21
+TowerY:12
+
+OBJECTS
+Pony:i=3,j=16,"name=Рейнбоу Дэш",code=rainbow
+Pony:i=3,j=14,"name=Эпплджек",code=applejack
+Neutral:Code=tower,"Name=Крепость",i=@TowerX@,j=@TowerY@,targeted=true
+
+INITIAL
+Stone:0
+Food:100
+Task:Добраться до центральной башни поселения
+Permits:action=deny,code=all
+#Permits:action=allow,code=BuildFarmFood
+#Permits:action=allow,code=Harvest
+Permits:action=allow,code=Teleport
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=3,j=16,immediate=true
+
+SCRIPT      
+Event:Step=0
+Action:Type=Message,icon=rainbow_ico,"text=И за что Принцесса Селестия попросила нас провести эти три дня здесь?"
+Action:Type=Message,icon=applejack_ico,"text=Может, не стоило приветствовать Двойной Радугой пугливых гостей из Ламандии?"
+Action:Type=Message,icon=rainbow_ico,"text=Это же было круто?"
+Action:Type=Message,icon=applejack_ico,"text=Флаттершай два часа успокаивала их и собирала по всему Кантерлоту. А меня Принцесса Селестия попросила присмотреть за тобой."
+Action:Type=Message,icon=rainbow_ico,"text=Ладно, ладно. Возможно, я увлеклась. А теперь мы будем торчать в этой скучной дыре. Полетели, что ли."
+Action:Type=ShowBattleTask
+Action:Type=Message,icon=help_ico,"text=Выделяем пони, и щелкаем в подсвеченную клетку для перемещения. После хода всеми пони - нажимаем кнопку Завершить ход."
+Action:Type=Message,icon=help_ico,"text=Целевые точки на карте обозначены красной подковой. Как правило, нужно подойти к цели вплотную."
+
+SCRIPT      
+Event:Step=1
+Action:Type=Message,icon=rainbow_ico,"text=Эпплджек, предлагаю разделиться. Я полечу через лес, а ты ступай по дороге и через озерный мост."
+Action:Type=Message,icon=help_ico,"text=Скорость передвижения пони различается на разных типах ландшафта. Кроме того, некоторые виды ландшафта непроходимы для всех типов пони, кроме пегасов."
+
+SCRIPT      
+Event:Step=2
+Action:Type=Message,icon=rainbow_ico,"text=Похоже, твой путь будет длиннее моего. Я полечу потихоньку."
+Action:Type=Message,icon=help_ico,"text=На передвижение расходуется сила. Если пони не полностью израсходует имеющийся запас шагов, она восстановит немного сил в конце хода. Переместите Рейнбоу на 3 клетки вместо 6, чтобы восстановить немного сил. Количество восстанавливаемой силы указывается в скобках."
+
+SCRIPT      
+Event:Step=3
+Action:Type=Message,icon=rainbow_ico,"text=Что-то этот путь тяжелее, чем мне казалось. Пожалуй, вздремну-ка я здесь."
+Action:Type=Message,icon=help_ico,"text=Если пони полностью бездействовала, она восстановит 40% силы. Не перемещайте Рейнбоу, чтобы восстановить большое количество сил."
+
+SCRIPT      
+Event:Step=4
+Action:Type=Message,icon=applejack_ico,"text=Еще полдня в таком темпе - и сил никаких не останется. На крайний случай, буду идти понемногу."
+Action:Type=Message,icon=help_ico,"text=Если пони осталась без сил и при этом не передвигалась на начало хода, она переходит в экстремальный режим: может совершать не более 1 шага за ход, расходуя 2 единицы здоровья. Старайтесь не доводить пони до такого состояния, следите за запасом еды и сил."
+
+SCRIPT
+Event:ObjectPos=True,i=@TowerX@,j=@TowerY@,IncludeLinked=true,Object=applejack
+Action:Type=SetFlag,FlagName=ajreach
+Action:Type=Message,icon=applejack_ico,"text=Я на месте."
+
+SCRIPT
+Event:ObjectPos=True,i=@TowerX@,j=@TowerY@,IncludeLinked=true,Object=rainbow
+Action:Type=SetFlag,FlagName=rdreach
+Action:Type=Message,icon=rainbow_ico,"text=Я долетела."
+
+SCRIPT
+Event:Flag=rdreach
+Event:Flag=ajreach
+Action:Type=CompBattleTask,code=initial
+Action:Type=NewObject,Object=Neutral,Code=teleport,"Name=Портал",i=2,j=2,autofocus=true
+Action:Type=NewObject,Object=Pony,Code=twily,"Name=Твайлайт Спаркл",i=4,j=4 
+Action:Type=Message,icon=twily_ico,"text=Девочки, как вы?"
+Action:Type=Message,icon=rainbow_ico,"text=Твайлайт? Ты-то что могла натворить?"
+Action:Type=Message,icon=twily_ico,"text=Я не уверена... Принцесса Селестия спросила, не хочу ли я проведать моих подруг, открыла портал и случайно толкнула меня в него."
+Action:Type=Message,icon=applejack_ico,"text=Рада тебя видеть, подруга. Третьей будешь. Вот только идти тебе придется долго."
+Action:Type=Message,icon=twily_ico,"text=Не так уж долго. Я единорог, забыли?"
+Action:Type=Message,icon=help_ico,"text=Некоторые пони умеют телепортироваться. Выберите команду Телепорт и укажите клетку, куда нужно переместить пони. На телепортацию расходуется фиксированное количество сил, вне зависимости от дальности прыжка."
+Action:Type=SetBattleTask,code=twily,"Task=Добраться Твайлайт до поселения."
+
+SCRIPT
+Event:ObjectPos=True,i=@TowerX@,j=@TowerY@,IncludeLinked=true,Object=twily
+Action:Type=SetFlag,FlagName=tsreach
+Action:Type=Message,icon=twily_ico,"text=Я уже здесь."
+Action:Type=CompBattleTask,code=twily
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=ok_ico,"text=Поздравляем! Вы освоили навыки перемещния и восстановления сил."
+
+VICTORY
+ByFlag:FlagName=ajreach
+->ByFlag:FlagName=rdreach,AddType=And
+->ByFlag:FlagName=tsreach,AddType=And

@@ -1,0 +1,132 @@
+Перевал
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+FFMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+FFMMMMMMMMMMMMMMMMMMMMMMMMMMMLM
+FFFMMMMMMMMMMMMLLLLLLLLMMMMLLL
+FFFMMMMMMMMMLLLLLMMMMLLLLMLLLLL
+FFFMMMMMMLLLMMMMMMMMMMMLLLLLLL
+FFFFMMMMMLMMMMMMMMMMMMMLMMMMMLM
+FFFFMMMMLMMMMMMMMMMMMMMLMMMMMM
+FFFFFMLLLMMMMMMMMMMMMMMLMMMMMMM
+LLFFLLLLMMMMMMMMMMMMMMLMMMMMMM
+LLLLLLFFMMMMMMMMMMMMMMLMMMMMMMM
+LLLLFFFMMMMMMMMMMFFFMMMMMMMMMM
+LLLFFFFMMMMMMMMMFLLHFMMMMMMMMMM
+#===MAPEND===
+
+OBJECTS
+Pony:i=2,j=10,"name=Рарити",code=rarity
+#Pony:i=28,j=3,"name=Рарити",code=rarity
+Pony:i=1,j=9,"name=Эпплджек",code=applejack
+Building:Code=TreeShield,i=16,j=3
+Building:Code=TreeShield,i=19,j=10
+Building:Code=TreeShield,i=29,j=1
+Building:Code=TreeShield,i=29,j=5
+Building:Code=TreeShield,i=27,j=3
+Neutral:Code=tower,Name=Застава,i=29,j=3,targeted=true
+#===OBJECTSEND===
+
+INITIAL
+Stone:0
+Food:250
+Task:Дойти до заставы обеими пони
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=2,j=10,immediate=true
+Action:Type=Message,icon=rarity_ico,"text=Почему я тебя послушалась? ==>
+Эти горы, перевалы, камни... Я не люблю природу!"
+Action:Type=Message,icon=applejack_ico,"text=Почему бы тебе не отрастить ==>
+крылья и просто долететь до Кантерлота?"
+Action:Type=Message,icon=rarity_ico,"text=Эпплджек, когда я стану принцессой, ==>
+моим первым указом будет отправка тебя на столичные курсы хороших манер."
+Action:Type=Message,icon=applejack_ico,"text=Шевели копытами, прынцесса. ==>
+Нам нужно доскакать воооон туда."
+Action:Type=SetFocus,i=30,j=3
+Action:Type=ShowBattleTask
+
+SCRIPT      
+Event:Step=1
+Action:Type=SetFocus,i=20,j=11
+Action:Type=Message,icon=rarity_ico,"text=Я знаю этот дом!==> 
+Там жил мой знакомый единорог, который добывал в этих горах ==>
+редкие камни. Нам нужно попасть туда. Там наверняка остались ==>
+самоцветы, которые я могла бы... одолжить."
+Action:Type=Message,icon=applejack_ico,"text=Ты готова сделать такой крюк ==>
+по нелюбимым тобой горам? Однако..."
+Action:Type=SetBattleTask,code=habar,isreq=false,"Task=Привести Рарити к домику в горах"
+Action:Type=Message,icon=ok_ico,"text=Дополнительное задание: ==>
+Рарити должна попасть в дом."
+
+SCRIPT
+Event:ObjectPos=True,i=19,j=11,Object=rarity,IncludeLinked=true
+Action:Type=Message,icon=rarity_ico,"text=Почему жизнь так несправедлива? ==>
+Здесь только пустая порода и... ==>
+святая Селестия, прекраснейший изумруд... с ужасной трещиной. Паааачему?!"
+Action:Type=Message,icon=applejack_ico,"text=Забирай что нашла и бежим уже!"
+Action:Type=CompBattleTask,code=habar
+
+SCRIPT      
+Event:Step=2
+Action:Type=SetFocus,i=18,j=5
+Action:Type=NewObject,Object=EmptyPlace,i=18,j=1
+Action:Type=NewObject,Object=EmptyPlace,i=18,j=2
+Action:Type=NewObject,Object=EmptyPlace,i=19,j=3
+Action:Type=NewObject,Object=EmptyPlace,i=18,j=4
+Action:Type=NewObject,Object=EmptyPlace,i=18,j=5
+Action:Type=NewObject,Object=EmptyPlace,i=19,j=2
+Action:Type=NewObject,Object=EmptyPlace,i=19,j=4
+Action:Type=Message,icon=applejack_ico,"text=Что это такое, сахарок? ==>
+Что-то волшебное... Это по вашей единорожьей части, верно?"
+Action:Type=Message,icon=rarity_ico,"text=Это НЕ по моей части, глупая ты фермерша! ==>
+Там вообще ничего нет! Пустота! ==> 
+Я не ощущаю в этом месте никакой материи, которую я могла бы ==>
+левитировать. Это плохо, очень плохо!"
+Action:Type=Message,icon=applejack_ico,"text=Мы не сможем идти через ==>
+это место?"
+Action:Type=Message,icon=rarity_ico,"text=Я не знаю... Твайлайт когда-то ==>
+показывала мне заклинание, которое позволяет создавать материю. ==>
+Мне нужно попытаться."
+Action:Type=Message,icon=applejack_ico,"text=Делай или не делай, сахарок. ==>
+Не надо пытаться."
+Action:Type=SetPermits,action=allow,code=CutEmptySector
+Action:Type=Message,icon=help_ico,"text=Способность Рарити: ==>
+Рассекание Пустоты."
+
+SCRIPT      
+Event:Step=3
+Action:Type=SetFocus,i=16,j=3
+Action:Type=Message,icon=rarity_ico,"text=Посмотри только на это дерево! ==> 
+Похоже, эта порода не позволяет Пустоте приближаться.==>
+Эпплджек, ты можешь вырастить такое же?"
+Action:Type=Message,icon=applejack_ico,"text=Как яблоньку лягнуть! ==>
+Скажешь - вырастим."
+Action:Type=Message,icon=help_ico,"text=Способность Эпплджек: ==>
+Дерево защиты от Пустоты."
+Action:Type=SetPermits,action=allow,code=BuildTreeShield
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=rarity_ico,"text=Мы достигли Кантерлота! ==>
+Нужно срочно встретиться с Принцессой Селестией."
+Action:Type=Message,icon=applejack_ico,"text=Что верно, то верно! ==>
+Эта черная штука здорово меня пугает."
+
+VICTORY
+ByObjectPos:Object=rarity,i=29,j=3,IncludeLinked=true
+->ByObjectPos:Object=applejack,i=29,j=3,IncludeLinked=true,AddType=And

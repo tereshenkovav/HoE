@@ -1,0 +1,103 @@
+Еда и камни
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+LLLLLLLLLLHLLLLLLLL
+LLLLLLLLLELLLHLLLLLL
+LLLLLLLLLLLLLLLLLLL
+LLLLLLLLLHLLLELLLLLL
+LLLLLLLLLLLELLLLLLL
+LLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLL
+LLLLLLLFLLLLLLLFLLLL
+LLLLLFFFFFLLLFFFFFL
+LLLLLFFFFLFFFFFFFFMM
+LFFFFFFFFFFFFFFMMMM
+FFFFFFFFFFFFFFMMMMMM
+FFFFFFFFFFFMMMMMMMM
+#===MAPEND===
+
+# Раздел константы должен идти в самом начале
+CONSTANTS
+StepNewMonster:3
+StepNew2Monster:5
+StepNew3Monster:7
+FoodNeed:150
+StoneNeed:100
+
+OBJECTS
+Stone:i=2,j=9,size=medium
+Stone:i=4,j=8,size=max
+Stone:i=5,j=7,size=medium
+Stone:i=6,j=7,size=min
+Stone:i=11,j=8,size=min
+Stone:i=8,j=7,size=medium
+Stone:i=10,j=8,size=max
+Pony:i=1,j=4,"name=Рарити",code=rarity
+Pony:i=2,j=2,"name=Эпплджек",code=applejack
+
+INITIAL
+Stone:0
+Food:50
+Task:Собрать @FoodNeed@ еды и @StoneNeed@ камня
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT
+Event:Step=0
+Action:Type=Message,icon=applejack_ico,"text=Вот мы и на месте.==>
+Давай-ка по-быстрому  накормим пони, сгребем поболе камней, ==>
+и вернемся домой. Я займусь сбором ==>
+еды, а ты добудь камней на опушке ихнего леса".
+Action:Type=Message,icon=rarity_ico,"text=Почему я должна таскать ==>
+тяжелые пыльные камни? Они такие безвкусные."
+Action:Type=Message,icon=applejack_ico,"text=Потому что ты не умеешь ==>
+строить ферму, а еще, ты можешь представить, что это большие красивые ==>
+алмазы."
+Action:Type=Message,icon=rarity_ico,"text=Мы же договорились ==>
+не вспоминать об этом?"
+Action:Type=ShowBattleTask
+
+SCRIPT
+Event:Step=@StepNewMonster@
+Action:Type=SetFocus,i=10,j=10
+Action:Type=NewObject,Object=Monster,Code=woodwolf,"Name=Древесный волк",i=10,j=10
+Action:Type=Message,icon=applejack_ico,"text=И тут древесный волк, ты только посмотри!"
+Action:Type=SetPermits,action=allow,code=AttackNear
+Action:Type=SetPermits,action=allow,code=AttackLong
+Action:Type=Message,icon=help_ico,"text=Способность всех пони: Ближняя ==>
+и дальняя атака."
+
+SCRIPT
+Event:Step=@StepNew2Monster@
+Action:Type=SetFocus,i=14,j=11
+Action:Type=NewObject,Object=Monster,Code=woodwolf,"Name=Древесный волк",i=14,j=11
+Action:Type=Message,icon=rarity_ico,"text=И второй за ним. Похоже, наша задача не будет легкой."
+
+
+SCRIPT
+Event:Step=@StepNew3Monster@
+Action:Type=SetFocus,i=14,j=6
+Action:Type=NewObject,Object=Monster,Code=ameba,"Name=Непонятное",i=18,j=4
+Action:Type=NewObject,Object=Monster,Code=ameba,"Name=Непонятное",i=17,j=2
+Action:Type=Message,icon=rarity_ico,"text=Это не волк! Что это такое? ==> 
+Оно ужасное и противно на вид!"
+Action:Type=Message,icon=applejack_ico,"text=Не знаю, сахарок. Но если ==>
+это приблизится к нам, я буду использовать копыта."
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=applejack_ico,"text=Вроде всё, готово. Бежим отсюда, нам срочно надо  ==>
+рассказать обо всём Принцессе Селестии."
+
+VICTORY
+ByStone:StoneNeed=@StoneNeed@
+->ByFood:FoodNeed=@FoodNeed@,AddType=And

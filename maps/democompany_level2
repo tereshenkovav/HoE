@@ -1,0 +1,102 @@
+Строительство и ресурсы
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+LLLLLLLLLLLLLLLLLLLLLLLQQQQLLLLLLLLFFFFFFFFF
+LLLLLLLLLLLAQLLLLLLLLLLLQQQLLLLLLLLLLLFFFFFFM
+LLLLLLLLLQAAQLLLLLLLLLLLQQQLLLLLLLLLLLLFFFFM
+LLLLLLLLLQAAAQLLLLLLLLLLLQQQLLLLLLLLLLLLFFFFM
+LLLLLLLLLAAAAQLLLLLLLLLLQQQLLLLLLLLLLLLLFFFM
+LLLLLWWWWQAAAQLLLLLLLLLLLQQQLLLLLLLLLLLLLFFMM
+LLLWWLLLWWWWWWLLLLLLLLLLLQQQLLLLLLLLLLLLLFFM
+LLWWLLLLLQAAAQWWWWLLLLLLLQQQQLLLLLLLLLLLLFFMM
+LWLLLLLLLQAAAQLLLWLLLLLHLQQQLLLLLLLLLLLLFFMM
+LWLLLLLLLQAAAQLLLLWLLEWWLLQQQLLLLLLLLLLLLFFMM
+LWLLLLLLLQAQFFLLLLWWWWQWLHQQLLLLLLLLLLLLLFFM
+LLWLLLLLLLQQFFFLLLLLLLWWLLLQQLLLLLLLLLLLLFFFM
+LWLLLLLLLFFFFFFLLLLLLLLELLQQLLLLLLLLLLLLFFMM
+LLWLLLLLLFFFFFFLLLLLLLLLLQQQQLLLLLLLLLLLLFFMM
+LWLLLLLLFFFFFFFLLLLLLLQQQQQQLLLLLLLLLLLLLFFM
+LLWLLLLLLFFFFFFFLLLLLLQQQQLQQLLLLLLLLLLLLFFMM
+LWLLLLLLFFFFFFFFFLLLLQQLLLLLLLLLLLLLLLLLFFMM
+LWLLLLLFFFFFFFFFFFLLLLQLLLLLLLLLLLLLLLLFFFMMM
+WLLLLLLFFFFFFFFFFFFLLLQLLLLLLLLLLLLLLLFFFMMM
+LLLLLLLLFFFFFFFFFFFFLLLQLLLLLLLLLLLLLLFFFMMMM
+#===MAPEND===
+
+CONSTANTS
+TowerX:21
+TowerY:12
+FoodNeed:120
+
+OBJECTS
+Pony:i=24,j=11,"name=Рейнбоу Дэш",code=rainbow
+Pony:i=22,j=12,"name=Твайлайт",code=twily
+Pony:i=20,j=13,"name=Эпплджек",code=applejack
+Neutral:Code=tower,"Name=Крепость",i=@TowerX@,j=@TowerY@
+
+Stone:i=27,j=17,size=min
+Stone:i=30,j=14,size=min
+Stone:i=39,j=7,size=min
+Stone:i=40,j=14,size=min
+Stone:i=39,j=10,size=min
+
+INITIAL
+Stone:0
+Food:70
+Task:Построить 2 фермы пищи
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=Teleport
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=@TowerX@,j=@TowerY@,immediate=true
+Action:Type=Message,icon=twily_ico,"text=Мне кажется, или здесь не хватает пищи?"
+Action:Type=Message,icon=applejack_ico,"text=И то верно, подруга. Нам тут еще долго сидеть, давай построим ферму."
+Action:Type=Message,icon=rainbow_ico,"text=В этой деревне есть дома, можно построить рабочую ферму. Я вижу камни на другом берегу, их должно хватить на постройку."
+Action:Type=SetBattleTask,code=food,"Task=Собрать @FoodNeed@ еды."
+Action:Type=ShowBattleTask
+Action:Type=Message,icon=help_ico,"text=Чтобы собрать еду или камни, нужно подвести пони вплотную к ресурсу, выбрать команду Сбор ресурсов и нажать на клетку."
+Action:Type=Message,icon=help_ico,"text=Стоит разделить усилия сбора - быстрые или летающие пони могут собирать дальние ресурсы, медленные наземные - те, что поближе."
+
+SCRIPT      
+Event:StoneReach=10
+Action:Type=Message,icon=applejack_ico,"text=Отлично, но мне нужно больше."
+Action:Type=Message,icon=ok_ico,"text=Соберите еще несколько камней."
+
+SCRIPT      
+Event:StoneReach=40
+Action:Type=Message,icon=rainbow_ico,"text=Теперь достаточно?"
+Action:Type=Message,icon=applejack_ico,"text=Вполне. Пора построить ферму, а то нам тут есть скоро нечего будет."
+Action:Type=Message,icon=help_ico,"text=Еда - важнейший ресурс, без которого не будет выполняться восстановление сил пони. При первой возможности, установите ферму пищи."
+Action:Type=Message,icon=help_ico,"text=Чтобы установить ферму, нужно выделить Эпплджек и выбрать действие Построить ферму еды, далее поставить ферму в любую соседнюю клетку без объектов."
+
+SCRIPT      
+Event:BuildingCount=1,BuildingCode=FarmFood
+Action:Type=Message,icon=twily_ico,"text=Мои расчеты показывают, что трем пони нужно хотя бы две фермы."
+Action:Type=Message,icon=applejack_ico,"text=И то верно. Продолжаем."
+Action:Type=Message,icon=ok_ico,"text=Соберите еще камней и постройте еще ферму пищи."
+
+SCRIPT      
+Event:BuildingCount=2,BuildingCode=FarmFood
+Action:Type=Message,icon=twily_ico,"text=Отлично, а теперь нужно просто подождать. Пусть фермы работают."
+Action:Type=Message,icon=rainbow_ico,"text=А нам и отдохнуть пора."
+Action:Type=Message,icon=help_ico,"text=Фермы производят еду каждый ход, если на карте есть постройки-дома пони. Пони, у которой запас сил и здоровья на максимуме, не расходует еду. Значение пищи, которое прибавится в конце хода (формируемое как разница между выработкой ферм и расходом всех пони) показано маленькими цифрами справа от значения."
+Action:Type=CompBattleTask,code=initial
+Action:Type=SetFlag,FlagName=farmok
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=ok_ico,"text=Поздравляем! Вы освоили навыки сбора ресурсов и строительства зданий."
+
+VICTORY
+ByFlag:FlagName=farmok
+->ByFood:FoodNeed=@FoodNeed@,AddType=And
+

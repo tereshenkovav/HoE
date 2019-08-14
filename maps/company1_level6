@@ -1,0 +1,163 @@
+Пещеры Кантерлота
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+LLLLLLLLLLWLLLLLLLLLLFFMMMMMMMM
+LLLLLLLLLLLWLLLLLLLLLLFFMMMMMMMM
+LLLLLLLLLLLWWWWLLLLLLLLLMMMMMMM
+LLLLLLLLLLLLLLLWWWLLLLLFMMMMMMMM
+LLLLLLLLLLLLLLLLLWWLLLFMMMMMMMM
+LLLLLLLLLLLLLLLLLLLWLFFMMMMMMMMM
+LLLLLLLLLLLLLLLLLLLWWFMMMMMMMMM
+LLLLLLLLLLLLLLLLLLLFFWWMMMMMMMMM
+LLLLLLLLLLLLLLLLLLFFFFWMMMMMMMM
+LLLLLLLLLLLLLLLLLFFFFFFWWMMMMMMM
+LLLLLLLLLLLLLLLLFFFFFFMMWWWMMMM
+LLLLLLLLLLLLLFFFFFFFFFFMMMMWWWWW
+LLLLLLLLLLFFFFFFFFFFFFMMMMMMMMM
+LLLFFFFFFFFFFFFFFFFFFFMMMMMMMMMM
+#===MAPEND===
+
+# Раздел константы должен идти в самом начале
+CONSTANTS
+StepTwilyReturn:22
+StepWave1:4
+StepWave2:10
+StepWaveBack:2
+StepWave3:16
+TwilyX:20
+TwilyY:2
+CaveX:24
+CaveY:2
+CaveXm1:23
+CaveY:2
+RarityX:29
+RarityY:8
+PortalX:29
+PortalY:10
+WaveBackX:30
+WaveBackY:11
+WaveX:4
+WaveY:5
+
+OBJECTS
+Pony:i=@TwilyX@,j=@TwilyY@,"name=Твайлайт Спаркл",code=twily
+Pony:i=16,j=2,"name=Рейнбоу Дэш",code=rainbow
+Pony:i=18,j=1,"name=Пинки Пай",code=pinki
+Pony:i=18,j=3,"name=Флаттершай",code=flatter
+Monster:Code=ameba,"Name=Амеба",i=2,j=8
+Monster:Code=bat,"Name=Нетопырь",i=3,j=9
+Monster:Code=troll,"Name=Тролль",i=3,j=10
+Monster:Code=bat,"Name=Нетопырь",i=2,j=11
+Monster:Code=bat,"Name=Нетопырь",i=5,j=9
+Monster:Code=ameba,"Name=Амеба",i=4,j=10
+
+Neutral:i=@CaveX@,j=@CaveY@,"name=Вход пещеры",Code=cave,EnemyTarget=true,MustSurvive=true,Rank=1000
+
+INITIAL
+Stone:0
+Food:360
+Task:Не дать монстрам добраться до входа в пещеру
+AttackedDefeatString:Вход в пещеру разрушен
+Permits:action=deny,code=all
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=@TwilyX@,j=@TwilyY@,immediate=true
+Action:Type=Message,icon=twily_ico,"text=Я спускаюсь. Защищайте вход."
+Action:Type=Message,icon=rainbow_ico,"text=Только давай побыстрее, а то эти монстры могут появиться в любую минуту."
+Action:Type=Message,icon=pinki_ico,"text=Они выглядят как летучие мыши, синие корни и розовые бочки? Я люблю всё розовое."
+Action:Type=SetFocus,i=3,j=10
+Action:Type=Message,icon=twily_ico,"text=Я читала о таких созданиях... Они привели тролля! Будьте внимательны, он опасен даже для групп пони."
+Action:Type=Message,icon=flatter_ico,"text=А можно мне домой? Я вспомнила, что кое-что забыла..."
+Action:Type=SetFocus,i=@TwilyX@,j=@TwilyY@
+Action:Type=MoveObject,i=@TwilyX@,j=@TwilyY@,dst_i=@CaveXm1@,dst_j=@CaveY@
+Action:Type=RemoveObject,i=@CaveXm1@,j=@CaveY@
+Action:Type=ShowBattleTask
+
+SCRIPT
+Event:Step=1
+Action:Type=Message,icon=rainbow_ico,"text=Пинки, Флаттершай, мне нужна помощь. Их очень много, даже для такого крутого пегаса."
+Action:Type=Message,icon=pinki_ico,"text=У меня всегда в запасе вкусные кексы. Снимают усталость как рукой."
+Action:Type=Message,icon=flatter_ico,"text=А у меня с собой бинты и мазь для лечения."
+Action:Type=Message,icon=rainbow_ico,"text=Отлично, девочки, вы позаботитесь обо мне -  а я позабочусь об остальном."
+Action:Type=Message,icon=help_ico,"text=Пинки и Флаттершай - пони поддержки, ==>
+способности восстановления сил и здоровья."
+Action:Type=SetPermits,action=allow,code=Heal
+Action:Type=SetPermits,action=allow,code=Restore
+
+# ==== Блок волн
+
+SCRIPT      
+Event:Step=@StepWave1@
+Action:Type=SetFocus,i=@WaveX@,j=@WaveY@
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@WaveX@,j=@WaveY@,count=2,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@WaveX@,j=@WaveY@,count=1,radius=3
+
+SCRIPT      
+Event:Step=@StepWave2@
+Action:Type=SetFocus,i=@WaveX@,j=@WaveY@
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@WaveX@,j=@WaveY@,count=4,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@WaveX@,j=@WaveY@,count=2,radius=3
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=@WaveX@,j=@WaveY@,count=1,radius=3
+
+SCRIPT      
+Event:Step=@StepWaveBack@
+Action:Type=SetFocus,i=@WaveBackX@,j=@WaveBackY@
+Action:Type=NewObject,Object=Monster,Code=troll,"Name=Тролль",i=@WaveBackX@,j=@WaveBackY@,strategy=AttackByRank
+Action:Type=Message,icon=rainbow_ico,"text=Я вижу еще одного тролля в горах. ==>
+Нельзя дать ему дойти до пещеры!"
+
+SCRIPT      
+Event:Step=@StepWave3@
+Action:Type=SetFocus,i=@WaveX@,j=@WaveY@
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@WaveX@,j=@WaveY@,count=7,radius=3
+
+# ==== Блок возвращения Твайлайт ====
+
+SCRIPT
+Event:Step=@StepTwilyReturn@
+Action:Type=SetFocus,i=@CaveXm1@,j=@CaveY@
+Action:Type=NewObject,Object=Pony,Code=twily,"Name=Твайлайт Спаркл",i=@CaveXm1@,j=@CaveY@,Health=5,Energy=10
+Action:Type=Message,icon=twily_ico,"text=Девочки, продержитесь еще немного. ==>
+Мне нужно восстановить силы... и не только."
+Action:Type=SetFocus,i=@RarityX@,j=@RarityY@
+Action:Type=NewObject,Object=Neutral,Code=teleport,"Name=Портал",i=@PortalX@,j=@PortalY@,targeted=true
+Action:Type=NewObject,Object=Pony,Code=rarity,"Name=Рарити",i=@RarityX@,j=@RarityY@
+Action:Type=Message,icon=rarity_ico,"text=Твайлайт, скорее ко мне. ==>
+Нас ждут принцессы. Я открыла портал."
+Action:Type=Message,icon=twily_ico,"text=Рарити, ты умеешь создавать дальние порталы? ==>
+Но это магия единорогов высшего уровня!"
+Action:Type=Message,icon=rarity_ico,"text=О, дорогая, я с удовольствием поговорю об этом - ==>
+когда мы убежим от этих ужасных созданий!"
+Action:Type=CompBattleTask,code=initial
+Action:Type=SetBattleTask,code=evac,"Task=Привести Твайлайт к порталу"
+Action:Type=ShowBattleTask
+
+SCRIPT
+Event:ObjectPos=True,i=@PortalX@,j=@PortalY@,IncludeLinked=true,Object=twily
+Action:Type=ClearTarget,i=@PortalX@,j=@PortalY@
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=rarity_ico,"text=Идем, дорогуша. Луна, Кейденс и даже Дискорд - все ждут тебя в замке."
+Action:Type=Message,icon=rainbow_ico,"text=За нас не беспокойся, мы с Пинки и Флаттершай отлично справляемся. Увидимся у принцесс!"
+
+VICTORY
+ByObjectPos:Object=teleport,i=@PortalX@,j=@PortalY@
+->ByNoTargetLeft:AddType=And

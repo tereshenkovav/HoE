@@ -1,0 +1,112 @@
+Западное Поле
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+LLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLFF
+LLLLLLLLLLLLLLLLLLLF
+LLLLLLLLLLLLLLLLLLFFF
+LLLLLLLLLLLLLLLLLLFF
+LLLLHLLELLLLLLLLLFFFF
+LLLLLLLLLLLLLLLLFFFM
+LLLLELLHLLLLLLLFFFFMM
+LLLLLLLLLLLLLLFFFFMM
+LLLLELLHLLLLFFFFFMMMM
+LLLLLLLLLLLFFFFMMMMM
+LLLLHLLELLLLFFFMMMMMM
+LLLLLLLLLLLLLFFFMMMM
+LLLLLLLLLLLLLLFFFFFMM
+#===MAPEND===
+
+# Раздел константы должен идти в самом начале
+CONSTANTS
+StepVictory:15
+FirstWave:4
+SecondWave:7
+ThirdWave:10
+
+OBJECTS
+Stone:i=5,j=7,size=min
+Stone:i=6,j=7,size=min
+Stone:i=5,j=8,size=medium
+Pony:i=1,j=4,"name=Рарити",code=rarity
+Pony:i=4,j=1,"name=Эпплджек",code=applejack
+Monster:Code=ameba,"Name=Непонятное",i=6,j=10
+Monster:Code=ameba,"Name=Непонятное",i=4,j=8
+Neutral:Code=rainbow,"Name=Рейнбоу Дэш",i=5,j=4
+
+INITIAL
+Stone:30
+Food:100
+Task:Продержаться @StepVictory@ ходов
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT
+Event:Step=0
+Action:Type=Message,icon=rarity_ico,"text=Рейнбоу, лети к Принцессе Селестии, ==>
+пусть пришлет королевскую гвардию.  Мы не одолеем всех этих...созданий"
+Action:Type=Message,icon=rainbow_ico,"text=Стоп-стоп, а кто тебя назначил командовать?"
+Action:Type=Message,icon=rarity_ico,"text=Кто? Вчерашний день, подруга, ==>
+когда мы с Эпплджек уже встретили... этих.  Лети, Рейнбоу Дэш, лети."
+Action:Type=MoveObject,i=5,j=4,dst_i=0,dst_j=0
+Action:Type=RemoveObject,i=0,j=0
+Action:Type=ShowBattleTask
+
+SCRIPT
+Event:Step=@FirstWave@
+Action:Type=SetFocus,i=16,j=3
+Action:Type=NewObject,Object=Monster,Code=ameba,"Name=Непонятное",i=16,j=2
+Action:Type=NewObject,Object=Monster,Code=ameba,"Name=Непонятное",i=16,j=4
+Action:Type=Message,icon=rarity_ico,"text=Эпплджек, дело становится опасным. ==>
+Я просто должна, пока еще возможно, признаться тебе. Я..."
+Action:Type=Message,icon=applejack_ico,"text=Знаю, сахарок. Слышала, как ==>
+ночью ты грызла наше последнее яблоко."
+
+SCRIPT
+Event:Step=@SecondWave@
+Action:Type=SetFocus,i=17,j=6
+Action:Type=NewObject,Object=Monster,Code=ameba,"Name=Непонятное",i=17,j=4
+Action:Type=NewObject,Object=Monster,Code=ameba,"Name=Непонятное",i=17,j=6
+Action:Type=NewObject,Object=Monster,Code=ameba,"Name=Непонятное",i=17,j=5
+Action:Type=Message,icon=rarity_ico,"text=Их становится еще больше! ==> 
+Что мне делать, дорогая?"
+Action:Type=Message,icon=applejack_ico,"text=Ты же единорог! ==>
+Используй какое-нибудь заклинание!"
+Action:Type=SetPermits,action=allow,code=FreezeEnemy
+Action:Type=Message,icon=help_ico,"text=Способность Рарити: заморозка ==>
+врагов в радиусе одной клетки вокруг точки удара."
+
+
+SCRIPT
+Event:Step=@ThirdWave@
+Action:Type=SetFocus,i=19,j=11
+Action:Type=NewObject,Object=Monster,Code=ameba,"Name=Непонятное",i=19,j=11
+Action:Type=NewObject,Object=Monster,Code=ameba,"Name=Непонятное",i=18,j=10
+Action:Type=NewObject,Object=Monster,Code=ameba,"Name=Непонятное",i=17,j=9
+Action:Type=NewObject,Object=Monster,Code=ameba,"Name=Непонятное",i=16,j=8
+
+SCRIPT
+Event:Victory=True
+Action:Type=SetFocus,i=2,j=9
+
+SCRIPT
+Event:Victory=True
+Action:Type=NewObject,Object=Neutral,Code=guard,"Name=Гвардеец",i=2,j=12
+Action:Type=NewObject,Object=Neutral,Code=guard,"Name=Гвардеец",i=2,j=11
+Action:Type=NewObject,Object=Neutral,Code=guard,"Name=Гвардеец",i=1,j=10
+Action:Type=Message,icon=guard_white_ico,"text=Мы прибыли. ==>
+Бегите к принцессам,  вас уже ждут. Теперь это наша забота."
+
+VICTORY
+ByStep:StepNeed=@StepVictory@

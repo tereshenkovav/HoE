@@ -1,0 +1,372 @@
+Отступать некуда
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+22222222222222222222222
+222222222222222222222222
+22222222222222222222222
+222222222222222222222222
+22222222222222222222222
+222222222222222222222222
+22222222222222222222222
+222222222222222222222222
+22222222222222222222222
+222222222222222222222222
+22222222222222L22222222
+2222222222222LLLL2222222
+222222222LLLLLLLLLL2222
+22222222LLLLLLLLLLLL2222
+22222LLLLLLLLLLLLLLLL22
+22LLLLLLLLLLLLLLLLLLLL22
+LLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLL
+LLLWWWWWLLLLLLLLLLLLLWWW
+LWWLLLLWWLLLWWLLLLLLWLL
+WWLLLLLLLWWWWLWWLLLLWLLL
+LLLLLLLLLLLLLLLWWWWWLLL
+LLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLL
+#===MAPEND===
+
+# Раздел константы должен идти в самом начале
+CONSTANTS
+Discord_X:14
+Discord_Y:23
+Dark_X:17
+Dark_Y:23
+HouseMustSave:6
+HouseMustSaveLess:5
+EnemyA_I:12
+EnemyA_J:48
+EnemyB_I:1
+EnemyB_J:38
+EnemyC_I:20
+EnemyC_J:38
+StoneNeed:2000
+
+OBJECTS
+Pony:i=13,j=16,"name=Рейнбоу Дэш",code=rainbow,tag=rainbow
+Pony:i=14,j=17,"name=Пинки Пай",code=pinki,tag=pinki
+Pony:i=15,j=18,"name=Флаттершай",code=flatter,tag=flatter
+Pony:i=16,j=18,"name=Рарити",code=rarity,tag=rarity
+Pony:i=17,j=17,"name=Твайлайт",code=twily,tag=twily
+Pony:i=18,j=16,"name=Эпплджек",code=applejack,tag=applejack
+Building:Code=House,"Name=Дом пони",Tag=house,i=14,j=20
+Building:Code=House2,"Name=Дом пони",Tag=house,i=13,j=21
+Building:Code=House3,"Name=Дом пони",Tag=house,i=16,j=22
+Building:Code=House,"Name=Дом пони",Tag=house,i=13,j=23
+Building:Code=House,"Name=Дом пони",Tag=house,i=9,j=24
+Building:Code=House2,"Name=Дом пони",Tag=house,i=11,j=24
+Building:Code=House3,"Name=Дом пони",Tag=house,i=16,j=25
+Building:Code=House,"Name=Дом пони",Tag=house,i=18,j=23
+Building:Code=House3,"Name=Дом пони",Tag=house,i=20,j=24
+Building:Code=House3,"Name=Дом пони",Tag=house,i=21,j=22
+Building:Code=House2,"Name=Дом пони",Tag=house,i=9,j=21
+#===OBJECTSEND===
+
+INITIAL
+Stone:100
+Food:300
+EmptyManager:50,50,50,50,50,50
+#EmptyManager:0,0,0,0,0,0
+Task:Очистить всю Пустоту
+NoSpaceProtection:True
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Heal
+Permits:action=allow,code=Restore
+Permits:action=allow,code=CutEmptySector
+Permits:action=allow,code=BuildTreeShield
+Permits:action=allow,code=BuildFarmStone
+Permits:action=allow,code=BuildCrystalTowerBig
+Permits:action=allow,code=BuildCrystalTowerSmall
+Permits:action=allow,code=NightmareCall
+Permits:action=allow,code=BuildCrystalTowerDark
+Permits:action=allow,code=DarkTriden
+Permits:action=allow,code=CrystallRain
+Permits:action=allow,code=FrostAttack
+Permits:action=allow,code=SuperHealthAJ
+Permits:action=allow,code=SuperPowerPinki
+Permits:action=allow,code=BearSplash
+Permits:action=allow,code=SummoneBear
+Permits:action=allow,code=PrincessKiss
+Permits:action=allow,code=DeathKick
+Permits:action=allow,code=DeathRainbow
+Permits:action=allow,code=BuildForceTower
+Permits:action=allow,code=BuildHealTower
+Permits:action=allow,code=BuildMirage
+Permits:action=allow,code=IntRelax
+Permits:action=allow,code=SleepStar
+Permits:action=allow,code=BuildTornado
+Permits:action=allow,code=Wings
+Permits:action=allow,code=FlatterView
+Permits:action=allow,code=ForceShield
+Permits:action=allow,code=ForceShieldNR
+Permits:action=allow,code=SetupTeleport
+Permits:action=allow,code=ConsumeEnergy
+Permits:action=allow,code=ExtraEmptyClear
+Permits:action=allow,code=CutEmptySectorEx
+Permits:action=allow,code=SonicRainbowEx
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=15,j=17,immediate=true
+Action:Type=Message,icon=rarity_ico,"text=Чистим Пустоту, восстанавливаем местность, для добычи еды - ставим фермы в деревне?"
+Action:Type=Message,icon=twily_ico,"text=Да, мы уже не раз это делали."
+Action:Type=Message,icon=rainbow_ico,"text=И так по всей Эквестрии. Тяжелая работа для шести пони."
+Action:Type=Message,icon=applejack_ico,"text=Конечно, нужно позаботиться и о жителях. Что толку, если мы очистим Пустоту, но пони останутся без крова?"
+Action:Type=SetBattleTask,code=protect,"Task=Сохранить не менее @HouseMustSave@ домов."
+Action:Type=SetExtInfoModel,"ModelMicroCode=maptirek;Уцелевших домов: %d;house"
+Action:Type=ShowBattleTask
+
+SCRIPT      
+Event:Step=1
+Action:Type=Message,icon=rarity_ico,"text=Ты тоже почувствовала это?"
+Action:Type=Message,icon=twily_ico,"text=Девочки, характер распространения Пустоты изменился. Она движется с большей скоростью, нежели обычно. А еще... Наверно, это... ошибка?"
+Action:Type=Message,icon=rarity_ico,"text=Наши способности, предотвращающие распад, больше не действуют!"
+Action:Type=Message,icon=applejack_ico,"text=При такой-то скорости, нам без защиты её не сдержать. Твайлайт, что ты там говорила про крайние меры?"
+Action:Type=Message,icon=twily_ico,"text=Это очень, очень неприятно. Чтобы выполнить заклинание очистки, мне придется забрать у вас почти все силы."
+Action:Type=Message,icon=rainbow_ico,"text=Если это нужно для окончательного решения - я готова. Думаю, мы все готовы."
+Action:Type=NewObject,Object=Neutral,i=@Discord_X@,j=@Discord_Y@,"name=Дискорд",code=discord,autofocus=true,tag=discord
+Action:Type=Message,icon=discord_ico,"text=Есть другой способ."
+Action:Type=Message,icon=twily_ico,"text=Дискорд! Ты всегда исчезаешь, когда нужен."
+Action:Type=Message,icon=discord_ico,"text=И появляюсь, когда ОЧЕНЬ нужен. Мои друзья, которых вы упрощенно и обидно зовете -демонами-, готовы выполнить одну... трансформацию. Парную трансформацию."
+Action:Type=Message,icon=twily_ico,"text=Ты говоришь о слиянии душ друзей? Но эта техника была утеряна после последней крупной войны, еще до Принцесс!"
+Action:Type=Message,icon=discord_ico,"text=Не утеряна, а запрещена. Древние пони считали, что ни одна победа не стоит потери героев. Но сейчас у вас не так много выбора - поверьте, все гораздо хуже, чем раньше."
+Action:Type=Message,icon=rainbow_ico,"text=Мы соединимся... душами?"
+Action:Type=Message,icon=discord_ico,"text=Выдающиеся пони, связанные крепкими узами дружбы и принадлежащие к одной расе - могут слиться при помощи тайной магии в одного героя, чья сила на порядок превосходит двух его создателей."
+Action:Type=Message,icon=pinki_ico,"text=Исходные личности исчезают? Действительно, это звучит невесело."
+Action:Type=NewObject,Object=Neutral,i=@Dark_X@,j=@Dark_Y@,"name=Мрак",code=dark,autofocus=true,tag=dark
+Action:Type=Message,icon=darkness_ico,"text=Веселья я предложить не могу. Но свои обещания - выполняю. Я прибыл по договору с Ми Аморе Каденс, рожденной пегасом. Я готов помочь."
+Action:Type=Message,icon=twily_ico,"text=Я не знаю, кто вы такой и что можете - но сделайте что-нибудь! У нас два варианта и оба плохие!"
+Action:Type=Message,icon=darkness_ico,"text=Сейчас такое время, что хорошего вообще мало, Твайлайт Спаркл. Я не могу создавать материю и останавливать распад. Но я смогу... изолировать его. Ты знаешь, о чём я. Ты видела это, когда мы разговаривали в пещере, месяцы назад."
+Action:Type=Message,icon=twily_ico,"text=Я понимаю... но разрыв пространства во всей Эквестрии! Кто же способен на такое?"
+Action:Type=Message,icon=darkness_ico,"text=Я способен."
+Action:Type=Message,icon=applejack_ico,"text=Твайлайт, мне не нравятся эти решения, но Пустота, которая закрыла горизонт, не нравится еще больше. Выбирай, мы доверяем тебе."
+Action:Type=Message,icon=ok_ico,"text=Можно выполнять сбор магии, поглощая силу друзей и применив заклинание очистки - или сделать альтернативный выбор в пользу предложения Дискорда или Мрака."
+Action:Type=SetBattleTask,code=initial,"Task=Собрать достаточно энергии, поглощая силы друзей и применить заклинание очистки."
+Action:Type=ChooseSol
+
+SCRIPT
+Event:Flag=fusesol
+Action:Type=Message,icon=twily_ico,"text=Я понимаю, почему слияние душ было запрещено. Потерять себя и своих друзей - это худшее из решений. Но я не вижу иных. Наши действия, Дискорд?"
+Action:Type=Message,icon=discord_ico,"text=Всё как в прошлый раз. Нужна пища для получения энергии открытия мини-порталов, мои друзья передают навык - и две пони одной расы могут соединиться."
+Action:Type=Message,icon=twily_ico,"text=Мы начнем сбор пищи прямо сейчас. Будем держать оборону, пока фермы работают."
+Action:Type=Message,icon=discord_ico,"text=Кстати, слияние разных рас выполняется разными способами. Нужно будет повторить это три раза - для земных, пегасов и единорогов."
+Action:Type=SetPermits,action=allow,code=FuseTwily
+Action:Type=SetPermits,action=allow,code=FuseRarity
+Action:Type=SetPermits,action=allow,code=FuseFlatter
+Action:Type=SetPermits,action=allow,code=FusePinki
+Action:Type=SetPermits,action=allow,code=FuseAJ
+Action:Type=SetPermits,action=allow,code=FuseRD
+Action:Type=SetPermits,action=deny,code=ConsumeEnergy
+Action:Type=SetPermits,action=deny,code=ExtraEmptyClear
+Action:Type=FailBattleTask,code=initial
+Action:Type=SetBattleTask,code=final,"Task=Выполнить слияние душ героев (одно слияние стоит 400 пищи) и с их помощью очистить Пустоту."
+Action:Type=ShowBattleTask
+Action:Type=RemoveObject,i=@Discord_X@,j=@Discord_Y@
+Action:Type=RemoveObject,i=@Dark_X@,j=@Dark_Y@
+
+SCRIPT
+Event:Flag=splitsol
+Action:Type=Message,icon=twily_ico,"text=Я не хочу разрывать Эквестрию на части - но и исчезновения тоже не допущу. Что нужно делать?"
+Action:Type=Message,icon=darkness_ico,"text=Я все сделаю сам. Мне нужен материал, субатомная энергия которого возместит энергетические затраты. Чистый природный камень, извлеченный из земли, подойдет."
+Action:Type=Message,icon=twily_ico,"text=Мы немедленно приступаем. Девочки, нам нужно продержаться, пока идёт добыча камней для нашего нового... друга."
+Action:Type=SetPermits,action=deny,code=ConsumeEnergy
+Action:Type=SetPermits,action=deny,code=ExtraEmptyClear
+Action:Type=FailBattleTask,code=initial
+Action:Type=SetBattleTask,code=final,"Task=Собрать @StoneNeed@ единиц камня для Мрака."
+Action:Type=ShowBattleTask
+Action:Type=RemoveObject,i=@Discord_X@,j=@Discord_Y@
+Action:Type=RemoveObject,i=@Dark_X@,j=@Dark_Y@
+
+SCRIPT
+Event:Flag=spellsol
+Action:Type=Message,icon=twily_ico,"text=Спасибо вам, я ценю оба предложения помощи - но они выглядят слишком опасными. Мы с подругами справимся сами."
+Action:Type=Message,icon=darkness_ico,"text=Как вам угодно, пони. Полагаю, что условия моего договора с Ми Аморе Каденс - выполнены."
+Action:Type=Message,icon=discord_ico,"text=Я предложил решение, вариант, который мог всех спасти. Ты самонадеяна, Твайлайт Спаркл."
+Action:Type=ShowBattleTask
+Action:Type=RemoveObject,i=@Discord_X@,j=@Discord_Y@
+Action:Type=RemoveObject,i=@Dark_X@,j=@Dark_Y@
+
+# Space speed inc
+
+SCRIPT
+Event:Step=4
+Event1:Flag=spellsol
+Action:Type=SetEmptyManager,AnyDir=65
+Action:Type=Message,icon=twily_ico,"text=Нам нужно поспешить. Накопление запаса магии каким-то образом подстегивает распад материи. У меня нет этому объяснений."
+Action:Type=Message,icon=rainbow_ico,"text=Мы-то что можем сделать? Собирай силы быстрее, подруга - и вмажь по Пустоте так чтобы раз и навсегда."
+
+SCRIPT
+Event:Step=9
+Event1:Flag=spellsol
+Action:Type=SetEmptyManager,AnyDir=80
+Action:Type=Message,icon=twily_ico,"text=Распад еще ускорился. Материя распадается в 4 из 5 случаев. Никогда такого не видела."
+
+SCRIPT
+Event:Step=14
+Event1:Flag=spellsol
+Action:Type=SetEmptyManager,AnyDir=100
+Action:Type=Message,icon=twily_ico,"text=Если мы прямо сейчас не обратим распад - Эквестрии конец. Пустота уже быстрее, чем можно представить."
+
+# New Archon Rarilight
+SCRIPT
+Event:TagCount=0,TagName=twily,AllowTransp=true
+Event1:Flag=fusesol
+Action:Type=Message,icon=twily_ico,"text=Что ж, прощай, Рарити. Твоя помощь в эти дни была неоценима."
+Action:Type=Message,icon=rarity_ico,"text=Нет, это без тебя мы не продержались бы и недели. Давай спасем мир, как единорог и единорог."
+
+SCRIPT
+Event:ObjectPos=True,Direction=GreatY,j=0,Object=rarilight,Mark=1
+Action:Type=Message,icon=rarilight_ico,"text=Я - это магия! Она течет сквозь меня. Она и есть Я... а ещё я теперь могу сама создавать драгоценные камни! Прелестно!"
+
+# New Archon Pinapple
+SCRIPT
+Event:TagCount=0,TagName=pinki,AllowTransp=true
+Event1:Flag=fusesol
+Action:Type=Message,icon=pinki_ico,"text=Пока, подруга. Жаль, я не уже не смогу устроить вечеринку в честь слияния."
+Action:Type=Message,icon=applejack_ico,"text=Ты все гадала, являешься ли сестрой Эпплов... ну так вот мы теперь явно будем ближе, чем просто сестры."
+
+SCRIPT
+Event:ObjectPos=True,Direction=GreatY,j=0,Object=pinapple,Mark=1
+Action:Type=Message,icon=pinapple_ico,"text=Крепкая. Выносливая. Во мне сила земли... и это весело-весело!"
+
+# New Archon flatterrain
+SCRIPT
+Event:TagCount=0,TagName=rainbow,AllowTransp=true
+Event1:Flag=fusesol
+Action:Type=Message,icon=rainbow_ico,"text=Настало время для самого крутого дела в моей жизни. Ты готова, подруга?"
+Action:Type=Message,icon=flatter_ico,"text=Надеюсь, за моими зверюшками кто-нибудь присмотрит."
+
+SCRIPT
+Event:ObjectPos=True,Direction=GreatY,j=0,Object=flatterrain,Mark=1
+Action:Type=Message,icon=flatterrain_ico,"text=Скорость и молнии! Я обрушу на врагов смерчи, гром и радуги... если они не будут против, конечно."
+
+
+# Monster
+
+SCRIPT      
+Event:Step=2
+Action:Type=SetFocus,i=@EnemyA_I@,j=@EnemyA_J@
+Action:Type=NewObjectGroup,Object=Monster,Code=avatar,"Name=Облако пустоты",i=@EnemyA_I@,j=@EnemyA_J@,count=1,radius=2
+Action:Type=Message,icon=rarity_ico,"text=У нас тут проблемы на заднем дворе."
+Action:Type=Message,icon=twily_ico,"text=В прошлый раз ты неплохо их сдерживала, пока мы делали работу."
+Action:Type=Message,icon=rarity_ico,"text=Когда все закончится - нам потребуется отпуск."
+
+SCRIPT      
+Event:StepModN=6
+Action:Type=NewObjectGroup,Object=Monster,Code=avatar,"Name=Облако пустоты",i=@EnemyA_I@,j=@EnemyA_J@,count=1,radius=2
+
+SCRIPT      
+Event:StepModN=11
+Action:Type=NewObjectGroup,Object=Monster,Code=avatar,"Name=Облако пустоты",i=@EnemyB_I@,j=@EnemyB_J@,count=2,radius=2
+
+SCRIPT      
+Event:StepModN=16
+Action:Type=NewObjectGroup,Object=Monster,Code=avatar,"Name=Облако пустоты",i=@EnemyC_I@,j=@EnemyC_J@,count=2,radius=2
+
+SCRIPT      
+Event:StepModN=20
+Action:Type=NewObjectGroup,Object=Monster,Code=avatar,"Name=Облако пустоты",i=@EnemyA_I@,j=@EnemyA_J@,count=3,radius=2
+
+# Defeat
+SCRIPT
+Event:TagCount=@HouseMustSaveLess@,TagName=house,Compare=LessOrEqual
+Action:Type=SetDefeat,"DefeatStr=Слишком много домов потеряно"
+
+# Victory by split
+SCRIPT
+Event:StoneReach=@StoneNeed@
+Event1:Flag=splitsol
+Action:Type=SetFlag,FlagName=splitok
+
+# Victory
+
+SCRIPT
+Event:Victory=True
+Event1:Flag=fusesol
+Action:Type=Message,icon=rarilight_ico,"text=Победа! Мои силы действительно безграничны! Ну... почти безграничны."
+Action:Type=Message,icon=flatterrain_ico,"text=Я в два раза круче, чем Рейнбоу!"
+Action:Type=Message,icon=pinapple_ico,"text=Да, с такими силами, мы за пару недель очистим всю Эквестрию. Ну что, продолжим?"
+Action:Type=Message,icon=rarilight_ico,"text=А вы не думаете, что нам стоит - после завершения дел, конечно - вернуть тех пони, которые стали нами?"
+Action:Type=Message,icon=flatterrain_ico,"text=У меня есть характер, навыки и часть памяти исходных героев - но я понятия не имею, как это сделать. Они стали нами и всё тут. Конец истории."
+Action:Type=Message,icon=rarilight_ico,"text=После всего, через что прошли наши создатели - мы просто обязаны постараться вернуть их. Любой ценой. Я займусь исследованиями, как только мы окончательно покончим с угрозой."
+Action:Type=Message,icon=pinapple_ico,"text=Согласна, подруга. Мы ведь подруги, правда?"
+Action:Type=Message,icon=rarilight_ico,"text=Те шесть пони были лучшими друзьями. Думаю, мы имеем право наследовать это.\n...\nДавайте спасем мир и подумаем, как нам быть дальше."
+Action:Type=SetPersistentFlag,FlagName=final_fuse
+Action:Type=SetPersistentVar,VarName=epilog_n,VarValue=12
+
+SCRIPT
+Event:Victory=True
+Event1:Flag=splitok
+Action:Type=Message,icon=darkness_ico,"text=Я выполнил условия договора. Пустота надежно изолирована."
+Action:Type=Message,icon=rainbow_ico,"text=Ничего не изменилось."
+Action:Type=Message,icon=darkness_ico,"text=Тебе нужен эффект или результат, пони? Всё, что сейчас охвачено распадом - больше не представляет опасности."
+Action:Type=Message,icon=rarity_ico,"text=Это значит, что большая часть Эквестрии - останется недоступной для пони?"
+Action:Type=Message,icon=twily_ico,"text=По крайней мере, у нас теперь есть время."
+Action:Type=Message,icon=darkness_ico,"text=Вы можете не спешить. Никто не сможет снять барьер-разрыв пространства. Никто не сможет перейти по ту или эту сторону разрыва."
+Action:Type=Message,icon=twily_ico,"text=Спасибо тебе, кем бы ты ни был. И всё же, мы постараемся найти решение."
+Action:Type=SetPersistentFlag,FlagName=final_split
+Action:Type=SetPersistentVar,VarName=epilog_n,VarValue=13
+
+SCRIPT
+Event:Victory=True
+Event1:Flag=spellsol
+Action:Type=Message,icon=twily_ico,"text=Я смогла! Я обратила распад повсюду! Принцесса Луна была права - это..."
+Action:Type=TeleportObject,method=tag,Tag=twily,dst_i=0,dst_j=0,immediate=true
+Action:Type=RemoveObject,method=tag,Tag=twily
+Action:Type=Message,icon=rainbow_ico,"text=Твайлайт! Твайлайт!... я не вижу её."
+Action:Type=Message,icon=rarity_ico,"text=Я не ощущаю её близкого присутствия в магическом поле. Рейнбоу, облети вокруг. Было очень похоже на случайную телепортацию."
+Action:Type=Message,icon=discord_ico,"text=В этом нет необходимости. Ты права, её здесь нет... как и во всей Эквестрии, я уверен в этом."
+Action:Type=Message,icon=applejack_ico,"text=Что же с ней случилось?"
+Action:Type=Message,icon=discord_ico,"text=Применение таких мощных заклинаний без соответствующего экранирования - даёт множество побочных эффектов. Я зафиксировал возмущение, характерное для сверхдальней телепортации - но куда она ведёт, определить не смогу даже я."
+Action:Type=Message,icon=flatter_ico,"text=Мы никогда не увидим Твайлайт?"
+Action:Type=Message,icon=discord_ico,"text=Ты ждешь от меня утешений или правды? Никто не знает, где сейчас твоя подруга. Мы можем лишь надеяться, что она найдет дорогу домой."
+Action:Type=SetPersistentFlag,FlagName=final_clear
+Action:Type=SetPersistentVar,VarName=epilog_n,VarValue=11
+
+VICTORY
+ByNoSpaceLeft:null
+->ByFlag:FlagName=splitok,AddType=Or

@@ -1,0 +1,197 @@
+Обелиски
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+LLLLLLLLLLLLLLHLLWLLLMMMMMMMLLLL
+LLLLLLLLLLLLLLLLTWHLLMMMMMMMLLLLL
+LLLLLLLLLLLLLLHLLWLLMMMMMMMLLLLL
+LLLLLLLLLLLLLLLLLWLLLMMMMMLLLLLLL
+LLLLLLLLLLLLLLLLWLLLMMMMMLLLLLLL
+LLLLLLLLLLLLLLLLWLLLMMMMMLLLLLLLL
+LLLLLLLLLLLLLLLWLLLMMMMLLLLLLLLL
+LLLLLLLLLLLLLLLWLLLLMMMLLLLLLLLLL
+LLLLLLLLLLLLLLLWLLLMMMLLLLLLLLLL
+LLLLLLLLLLLLLLLLWLLMMMLLLLLLLLLLL
+LLLLLLLLLLLLLLLWLLMMMLLLLLLLLLLL
+LLLLLLLLLLLLLFFWFLLMMLLLLLLLLLLLL
+LLLLLLLLLLFFFFFWFFMMLLLLLLLLLLLL
+LLLFFFFFFFFFFFFWFFMMLLLLLLLLLLLLL
+FFFFFFFFFFFFFFWFFFMMLLLLLLLLLLLL
+FFFFFFFFFFFFFFWFFFFMMLLLLLLLLLLLL
+FFFFFFFFFFFFFFWFFFFMMLLLLLLLLLLL
+FFFFFFFFFFFFFFWFFFFMMMLLLLLLLLLLL
+FFFFFFFFLLLFFFWFFLMMMLLLLLLLLLLL
+FFFFFFFLLLLLLLLWLLLMMMLLLLLLLLLLL
+FFFFLLLLLLLLLLLWLLMMMMLLLLLLLLLL
+LLLLLLLLLLLLLLLWLLLMMMLLLLLLLLLLL
+LLLLLLLLLLLLLLWLLLMMMLLLLLLLLLLL
+LLLLLLLLLLLLLLWLLLMMMMLLLLLLLLLLL
+LLLLLLLLLLLLLLWLLMMMMLLLLLLLLLLL
+LLLLLLLLLLLLLLWLLMMMMLLLLLLLLLLLL
+LLLLLLLLLLLLLWLLMMMMMLLLLLLLLLLL
+LLLLLLLLLLLLLWLLMMMMMMLLLLLLLLLLL
+LLLLLLLLLLLEWLLLMMMMMMLLLLLLLLLL
+LLLLLLLLLLLLLWLLLMMMMMMLLLLLLLLLL
+LLLLLLLLLELLEWLLLMMMMMMMLLLLLLLL
+LLLLLLLLLLLLLLWLLMMMMMMMMLLLLLLLL
+#===MAPEND===
+
+# Раздел константы должен идти в самом начале
+CONSTANTS
+WaterObelisk_I:5
+WaterObelisk_J:4
+AirObelisk_I:26
+AirObelisk_J:6 
+FireObelisk_I:7
+FireObelisk_J:23
+GroundObelisk_I:24
+GroundObelisk_J:26
+StepSetupMonster:1
+StepWave1:7
+StepWave2:14
+StepWave3:22
+StepWave4:30
+XC:15
+YC:15
+
+OBJECTS
+Neutral:Code=obelisk,"Name=Обелиск воды",i=@WaterObelisk_I@,j=@WaterObelisk_J@,targeted=true
+Neutral:Code=obelisk,"Name=Обелиск воздуха",i=@AirObelisk_I@,j=@AirObelisk_J@,targeted=true
+Neutral:Code=obelisk,"Name=Обелиск земли",i=@GroundObelisk_I@,j=@GroundObelisk_J@,targeted=true
+Neutral:Code=obelisk,"Name=Обелиск огня",i=@FireObelisk_I@,j=@FireObelisk_J@,targeted=true
+Food:i=8,j=29,size=medium
+Food:i=10,j=29,size=min
+Food:i=12,j=29,size=medium
+Food:i=10,j=31,size=max
+Food:i=8,j=31,size=min
+Food:i=12,j=31,size=max
+
+Pony:i=16,j=2,"name=Твайлайт Спаркл",code=twily
+Pony:i=18,j=2,"name=Рейнбоу Дэш",code=rainbow
+
+INITIAL
+Stone:0
+Food:150
+Task:Подвести Твайлайт к обелиску Воздуха
+Permits:action=deny,code=all
+Permits:action=deny,code=all
+Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=17,j=2,immediate=true
+Action:Type=Message,icon=rainbow_ico,"text=Мы добрались. Начнем?"
+Action:Type=Message,icon=twily_ico,"text=Да, мне нужно обойти все ==>
+эти обелиски. И кстати, ты забыла взять припасы."
+Action:Type=Message,icon=rainbow_ico,"text=К югу отсюда есть деревня, я сгоняю за едой."
+Action:Type=Message,icon=twily_ico,"text=Давай, Рейнбоу. Магия требует много сил"
+Action:Type=SetFocus,i=@WaterObelisk_I@,j=@WaterObelisk_J@
+Action:Type=Sleep,ms=1000
+Action:Type=SetFocus,i=@AirObelisk_I@,j=@AirObelisk_J@
+Action:Type=Sleep,ms=1000
+Action:Type=SetFocus,i=@GroundObelisk_I@,j=@GroundObelisk_J@
+Action:Type=Sleep,ms=1000
+Action:Type=SetFocus,i=@FireObelisk_I@,j=@FireObelisk_J@
+Action:Type=Sleep,ms=1000
+Action:Type=SetFocus,i=17,j=2
+Action:Type=SetBattleTask,code=taskwater,"Task=Подвести Твайлайт к обелиску Воды"
+Action:Type=SetBattleTask,code=taskground,"Task=Подвести Твайлайт к обелиску Земли"
+Action:Type=SetBattleTask,code=taskfire,"Task=Подвести Твайлайт к обелиску Огня"
+Action:Type=ShowBattleTask
+
+
+# ===== Блок установки монстров =====
+
+SCRIPT      
+Event:Step=@StepSetupMonster@
+Action:Type=NewObjectGroup,autofocus=true,Object=Monster,Code=ameba,"Name=Амеба",i=@WaterObelisk_I@,j=@WaterObelisk_J@,count=2,radius=2,holdground=true
+Action:Type=NewObjectGroup,autofocus=true,Object=Monster,Code=ameba,"Name=Амеба",i=@AirObelisk_I@,j=@AirObelisk_J@,count=3,radius=2,holdground=true
+Action:Type=NewObjectGroup,autofocus=true,Object=Monster,Code=ameba,"Name=Амеба",i=@GroundObelisk_I@,j=@GroundObelisk_J@,count=4,radius=2,holdground=true
+Action:Type=NewObjectGroup,autofocus=true,Object=Monster,Code=ameba,"Name=Амеба",i=@FireObelisk_I@,j=@FireObelisk_J@,count=7,radius=3,holdground=true
+Action:Type=Message,icon=twily_ico,"text=Рейнбоу, эти создания встретили Рарити и Эпплджек?"
+Action:Type=Message,icon=rainbow_ico,"text=Да, только сейчас их гораздо больше!"
+Action:Type=Message,icon=twily_ico,"text=Похоже, их привлекает магический фон от обелисков ==>
+Возможно, нам удастся подобраться к обелискам, не сражаясь со всеми одновременно? ==>
+В крайнем случае, используй Радужный удар."
+Action:Type=Message,icon=help_ico,"text=Твайлайт - мощный маг, сильная дальняя атака ==>
+и телепортация на 6 клеток. Рейнбоу - пегас, выполняющий Радужный удар - ==>
+сильный удар по площади."
+
+# ==== Блок атак мышей
+
+SCRIPT      
+Event:Step=@StepWave1@
+Action:Type=NewObjectGroup,autofocus=true,Object=Monster,Code=bat,"Name=Нетопырь",i=@XC@,j=@YC@,count=2,radius=2
+Action:Type=Message,icon=twily_ico,"text=Рейнбоу, будь внимательна. Эти крылатые создания ==>
+быстрые и очень опасны."
+
+SCRIPT      
+Event:Step=@StepWave2@
+Action:Type=NewObjectGroup,autofocus=true,Object=Monster,Code=bat,"Name=Нетопырь",i=@XC@,j=@YC@,count=3,radius=2
+
+SCRIPT      
+Event:Step=@StepWave3@
+Action:Type=NewObjectGroup,autofocus=true,Object=Monster,Code=bat,"Name=Нетопырь",i=@XC@,j=@YC@,count=5,radius=2
+
+SCRIPT      
+Event:Step=@StepWave4@
+Action:Type=NewObjectGroup,autofocus=true,Object=Monster,Code=bat,"Name=Нетопырь",i=@XC@,j=@YC@,count=8,radius=2
+
+# ===== Реакция на обелиски
+
+SCRIPT
+Event:ObjectPos=True,i=@WaterObelisk_I@,j=@WaterObelisk_J@,IncludeLinked=true,Object=twily
+Action:Type=Message,icon=twily_ico,"text=Итак, обелиск воды. В магии единорогов ==>
+никаких угрожающих событий не замечено. Заметка на будущее: при встрече напомнить Трикси, ==>
+что заклинание фейeрверка нужно делать поменьше."
+Action:Type=CompBattleTask,code=taskwater
+Action:Type=ClearTarget,i=@WaterObelisk_I@,j=@WaterObelisk_J@
+
+SCRIPT
+Event:ObjectPos=True,i=@AirObelisk_I@,j=@AirObelisk_J@,IncludeLinked=true,Object=twily
+Action:Type=Message,icon=twily_ico,"text=А вот и обелиск воздуха. Вряд ли пегасы имеют какое-то... ==>
+Рейнбоу Дэш, зачем ты сделала три Радужных Удара за один час?"
+Action:Type=Message,icon=rainbow_ico,"text=Я торопилась."
+Action:Type=CompBattleTask,code=initial
+Action:Type=ClearTarget,i=@AirObelisk_I@,j=@AirObelisk_J@
+
+SCRIPT
+Event:ObjectPos=True,i=@FireObelisk_I@,j=@FireObelisk_J@,IncludeLinked=true,Object=twily
+Action:Type=Message,icon=twily_ico,"text=Обелиск огня. Не могу поверить, что мне ==>
+удалось  правильно установить его. Магия аликорнов совершенно другая и... ==>
+ой, я скоро стану тётушкой!"
+Action:Type=CompBattleTask,code=taskfire
+Action:Type=ClearTarget,i=@FireObelisk_I@,j=@FireObelisk_J@
+
+SCRIPT
+Event:ObjectPos=True,i=@GroundObelisk_I@,j=@GroundObelisk_J@,IncludeLinked=true,Object=twily
+Action:Type=Message,icon=twily_ico,"text=Зачем только я посещаю обелиск земли? ==>
+Совершенно очевидно, что земнопони... что? Как? Это же..."
+Action:Type=Message,icon=rainbow_ico,"text=Что случилось, подруга? Эпплджек вырастила ==>
+яблоко-великан, или Пинки съела последний тортик в Эквестрии?"
+Action:Type=Message,icon=twily_ico,"text=Это не смешно, Рейнбоу Дэш! ==>
+Мне придется спуститься в пещеры Кантерлота. Во имя Селестии, надеюсь,==>
+что обелиск просто перегрелся на солнце!"
+Action:Type=CompBattleTask,code=taskground
+Action:Type=ClearTarget,i=@GroundObelisk_I@,j=@GroundObelisk_J@
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=twily_ico,"text=Информация собрана и мне она не нравится. ==>
+Побежали в сторону гор, нужно спуститься под землю."
+
+VICTORY
+ByNoTargetLeft:null

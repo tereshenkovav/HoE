@@ -1,0 +1,149 @@
+Библиотека
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+111CC111111111111CC111111111111111111
+1111CC11111111111CCCCCC1111CCC111CC111
+1111CC1111111111CC1111C111C11CCCCCC11
+11111CC111111111CC11111CCCC111111CC111
+11111CC11111111CC11111111111111111111
+111111CC1111111CC111CCCCCCCCCCC1111111
+111111CCCCCCCCCCC11C1CC1CC1CC1C111111
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC111111
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+111111CC1111111CC11CCCCCCCCCCCCC111C11
+11111CC11111111CC11C1CC1CC1CC1C1111C1
+11111CC111111111CC11CCCCCCCCCCC1111C11
+1111CC1111111111CC1111111111111111C11
+1111CC11111111111CC11111CCCCC11111C111
+111CC111111111111CC111CC1111C1111C111
+111CC1111111111111CC11CCC1111CCCCC1111
+11CC11111111111111CC11CC1111111111111
+11CC111111111111111CC11111111111111111
+#===MAPEND===
+
+CONSTANTS
+Enemy1_I:4
+Enemy1_J:2
+Enemy2_I:2
+Enemy2_J:8
+Enemy3_I:4
+Enemy3_j:15
+Enemy4_I:18
+Enemy4_j:15
+Enemy5_I:16
+Enemy5_j:2
+EnemyM_I:25
+EnemyM_j:8
+DragonStep:14
+
+OBJECTS
+Pony:i=7,j=7,"name=Рарити",code=rarity
+Pony:i=7,j=8,"name=Эпплджек",code=applejack
+Pony:i=16,j=7,"name=Рейнбоу Дэш",code=rainbow
+Neutral:i=11,j=7,"name=Твайлайт",code=twily,EnemyTarget=true,MustSurvive=true
+Pony:i=15,j=8,"name=Пинки Пай",code=pinki
+Pony:i=11,j=8,"name=Флаттершай",code=flatter
+Neutral:i=8,j=6,code=bookshelf,name=Книги
+Neutral:i=9,j=6,code=bookshelf,name=Книги
+Neutral:i=10,j=6,code=bookshelf,name=Книги
+Neutral:i=11,j=6,code=bookshelf,name=Книги
+Neutral:i=12,j=6,code=bookshelf,name=Книги
+Neutral:i=13,j=6,code=bookshelf,name=Книги
+#Neutral:i=8,j=9,code=bookshelf,name=Книги
+#Neutral:i=9,j=9,code=bookshelf,name=Книги
+#Neutral:i=10,j=9,code=bookshelf,name=Книги
+#Neutral:i=11,j=9,code=bookshelf,name=Книги
+#Neutral:i=12,j=9,code=bookshelf,name=Книги
+#Neutral:i=13,j=9,code=bookshelf,name=Книги
+
+INITIAL
+Food:800
+Stone:0
+Task:Обороняться, пока Твайлайт изучает библиотеку
+AttackedDefeatString:Твайлайт Спаркл не успела изучить книги
+Permits:action=deny,code=all
+#Permits:action=allow,code=BuildFarmFood
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=AttackNear
+Permits:action=allow,code=AttackLong
+Permits:action=allow,code=FreezeEnemy
+Permits:action=allow,code=Teleport
+#Permits:action=allow,code=SonicRainbow
+Permits:action=allow,code=Heal
+Permits:action=allow,code=Restore
+Permits:action=allow,code=CutEmptySector
+Permits:action=allow,code=BuildTreeShield
+#Permits:action=allow,code=BuildFarmStone
+Permits:action=allow,code=BuildCrystalTowerSmall
+Permits:action=allow,code=BuildCrystalTowerBig
+Permits:action=allow,code=FlatterView
+Permits:action=allow,code=ForceShield
+Permits:action=allow,code=Repair
+Permits:action=allow,code=MagicRepair
+
+SCRIPT      
+Event:Step=0
+Action:Type=SetFocus,i=11,j=7,immediate=true
+Action:Type=Message,icon=twily_ico,"text=Разделим усилия. Я ищу нужные материалы, вы защищаете входы."
+Action:Type=Message,icon=rainbow_ico,"text=Этим не поздоровится, уж поверь!"
+Action:Type=Message,icon=twily_ico,"text=И кстати, ты не можешь использовать Радужный Удар - в пещере это опасно."
+Action:Type=Message,icon=rainbow_ico,"text=Неееееет! Это совсем не круто."
+Action:Type=Message,icon=applejack_ico,"text=Зато мы с Пинки можем разобрать часть стен на камни. Плохие камни, конечно, но всё же, Рарити сможет сделать защиту."
+Action:Type=SetPermits,action=allow,code=MineStone
+Action:Type=Message,icon=help_ico,"text=Способности земных пони - добыча камня из стен."
+Action:Type=ShowBattleTask
+# Monster
+
+SCRIPT      
+Event:StepModN=4
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@Enemy1_I@,j=@Enemy1_J@,count=1,radius=1
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@Enemy1_I@,j=@Enemy1_J@,count=1,radius=1
+
+SCRIPT      
+Event:StepModN=5
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=@Enemy2_I@,j=@Enemy2_J@,count=1,radius=1
+
+SCRIPT      
+Event:StepModN=5
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=@Enemy4_I@,j=@Enemy4_J@,count=2,radius=1	
+
+SCRIPT      
+Event:StepModN=6
+Action:Type=NewObjectGroup,Object=Monster,Code=poison,"Name=Ядовитый шар",i=@Enemy3_I@,j=@Enemy3_J@,count=1,radius=1
+
+SCRIPT      
+Event:StepModN=5
+Action:Type=NewObjectGroup,Object=Monster,Code=bat,"Name=Нетопырь",i=@Enemy5_I@,j=@Enemy5_J@,count=2,radius=1
+
+SCRIPT      
+Event:StepModN=@DragonStep@
+Action:Type=SetFocus,i=@EnemyM_I@,j=@EnemyM_J@
+Action:Type=NewObjectGroup,Object=Monster,Code=dragon,"Name=Дракон",tag=dragon,i=@EnemyM_I@,j=@EnemyM_J@,count=1,radius=2,holdground=true
+
+SCRIPT      
+Event:Step=@DragonStep@
+Action:Type=Message,icon=pinki_ico,"text=Ух ты, подземелья и драконы!"
+Action:Type=Message,icon=applejack_ico,"text=Ты о чем?"
+Action:Type=Message,icon=pinki_ico,"text=Просто пришло в голову."
+
+SCRIPT      
+Event:Step=30
+Action:Type=FireTotalAttack
+
+SCRIPT      
+Event:Step=31
+Event1:TagCount=1,TagName=dragon,Compare=GreatOrEqual
+Action:Type=Message,icon=applejack_ico,"text=Спаси нас Селестия, драконы начали атаку!"
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=twily_ico,"text=Ну девочки, не буду говорить заранее - но мы нашли кое-что полезное. Я открываю портал. Домой!"
+
+VICTORY
+ByStep:StepNeed=40

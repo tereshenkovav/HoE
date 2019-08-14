@@ -1,0 +1,185 @@
+Бонус: Сестры героев
+# F - Forest
+# L - Land
+# M - Mountain
+# R - Ruines
+# H - Home
+# T - Tower
+
+MAP
+LLLLLLMMMMMMMMAAMMMMMFFFLLLLLLL
+LLLLLLLLFFFMMMMAAMMMMFFLLLLLLLLL
+LLLLLLLLLFFFMMMAMMMMFFLLLLLLLLL
+LLLLLLLLLLFFFMFMAMMFFLLLLAALLLLL
+LLLLLLLLLLFFFFFAFFFFLLLLAALLLLL
+LLLLLLLLLLLLFFFFAFFFLLLLAAALLLLL
+LLLLLLLLLLLLFFFAAAFLLLLLLALLLLL
+LLLLLLLLLLALLFFAAAFFLLLLLALLLLLL
+LLLLLLLLAALLLFAFFAFLLLLLALLLLLL
+LLLLLLLAALLLLFAFFFALLLLLALLLLLLL
+LLLLLLLALLLLLFALLALLLLLAALLLLLL
+LLLLLLLALLLLLAALLLLLLLLLAALLLLLL
+LLLLLAALLLLLLLALLLLLLLAAAALLLLL
+LLLLLLALLLLLLLAAALLLLLAAALLLLLLL
+LLLLLALLLLLLLLAAALLLLLAAALLLLLL
+LLLLFAFLLLLLLLLAAAALLLAAAAFLLLLL
+LLLFFAFLLLLLLLAAALLLLLFFAFFFLLL
+LLLFAFAFLLLLLLLLAALLLLLFAAFFFLLL
+LLFAAAFFLLLLLLLLLLLLLLLFFAAFFFL
+LLLFAMFFLLLLLLLLLLLLLLLLFFAAAFFF
+LLFFAMFFFLLLLLLLLLLLLLLFFMMAAMF
+FFFFMAMMFFFLLLLLLLLLLLFFMMMAAMMM
+FFMMAMMMMFFFLLLLLLLLFFFMMMMAAMM
+MMMMMAMMMMFFFFLLLLLFFFFMMMMAAAMM
+#===MAPEND===
+
+# Раздел константы должен идти в самом начале
+CONSTANTS
+PortalX:28
+PortalY:12
+FoodNeed:300
+FoodForLuna:150
+
+OBJECTS
+Pony:i=3,j=1,"name=Скуталу",code=scoot,tag=scoot
+Pony:i=1,j=2,"name=Свити Белль",code=switie,tag=switie
+Pony:i=2,j=2,"name=Эпплблум",code=applebloom,tag=applebloom
+Neutral:i=25,j=22,"name=Вход в подземелье",Code=dungeon_enter
+#Monster:Code=ameba,"Name=Непонятное",i=6,j=10
+Food:size=min,i=8,j=4
+Food:size=medium,i=4,j=10
+Food:size=max,i=1,j=19
+Food:size=min,i=2,j=13
+Food:size=min,i=3,j=7
+Food:size=max,i=29,j=14
+Food:size=medium,i=28,j=9
+Food:size=min,i=30,j=5
+Food:size=min,i=29,j=1
+Food:size=medium,i=21,j=6
+Food:size=min,i=21,j=11
+Food:size=min,i=17,j=12
+Food:size=min,i=20,j=18
+Food:size=medium,i=15,j=20
+Food:size=min,i=11,j=18
+Food:size=min,i=8,j=14
+Food:size=min,i=11,j=11
+#===OBJECTSEND===
+
+INITIAL
+Stone:0
+Food:30
+Task:Собрать @FoodNeed@ единиц еды
+AssignAction:pony=scoot,action=TeleportFial1
+AssignAction:pony=switie,action=TeleportFial2
+AssignAction:pony=applebloom,action=TeleportFial3
+Permits:action=deny,code=all
+Permits:action=allow,code=Harvest
+Permits:action=allow,code=TeleportFial1
+Permits:action=allow,code=TeleportFial2
+Permits:action=allow,code=TeleportFial3
+
+SCRIPT      
+Event:Step=0
+Action:Type=Message,icon=switie_ico,"text=Я не ставлю под сомнение твой земнопоньский талант по добыче еды, ЭпплБлум - но это место просто ужасно. Если вдруг появятся те враги, с которыми сражаются сёстры - нас просто зажмут в ущелье."
+Action:Type=Message,icon=applebloom_ico,"text=Я кое-что прихватила в палатке единорога-торговца. У нас есть три зелья телепортации - раз, и мы далеко."
+Action:Type=Message,icon=scoot_ico,"text=Дай-ка почитаю этикетку.... годно два месяца... не взбалтывать... произведено по класическому рецепту Старсвирла.... О! Для телепортации на расстояние более 100 метров, используйте совместно с заклинанием. Поздравляю тебя, Эпплблум - оно только для взрослых единорогов."
+Action:Type=Message,icon=switie_ico,"text=Мы все тут погибнем!"
+Action:Type=Message,icon=applebloom_ico,"text=Ну, 100 метров - это тоже неплохо, убежать-то хватит. Давайте начнем. Меткоискатели - сборщики ресурсов!"
+Action:Type=ShowBattleTask
+
+SCRIPT      
+Event:Step=2
+Action:Type=SetFocus,i=25,j=22
+Action:Type=Message,icon=switie_ico,"text=Это дверь в скале. Она куда-то ведет?"
+Action:Type=Message,icon=applebloom_ico,"text=Я думаю, не стоит отвлекаться на постороние дела. Наша задача - собрать еду и уйти отсюда."
+Action:Type=Message,icon=scoot_ico,"text=По крайней мере, нужно рассказать об этом, когда вернемся - скалы здесь здорово похожи на древнюю крепость. Пусть кто-то постарше, чем мы - исследует, нет ли здесь пользы или угрозы."
+
+SCRIPT    
+Event:StepModN=5
+Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=29,j=10,count=1,radius=1
+
+SCRIPT      
+Event:Step=5
+Action:Type=SetFocus,i=29,j=10
+#Action:Type=NewObjectGroup,Object=Monster,Code=ameba,"Name=Амеба",i=29,j=10,count=1,radius=1
+Action:Type=Message,icon=switie_ico,"text=Мы даже четверть запасов не добыли! Давайте-ка уходить, пока можем."
+Action:Type=Message,icon=applebloom_ico,"text=Если бы твоя сестра была такой же робкой, как ты - Эквестрия уже пять раз погибла бы. Неужто мы совсем бесполезны?"
+Action:Type=Message,icon=scoot_ico,"text=Если бы я умела делать радужный удар... постойте!"
+Action:Type=Message,icon=switie_ico,"text=Ты умеешь делать радужный удар?"
+Action:Type=Message,icon=scoot_ico,"text=Нет, но Рейнбоу научила меня кое-каким трюкам. Думаю, что я смогу немного отвлечь их - пусть побегают за мной."
+Action:Type=Message,icon=applebloom_ico,"text=Свити Белль, помнишь, во время концерта от твоего пения треснула хрустальная люстра?"
+Action:Type=Message,icon=switie_ico,"text=Использовать сопрано ля второй октавы? Может сработать. Но что насчет тебя? Как думаешь, они купятся на твой фигурный куст в качестве отлекающих приманок?"
+Action:Type=Message,icon=scoot_ico,"text=Думаю, скоро мы все узнаем, чего стоим на самом деле."
+Action:Type=Message,icon=help_ico,"text=Скуталу может выполнить рывок - 6 дополнительных клеток хода. Свити Белль способна оглушить врагов на 3 хода. Эпплблум выращивает куст-приманку."
+Action:Type=SetPermits,action=allow,code=SleepSong
+Action:Type=SetPermits,action=allow,code=BuildPonyTree
+Action:Type=SetPermits,action=allow,code=Accelerate
+
+
+SCRIPT    
+Event:StepModN=7
+Action:Type=NewObjectGroup,Object=Monster,Code=troll,"Name=Тролль",i=15,j=18,count=1,radius=1
+
+SCRIPT    
+Event:StepModN=9
+Action:Type=NewObjectGroup,Object=Monster,Code=gidra,"Name=Гидра",i=3,j=3,count=1,radius=1
+
+SCRIPT      
+Event:FoodReach=@FoodForLuna@
+Action:Type=SetFocus,i=16,j=15
+Action:Type=NewObject,Object=Neutral,Code=luna,"Name=Принцесса Луна",i=16,j=15,tag=luna
+Action:Type=Message,icon=luna_ico,"text=Я знала... я догадывалась. Во времена моей юности, непослушных жеребят отправляли на луну."
+Action:Type=Message,icon=switie_ico,"text=Правда?"
+Action:Type=Message,icon=luna_ico,"text=Нет, но вас я туда точно отправлю."
+Action:Type=Message,icon=applebloom_ico,"text=Зачем?"
+Action:Type=Message,icon=luna_ico,"text=Потому что вы ещё слишком малы, чтобы понимать сарказм. И для самостоятельных прогулок в компании чудовищ - тем более."
+Action:Type=Message,icon=applebloom_ico,"text=Принцесса Луна, пожалуйста... Наши сестры такие классные, а мы вечно на втором плане... Вы должны нас понять."
+Action:Type=Message,icon=luna_ico,"text=Кому как не мне понимать, что чувствует младшая сестра... ладно, я оставлю вам портал, он открыт в столицу. Если станет сложно - уходите немедленно."
+Action:Type=NewObject,Object=Neutral,Code=teleport,"Name=Портал",i=@PortalX@,j=@PortalY@,tag=portal
+Action:Type=Message,icon=switie_ico,"text=Вы наша любимая принцесса!"
+Action:Type=RemoveObject,method=tag,Tag=luna
+Action:Type=SetBattleTask,code=initial,isreq=false,"Task=Собрать @FoodNeed@ единиц еды"
+Action:Type=SetBattleTask,code=portal,"Task=Добраться до портала всеми понями"
+Action:Type=ShowBattleTask
+
+SCRIPT      
+Event:TagCount=1,TagName=portal
+Event2:ObjectPos=True,i=@PortalX@,j=@PortalY@,IncludeLinked=true,Object=switie
+Action:Type=Message,icon=switie_ico,"text=Я жива! Я ушла!"
+Action:Type=RemoveObject,method=tag,Tag=switie
+
+SCRIPT      
+Event:TagCount=1,TagName=portal
+Event2:ObjectPos=True,i=@PortalX@,j=@PortalY@,IncludeLinked=true,Object=scoot
+Action:Type=Message,icon=scoot_ico,"text=Это было круто! Обязательно расскажу Рейнбоу про это."
+Action:Type=RemoveObject,method=tag,Tag=scoot
+
+SCRIPT      
+Event:TagCount=1,TagName=portal
+Event2:ObjectPos=True,i=@PortalX@,j=@PortalY@,IncludeLinked=true,Object=applebloom
+Action:Type=Message,icon=applebloom_ico,"text=Я очень храбрая... только маленькая."
+Action:Type=RemoveObject,method=tag,Tag=applebloom
+
+SCRIPT      
+Event:FoodReach=@FoodNeed@
+Action:Type=Message,icon=applebloom_ico,"text=Цель достигнута, а теперь бежим к порталу, спасибо нашей Принцессе!"
+Action:Type=SetFlag,FlagName=foodreach
+Action:Type=CompBattleTask,code=initial
+Action:Type=DecFood,Delta=@FoodNeed@
+
+SCRIPT      
+Event:TagCount=0,TagName=switie,ForceOnceAtStep=True
+Event2:TagCount=0,TagName=scoot,ForceOnceAtStep=True
+Event3:TagCount=0,TagName=applebloom,ForceOnceAtStep=True
+Event4:Flag=foodreach,CheckNoFlag=true,ForceOnceAtStep=True
+Action:Type=Message,icon=ok_ico,"text=Вы спасли пони из ущелья, но сбор еды не был завершен. Вы можете попробовать еще раз, или сразу перейти к карте 'Битва бессмертных'"
+
+SCRIPT
+Event:Victory=True
+Action:Type=Message,icon=luna_ico,"text=Какие всё же молодцы эти жеребята. Если мы переживём эту напасть, возьму их в личную гвардию - от них уже сейчас толку больше, чем от половины ночной стражи."
+
+VICTORY
+ByFlag:FlagName=foodreach
+->ByObjectCount:Object=switie,cnt=0,AddType=And
+->ByObjectCount:Object=scoot,cnt=0,AddType=And
+->ByObjectCount:Object=applebloom,cnt=0,AddType=And
