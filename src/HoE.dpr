@@ -1,4 +1,4 @@
-program PonyHex;
+program HoE;
 
 uses
   Windows,

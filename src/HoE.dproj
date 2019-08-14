@@ -3,7 +3,7 @@
         <ProjectGuid>{7F666A0D-17F6-4AD4-8054-A567EA696BC7}</ProjectGuid>
         <ProjectVersion>18.4</ProjectVersion>
         <FrameworkType>None</FrameworkType>
-        <MainSource>HotE.dpr</MainSource>
+        <MainSource>HoE.dpr</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Release</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
@@ -92,7 +92,7 @@
         <DCC_K>false</DCC_K>
         <DCC_UsePackage>RESTComponents;FireDAC;FireDACSqliteDriver;soaprtl;FireDACIBDriver;soapmidas;FireDACCommon;RESTBackendComponents;soapserver;CloudService;FireDACCommonDriver;inet;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
-        <SanitizedProjectName>HotE</SanitizedProjectName>
+        <SanitizedProjectName>HoE</SanitizedProjectName>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Android)'!=''">
         <DCC_UsePackage>DBXSqliteDriver;IndyIPCommon;bindcompdbx;DBXInterBaseDriver;IndyIPServer;IndySystem;tethering;fmxFireDAC;bindcompfmx;FMXTee;DbxCommonDriver;FmxTeeUI;fmx;xmlrtl;rtl;DbxClientDriver;CustomIPTransport;dbexpress;IndyCore;bindcomp;dsnap;IndyIPClient;dbxcds;bindengine;dsnapxml;dbrtl;IndyProtocols;$(DCC_UsePackage)</DCC_UsePackage>
@@ -155,7 +155,7 @@
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <DCC_DcuOutput>$(Temp)\HotE_dcu_debug</DCC_DcuOutput>
+        <DCC_DcuOutput>$(Temp)\HoE_dcu_debug</DCC_DcuOutput>
         <DCC_ExeOutput>..\bin_debug</DCC_ExeOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
@@ -170,7 +170,7 @@
         <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
-        <DCC_DcuOutput>$(Temp)\HotE_dcu</DCC_DcuOutput>
+        <DCC_DcuOutput>$(Temp)\HoE_dcu</DCC_DcuOutput>
         <DCC_ExeOutput>..\bin</DCC_ExeOutput>
         <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
@@ -313,7 +313,7 @@
         <BorlandProject>
             <Delphi.Personality>
                 <Source>
-                    <Source Name="MainSource">HotE.dpr</Source>
+                    <Source Name="MainSource">HoE.dpr</Source>
                 </Source>
                 <Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k250.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
@@ -341,9 +341,9 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="bin_debug\HotE.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="bin_debug\HoE.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
-                        <RemoteName>HotE.exe</RemoteName>
+                        <RemoteName>HoE.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
