@@ -922,6 +922,7 @@ begin
   if IsWin() then begin
 //    PlaySound(SndWin) ;
    mHGE.System_Log('Win');
+   MS.ResetCachedResults() ;
 
      if (not BF.IsOverMapMovingProcess())and
      (not BF.IsExistsTranspObjs())and // появления объектов
