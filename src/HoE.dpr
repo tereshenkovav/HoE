@@ -1,5 +1,9 @@
 program HoE;
 
+{$APPTYPE GUI}
+
+{$R *.res}
+
 uses
   Windows,
   SysUtils,
@@ -139,13 +143,13 @@ begin
   mHGE.System_SetState(HGE_USESOUND,False) ;
   mHGE.System_SetState(HGE_LOGFILE,'PonyHex.log');
   mHGE.System_SetState(HGE_TITLE,'Герои Эквестрии');
+  mHGE.System_SetState(HGE_ICON,'MAINICON');
 
   mHGE.System_SetState(HGE_WINDOWED,not SWindowOptions.FullScreen);
   mHGE.System_SetState(HGE_SCREENWIDTH,SWindowOptions.Width);
   mHGE.System_SetState(HGE_SCREENHEIGHT,SWindowOptions.Height);
   mHGE.System_SetState(HGE_SCREENBPP,32);
   mHGE.System_SetState(HGE_FPS,HGEFPS_VSYNC);
-
   mHGE.System_SetState(HGE_EXITFUNC,procConfirmExit) ;
 
   if not mHGE.System_Initiate() then begin
