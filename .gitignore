@@ -65,6 +65,3 @@ __recovery/
 *.stat
 
 *.log
-bin/dialoghistory.store
-bin/flags.store
-bin/player.ini
