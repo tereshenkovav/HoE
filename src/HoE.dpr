@@ -8,6 +8,7 @@ uses
   Windows,
   SysUtils,
   Classes,
+  IOUtils,
   HGE,
   HGEFont,
   TAVHGEUtils,
@@ -131,6 +132,8 @@ var i,j:Integer ;
 begin
   Randomize() ;
 
+  if not TDirectory.Exists(AppDataPath()) then TDirectory.CreateDirectory(AppDataPath()) ;
+
   mHGE := HGECreate(HGE_VERSION);
   TAVHGEUtils.mHGE:=mHGE ;
   TAVHGEUtils.PathLoader:='..\images\' ;
@@ -141,7 +144,6 @@ begin
   SpriteEffects.SetWindowOptions(SWindowOptions) ;
 
   mHGE.System_SetState(HGE_USESOUND,False) ;
-  mHGE.System_SetState(HGE_LOGFILE,'PonyHex.log');
   mHGE.System_SetState(HGE_TITLE,'Герои Эквестрии');
   mHGE.System_SetState(HGE_ICON,'MAINICON');
 

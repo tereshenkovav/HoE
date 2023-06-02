@@ -5,7 +5,10 @@ uses AutoCreatedSubList ;
 
 type
   TPersistentFlags = class(TACStringList)
+  private
+    function getStoreFile():string ;
   public
+    constructor Create() ;
     procedure SetFlag(FlagName:string) ;
     function IsFlag(FlagName:string):Boolean ;
     procedure SetVar(VarName:string; VarValue:string) ;
@@ -26,8 +29,6 @@ var List:TStringList ;
 begin
   if PF=nil then begin
     PF:=TPersistentFlags.Create() ;
-    if FileExists(AppPath+'\flags.store') then
-      PF.List.LoadFromFile(AppPath+'\flags.store') ;
     {
     List:=TStringList.Create ;
     with TIniFile.Create(AppPath+'\player.ini') do begin
@@ -46,6 +47,17 @@ begin
 end;
 
 { TPersistentFlags }
+
+constructor TPersistentFlags.Create();
+begin
+  inherited Create() ;
+  if FileExists(getStoreFile()) then List.LoadFromFile(getStoreFile()) ;
+end;
+
+function TPersistentFlags.getStoreFile: string;
+begin
+  Result:=AppDataPath()+'\flags.store' ;
+end;
 
 function TPersistentFlags.GetVar(VarName: string): string;
 begin
@@ -69,7 +81,7 @@ begin
     Free ;
   end;
   }
-  List.SaveToFile(AppPath+'\flags.store') ;
+  List.SaveToFile(getStoreFile()) ;
 end;
 
 procedure TPersistentFlags.SetVar(VarName, VarValue: string);
@@ -87,7 +99,7 @@ begin
     Free ;
   end;
   }
-  List.SaveToFile(AppPath+'\flags.store') ;
+  List.SaveToFile(getStoreFile()) ;
 end;
 
 end.

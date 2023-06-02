@@ -8,6 +8,7 @@ type
   private
     List:TStringList ;
     function MakeKey(map,icon,msg:string):string ;
+    function getHistoryFile():string ;
   public
     constructor Create() ;
     destructor Destroy ; override ;
@@ -19,10 +20,7 @@ type
 function GetDialogHistory():TDialogHistory ;
 
 implementation
-uses SysUtils, simple_oper ;
-
-const
-  DIALOGHISTORYFILE = 'dialoghistory.store' ;
+uses SysUtils, simple_oper, simple_files ;
 
 var
   GDialogHistory:TDialogHistory ;
@@ -40,7 +38,7 @@ begin
   List:=TStringList.Create ;
   List.Sorted:=True ;
   List.Duplicates:=dupIgnore ;
-  if FileExists(DIALOGHISTORYFILE) then List.LoadFromFile(DIALOGHISTORYFILE);
+  if FileExists(getHistoryFile()) then List.LoadFromFile(getHistoryFile());
 end;
 
 destructor TDialogHistory.Destroy;
@@ -49,13 +47,17 @@ begin
   inherited Destroy;
 end;
 
+function TDialogHistory.getHistoryFile: string;
+begin
+  Result:=AppDataPath()+'\dialoghistory.store'
+end;
 
 procedure TDialogHistory.AddDialogHistory(map, icon, msg: string);
 var key:string ;
 begin
   key:=MakeKey(map,icon,msg) ;
   List.Add(key) ;
-  List.SaveToFile(DIALOGHISTORYFILE);
+  List.SaveToFile(getHistoryFile());
 end;
 
 function TDialogHistory.IsDialogExist(map, icon, msg: string): Boolean;

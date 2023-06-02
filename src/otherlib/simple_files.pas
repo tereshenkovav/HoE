@@ -85,6 +85,8 @@ procedure RemoveDirAndContent(path: string);
 function FileSizeByName(fileName : wideString) : Int64;
 {$ENDIF}
 
+function AppDataPath():string ;
+
 implementation
 uses {$ifdef winany} Windows {$else} BaseUnix {$endif} , SysUtils, Classes,
   simple_const ;
@@ -310,5 +312,10 @@ begin
     BlockWrite(f,s[i],1) ;
   CloseFile(f) ;
 end ;
+
+function AppDataPath():string ;
+begin
+  Result:=GetEnvironmentVariable('LOCALAPPDATA')+'\HoE'
+end;
 
 end.

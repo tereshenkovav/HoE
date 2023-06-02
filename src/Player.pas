@@ -1,7 +1,7 @@
 unit Player;
 
 interface
-uses KeyStrList ;
+uses KeyStrList, IniFiles ;
 
 type
   THardLevel = (hlImmortal, hlNovice, hlCasual, hlStandart) ;
@@ -20,6 +20,7 @@ type
     FLastCompany:string ;
     FHardLevel:THardLevel ;
     FMonoTerrain:Boolean ;
+    function createIniFile():TIniFile ;
   public
     function IsLevelAval(GameCode:string; LevelN:Integer):Boolean ;
     function GetCompletedCount(GameCode:string):Integer ;
@@ -49,7 +50,7 @@ type
   end;
 
 implementation
-uses Classes, IniFiles, simple_files, PersistentFlags ;
+uses Classes, simple_files, PersistentFlags ;
 
 { TPlayer }
 
@@ -60,7 +61,7 @@ begin
   MaxLevelAvals:=TKeyStrList.Create ;
 
   List:=TStringList.Create ;
-  with TIniFile.Create(AppPath+'\player.ini') do begin
+  with createIniFile() do begin
     ReadSections(List) ;
     for i := 0 to List.Count - 1 do
       MaxLevelAvals.Value[List[i]]:=ReadInteger(List[i],'MaxLevelAval',1);
@@ -78,6 +79,11 @@ begin
     Free ;
   end;
   List.Free ;
+end;
+
+function TPlayer.createIniFile: TIniFile;
+begin
+  Result:=TIniFile.Create(AppDataPath()+'\player.ini') ;
 end;
 
 function TPlayer.GetCompletedCount(GameCode: string): Integer;
@@ -163,7 +169,7 @@ end;
 procedure TPlayer.SetLastCompany(ALastCompany: string);
 begin
   FLastCompany:=ALastCompany ;
-  with TIniFile.Create(AppPath+'\player.ini') do begin
+  with createIniFile() do begin
     WriteString('Main','LastCompany',ALastCompany) ;
     Free ;
   end;
@@ -172,7 +178,7 @@ end;
 procedure TPlayer.SetMonoTerrain(AMonoTerrain: Boolean);
 begin
   FMonoTerrain:=AMonoTerrain ;
-  with TIniFile.Create(AppPath+'\player.ini') do begin
+  with createIniFile() do begin
     WriteBool('Main','MonoTerrain',AMonoTerrain) ;
     Free ;
   end;
@@ -181,7 +187,7 @@ end;
 procedure TPlayer.SetFastKeyboard(AFastKeyboard: Boolean);
 begin
   FFastKeyboard:=AFastKeyboard ;
-  with TIniFile.Create(AppPath+'\player.ini') do begin
+  with createIniFile() do begin
     WriteBool('Main','FastKeyboard',AFastKeyboard) ;
     Free ;
   end;
@@ -190,7 +196,7 @@ end;
 procedure TPlayer.SetFastMouse(AFastMouse: Boolean);
 begin
   FFastMouse:=AFastMouse ;
-  with TIniFile.Create(AppPath+'\player.ini') do begin
+  with createIniFile() do begin
     WriteBool('Main','FastMouse',AFastMouse) ;
     Free ;
   end;
@@ -199,7 +205,7 @@ end;
 procedure TPlayer.SetHardLevel(AHardLevel: THardLevel);
 begin
   FHardLevel:=AHardLevel ;
-  with TIniFile.Create(AppPath+'\player.ini') do begin
+  with createIniFile() do begin
     WriteInteger('Main','HardLevel',ord(AHardLevel)) ;
     Free ;
   end;
@@ -208,7 +214,7 @@ end;
 procedure TPlayer.SetNoShowAlertLowRes(ANoShowAlertLowRes: Boolean);
 begin
   FNoShowAlertLowRes:=ANoShowAlertLowRes ;
-  with TIniFile.Create(AppPath+'\player.ini') do begin
+  with createIniFile() do begin
     WriteBool('Main','NoShowAlertLowRes',ANoShowAlertLowRes) ;
     Free ;
   end;
@@ -216,7 +222,7 @@ end;
 
 procedure TPlayer.SetRunOk;
 begin
-  with TIniFile.Create(AppPath+'\player.ini') do begin
+  with createIniFile() do begin
     WriteBool('Main','FirstRunOk',True) ;
     Free ;
   end;
@@ -225,7 +231,7 @@ end;
 procedure TPlayer.SetShowHealthInd(AShowHealthInd: Boolean);
 begin
   FShowHealthInd:=AShowHealthInd ;
-  with TIniFile.Create(AppPath+'\player.ini') do begin
+  with createIniFile() do begin
     WriteBool('Main','ShowHealthInd',AShowHealthInd) ;
     Free ;
   end;
@@ -234,7 +240,7 @@ end;
 procedure TPlayer.SetShowHex(AShowHex: Boolean);
 begin
   FShowHex:=AShowHex ;
-  with TIniFile.Create(AppPath+'\player.ini') do begin
+  with createIniFile() do begin
     WriteBool('Main','ShowHex',AShowHex) ;
     Free ;
   end;
@@ -243,7 +249,7 @@ end;
 procedure TPlayer.SetTwailikorn(ATwailikorn: Boolean);
 begin
   FTwailikorn:=ATwailikorn ;
-  with TIniFile.Create(AppPath+'\player.ini') do begin
+  with createIniFile() do begin
     WriteBool('Main','Twailikorn',ATwailikorn) ;
     Free ;
   end;
@@ -261,7 +267,7 @@ begin
     if (GameCode='company3')and(LevelN=4) then
       MaxLevelAvals.Value[GameCode]:=LevelN+2 ;
 
-    with TIniFile.Create(AppPath+'\player.ini') do begin
+    with createIniFile() do begin
       WriteInteger(GameCode,'MaxLevelAval',MaxLevelAvals.Value[GameCode]);
       Free ;
     end;
@@ -269,7 +275,7 @@ begin
 
   if GameCode='democompany' then begin
     DemoCompletedMask:=DemoCompletedMask or (1 shl (LevelN-1)) ;
-    with TIniFile.Create(AppPath+'\player.ini') do begin
+    with createIniFile() do begin
       WriteInteger('democompany','DemoCompletedMask',DemoCompletedMask);
       Free ;
     end;

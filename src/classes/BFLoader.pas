@@ -149,9 +149,6 @@ begin
     else
       Dec(poz) ;
 
-  data.SaveToFile('tmp.map');
-  //mHGE.System_Log('poz=%d',[poz]);
-
   poz:=0 ;
   try
   while poz<data.Count do begin
