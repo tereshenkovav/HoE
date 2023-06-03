@@ -985,6 +985,7 @@ begin
      (MAI.IsStepFinished) then
   if MS.IsActualScript then begin
     Script:=MS.CreateActualScript() ;
+    MS.ResetCachedResults() ;
     mHGE.System_Log('find script, classname='+Script.ClassName+'::'+Script.debugInfo());
     BF.clearPonyPos() ;
     Script.ExecEvent(BF);
