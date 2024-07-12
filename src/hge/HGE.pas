@@ -3604,7 +3604,7 @@ var
 begin
   if (Filename = '') then
     FTmpFilename := FAppPath
-  else if (Filename[1] in ['\','/',':']) then
+  else if (Filename[2] in ['\','/',':']) then
     FTmpFilename := Filename
   else
     FTmpFilename := FAppPath + Filename;
@@ -3875,7 +3875,7 @@ begin
     BASS_Init(0,FSampleRate,0,FWnd,nil);
     FSilent := True;
   end else begin
-    System_Log('Sound Device: %s',[BASS_GetDeviceDescription(1)]);
+    System_Log('Sound Device: %s',[PAnsiChar(BASS_GetDeviceDescription(1))]);
     System_Log('Sample rate: %d' +CRLF,[FSampleRate]);
   end;
 
@@ -4202,6 +4202,7 @@ var
   HF: THandle;
   S: String;
   BytesWritten: Cardinal;
+  arr: TArray<Byte> ;
 begin
   if (FLogFile = '') then
     Exit;
@@ -4213,7 +4214,8 @@ begin
   try
     SetFilePointer(HF,0,nil,FILE_END);
     S := SysUtils.Format(Format,Args) + CRLF;
-    WriteFile(HF,S[1],Length(S),BytesWritten,nil);
+    arr:=TEncoding.UTF8.GetBytes(S);
+    WriteFile(HF,arr[0],Length(arr),BytesWritten,nil);
   finally
     CloseHandle(HF);
   end;
