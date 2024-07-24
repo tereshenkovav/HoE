@@ -56,9 +56,9 @@ https://heroesofequestria.org
 
 ##### Автор проекта
 
-E-mail: tereshenkov@mail.ru\
-Сайт: https://tereshenkov.ru\
-вКонтакте: https://vk.com/tereshenkov_av\
+E-mail: tereshenkov@mail.ru \
+Сайт: https://tereshenkov.ru \
+вКонтакте: https://vk.com/tereshenkov_av
 
 ##### Лицензирование и авторские права
 
