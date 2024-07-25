@@ -3,7 +3,7 @@
 [![YooMoney donation](https://img.shields.io/badge/Donation-Yoo.money-blue.svg)](https://yoomoney.ru/to/41001497003495)
 [![Boosty](https://img.shields.io/badge/Boosty-donate-orange.svg)](https://boosty.to/ponygames)
 [![Website](https://img.shields.io/badge/Website-heroesofequestria.org-29a662.svg)](https://heroesofequestria.org)
-![License](https://img.shields.io/badge/License-CC0-darkgray.svg)
+[![License](https://img.shields.io/badge/License-CC0-darkgray.svg)](#)
 
 Проект "Герои Эквестрии" - тактическая пошаговая игра с элементами
 стратегий и RPG. Помимо классических противников вроде враждебных юнитов,
